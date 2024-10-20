@@ -73,7 +73,7 @@
     font-family: 'Raleway';
     src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
         url('../fonts/Raleway-ExtraBold.woff2') format('woff2');
-    font-weight: bold;
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
@@ -165,6 +165,11 @@ p {
 
 .btn-green-fill {
     background: linear-gradient(0deg, rgba(78, 227, 157, 1) 0%, rgba(13, 201, 122, 1) 100%);
+    color: white;
+}
+
+.btn-green-fill:hover {
+    background: linear-gradient(0deg, rgba(13, 201, 122, 1) 100%, rgba(78, 227, 157, 1) 0%,);
     color: white;
 }
 
@@ -410,7 +415,9 @@ h4,
     background-image: url(../img/illustrations/footer-bg.png);
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 256px 0 128px;
+    background-position: center bottom;
+    margin: 256px 0 0;
+    padding-bottom: 128px;
 }
 
 .footer-top {
@@ -475,16 +482,27 @@ h4,
     align-items: center;
     justify-content: center;
     margin: 20px 0 0;
-    gap: 20px;
+    gap: 12px;
 }
 
 .footer-bottom-socials img {
     width: 32px;
 }
 
+.footer-bottom-tel {
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
 @media (max-width: 1680px) {
     .h1 {
         font-size: 56px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 11px 24px;
     }
 
     .container {
@@ -504,7 +522,7 @@ h4,
         width: 48px;
     }
 
-    .step-sect {
+    .step-sect, .partners-sect, .reviews-sect {
         margin: 176px 0;
     }
 
@@ -526,7 +544,16 @@ h4,
     }
 
     .footer {
-        margin: 256px 0 96px;
+        margin: 256px 0 0;
+        padding-bottom: 96px;
+    }
+
+    .footer-social-link img {
+        width: 48px;
+    }
+
+    .footer-bottom-socials img {
+        width: 32px;
     }
 }
 
@@ -551,7 +578,7 @@ h4,
         width: 864px;
     }
 
-    .step-sect {
+    .step-sect, .partners-sect {
         margin: 128px 0;
     }
 
@@ -607,6 +634,10 @@ h4,
     .plane-grid-item .link {
         font-size: 16px;
     }
+
+    .footer-bottom-socials img {
+        width: 24px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -629,7 +660,11 @@ h4,
         width: 32px;
     }
 
-    .step-sect {
+    .app-sect, .reviews-sect {
+        margin: 128px 0;
+    }
+
+    .step-sect, .partners-sect {
         margin: 80px 0;
     }
 
@@ -666,7 +701,28 @@ h4,
     }
 
     .footer {
-        margin: 128px 0 64px;
+        margin: 128px 0 0;
+        padding-bottom: 64px;
+    }
+
+    .footer-top {
+        margin: 0 auto 60px;
+    }
+
+    .footer-middle-links {
+        margin-top: 30px;
+    }
+
+    .footer-middle {
+        margin-bottom: 30px;
+    }
+    
+    .footer-bottom-tel {
+        font-size: 16px;
+    }
+
+    .footer-bottom-socials {
+        gap: 8px;
     }
 }
 
@@ -692,7 +748,7 @@ h4,
         width: 220px;
     }
 
-    .about-sect {
+    .about-sect, .reviews-sect, .app-sect {
         margin: 80px 0;
     }
 
@@ -783,6 +839,7 @@ h4,
     }
 
     .footer {
-        margin: 110px 0 32px;
+        margin: 110px 0 0;
+        padding-bottom: 32px;
     }
 }
