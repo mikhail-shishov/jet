@@ -11,7 +11,18 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="/" class="logo"><img src="img/logo.svg" alt="Logo"></a>
+            <nav class="nav">
+                <a href="/" class="logo"><img src="img/logo.svg" alt="Logo"></a>
+                <div class="nav-right">
+                    <div class="nav-socials">
+                        <a href="" class="nav-social-link"><img src="img/icons/socials/tg-white.svg" alt=""></a>
+                        <a href="" class="nav-social-link"><img src="img/icons/socials/wa-white.svg" alt=""></a>
+                        <a href="" class="nav-social-link"><img src="img/icons/socials/call-white.svg" alt=""></a>
+                    </div>
+
+                    <a href="tel:+75202114242" class="nav-tel-link">+7 520 211 42 42</a>
+                </div>
+            </nav>
         </div>
     </header>
 
@@ -20,7 +31,7 @@
             <h1 class="h1">Самолеты для прирожденных лидеров</h1>
             <h2 class="h3">Новая эра бизнес-авиации</h2>
             <div class="btn-container">
-                <a href="" class="btn">Получить звонок</a>
+                <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
             </div>
             <img src="img/planes/section-image.png" class="intro-img" alt="">
         </div>
@@ -337,6 +348,341 @@
         </div>
     </section>
 
+    <section class="empty-sect">
+        <div class="container">
+            <h2 class="h2 center">Пустые перелеты</h2>
+            <p class="center">Арендуйте со скидкой самолет, который совершает перелет пустым по заданному маршруту.</p>
+            <div class="empty-grid">
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                        <p class="empty-path-price">$10 000</p>
+                        <button type="button" class="btn btn-green-fill js-modal"
+                            data-modal="#call">Забронировать</button>
+                    </div>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                        <p class="empty-path-price">$10 000</p>
+                        <button type="button" class="btn btn-green-fill js-modal"
+                            data-modal="#call">Забронировать</button>
+                    </div>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+                <div class="empty-item">
+                    <img src="img/planes/1.png" class="empty-img" loading="lazy" alt="">
+                    <h3 class="h3">Citation Longitude</h3>
+                    <div class="empty-path">
+                        <div class="empty-path-row">
+                            <div class="empty-path-start">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/usa.png" loading="lazy"
+                                            alt="">США</span>
+                                    <span class="empty-path-code">NCY</span>
+                                    <span class="empty-path-city">Абердин, SD</span>
+                                </div>
+                            </div>
+                            <div class="empty-path-end">
+                                <div class="empty-path-airport">
+                                    <span class="empty-path-country"><img src="img/flags/Flag2.png" loading="lazy"
+                                            alt="">Африка</span>
+                                    <span class="empty-path-code">AEV</span>
+                                    <span class="empty-path-city">Абилин, TX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-path-flight">
+                            <div class="empty-path-date">
+                                <p class="empty-path-info">24.03, 18:15</p>
+                                <p class="empty-path-label">Дата вылета</p>
+                            </div>
+                            <div class="empty-path-seat">
+                                <p class="empty-path-info">125</p>
+                                <p class="empty-path-label">Всего мест</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="empty-path-price">$10 000</p>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="features-sect">
         <div class="container">
             <h2 class="h2 center">Наши преимущества</h2>
@@ -412,113 +758,156 @@
                     <div class="compare-row">
                         <p class="compare-body-title">Опыт более 20 лет</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Персональный менеджер</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Предложения в рамках своего флота</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Поиск самолёта по общей базе</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Доступ к эксклюзивным самолетам</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Только Проверенные подрядчики</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Оптимизация цены за счет пустых перелетов</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Замена самолета из своего флота в случае поломки</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Замена самолета любым с рынка в случае поломки</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Своя служба OPS контролирует ваш рейс 24/7</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Свой представитель в крупнейших аэропортах</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
-                        <p class="compare-body-title">Служба Контроля Качества гарантирует постоянное качество выполнения рейсов</p>
+                        <p class="compare-body-title">Служба Контроля Качества гарантирует постоянное качество
+                            выполнения рейсов</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Традиционные способы оплаты</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                     <div class="compare-row">
                         <p class="compare-body-title">Более 50 других способов оплаты!</p>
                         <div class="compare-check-row">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32" loading="lazy" alt="">
-                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32"
+                                height="32" loading="lazy" alt="">
+                            <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
+                                loading="lazy" alt="">
                         </div>
                     </div>
                 </div>
@@ -775,6 +1164,40 @@
             </div>
         </div>
     </footer>
+
+    <div id="call" class="modal-window">
+        <div class="modal-inner">
+            <a href="#" class="modal-close btn-close">Закрыть</a>
+            <h2 class="h2">Как с вами связаться?</h3>
+            <form action="" class="form-vertical">
+                <div class="input-wrap">
+                    <img src="img/icons/form-person.svg" class="input-wrap-icon" loading="lazy" alt="">
+                    <input type="text" class="input" placeholder="ФИО">
+                </div>
+                <div class="input-wrap">
+                    <img src="img/icons/form-phone.svg" class="input-wrap-icon" loading="lazy" alt="">
+                    <input type="text" class="input" placeholder="Телефон">
+                </div>
+                <div class="input-wrap">
+                    <img src="img/icons/form-email.svg" class="input-wrap-icon" loading="lazy" alt="">
+                    <input type="text" class="input" placeholder="Почта">
+                </div>
+                <div class="input-wrap">
+                    <img src="img/icons/form-comment.svg" class="input-wrap-icon" loading="lazy" alt="">
+                    <textarea name="" id="" class="input" placeholder="Оставьте комментарий"></textarea>
+                </div>
+                <button type="submit" class="btn btn-green-fill">Отправить</button>
+            </form>
+        </div>
+        <div class="modal-thanks">
+            <img src="img/icons/check_circle.svg" alt="">
+            <h2 class="h2">Спасибо за вашу заявку!</h2>
+            <p>Мы свяжемся с вами в течении 3-ёх суток</p>
+            <a href="#" class="btn modal-close btn-green-fill">Закрыть</a>
+        </div>
+    </div>
+
+    <div class="modal-window__backdrop hidden" id="modal-backdrop"></div>
 
     <script src="js/scripts.js"></script>
 </body>
