@@ -715,10 +715,17 @@ h4,
     transition: all 0.3s ease-in-out;
     visibility: hidden;
     opacity: 0;
+    overflow: auto;
+    max-height: 95vh;
 }
 
 .modal-inner {
     padding: 24px;
+    display: none;
+}
+
+.modal-inner.is-active {
+    display: block;
 }
 
 .modal-inner .h2 {
@@ -742,6 +749,31 @@ h4,
 
 .modal-thanks {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: none;
+    padding: 24px;
+}
+
+.modal-thanks.is-active {
+    display: flex;
+}
+
+.modal-thanks-check {
+    display: block;
+    width: 256px;
+    margin: 80px 0 16px;
+}
+
+.modal-thanks .btn:last-child {
+    margin-top: 64px;
+    width: 100%;
+}
+
+.modal-thanks-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hidden {
@@ -1319,6 +1351,10 @@ h4,
         font-size: 12px;
     }
 
+    .modal-thanks-check {
+        width: 192px;
+    }
+
     .footer {
         margin: 128px 0 0;
         padding-bottom: 64px;
@@ -1576,6 +1612,15 @@ h4,
     .compare-head-title,
     .compare-body-title {
         font-size: 12px;
+    }
+
+    .modal-thanks-check {
+        width: 128px;
+        margin: 0;
+    }
+
+    .modal-thanks-content {
+        margin: 192px 0 64px;
     }
 
     .footer {

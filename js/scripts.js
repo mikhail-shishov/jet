@@ -1,6 +1,4 @@
-(function() {
-    "use strict";
-  
+document.addEventListener("DOMContentLoaded", function(event) {
     const backdrop = document.querySelector('#modal-backdrop');
     document.addEventListener('click', modalHandler);
   
@@ -31,5 +29,11 @@
       modalElem.classList.remove('show');
       backdrop.classList.add('hidden');
     }
-  })();
-  
+
+    sendForm = document.querySelector(".btn-call-send");
+    sendForm.addEventListener("click", function(e) {
+        e.preventDefault()
+        document.querySelector("#call .modal-inner").classList.remove("is-active");
+        document.querySelector("#call .modal-thanks").classList.add("is-active");
+    })
+});
