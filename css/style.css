@@ -136,6 +136,7 @@ img {
 
 p {
     line-height: 1.5;
+    font-size: 20px;
 }
 
 .container {
@@ -518,6 +519,7 @@ h4,
 .about-img {
     float: right;
     width: 460px;
+    margin-left: 20px;
 }
 
 .about-text {
@@ -933,6 +935,10 @@ h4,
         padding: 11px 24px;
     }
 
+    p, .list li {
+        font-size: 16px;
+    }
+
     .container {
         width: 1224px;
     }
@@ -1006,6 +1012,10 @@ h4,
         margin: 176px 0;
     }
 
+    .about-img {
+        width: 400px;
+    }
+
     .reviews-grid {
         gap: 24px;
     }
@@ -1064,7 +1074,7 @@ h4,
         font-size: 24px;
     }
 
-    p {
+    p, .list li {
         font-size: 14px;
     }
 
@@ -1424,7 +1434,7 @@ h4,
     }
 
     .about-img {
-        width: 220px;
+        width: 210px;
     }
 
     .about-sect,

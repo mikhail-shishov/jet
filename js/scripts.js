@@ -30,10 +30,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
       backdrop.classList.add('hidden');
     }
 
-    sendForm = document.querySelector(".btn-call-send");
-    sendForm.addEventListener("click", function(e) {
-        e.preventDefault()
-        document.querySelector("#call .modal-inner").classList.remove("is-active");
-        document.querySelector("#call .modal-thanks").classList.add("is-active");
-    })
+    // sendForm = document.querySelector(".btn-call-send");
+    // sendForm.addEventListener("click", function(e) {
+    //     document.querySelector("#call .modal-inner").classList.remove("is-active");
+    //     document.querySelector("#call .modal-thanks").classList.add("is-active");
+    // })
+
+    document.querySelector("#contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let formData = new FormData(this);
+
+      fetch('../contact.php', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+          if (data.includes('Сообщение отправлено!')) {
+              document.querySelector("#call .modal-inner").classList.remove("is-active");
+              document.querySelector("#call .modal-thanks").classList.add("is-active");
+          } else {
+              alert("Произошла непредвиденная ошибка. Позвоните нам по номеру телефона на сайте, а мы параллельно исправим её.");
+          }
+      })
+      .catch(error => {
+          alert("Код ошибки: " + error);
+      });
+  });
 });
