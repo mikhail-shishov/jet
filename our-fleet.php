@@ -76,23 +76,23 @@ $meta_description = '...';
                     </div>
 
                     <div class="dropdown_with-chk">
-                        <button class="dropdown_with-chk__button" type="button">Выберите из списка</button>
+                        <button class="dropdown_with-chk__button" type="button">Количество мест</button>
                         <ul class="dropdown_with-chk__list">
                             <li class="dropdown_with-chk__list-item">
                                 <input class="dropdown_with-chk__list-item_label" type="checkbox" name="i-1" id="i-1" />
-                                <label class="dropdown_with-chk__list-item_label" for="i-1">Без справок о доходе</label>
+                                <label class="dropdown_with-chk__list-item_label" for="i-1">Вариант 1</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
                                 <input class="dropdown_with-chk__list-item_label" type="checkbox" name="i-2" id="i-2" />
-                                <label class="dropdown_with-chk__list-item_label" for="i-2">Бесплатное снятие наличных</label>
+                                <label class="dropdown_with-chk__list-item_label" for="i-2">Вариант 2</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
                                 <input class="dropdown_with-chk__list-item_label" type="checkbox" name="i-3" id="i-3" />
-                                <label class="dropdown_with-chk__list-item_label" for="i-3">С кэшбэком</label>
+                                <label class="dropdown_with-chk__list-item_label" for="i-3">Вариант 3</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
                                 <input class="dropdown_with-chk__list-item_label" type="checkbox" name="i-4" id="i-4" />
-                                <label class="dropdown_with-chk__list-item_label" for="i-4">Бесплатное обслуживание</label>
+                                <label class="dropdown_with-chk__list-item_label" for="i-4">Вариант 4</label>
                             </li>
                         </ul>
                     </div>
