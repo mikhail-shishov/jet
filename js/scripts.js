@@ -1,61 +1,155 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    const backdrop = document.querySelector('#modal-backdrop');
-    document.addEventListener('click', modalHandler);
-  
-    function modalHandler(evt) {
-      const modalBtnOpen = evt.target.closest('.js-modal');
-      if (modalBtnOpen) { // open btn click
-        const modalSelector = modalBtnOpen.dataset.modal;
-        showModal(document.querySelector(modalSelector));
-      }
-  
-      const modalBtnClose = evt.target.closest('.modal-close');
-      if (modalBtnClose) { // close btn click
-        evt.preventDefault();
-        hideModal(modalBtnClose.closest('.modal-window'));
-      }
-  
-      if (evt.target.matches('#modal-backdrop')) { // backdrop click
-        hideModal(document.querySelector('.modal-window.show'));
-      }
+document.addEventListener("DOMContentLoaded", function (event) {
+  // шапка
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-left");
+
+  hamburger.addEventListener("click", mobileMenu);
+
+  function mobileMenu() {
+    hamburger.classList.toggle("is-active");
+    navMenu.classList.toggle("is-active");
+  }
+
+  const navLink = document.querySelectorAll(".nav-links-item a");
+
+  navLink.forEach((n) => n.addEventListener("click", closeMenu));
+
+  function closeMenu() {
+    hamburger.classList.remove("is-active");
+    navMenu.classList.remove("is-active");
+  }
+
+  // все модальные окна
+  const backdrop = document.querySelector('#modal-backdrop');
+  document.addEventListener('click', modalHandler);
+
+  function modalHandler(evt) {
+    const modalBtnOpen = evt.target.closest('.js-modal');
+    if (modalBtnOpen) { // open btn click
+      const modalSelector = modalBtnOpen.dataset.modal;
+      showModal(document.querySelector(modalSelector));
     }
-  
-    function showModal(modalElem) {
-      modalElem.classList.add('show');
-      backdrop.classList.remove('hidden');
-    }
-  
-    function hideModal(modalElem) {
-      modalElem.classList.remove('show');
-      backdrop.classList.add('hidden');
+
+    const modalBtnClose = evt.target.closest('.modal-close');
+    if (modalBtnClose) { // close btn click
+      evt.preventDefault();
+      hideModal(modalBtnClose.closest('.modal-window'));
     }
 
-    // sendForm = document.querySelector(".btn-call-send");
-    // sendForm.addEventListener("click", function(e) {
-    //     document.querySelector("#call .modal-inner").classList.remove("is-active");
-    //     document.querySelector("#call .modal-thanks").classList.add("is-active");
-    // })
+    if (evt.target.matches('#modal-backdrop')) { // backdrop click
+      hideModal(document.querySelector('.modal-window.show'));
+    }
+  }
 
-    document.querySelector("#contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
+  function showModal(modalElem) {
+    modalElem.classList.add('show');
+    backdrop.classList.remove('hidden');
+  }
 
-      let formData = new FormData(this);
+  function hideModal(modalElem) {
+    modalElem.classList.remove('show');
+    backdrop.classList.add('hidden');
+  }
 
-      fetch('../contact.php', {
-          method: 'POST',
-          body: formData
+  // все селекты
+
+  document.querySelectorAll('.dropdown').forEach(function (dropdownWrapper) {
+    const dropdownBtn = dropdownWrapper.querySelector('.dropdown__button');
+    const dropdownList = dropdownWrapper.querySelector('.dropdown__list');
+    const dropdownItems = dropdownList.querySelectorAll('.dropdown__list-item');
+    const dropdownInput = dropdownWrapper.querySelector('.dropdown__input_hidden')
+    
+    dropdownBtn.addEventListener('click', function () {
+      dropdownList.classList.toggle('dropdown__list_visible');
+      this.classList.toggle('dropdown__button_active');
+    });
+    
+    dropdownItems.forEach(function(listItem) {
+      listItem.addEventListener('click', function (e) {
+        dropdownItems.forEach(function(el) {
+          el.classList.remove('dropdown__list-item_active');
+        })
+        e.target.classList.add('dropdown__list-item_active');
+        dropdownBtn.innerText = this.innerText;
+        dropdownInput.value = this.dataset.value;
+        dropdownList.classList.remove('dropdown__list_visible');
       })
+    })
+    
+    document.addEventListener('click', function (e) {
+      if ( e.target !== dropdownBtn ){
+        dropdownBtn.classList.remove('dropdown__button_active');
+        dropdownList.classList.remove('dropdown__list_visible');
+      }
+    })
+    
+    document.addEventListener('keydown', function (e) {
+      if( e.key === 'Tab' || e.key === 'Escape' ) {
+        dropdownBtn.classList.remove('dropdown__button_active');
+        dropdownList.classList.remove('dropdown__list_visible');
+      }
+    }) 
+  })
+  
+  document.querySelectorAll('.dropdown_with-chk').forEach(function (dropdownWrapper) {
+    const dropdownBtn = dropdownWrapper.querySelector('.dropdown_with-chk__button');
+    const dropdownList = dropdownWrapper.querySelector('.dropdown_with-chk__list');
+    const dropdownItems = dropdownList.querySelectorAll('.dropdown_with-chk__list-item');
+    
+    dropdownBtn.addEventListener('click', function () {
+      dropdownList.classList.toggle('dropdown_with-chk__list_visible');
+      this.classList.toggle('dropdown_with-chk__button_active');
+    });
+    
+    dropdownItems.forEach(function(listItem) {
+      listItem.addEventListener('click', function (e) {
+        e.target.classList.toggle('dropdown_with-chk__list-item_active');
+      })
+    })
+    
+    document.addEventListener('click', function (e) {
+      if ( e.target !== dropdownBtn && e.target !== dropdownItems && !e.target.classList.contains('dropdown_with-chk__list-item') && !e.target.classList.contains('dropdown_with-chk__list-item_label')){
+        dropdownBtn.classList.remove('dropdown_with-chk__button_active');
+        dropdownList.classList.remove('dropdown_with-chk__list_visible');
+      }
+    })
+    
+    document.addEventListener('keydown', function (e) {
+      if( e.key === 'Tab' || e.key === 'Escape' ) {
+        dropdownBtn.classList.remove('dropdown_with-chk__button_active');
+        dropdownList.classList.remove('dropdown_with-chk__list_visible');
+      }
+    }) 
+  })
+
+  // sendForm = document.querySelector(".btn-call-send");
+  // sendForm.addEventListener("click", function(e) {
+  //     document.querySelector("#call .modal-inner").classList.remove("is-active");
+  //     document.querySelector("#call .modal-thanks").classList.add("is-active");
+  // })
+
+  // форма
+
+  document.querySelector("#contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch('../contact.php', {
+      method: 'POST',
+      body: formData
+    })
       .then(response => response.text())
       .then(data => {
-          if (data.includes('Сообщение отправлено!')) {
-              document.querySelector("#call .modal-inner").classList.remove("is-active");
-              document.querySelector("#call .modal-thanks").classList.add("is-active");
-          } else {
-              alert("Произошла непредвиденная ошибка. Позвоните нам по номеру телефона на сайте, а мы параллельно исправим её.");
-          }
+        if (data.includes('Сообщение отправлено!')) {
+          document.querySelector("#call .modal-inner").classList.remove("is-active");
+          document.querySelector("#call .modal-thanks").classList.add("is-active");
+        } else {
+          alert("Произошла непредвиденная ошибка. Позвоните нам по номеру телефона на сайте, а мы параллельно исправим её.");
+        }
       })
       .catch(error => {
-          alert("Код ошибки: " + error);
+        alert("Код ошибки: " + error);
       });
   });
 });

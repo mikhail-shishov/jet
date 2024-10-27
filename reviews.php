@@ -15,7 +15,27 @@ $meta_description = '...';
             </div>
 
             <div class="review-overall-right">
-                4.9
+                <div class="review-overall-rating">
+                    <span class="reviews-rate">4.9</span>
+                    <div class="reviews-stars">
+                        <img src="img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                        <img src="img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                        <img src="img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                        <img src="img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                        <img src="img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    </div>
+                </div>
+                <a href="/" class="logo"><img src="img/logo.svg" alt="Logo"></a>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tabs-heading">Показать сначала: </div>
+            <div class="tabs-options">
+                <a href="" class="btn btn-tab is-active">Новые</a>
+                <a href="" class="btn btn-tab">Старые</a>
+                <a href="" class="btn btn-tab">Положительные</a>
+                <a href="" class="btn btn-tab">Отрицательные</a>
             </div>
         </div>
 
