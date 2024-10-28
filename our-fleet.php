@@ -19,7 +19,6 @@ $meta_description = '...';
             <form action="" class="search-form">
                 <div class="search-form-options">
 
-
                     <div class="dropdown">
                         <button class="dropdown__button" type="button">Тип</button>
                         <ul class="dropdown__list">
@@ -110,35 +109,21 @@ $meta_description = '...';
                 <h3 class="h3">Challenger 350</h3>
                 <div class="looking-desc">
                     <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
+                        <p class="looking-row-title">Скорость</p>
+                        <p class="looking-row-desc">ACJ 320 neo</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
+                        <p class="looking-row-title">Дальность</p>
+                        <p class="looking-row-desc">11000 км/
+                        5939 nm</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
-            </div>
-            <div class="looking-item">
-                <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
+                        <p class="looking-row-title">Количество мест</p>
+                        <p class="looking-row-desc">19</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
+                        <p class="looking-row-title">Цена в час</p>
+                        <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
                 <a href="" class="btn btn-green-fill">Подробнее</a>
@@ -148,35 +133,21 @@ $meta_description = '...';
                 <h3 class="h3">Challenger 350</h3>
                 <div class="looking-desc">
                     <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
+                        <p class="looking-row-title">Скорость</p>
+                        <p class="looking-row-desc">ACJ 320 neo</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
+                        <p class="looking-row-title">Дальность</p>
+                        <p class="looking-row-desc">11000 км/
+                        5939 nm</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
-            </div>
-            <div class="looking-item">
-                <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
+                        <p class="looking-row-title">Количество мест</p>
+                        <p class="looking-row-desc">19</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
+                        <p class="looking-row-title">Цена в час</p>
+                        <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
                 <a href="" class="btn btn-green-fill">Подробнее</a>
@@ -186,16 +157,69 @@ $meta_description = '...';
                 <h3 class="h3">Challenger 350</h3>
                 <div class="looking-desc">
                     <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
+                        <p class="looking-row-title">Скорость</p>
+                        <p class="looking-row-desc">ACJ 320 neo</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
+                        <p class="looking-row-title">Дальность</p>
+                        <p class="looking-row-desc">11000 км/
+                        5939 nm</p>
                     </div>
                     <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
+                        <p class="looking-row-title">Количество мест</p>
+                        <p class="looking-row-desc">19</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Цена в час</p>
+                        <p class="looking-row-desc">22 300₽</p>
+                    </div>
+                </div>
+                <a href="" class="btn btn-green-fill">Подробнее</a>
+            </div>
+            <div class="looking-item">
+                <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                <h3 class="h3">Challenger 350</h3>
+                <div class="looking-desc">
+                    <div class="looking-row">
+                        <p class="looking-row-title">Скорость</p>
+                        <p class="looking-row-desc">ACJ 320 neo</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Дальность</p>
+                        <p class="looking-row-desc">11000 км/
+                        5939 nm</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Количество мест</p>
+                        <p class="looking-row-desc">19</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Цена в час</p>
+                        <p class="looking-row-desc">22 300₽</p>
+                    </div>
+                </div>
+                <a href="" class="btn btn-green-fill">Подробнее</a>
+            </div>
+            <div class="looking-item">
+                <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                <h3 class="h3">Challenger 350</h3>
+                <div class="looking-desc">
+                    <div class="looking-row">
+                        <p class="looking-row-title">Скорость</p>
+                        <p class="looking-row-desc">ACJ 320 neo</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Дальность</p>
+                        <p class="looking-row-desc">11000 км/
+                        5939 nm</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Количество мест</p>
+                        <p class="looking-row-desc">19</p>
+                    </div>
+                    <div class="looking-row">
+                        <p class="looking-row-title">Цена в час</p>
+                        <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
                 <a href="" class="btn btn-green-fill">Подробнее</a>
