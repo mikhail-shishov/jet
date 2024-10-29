@@ -5,6 +5,12 @@ $meta_description = '...';
 
 <?php include_once 'header.php'; ?>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.umd.js"></script>
+
+
 <section class="plane-sect">
     <div class="container">
         <div class="plane-name">
@@ -15,14 +21,52 @@ $meta_description = '...';
             <a class="btn btn-green-fill">Экстерьер</a>
             <a class="btn btn-grey-fill">Интерьер</a>
             <a class="btn btn-grey-fill">План салона</a>
-            <a href="" class="btn btn-plane-compare">Добавить в сравение</a>
+            <a href="" class="btn btn-plane-compare">Добавить в сравнение</a>
         </div>
         <div class="plane-images">
             <div class="plane-gallery">
-                <img src="img/planes/item/ch-350/1.jpg" class="plane-gallery-main" alt="">
-                <!-- <img src="img/planes/item/ch-350/2.jpg" alt="">
+                <!-- <img src="img/planes/item/ch-350/1.jpg" class="plane-gallery-main" alt="">
+                <img src="img/planes/item/ch-350/2.jpg" alt="">
                 <img src="img/planes/item/ch-350/3.jpg" alt="">
                 <img src="img/planes/item/ch-350/4.jpg" alt=""> -->
+
+
+                <div class="gallery-container">
+                    <div id="lightgallery">
+                        <!-- Main Image -->
+                        <div class="main-image">
+                            <img src="img/planes/item/ch-350/1.jpg" alt="" class="plane-gallery-main main-img">
+                        </div>
+
+                        <!-- Thumbnails -->
+                        <div class="thumbnails">
+                            <a href="img/planes/item/ch-350/1.jpg">
+                                <img src="img/planes/item/ch-350/1.jpg" alt="" class="thumb-img">
+                            </a>
+                            <a href="img/planes/item/ch-350/2.jpg">
+                                <img src="img/planes/item/ch-350/2.jpg" alt="" class="thumb-img">
+                            </a>
+                            <a href="img/planes/item/ch-350/3.jpg">
+                                <img src="img/planes/item/ch-350/3.jpg" alt="" class="thumb-img">
+                            </a>
+                            <a href="img/planes/item/ch-350/4.jpg">
+                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                            </a>
+                            <a href="img/planes/item/ch-350/4.jpg">
+                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                            </a>
+                            <a href="img/planes/item/ch-350/4.jpg">
+                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                            </a>
+                            <a href="img/planes/item/ch-350/4.jpg">
+                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                            </a>
+
+                            <button id="show-more-btn" class="show-more-btn">Ещё</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="plane-scheme">
                 <img src="img/planes/item/ch-350/ch-350-scheme.png" alt="">
@@ -200,6 +244,33 @@ $meta_description = '...';
     </div>
 </section>
 
+<div class="video-sect">
+    <div class="container">
+        <div class="video-wrap" style="background-image: url(img/planes/item/ch-350/image2264.jpg);">
+            <img src="img/icons/play-text.png" class="video-overlay" id="video-overlay">
+            <iframe class="video-player" src="https://www.youtube.com/embed/1Mh1Rro8IlE?controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="opacity:0;" id="video-player"></iframe>
+        </div>
+        <script>
+            setInterval(function() {
+                if (document.activeElement instanceof HTMLIFrameElement) {
+                    document.getElementById('video-overlay').style.display = "none";
+                    document.getElementById('video-player').style.opacity = 1;
+                }
+            }, 50);
+        </script>
+    </div>
+</div>
+
+<section class="distance-map-sect">
+    <div class="container">
+        <h2 class="h2 center">Карта дальности</h2>
+        <div class="distance-map-wrap">
+            <img src="img/illustrations/distance-map.png" class="distance-map" loading="lazy" alt="">
+            <img src="img/illustrations/distance-1.svg" class="distance-shown" loading="lazy" alt="">
+        </div>
+    </div>
+</section>
+
 <section class="directions-sect">
     <div class="container">
         <h2 class="h2 center">Популярные направления</h2>
@@ -297,6 +368,195 @@ $meta_description = '...';
                 <div class="plane-specs-number">10 лет</div>
                 <div class="plane-specs-desc">Интервал D-Check</div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="exp-sect">
+    <div class="container">
+        <h2 class="h2 center">Эксплуатационные расходы самолета</h2>
+        <p class="center">Приблизительные расходы, рассчитанные для указанного ниже налета</p>
+        <div class="table-container">
+            <table class="table">
+                <tr>
+                    <th class="table-heading">Переменные затраты (USD)/час</th>
+                    <th class="table-heading">200<br>часов в год</th>
+                    <th class="table-heading">400<br>часов в год</th>
+                    <th class="table-heading">600<br>часов в год</th>
+                    <th class="table-heading">800<br>часов в год</th>
+                </tr>
+                <tr>
+                    <td class="table-item">Программы двигатель</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Программы планер</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Программы ВСУ/Пропеллер</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Техническое обслуживание</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Топливо (при цене $800/тонна)</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Взлет, посадка, сборы</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Навигация</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Командировочные экипажа</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Другие затраты</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item"><b>Сумма переменные</b></td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <th class="table-heading">Постоянные затраты</th>
+                    <th class="table-heading"> </th>
+                    <th class="table-heading"> </th>
+                    <th class="table-heading"> </th>
+                    <th class="table-heading"> </th>
+                </tr>
+                <tr>
+                    <td class="table-item">Зарплата экипажа</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Зарплата инженера</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Обучение экипажа</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">ПО и навигация</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Страховка</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Стоянка</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Доход управляющей компании</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">CAMP</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Технический менеджмент</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item">Разные</td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item"><b>Сумма постоянные</b></td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item"><b>ИТОГО расходы</b></td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+                <tr>
+                    <td class="table-item"><b>Итого цена летного часа</b></td>
+                    <td class="table-item">1 000</td>
+                    <td class="table-item">3 000</td>
+                    <td class="table-item">5 000</td>
+                    <td class="table-item">1 000</td>
+                </tr>
+            </table>
+        </div>
+        <div class="center">
+            <a href="" class="link">Узнать больше</a>
         </div>
     </div>
 </section>

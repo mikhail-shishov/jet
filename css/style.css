@@ -372,7 +372,8 @@ h4,
     font-size: 20px;
 }
 
-.plane-grid-item .list li::marker, .directions-item .list li::marker {
+.plane-grid-item .list li::marker,
+.directions-item .list li::marker {
     color: var(--green1);
 }
 
@@ -1250,6 +1251,7 @@ input[type=checkbox]:checked::after {
     display: flex;
     align-items: flex-start;
     gap: 24px;
+    margin-bottom: 64px;
 }
 
 .plane-specs {
@@ -1266,8 +1268,9 @@ input[type=checkbox]:checked::after {
 
 .plane-specs-number {
     font-size: 32px;
-    font-weight: 600;
     margin-bottom: 8px;
+    font-weight: 600;
+    font-family: "Jost", sans-serif;
 }
 
 .plane-specs-desc {
@@ -1283,6 +1286,7 @@ input[type=checkbox]:checked::after {
 
 .plane-gallery-main {
     border-radius: 16px;
+    width: 960px;
 }
 
 .plane-scheme {
@@ -1325,7 +1329,7 @@ input[type=checkbox]:checked::after {
     gap: 48px 32px;
 }
 
-.commerce-sect .plane-specs-item{
+.commerce-sect .plane-specs-item {
     flex-basis: 20%;
 }
 
@@ -1345,9 +1349,129 @@ input[type=checkbox]:checked::after {
 
 .directions-name {
     font-weight: 600;
+    font-family: "Jost", sans-serif;
     font-size: 24px;
     margin: 8px 0;
 }
+
+.exp-sect {
+    margin: 256px 0;
+}
+
+.table-container {
+    margin: 64px 0;
+    overflow: auto;
+}
+
+.table {
+    width: 100%;
+}
+
+.table-heading {
+    text-align: left;
+    padding: 48px 6px 12px;
+    font-size: 32px;
+    font-weight: 600;
+    font-family: "Jost", sans-serif;
+    line-height: 1;
+}
+
+.table-item {
+    padding: 12px 6px;
+    font-size: 20px;
+}
+
+.exp-sect th:not(:first-of-type),
+.exp-sect td:not(:first-of-type) {
+    text-align: right;
+}
+
+.distance-map-sect {
+    margin: 256px 0;
+}
+
+.distance-map-wrap {
+    position: relative;
+}
+
+.distance-shown {
+    position: absolute;
+    top: 19%;
+    left: 33%;
+    width: 35%;
+}
+
+.video-wrap {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    border-radius: 16px;
+    font-size: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    height: 130px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.video-player {
+    width: 100%;
+    height: 46vw;
+}
+
+
+
+.gallery-container {
+    margin: auto;
+}
+
+.thumbnails {
+    display: flex;
+    overflow: hidden;
+    gap: 16px;
+    margin-top: 16px;
+    align-items: center;
+}
+
+.thumbnails a {
+    display: inline-block;
+    width: 150px;
+    height: auto;
+}
+
+.thumb-img {
+    border-radius: 8px;
+}
+
+.thumbnails a:nth-child(n+6) {
+    display: none;
+}
+
+.show-more-btn {
+    background-color: transparent;
+    border: 0;
+    display: block;
+    padding: 10px 20px;
+    color: var(--green1);
+    font-weight: 800;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: .3s;
+}
+
+.show-more-btn:hover {
+    color: var(--green2);
+}
+
+
+
+
 
 .footer {
     background-image: url(../img/illustrations/footer-bg.png);
@@ -1520,7 +1644,10 @@ input[type=checkbox]:checked::after {
     .instruction-sect,
     .compare-sect,
     .empty-sect,
-    .looking-sect, .directions-sect {
+    .looking-sect,
+    .directions-sect,
+    .exp-sect,
+    .distance-map-sect {
         margin: 176px 0;
     }
 
@@ -1601,12 +1728,26 @@ input[type=checkbox]:checked::after {
         gap: 64px;
     }
 
-    .tech-table-title, .tech-table-desc {
+    .tech-table-title,
+    .tech-table-desc {
         font-size: 16px;
     }
 
     .directions-grid {
         gap: 64px;
+    }
+
+    .table-heading {
+        padding: 48px 2px 12px;
+    }
+
+    .table-item {
+        padding: 12px 2px;
+        font-size: 16px;
+    }
+
+    .thumbnails a {
+        width: 140px;
     }
 
     .footer {
@@ -1683,7 +1824,10 @@ input[type=checkbox]:checked::after {
     .instruction-sect,
     .compare-sect,
     .empty-sect,
-    .looking-sect, .directions-sect {
+    .looking-sect,
+    .directions-sect,
+    .exp-sect,
+    .distance-map-sect {
         margin: 128px 0;
     }
 
@@ -1836,7 +1980,8 @@ input[type=checkbox]:checked::after {
         flex-direction: column;
     }
 
-    .tech-table-title, .tech-table-desc {
+    .tech-table-title,
+    .tech-table-desc {
         font-size: 14px;
     }
 
@@ -1846,6 +1991,19 @@ input[type=checkbox]:checked::after {
 
     .directions-grid {
         gap: 32px;
+    }
+
+    .table-heading {
+        font-size: 24px;
+    }
+
+    .video-player {
+        height: 50vw;
+    }
+
+    .plane-images {
+        align-items: center;
+        flex-direction: column;
     }
 
     .footer-bottom-socials img {
@@ -1996,7 +2154,10 @@ input[type=checkbox]:checked::after {
     .app-sect,
     .reviews-sect,
     .instruction-sect,
-    .looking-sect, .directions-sect {
+    .looking-sect,
+    .directions-sect,
+    .exp-sect,
+    .distance-map-sect {
         margin: 128px 0;
     }
 
@@ -2112,6 +2273,23 @@ input[type=checkbox]:checked::after {
         padding: 8px;
     }
 
+    .table-heading {
+        font-size: 16px;
+    }
+
+    .table-item {
+        padding: 6px 2px;
+        font-size: 12px;
+    }
+
+    .thumbnails a {
+        width: 100px;
+    }
+
+    .show-more-btn {
+        font-size: 16px;
+    }
+
     .footer {
         margin: 128px 0 0;
         padding-bottom: 64px;
@@ -2173,7 +2351,10 @@ input[type=checkbox]:checked::after {
     .app-sect,
     .instruction-sect,
     .empty-sect,
-    .looking-sect, .directions-sect {
+    .looking-sect,
+    .directions-sect,
+    .exp-sect,
+    .distance-map-sect {
         margin: 80px 0;
     }
 
@@ -2230,6 +2411,10 @@ input[type=checkbox]:checked::after {
     .commerce-sect .plane-specs-item {
         flex-basis: 100%;
     }
+
+    .thumbnails a {
+        width: 80px;
+    }
 }
 
 @media (max-width: 640px) {
@@ -2281,6 +2466,11 @@ input[type=checkbox]:checked::after {
 
     .btn-plane-compare {
         margin: 0;
+    }
+
+    .thumbnails {
+        gap: 4px;
+        margin-top: 2px;
     }
 }
 
@@ -2482,7 +2672,8 @@ input[type=checkbox]:checked::after {
         width: 65px;
     }
 
-    .tech-table-title, .tech-table-desc {
+    .tech-table-title,
+    .tech-table-desc {
         font-size: 12px;
     }
 
@@ -2493,6 +2684,15 @@ input[type=checkbox]:checked::after {
 
     .btn-container {
         flex-direction: column;
+    }
+
+    .show-more-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .thumbnails a {
+        width: 48px;
     }
 
     .footer {
