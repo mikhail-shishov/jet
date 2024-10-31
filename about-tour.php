@@ -8,7 +8,7 @@ $meta_description = '...';
 <article class="article">
     <div class="container">
         <a href="" class="breadcrumbs-back">← К предложениям</a>
-        <h1 class="h1">Межклубный женский чемпионат —история пишется в Strawberry Fields</h1>
+        <h1 class="h1">Межклубный женский чемпионат — история пишется в Strawberry Fields</h1>
         <span class="article-date">17.07.2024</span>
         <div class="article-hero">
             <img src="img/illustrations/article-image.jpg" class="article-hero-img" alt="">
