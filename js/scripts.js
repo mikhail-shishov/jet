@@ -173,15 +173,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const hiddenThumbnails = Math.max(thumbnails.length - visibleThumbnails, 0);
   let currentIndex = 0;
 
-  // Initial update for the button text
-  updateButtonText();
+  if (showMoreBtn) {
+    // Initial update for the button text
+    updateButtonText();
 
-  showMoreBtn.addEventListener("click", function () {
-    currentIndex = (currentIndex + 1) % thumbnails.length;
-    gallery.openGallery(currentIndex);
-  });
+    showMoreBtn.addEventListener("click", function () {
+      currentIndex = (currentIndex + 1) % thumbnails.length;
+      gallery.openGallery(currentIndex);
+    });
 
-  function updateButtonText() {
-    showMoreBtn.textContent = `Ещё ${hiddenThumbnails}`;
+    function updateButtonText() {
+      showMoreBtn.textContent = `Ещё ${hiddenThumbnails}`;
+    }
   }
 });

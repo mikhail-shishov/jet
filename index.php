@@ -10,7 +10,7 @@ $meta_description = '...';
         <h1 class="h1">Самолеты для прирожденных лидеров</h1>
         <h2 class="h3">Новое слово в бизнес-авиации</h2>
         <div class="btn-container">
-            <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
+            <button type="button" class="btn js-modal" data-modal="#call">Узнать стоимость</button>
         </div>
         <img src="img/planes/section-image.png" class="intro-img" alt="">
     </div>

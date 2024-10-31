@@ -1424,6 +1424,7 @@ input[type=checkbox]:checked::after {
 }
 
 
+/* поправить! */
 
 .gallery-container {
     margin: auto;
@@ -1469,9 +1470,58 @@ input[type=checkbox]:checked::after {
     color: var(--green2);
 }
 
+/* поправить! */
 
 
 
+.article {
+    margin: 68px 0;
+}
+
+.breadcrumbs-back {
+    color: var(--green1);
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.article-hero {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 64px 0 0;
+    height: 640px;
+}
+
+.article-body {
+    margin-top: 96px;
+    padding-left: 400px;
+    position: relative;
+}
+
+.article-body:before {
+    content: "";
+    background-image: url(../img/illustrations/about-map.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: inline-block;
+    width: 100vw;
+    height: 100%;
+    max-height: 920px;
+    top: 0;
+    right: 40%;
+}
+
+.article-hero-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: unset;
+    transform: translate(-50%, -50%);
+}
 
 .footer {
     background-image: url(../img/illustrations/footer-bg.png);
@@ -1747,7 +1797,28 @@ input[type=checkbox]:checked::after {
     }
 
     .thumbnails a {
-        width: 140px;
+        width: 130px;
+    }
+
+    .plane-images {
+        align-items: center;
+    }
+
+    .plane-gallery-main {
+        width: 840px;
+    }
+
+    .article .h1 {
+        margin: 32px 0;
+    }
+
+    .article-body {
+        margin-top: 64px;
+        padding-left: 100px;
+    }
+
+    .article-hero {
+        margin: 48px 0 0;
     }
 
     .footer {
@@ -2004,6 +2075,14 @@ input[type=checkbox]:checked::after {
     .plane-images {
         align-items: center;
         flex-direction: column;
+    }
+
+    .article-hero {
+        height: 520px;
+    }
+
+    .article-body {
+        padding-left: 0;
     }
 
     .footer-bottom-socials img {
@@ -2290,6 +2369,10 @@ input[type=checkbox]:checked::after {
         font-size: 16px;
     }
 
+    .article-hero {
+        height: 410px;
+    }
+
     .footer {
         margin: 128px 0 0;
         padding-bottom: 64px;
@@ -2414,6 +2497,10 @@ input[type=checkbox]:checked::after {
 
     .thumbnails a {
         width: 80px;
+    }
+
+    .article-hero-img {
+        max-width: 150%;
     }
 }
 
@@ -2693,6 +2780,19 @@ input[type=checkbox]:checked::after {
 
     .thumbnails a {
         width: 48px;
+    }
+
+    .article-hero {
+        height: 180px;
+        margin: 32px 0 0;
+    }
+
+    .article .h1 {
+        margin: 16px 0;
+    }
+
+    .article-body {
+        margin-top: 32px;
     }
 
     .footer {

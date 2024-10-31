@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo $meta_description; ?>" />
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.umd.js"></script>
+
+
     <link rel="stylesheet" href="css/style.css">
     <title><?php echo $meta_title; ?></title>
 </head>
@@ -23,13 +31,13 @@
                             <a href="/reviews.php">Отзывы</a>
                         </li>
                         <li class="nav-links-item">
-                            <a href="">Контакты</a>
-                        </li>
-                        <li class="nav-links-item">
                             <a href="">Вопросы и ответы</a>
                         </li>
                         <li class="nav-links-item">
-                            <a href="">Услуги</a>
+                            <a href="">Блог</a>
+                        </li>
+                        <li class="nav-links-item">
+                            <a href="">Контакты</a>
                         </li>
                     </ul>
                     <ul class="nav-links nav-links-bottom">
@@ -43,7 +51,7 @@
                             <a href="">Предложения</a>
                         </li>
                         <li class="nav-links-item">
-                            <a href="">Блог</a>
+                            <a href="">Услуги</a>
                         </li>
                     </ul>
                 </div>
