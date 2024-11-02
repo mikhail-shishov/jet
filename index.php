@@ -18,7 +18,7 @@ $meta_description = '...';
 
 <section class="plane-sect">
     <div class="container">
-        <h2 class="h2 center">Взлетайте в любое время с The Jet</h2>
+        <h2 class="h2 center">Взлетайте в любое время с&nbsp;The&nbsp;Jet</h2>
         <div class="plane-grid">
             <div class="plane-grid-item">
                 <h3 class="h3">Турбовинтовые</h3>
@@ -735,156 +735,114 @@ $meta_description = '...';
                 <div class="compare-row">
                     <p class="compare-body-title">Опыт более 20 лет</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Персональный менеджер</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Предложения в рамках своего флота</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Поиск самолёта по общей базе</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Доступ к эксклюзивным самолетам</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Только Проверенные подрядчики</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Оптимизация цены за счет пустых перелетов</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Замена самолета из своего флота в случае поломки</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Замена самолета любым с рынка в случае поломки</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Своя служба OPS контролирует ваш рейс 24/7</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Свой представитель в крупнейших аэропортах</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Служба Контроля Качества гарантирует постоянное качество
                         выполнения рейсов</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Традиционные способы оплаты</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img compare-check-grey" width="32"
-                            height="32" loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img compare-check-grey">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
                 <div class="compare-row">
                     <p class="compare-body-title">Более 50 других способов оплаты!</p>
                     <div class="compare-check-row">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img invisible" width="32" height="32"
-                            loading="lazy" alt="">
-                        <img src="img/icons/check-green.svg" class="compare-check-img" width="32" height="32"
-                            loading="lazy" alt="">
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img invisible">Нет</div>
+                        <div class="compare-check-img">Есть</div>
                     </div>
                 </div>
             </div>
