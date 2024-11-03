@@ -9,11 +9,12 @@ $meta_description = '...';
     <div class="container">
         <h1 class="h1">Самолеты для прирожденных лидеров</h1>
         <h2 class="h3">Новая эра бизнес-авиации</h2>
+        
         <img src="img/illustrations/empty-section-image.png" class="intro-img" alt="">
     </div>
 </section>
 
-<div class="empty-all-sect">
+<section class="empty-all-sect">
     <div class="container">
         <div class="center">
             <h2 class="h2">Пустые перелеты</h2>
@@ -349,6 +350,6 @@ $meta_description = '...';
             <a href="" class="link">Смотреть ещё</a>
         </div>
     </div>
-</div>
+</section>
 
 <?php include_once 'footer.php'; ?>
