@@ -3,7 +3,7 @@ $meta_title = 'Отзывы';
 $meta_description = '...';
 ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'components/header.php';?>
 
 <section class="review-overall-sect">
     <div class="container">
@@ -143,4 +143,4 @@ $meta_description = '...';
     </div>
 </section>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'components/footer.php';?>

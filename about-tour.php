@@ -3,7 +3,7 @@ $meta_title = 'Статья';
 $meta_description = '...';
 ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'components/header.php';?>
 
 <article class="article">
     <div class="container">
@@ -26,4 +26,4 @@ $meta_description = '...';
     </div>
 </article>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'components/footer.php';?>

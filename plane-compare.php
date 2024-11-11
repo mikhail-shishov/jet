@@ -3,7 +3,7 @@ $meta_title = 'Сравнение самолетов';
 $meta_description = '...';
 ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'components/header.php';?>
 
 <section class="compare-sect">
     <div class="container">
@@ -312,4 +312,4 @@ $meta_description = '...';
     </div>
 </section>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'components/footer.php';?>

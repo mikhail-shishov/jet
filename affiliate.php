@@ -3,7 +3,7 @@ $meta_title = 'Вступайте в нашу партнерскую прогр�
 $meta_description = '...';
 ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'components/header.php';?>
 
 <section class="affiliate-intro-sect">
     <div class="container">
@@ -63,4 +63,4 @@ $meta_description = '...';
     </div>
 </section>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'components/footer.php';?>

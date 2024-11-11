@@ -3,7 +3,7 @@ $meta_title = 'Challenger 350';
 $meta_description = '...';
 ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'components/header.php'; ?>
 
 <section class="plane-sect">
     <div class="container">
@@ -11,12 +11,14 @@ $meta_description = '...';
             <h1 class="h1">Challenger 350</h1>
             <img src="img/logos/makes/challenger.png" class="plane-logo" alt="">
         </div>
-        <div class="plane-btn-container">
-            <a class="btn btn-green-fill">Экстерьер</a>
-            <a class="btn btn-grey-fill">Интерьер</a>
-            <a class="btn btn-grey-fill">План салона</a>
-            <a href="" class="btn btn-plane-compare">Добавить в сравнение</a>
-        </div>
+        <ul class="nav-tabs nav-tabs-plane">
+            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Экстерьер</a></li>
+            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Интерьер</a></li>
+            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">План салона</a></li>
+            <div class="nav-tabs-right">
+                <a href="" class="btn">Добавить в сравнение</a>
+            </div>
+        </ul>
         <div class="plane-images">
             <div class="plane-gallery">
                 <!-- <img src="img/planes/item/ch-350/1.jpg" class="plane-gallery-main" alt="">
@@ -24,39 +26,112 @@ $meta_description = '...';
                 <img src="img/planes/item/ch-350/3.jpg" alt="">
                 <img src="img/planes/item/ch-350/4.jpg" alt=""> -->
 
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
 
-                <div class="gallery-container">
-                    <div id="lightgallery">
-                        <!-- Main Image -->
-                        <div class="main-image">
-                            <img src="img/planes/item/ch-350/1.jpg" alt="" class="plane-gallery-main main-img">
+                        <div class="gallery-container">
+                            <div class="lightgallery">
+                                <div class="main-image">
+                                    <img src="img/planes/item/ch-350/1.jpg" alt="" class="plane-gallery-main main-img">
+                                </div>
+
+                                <div class="thumbnails">
+                                    <a href="img/planes/item/ch-350/1.jpg">
+                                        <img src="img/planes/item/ch-350/1.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/2.jpg">
+                                        <img src="img/planes/item/ch-350/2.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/3.jpg">
+                                        <img src="img/planes/item/ch-350/3.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+
+                                    <button class="show-more-btn">Ещё</button>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
 
-                        <!-- Thumbnails -->
-                        <div class="thumbnails">
-                            <a href="img/planes/item/ch-350/1.jpg">
-                                <img src="img/planes/item/ch-350/1.jpg" alt="" class="thumb-img">
-                            </a>
-                            <a href="img/planes/item/ch-350/2.jpg">
-                                <img src="img/planes/item/ch-350/2.jpg" alt="" class="thumb-img">
-                            </a>
-                            <a href="img/planes/item/ch-350/3.jpg">
-                                <img src="img/planes/item/ch-350/3.jpg" alt="" class="thumb-img">
-                            </a>
-                            <a href="img/planes/item/ch-350/4.jpg">
-                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
-                            </a>
-                            <a href="img/planes/item/ch-350/4.jpg">
-                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
-                            </a>
-                            <a href="img/planes/item/ch-350/4.jpg">
-                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
-                            </a>
-                            <a href="img/planes/item/ch-350/4.jpg">
-                                <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
-                            </a>
+                        <div class="gallery-container">
+                            <div class="lightgallery">
+                                <div class="main-image">
+                                    <img src="img/planes/item/ch-350/2.jpg" alt="" class="plane-gallery-main main-img">
+                                </div>
 
-                            <button id="show-more-btn" class="show-more-btn">Ещё</button>
+                                <div class="thumbnails">
+                                    <a href="img/planes/item/ch-350/1.jpg">
+                                        <img src="img/planes/item/ch-350/2.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/2.jpg">
+                                        <img src="img/planes/item/ch-350/1.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/3.jpg">
+                                        <img src="img/planes/item/ch-350/3.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+
+                                    <button class="show-more-btn">Ещё</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="gallery-container">
+                            <div class="lightgallery">
+                                <div class="main-image">
+                                    <img src="img/planes/item/ch-350/3.jpg" alt="" class="plane-gallery-main main-img">
+                                </div>
+
+                                <div class="thumbnails">
+                                    <a href="img/planes/item/ch-350/1.jpg">
+                                        <img src="img/planes/item/ch-350/3.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/2.jpg">
+                                        <img src="img/planes/item/ch-350/2.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/3.jpg">
+                                        <img src="img/planes/item/ch-350/1.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+                                    <a href="img/planes/item/ch-350/4.jpg">
+                                        <img src="img/planes/item/ch-350/4.jpg" alt="" class="thumb-img">
+                                    </a>
+
+                                    <button class="show-more-btn">Ещё</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,14 +319,6 @@ $meta_description = '...';
             <img src="img/icons/play-text.png" class="video-overlay" id="video-overlay">
             <iframe class="video-player" src="https://www.youtube.com/embed/1Mh1Rro8IlE?controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="opacity:0;" id="video-player"></iframe>
         </div>
-        <script>
-            setInterval(function() {
-                if (document.activeElement instanceof HTMLIFrameElement) {
-                    document.getElementById('video-overlay').style.display = "none";
-                    document.getElementById('video-player').style.opacity = 1;
-                }
-            }, 50);
-        </script>
     </div>
 </div>
 
@@ -826,4 +893,4 @@ $meta_description = '...';
     </div>
 </section>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'components/footer.php'; ?>

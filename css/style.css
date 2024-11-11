@@ -251,26 +251,30 @@ p {
     border-color: var(--green2);
 }
 
-.btn-green-fill {
-    background: linear-gradient(0deg, rgba(78, 227, 157, 1) 0%, rgba(13, 201, 122, 1) 100%);
-    color: white;
-}
-
-.btn-green-fill:hover {
-    background: linear-gradient(0deg, rgba(13, 201, 122, 1) 100%, rgba(78, 227, 157, 1) 0%, );
-    color: white;
-}
-
-.btn-grey-fill {
+.btn-grey-fill,
+.btn-tab-full {
     background: var(--black3);
     border-color: var(--black3);
     color: var(--grey3);
 }
 
-.btn-grey-fill:hover {
+.btn-grey-fill:hover,
+.btn-tab-full:hover {
     background: var(--black2);
     border-color: var(--black2);
     color: var(--grey3);
+}
+
+.btn-green-fill,
+.active>.btn-tab-full {
+    background: linear-gradient(0deg, rgba(78, 227, 157, 1) 0%, rgba(13, 201, 122, 1) 100%);
+    color: white;
+}
+
+.btn-green-fill:hover,
+.active>.btn-tab-full:hover {
+    background: linear-gradient(0deg, rgba(13, 201, 122, 1) 100%, rgba(78, 227, 157, 1) 0%);
+    color: white;
 }
 
 .btn-container {
@@ -333,7 +337,7 @@ h4,
     margin: 64px 0 90px;
 }
 
-.intro-sect .h1 {
+.intro-sect .h1, .intro-fleet-sect .h1 {
     margin: 0;
 }
 
@@ -393,6 +397,10 @@ h4,
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 128px;
+}
+
+.step-grid+.center .btn {
+    margin-top: 48px;
 }
 
 .step-grid-2 {
@@ -1326,6 +1334,8 @@ input[type=checkbox]:checked::after {
 .plane-gallery-main {
     border-radius: 16px;
     width: 960px;
+    object-fit: cover;
+    height: 100%;
 }
 
 .plane-scheme {
@@ -1469,6 +1479,19 @@ input[type=checkbox]:checked::after {
     margin: auto;
 }
 
+.main-image {
+    height: 440px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.thumb-img {
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 .thumbnails {
     display: flex;
     overflow: hidden;
@@ -1478,7 +1501,7 @@ input[type=checkbox]:checked::after {
 }
 
 .thumbnails a {
-    display: inline-block;
+    display: inline-flex;
     width: 150px;
     height: auto;
 }
@@ -1503,6 +1526,7 @@ input[type=checkbox]:checked::after {
     cursor: pointer;
     font-size: 20px;
     transition: .3s;
+    white-space: nowrap;
 }
 
 .show-more-btn:hover {
@@ -1609,6 +1633,10 @@ input[type=checkbox]:checked::after {
 
 .article-note-role {
     margin-top: 5px;
+}
+
+.article-note-contact {
+    margin-bottom: 80px;
 }
 
 .compare-top {
@@ -1719,13 +1747,9 @@ input[type=checkbox]:checked::after {
 }
 
 .tour-list-img img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-height: 100%;
-    max-width: unset;
-    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .tour-list-item {
@@ -1741,12 +1765,259 @@ input[type=checkbox]:checked::after {
     padding: 30px 0 128px;
 }
 
+.empty-intro-sect .h1 {
+    margin-bottom: 0;
+}
+
+.search-flight-wrap {
+    background-color: var(--black3);
+    padding: 12px;
+    border-radius: 50px;
+    margin: 48px 0 64px;
+}
+
+.search-flight-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-flight-form .btn {
+    width: 176px;
+}
+
+.search-flight-form .form-input-wrap {
+    flex-basis: 33.33333%;
+}
+
+.form-input-wrap {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+}
+
+.form-input-wrap {
+    background-color: var(--grey1);
+    padding-left: 14px;
+    border-radius: 50px;
+}
+
+.autocomplete {
+    position: relative;
+}
+
+.form-input {
+    border: 0;
+    background-color: var(--grey1);
+    font-size: 14px;
+    font-weight: 800;
+    width: 100%;
+    padding: 14px 18px;
+    outline: none;
+}
+
+.form-input-round {
+    border-radius: 50px;
+}
+
+input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.suggestions {
+    position: absolute;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: var(--grey1);
+    z-index: 1000;
+    text-align: left;
+    top: calc(100% + 5px);
+    border-radius: 24px;
+}
+
+.suggestions div {
+    padding: 8px 18px;
+    cursor: pointer;
+}
+
+.suggestions div:first-child {
+    padding-top: 12px;
+}
+
+.suggestions div:last-child {
+    padding-bottom: 12px;
+}
+
+.suggestions div:hover {
+    background-color: var(--grey2);
+}
+
+.passenger-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 2px solid var(--grey1);
+    border-radius: 50px;
+}
+
+.passenger-counter-output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 130px;
+}
+
+.passenger-counter-input {
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+    padding: 0;
+    line-height: 1;
+    width: 14px;
+    font-size: 16px;
+    font-weight: 800;
+    outline: none;
+    margin-right: 4px;
+}
+
+.plus,
+.minus {
+    background-color: transparent;
+    border: 0;
+    background-image: url(../img/icons/plus.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 28px;
+    height: 28px;
+    font-size: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.plus {
+    margin-left: 10px;
+}
+
+.minus {
+    background-image: url(../img/icons/minus.svg);
+    margin-right: 10px;
+}
+
+.passenger-label {
+    font-weight: 800;
+}
+
 .affiliate-intro-sect .h1 {
     margin: 0;
 }
 
 .affiliate-intro-sect .center {
     margin: 60px 0;
+}
+
+.nav-tabs {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 64px 0;
+    gap: 16px;
+}
+
+.nav-tabs-right {
+    margin-left: auto;
+}
+
+.nav-tabs-right .dropdown {
+    min-width: 260px;
+}
+
+.nav-tabs-plane {
+    margin: 32px 0 64px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+.blog-sect,
+.services-sect {
+    margin: 64px 0;
+}
+
+.blog-sect .h1 {
+    margin-bottom: 128px;
+}
+
+.services-sect .h1 {
+    margin-bottom: 0;
+}
+
+.service-item {
+    display: flex;
+    gap: 32px;
+}
+
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    margin: 64px 0;
+}
+
+.service-item-img {
+    position: relative;
+    min-width: 544px;
+    height: 328px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.service-item-img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-item-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.service-item-text .link:last-child {
+    margin-top: auto;
+}
+
+.service-item-text .h2 {
+    margin: 16px 0 10px;
+}
+
+.form-input-icon {
+    width: 24px;
+}
+
+.intro-fleet-sect {
+    margin: 68px 0 100px;
+    text-align: center;
 }
 
 .footer {
@@ -2067,6 +2338,15 @@ input[type=checkbox]:checked::after {
         min-width: 512px;
     }
 
+    .blog-sect .h1 {
+        margin-bottom: 96px;
+    }
+
+    .service-item-img {
+        min-width: 500px;
+        height: 300px;
+    }
+
     .footer {
         margin: 256px 0 0;
         padding-bottom: 96px;
@@ -2340,6 +2620,14 @@ input[type=checkbox]:checked::after {
         margin: 24px 0;
     }
 
+    .article-note-contact {
+        margin-bottom: 64px;
+    }
+
+    .article-hero-img {
+        max-height: 100%;
+    }
+
     .compare-main {
         gap: 32px;
     }
@@ -2353,6 +2641,23 @@ input[type=checkbox]:checked::after {
     .tour-goal-col {
         flex-basis: 45%;
         max-width: unset;
+    }
+
+    .nav-tabs-right .dropdown {
+        min-width: 200px;
+    }
+
+    .service-list {
+        gap: 32px;
+    }
+
+    .service-item-img {
+        min-width: 368px;
+        height: 268px;
+    }
+
+    .search-flight-form {
+        flex-wrap: wrap;
     }
 
     .footer-bottom-socials img {
@@ -2652,8 +2957,48 @@ input[type=checkbox]:checked::after {
         padding-left: 32px;
     }
 
+    .article-note-contact {
+        margin-bottom: 48px;
+    }
+
     .tour-list-img {
         min-width: 368px;
+    }
+
+    .blog-sect .h1 {
+        margin-bottom: 48px;
+    }
+
+    .search-flight-form .btn {
+        width: 100%;
+    }
+
+    .passenger-counter {
+        flex-grow: 1;
+        flex-basis: 33.33333%;
+    }
+
+    .intro-fleet-sect {
+        margin: 68px 0;
+    }
+
+    .nav-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 32px 0;
+    }
+
+    .nav-tabs-item {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .nav-tabs-item .btn, .nav-tabs-plane .btn {
+        width: 100%;
+    }
+
+    .main-image {
+        height: 400px;
     }
 
     .footer {
@@ -2786,10 +3131,6 @@ input[type=checkbox]:checked::after {
         width: 80px;
     }
 
-    .article-hero-img {
-        max-width: 150%;
-    }
-
     .compare-main {
         justify-content: flex-start;
         overflow: auto;
@@ -2797,6 +3138,20 @@ input[type=checkbox]:checked::after {
 
     .tour-list-item {
         flex-direction: column;
+    }
+
+    .service-list {
+        gap: 48px;
+    }
+
+    .service-item {
+        gap: 16px;
+        flex-direction: column;
+    }
+
+    .service-item-img img {
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -2853,7 +3208,15 @@ input[type=checkbox]:checked::after {
 
     .thumbnails {
         gap: 4px;
-        margin-top: 2px;
+        margin-top: 10px;
+    }
+
+    .empty-intro-sect .intro-img {
+        display: none;
+    }
+
+    .passenger-counter, .search-flight-form .form-input-wrap {
+        flex-basis: 100%;
     }
 }
 
@@ -2886,7 +3249,7 @@ input[type=checkbox]:checked::after {
         width: calc(100% - 24px);
     }
 
-    .intro-sect {
+    .intro-sect, .intro-fleet-sect {
         overflow: hidden;
     }
 
@@ -2895,6 +3258,13 @@ input[type=checkbox]:checked::after {
         max-width: unset;
         margin-top: -30px;
         margin-left: 30px;
+    }
+
+    .intro-fleet-sect .intro-img {
+        width: 80%;
+        margin-top: 20px;
+        margin-left: 0;
+        max-width: 100%;
     }
 
     .tour-intro-sect .intro-img {
@@ -3060,6 +3430,7 @@ input[type=checkbox]:checked::after {
     .search-wrap .btn-container .btn {
         min-width: unset;
         flex-grow: 1;
+        width: 100%;
     }
 
     .plane-logo {
@@ -3128,6 +3499,34 @@ input[type=checkbox]:checked::after {
 
     .tour-list-item {
         gap: 16px;
+    }
+
+    .service-item-img {
+        min-width: unset;
+        width: 100%;
+        height: 190px;
+    }
+
+    .passenger-counter-input, .passenger-label, .form-input {
+        font-size: 12px;
+    }
+
+    .form-input {
+        padding: 12px 14px;
+    }
+
+    .plus, .minus {
+        width: 16px;
+        height: 16px;
+    }
+
+    .nav-tabs-right {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .main-image {
+        height: 190px;
     }
 
     .footer {

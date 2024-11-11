@@ -3,13 +3,49 @@ $meta_title = 'Пустые перелёты';
 $meta_description = '...';
 ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'components/header.php'; ?>
 
 <section class="empty-intro-sect">
     <div class="container">
         <h1 class="h1">Самолеты для прирожденных лидеров</h1>
         <h2 class="h3">Новая эра бизнес-авиации</h2>
-        
+
+        <div class="search-wrap search-flight-wrap">
+            <form action="" class="search-flight-form">
+                <div class="city-list" style="display: none;">
+                    Москва, Санкт-Петербург, Новосибирск, Екатеринбург, Нижний Новгород, Казань, Челябинск, Омск, Самара, Ростов-на-Дону, Уфа, Красноярск, Воронеж, Пермь, Волгоград
+                </div>
+
+                <div class="autocomplete form-input-wrap">
+                    <img src="img/icons/from.svg" class="form-input-icon" alt="">
+                    <input type="text" class="form-input form-input-round city-input" placeholder="Откуда" autocomplete="off">
+                    <div class="suggestions"></div>
+                </div>
+
+                <div class="autocomplete form-input-wrap">
+                <img src="img/icons/to.svg" class="form-input-icon" alt="">
+                    <input type="text" class="form-input form-input-round city-input" placeholder="Куда" autocomplete="off">
+                    <div class="suggestions"></div>
+                </div>
+
+                <div class="form-input-wrap">
+                    <img src="img/icons/calendar.svg" class="form-input-icon" alt="">
+                    <input type="text" class="form-input form-input-round" placeholder="Когда" onfocus="(this.type='date')" onblur="(this.type='text')" name="" id="">
+                </div>
+
+                <div class="passenger-counter">
+                    <button class="minus" type="button">−</button>
+                    <div class="passenger-counter-output">
+                        <input type="text" class="passenger-counter-input" value="1" readonly>
+                        <span class="passenger-label">пассажир</span>
+                    </div>
+                    <button class="plus" type="button">+</button>
+                </div>
+
+                <button class="btn btn-green-fill" type="submit">Найти</button>
+            </form>
+        </div>
+
         <img src="img/illustrations/empty-section-image.png" class="intro-img" alt="">
     </div>
 </section>
@@ -346,10 +382,10 @@ $meta_description = '...';
                 <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
             </div>
         </div>
-        <div class="center">
+        <div class="show-more">
             <a href="" class="link">Смотреть ещё</a>
         </div>
     </div>
 </section>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'components/footer.php'; ?>

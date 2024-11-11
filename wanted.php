@@ -1,5 +1,5 @@
 <?php
-$meta_title = 'Наши самолёты';
+$meta_title = 'Самолеты для прирожденных охотников';
 $meta_description = '...';
 ?>
 
@@ -7,9 +7,9 @@ $meta_description = '...';
 
 <section class="intro-fleet-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
-        <h2 class="h3">Новое слово в бизнес-авиации</h2>
-        <img src="img/planes/section-image.png" class="intro-img" alt="">
+        <h1 class="h1">Самолеты для прирожденных охотников</h1>
+        <h2 class="h3">Для тех, кто всегда на высоте</h2>
+        <img src="img/planes/section-wanted-image.png" class="intro-img" alt="">
     </div>
 </section>
 
@@ -126,7 +126,7 @@ $meta_description = '...';
                         <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
+                <a href="" class="btn btn-green-fill">Предложить</a>
             </div>
             <div class="looking-item">
                 <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
@@ -150,7 +150,7 @@ $meta_description = '...';
                         <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
+                <a href="" class="btn btn-green-fill">Предложить</a>
             </div>
             <div class="looking-item">
                 <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
@@ -174,7 +174,7 @@ $meta_description = '...';
                         <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
+                <a href="" class="btn btn-green-fill">Предложить</a>
             </div>
             <div class="looking-item">
                 <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
@@ -198,7 +198,7 @@ $meta_description = '...';
                         <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
+                <a href="" class="btn btn-green-fill">Предложить</a>
             </div>
             <div class="looking-item">
                 <img src="img/planes/1.png" class="looking-img" loading="lazy" alt="">
@@ -222,7 +222,7 @@ $meta_description = '...';
                         <p class="looking-row-desc">22 300₽</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Подробнее</a>
+                <a href="" class="btn btn-green-fill">Предложить</a>
             </div>
         </div>
         <div class="show-more">
@@ -230,5 +230,26 @@ $meta_description = '...';
         </div>
     </div>
 </div>
+
+<section class="app-sect">
+    <div class="container">
+        <div class="app-row">
+            <div class="app-col">
+                <img src="img/icons/app.svg" class="app-icon" width="144" height="144" alt="">
+                <h2 class="h2">Скачивайте мобильное приложение The Jet</h2>
+                <p>Мгновенно бронируйте свой идеальный полет с The Jet в приложении с круглосуточной поддержкой.
+                </p>
+
+                <div class="btn-container">
+                    <a href=""><img src="img/icons/google-play.png" class="app-store-icon" alt=""></a>
+                    <a href=""><img src="img/icons/app-store.png" class="app-store-icon" alt=""></a>
+                </div>
+            </div>
+            <div class="app-col">
+                <img src="img/illustrations/iphone-mockup.png" class="app-mockup" loading="lazy" alt="">
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php include_once 'components/footer.php';?>
