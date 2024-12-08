@@ -1,7 +1,14 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+
+add_action( 'carbon_fields_register_fields', 'crb_attach_theme_options' );
+function crb_attach_theme_options() {
+    Container::make( 'theme_options', __( 'Theme Options' ) )
+        ->add_fields( array(
+            Field::make( 'text', 'crb_text', 'Text Field' ),
+        ) );
+}
 
 
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');
@@ -9,7 +16,6 @@ function thejet_io_enqueue_styles()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
-
 
 
 add_filter('woocommerce_product_data_tabs', function ($tabs) {

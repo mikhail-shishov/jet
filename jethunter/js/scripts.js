@@ -312,3 +312,114 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   });
 });
+
+
+// our-fleet
+document.querySelector('.btn-find').addEventListener('click', () => {
+  // Получаем значения фильтров
+  const selectedManufacturer = document.querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')?.getAttribute('data-value');
+  const selectedRange = document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')?.getAttribute('data-value');
+  const selectedPrice = document.querySelector('.dropdown:nth-child(5) .dropdown__list-item_active')?.getAttribute('data-value') || null;
+  const selectedSeats = Array.from(document.querySelectorAll('.dropdown_with-chk__list-item input:checked'))
+    .map(checkbox => checkbox.id); // Извлекаем диапазоны мест
+
+  // Получаем все элементы самолетов
+  const items = document.querySelectorAll('.looking-item');
+
+  console.log('Фильтры:');
+  console.log('Производитель:', selectedManufacturer || 'Любой');
+  console.log('Дальность:', selectedRange || 'Любая');
+  console.log('Цена:', selectedPrice || 'Любая');
+  console.log('Места:', selectedSeats.length ? selectedSeats : 'Любые');
+
+  // Если ни один фильтр не выбран
+  if (!selectedManufacturer && !selectedRange && !selectedPrice && selectedSeats.length === 0) {
+    console.log('Нет выбранных фильтров. Показываем все блоки.');
+    items.forEach(item => {
+      item.style.display = 'block'; // Показываем все элементы, если фильтры не выбраны
+    });
+    return; // Прерываем выполнение функции, если нет фильтров
+  }
+
+  // Если фильтры выбраны, продолжаем фильтрацию
+  items.forEach(item => {
+    // Данные для фильтрации
+    const title = item.querySelector('h3').innerText.trim(); // Название самолета
+    const rangeText = item.querySelector('.looking-row:nth-child(2) .looking-row-desc').innerText.trim(); // Текст дальности
+    const seatsText = item.querySelector('.looking-row:nth-child(3) .looking-row-desc').innerText.trim(); // Места
+    const priceText = item.querySelector('.looking-row:nth-child(4) .looking-row-desc').innerText.trim(); // Цена
+
+    console.log('Название:', title);
+    console.log('Дальность (текст):', rangeText);
+    console.log('Места (текст):', seatsText);
+    console.log('Цена (текст):', priceText);
+
+    // Извлекаем производителя из названия
+    const manufacturer = title.split(' ')[0];
+
+    // Извлекаем последнее значение перед "км" из текста дальности
+    const rangeMatch = rangeText.match(/(\d+)\s*км/);
+    const range = rangeMatch ? parseInt(rangeMatch[1], 10) : 0;
+
+    // Преобразуем значения
+    const seats = parseInt(seatsText, 10);
+    const price = parseInt(priceText.replace(/\D/g, ''), 10);
+
+    // Проверяем соответствие фильтрам
+    const matchManufacturer = !selectedManufacturer || selectedManufacturer === 'Любой' || manufacturer === selectedManufacturer;
+    const matchRange = !selectedRange || selectedRange === 'Любой' || range >= parseInt(selectedRange, 10);
+    const matchPrice = !selectedPrice || (selectedPrice.includes('-') && checkPriceRange(price, selectedPrice));
+    const matchSeats = selectedSeats.length === 0 || checkSeatRange(seats, selectedSeats);
+
+    console.log('---');
+    console.log('Проверяем блок:', item.querySelector('h3').innerText);
+    console.log('matchManufacturer:', matchManufacturer);
+    console.log('matchRange:', matchRange);
+    console.log('matchPrice:', matchPrice);
+    console.log('matchSeats:', matchSeats);
+    console.log('Производитель:', manufacturer);
+    console.log('Дальность (число):', range);
+    console.log('Места (число):', seats);
+    console.log('Цена (число):', price);
+
+    // Показываем или скрываем элемент
+    if (matchManufacturer && matchRange && matchPrice && matchSeats) {
+      console.log('Элемент отображается:', title);
+      item.style.display = 'block';
+    } else {
+      console.log('Элемент скрывается:', title);
+      item.style.display = 'none';
+    }
+  });
+});
+
+// Проверка диапазона цены
+function checkPriceRange(price, range) {
+  console.log('Проверяем диапазон цены:', price, range);
+  const [min, max] = range.split('-').map(Number);
+  if (isNaN(min) || isNaN(max)) {
+    console.error('Некорректный диапазон цены:', range);
+    return true; // Если диапазон некорректный, пропускаем фильтр
+  }
+  return price >= min && price <= max;
+}
+
+// Проверка диапазона мест
+function checkSeatRange(seats, ranges) {
+  console.log('Проверяем диапазон мест:', seats, ranges);
+  return ranges.some(range => {
+    const [min, max] = range.split('-').map(Number);
+    return seats >= min && (max ? seats <= max : true);
+  });
+}
+
+// Сброс фильтров
+document.querySelector('.btn-reset').addEventListener('click', () => {
+  // Сбросить активные фильтры
+  document.querySelectorAll('.dropdown__list-item_active').forEach(item => item.classList.remove('dropdown__list-item_active'));
+  document.querySelectorAll('.dropdown__list-item:first-child').forEach(item => item.classList.add('dropdown__list-item_active'));
+  document.querySelectorAll('.dropdown_with-chk__list-item input').forEach(checkbox => checkbox.checked = false);
+
+  // Показать все самолеты
+  document.querySelectorAll('.looking-item').forEach(item => item.style.display = 'block');
+});
