@@ -7,20 +7,20 @@
                 <a href="" class="btn btn-green-fill">Подписаться на рассылку</a>
                 <div class="footer-top-socials">
                     <a href="" class="footer-social-link">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-green.svg" loading="lazy" alt="">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-green.svg" loading="lazy" alt="Telegram">
                     </a>
                     <a href="" class="footer-social-link">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/yt-green.svg" loading="lazy" alt="">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/yt-green.svg" loading="lazy" alt="Youtube">
                     </a>
                     <a href="" class="footer-social-link">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/ig-green.svg" loading="lazy" alt="">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/ig-green.svg" loading="lazy" alt="Instagram">
                     </a>
                 </div>
             </div>
         </div>
         <div class="footer-middle">
             <a href="" class="logo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" alt="">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" alt="JetHunter">
             </a>
             <div class="footer-middle-links">
                 <a href="/empty-legs" class="footer-middle-link">Пустые перелёты</a>
@@ -33,30 +33,30 @@
                 <a href="/faq" class="footer-middle-link">Вопросы и ответы</a>
                 <a href="/services" class="footer-middle-link">Услуги</a>
             </div>
-            <p class="footer-copyright">ООО «Leader Jet» использует файлы «cookie», с целью персонализации сервисов
+            <p class="footer-copyright">«Jet Hunter» использует файлы «cookie», с целью персонализации сервисов
                 и повышения удобства пользования веб-сайтом. «Cookie» представляют собой небольшие файлы, содержащие
                 информацию о предыдущих посещениях веб-сайта. Если вы не хотите использовать файлы «cookie»,
                 измените настройки браузера.</p>
         </div>
         <div class="footer-bottom">
-            <a href="tel:+74950000000" class="footer-bottom-tel">+7 495 000 00 00</a>
+            <a href="tel:+77710000000" class="footer-bottom-tel">+7 771 000 0000</a>
             <div class="footer-bottom-socials">
                 <a href="" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-white.svg" loading="lazy"
-                        alt=""></a>
+                        alt="Telegram"></a>
                 <a href="" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/wa-white.svg" loading="lazy"
-                        alt=""></a>
+                        alt="Whatsapp"></a>
                 <a href="" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/call-white.svg" loading="lazy"
-                        alt=""></a>
+                        alt="Phone number"></a>
             </div>
         </div>
     </div>
 </footer>
 
-<div id="call" class="modal-window">
+<div id="call" class="modal-window modal-call">
     <div class="modal-inner is-active">
         <a href="#" class="modal-close btn-close">Закрыть</a>
         <h2 class="h2">Как с вами связаться?</h2>
-        <form action="contact.php" id="contact-form" method="POST" class="form-vertical">
+        <!-- <form action="contact.php" id="contact-form" method="POST" class="form-vertical">
             <div class="input-wrap">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/form-person.svg" class="input-wrap-icon" loading="lazy" alt="">
                 <input type="text" name="username" id="username" class="input" required placeholder="ФИО">
@@ -74,7 +74,8 @@
                 <textarea name="message" id="message" class="input" placeholder="Оставьте комментарий"></textarea>
             </div>
             <button type="submit" class="btn btn-green-fill btn-call-send">Отправить</button>
-        </form>
+        </form> -->
+        <?php echo do_shortcode('[contact-form-7 id="5c9874b" title="Узнать стоимость"]'); ?>
     </div>
     <div class="modal-thanks">
         <a href="#" class="modal-close btn-close">Закрыть</a>

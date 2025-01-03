@@ -10,6 +10,27 @@ function crb_attach_theme_options() {
         ) );
 }
 
+add_action('carbon_fields_register_fields', function() {
+    Container::make('post_meta', 'Наполнение страницы')
+        ->where('post_template', '=', 'page-empty-legs.php')
+        ->add_fields([
+            Field::make('complex', 'planes', 'Список самолетов')
+                ->add_fields([
+                    Field::make('text', 'title', 'Название самолета')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
+                    Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
+                    Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
+                    Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
+                    Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
+                    Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
+                    Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
+                    Field::make('text', 'seats', 'Количество мест')->set_required(true),
+                    Field::make('text', 'price', 'Цена в USD')->set_required(true),
+                ]),
+        ]);
+});
+
 
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');
 function thejet_io_enqueue_styles()

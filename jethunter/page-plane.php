@@ -332,7 +332,7 @@
         <div class="directions-grid">
             <div class="directions-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/direction.png" loading="lazy" alt="">
-                <p class="directions-name">Москва – Дубай</p>
+                <p class="directions-name">Алматы – Дубай</p>
                 <ul class="list">
                     <li>Дальность (км) – 4500</li>
                     <li>Время в пути – 05:00</li>
@@ -341,25 +341,7 @@
             </div>
             <div class="directions-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/direction.png" loading="lazy" alt="">
-                <p class="directions-name">Москва – Дубай</p>
-                <ul class="list">
-                    <li>Дальность (км) – 4500</li>
-                    <li>Время в пути – 05:00</li>
-                    <li>Цена – 120 000 USD</li>
-                </ul>
-            </div>
-            <div class="directions-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/direction.png" loading="lazy" alt="">
-                <p class="directions-name">Москва – Дубай</p>
-                <ul class="list">
-                    <li>Дальность (км) – 4500</li>
-                    <li>Время в пути – 05:00</li>
-                    <li>Цена – 120 000 USD</li>
-                </ul>
-            </div>
-            <div class="directions-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/direction.png" loading="lazy" alt="">
-                <p class="directions-name">Москва – Дубай</p>
+                <p class="directions-name">Белград – Шамбери</p>
                 <ul class="list">
                     <li>Дальность (км) – 4500</li>
                     <li>Время в пути – 05:00</li>

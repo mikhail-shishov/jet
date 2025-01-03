@@ -192,7 +192,7 @@ input {
     gap: 8px;
 }
 
-.nav-right .nav-links .nav-links-item+.nav-links-item:before {
+.nav-right .nav-links .nav-links-item+.nav-links-item:before, .nav-right .nav-links li + li:before {
     content: "/";
     color: white;
     font-size: 20px;
@@ -205,13 +205,13 @@ input {
     margin-top: 8px;
 }
 
-.nav-links-item a {
+.nav-links-item a, .nav-links li a {
     text-decoration: none;
     font-size: 16px;
     transition: .3s;
 }
 
-.nav-links-item a:hover {
+.nav-links-item a:hover, .nav-links li a:hover {
     opacity: .9;
 }
 
@@ -234,7 +234,7 @@ input {
     gap: 32px;
 }
 
-.nav-right .nav-links-item a {
+.nav-right .nav-links-item a, .nav-right .nav-links li a {
     font-weight: 800;
     font-size: 20px;
 }
@@ -300,15 +300,19 @@ input {
 }
 
 .btn-green-fill,
-.active>.btn-tab-full {
+.active>.btn-tab-full, .wpcf7-submit{
     background: linear-gradient(0deg, rgba(78, 227, 157, 1) 0%, rgba(13, 201, 122, 1) 100%);
     color: white;
 }
 
 .btn-green-fill:hover,
-.active>.btn-tab-full:hover {
+.active>.btn-tab-full:hover, .wpcf7-submit:hover {
     background: linear-gradient(0deg, rgba(13, 201, 122, 1) 100%, rgba(78, 227, 157, 1) 0%);
     color: white;
+}
+
+.modal-call .wpcf7-submit {
+    width: 100%;
 }
 
 .btn-container {
@@ -997,6 +1001,14 @@ h4,
     position: relative;
 }
 
+.input-wrap p {
+    margin: 0;
+}
+
+.input-wrap br {
+    display: none;
+}
+
 .input {
     background-color: var(--grey1);
     border-radius: 8px;
@@ -1015,13 +1027,20 @@ h4,
     position: absolute;
     top: 12px;
     left: 14px;
+    z-index: 1;
 }
 
-.input-wrap-icon+.input {
+.input-wrap-icon+.input, .input-wrap-icon ~ .wpcf7-form-control-wrap input, .input-wrap-icon ~ .wpcf7-form-control-wrap textarea {
     padding: 16px 24px 16px 56px;
 }
 
-.form-vertical {
+.wpcf7-spinner {
+    background-color: white;
+    margin: 0;
+    position: absolute;
+}
+
+.form-vertical, .wpcf7-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -2257,7 +2276,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin-right: 48px;
     }
 
-    .nav-links-item a {
+    .nav-links-item a, .nav-links li a {
         font-size: 14px;
     }
 
@@ -2529,7 +2548,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: 20px;
     }
 
-    .nav-links-item a {
+    .nav-links-item a, .nav-links li a {
         font-size: 14px;
     }
 
@@ -2798,12 +2817,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         gap: 7px;
     }
 
-    .nav-right .nav-links .nav-links-item+.nav-links-item:before {
+    .nav-right .nav-links .nav-links-item+.nav-links-item:before, .nav-right .nav-links li + li:before {
         font-size: 14px;
         margin-right: 3px;
     }
 
-    .nav-right .nav-links-item a {
+    .nav-right .nav-links-item a, .nav-right .nav-links li a {
         font-size: 14px;
     }
 
@@ -2911,7 +2930,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin-right: 32px;
     }
 
-    .nav-right .nav-links-item a {
+    .nav-right .nav-links-item a, .nav-right .nav-links li a {
         font-size: 16px;
     }
 
@@ -3443,11 +3462,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin-right: 8px;
     }
 
-    .nav-right .nav-links-item a {
+    .nav-right .nav-links-item a, .nav-right .nav-links li a {
         font-size: 12px;
     }
 
-    .nav-right .nav-links .nav-links-item+.nav-links-item:before {
+    .nav-right .nav-links .nav-links-item+.nav-links-item:before, .nav-right .nav-links li + li:before {
         font-size: 12px;
         margin-right: 3px;
     }

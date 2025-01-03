@@ -1,12 +1,12 @@
 <?php
-/* Template Name: Empty legs */
+/* Template Name: Empty legs EN */
 ?>
 
 <?php get_header(); ?>
 
 <section class="empty-intro-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
+        <h1 class="h1">EN Самолеты для прирожденных лидеров</h1>
         <h2 class="h3">Новая эра бизнес-авиации</h2>
 
         <div class="search-wrap search-flight-wrap">

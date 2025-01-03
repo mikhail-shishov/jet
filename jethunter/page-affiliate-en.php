@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Affiliate */
+/* Template Name: Affiliate EN */
 ?>
 
 <?php get_header(); ?>

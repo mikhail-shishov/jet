@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Services */
+/* Template Name: Services EN */
 ?>
 
 <?php get_header(); ?>

@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Reviews */
+/* Template Name: Reviews EN */
 ?>
 
 <?php get_header(); ?>

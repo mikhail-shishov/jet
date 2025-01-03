@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Contact */
+/* Template Name: Contact EN */
 ?>
 
 <?php get_header(); ?>
@@ -7,7 +7,7 @@
 <article class="article">
     <div class="container">
         <a href="" class="breadcrumbs-back">← К новостям</a>
-        <h1 class="h1">Контакты</h1>
+        <h1 class="h1">Contact</h1>
         <div class="article-info">
             <span class="article-date">17.07.2024</span>
             <span class="article-info-time">1 мин</span>

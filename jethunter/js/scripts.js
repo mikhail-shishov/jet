@@ -128,32 +128,40 @@ document.addEventListener("DOMContentLoaded", function (event) {
   //     document.querySelector("#call .modal-thanks").classList.add("is-active");
   // })
 
-  // форма
+  // форма на чистом РНР
+  // document.querySelector("#contact-form").addEventListener("submit", function (e) {
+  //   e.preventDefault();
 
-  document.querySelector("#contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+  //   let formData = new FormData(this);
 
-    let formData = new FormData(this);
+  //   fetch('../components/contact.php', {
+  //     method: 'POST',
+  //     body: formData
+  //   })
+  //     .then(response => response.text())
+  //     .then(data => {
+  //       if (data.includes('Сообщение отправлено!')) {
+  //         document.querySelector("#call .modal-inner").classList.remove("is-active");
+  //         document.querySelector("#call .modal-thanks").classList.add("is-active");
+  //       } else {
+  //         alert("Произошла непредвиденная ошибка. Позвоните нам по номеру телефона на сайте, а мы параллельно исправим её.");
+  //       }
+  //     })
+  //     .catch(error => {
+  //       alert("Код ошибки: " + error);
+  //     });
+  // });
 
-    fetch('../components/contact.php', {
-      method: 'POST',
-      body: formData
-    })
-      .then(response => response.text())
-      .then(data => {
-        if (data.includes('Сообщение отправлено!')) {
-          document.querySelector("#call .modal-inner").classList.remove("is-active");
-          document.querySelector("#call .modal-thanks").classList.add("is-active");
-        } else {
-          alert("Произошла непредвиденная ошибка. Позвоните нам по номеру телефона на сайте, а мы параллельно исправим её.");
-        }
-      })
-      .catch(error => {
-        alert("Код ошибки: " + error);
-      });
+  // форма с CF7
+  document.addEventListener('wpcf7mailsent', function () {
+    const modalInner = document.querySelector('.modal-inner');
+    const modalThanks = document.querySelector('.modal-thanks');
+
+    if (modalInner && modalThanks) {
+      modalInner.classList.remove('is-active');
+      modalThanks.classList.add('is-active');
+    }
   });
-
-
 
   // store tabs variable
   var theTabs = document.querySelectorAll(".nav-tabs > li");
@@ -194,11 +202,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const cityListElement = document.querySelector('.city-list');
     const cityList = cityListElement.textContent.split(',').map(city => city.trim());
 
-    const input = autocompleteElement.querySelector('.city-input');
+    const inputCity = autocompleteElement.querySelector('.city-input');
     const suggestions = autocompleteElement.querySelector('.suggestions');
 
-    input.addEventListener('input', function () {
-      const query = input.value.toLowerCase();
+    inputCity.addEventListener('input', function () {
+      const query = inputCity.value.toLowerCase();
       suggestions.innerHTML = '';
 
       if (query) {
@@ -209,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           suggestionItem.textContent = city;
 
           suggestionItem.addEventListener('click', function () {
-            input.value = city;
+            inputCity.value = city;
             suggestions.innerHTML = '';
           });
 
@@ -226,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 
   document.querySelectorAll('.passenger-counter').forEach(counter => {
-    const input = counter.querySelector('.passenger-counter-input');
+    const inputPass = counter.querySelector('.passenger-counter-input');
     const plusBtn = counter.querySelector('.plus');
     const minusBtn = counter.querySelector('.minus');
     const passengerLabel = counter.querySelector('.passenger-label');
@@ -253,27 +261,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function adjustInputWidth() {
-      const valueLength = input.value.length;
-      input.style.width = `${valueLength * 12}px`;
+      const valueLength = inputPass.value.length;
+      inputPass.style.width = `${valueLength * 12}px`;
     }
 
-    updateLabel(parseInt(input.value));
+    updateLabel(parseInt(inputPass.value));
 
     plusBtn.addEventListener('click', () => {
-      let value = parseInt(input.value);
+      let value = parseInt(inputPass.value);
       if (value <= 99) {
         value++;
-        input.value = value;
+        inputPass.value = value;
         updateLabel(value);
         adjustInputWidth();
       }
     });
 
     minusBtn.addEventListener('click', () => {
-      let value = parseInt(input.value);
+      let value = parseInt(inputPass.value);
       if (value > 1) {
         value--;
-        input.value = value;
+        inputPass.value = value;
         updateLabel(value);
         adjustInputWidth();
       }
@@ -313,9 +321,144 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 });
 
+// empty-legs
+window.addEventListener("load", () => {
+  const cityInputs = document.querySelectorAll('.city-input');
+  const cityList = document.querySelector('.city-list');
+  const planeItems = document.querySelectorAll('.empty-item');
+  const searchButton = document.querySelector('.search-flight-form .btn'); // Кнопка "Найти"
+  const passengerInput = document.querySelector('.passenger-counter-input'); // Количество пассажиров
+  const dateInput = document.querySelector('.search-flight-form input[type="date"]'); // Поле даты
+
+  // Сбор уникальных городов
+  const citySet = new Set();
+
+  const updateCityList = () => {
+    citySet.clear();
+    planeItems.forEach(item => {
+      const fromCity = item.querySelector('.empty-path-start .empty-path-city')?.textContent.trim();
+      const toCity = item.querySelector('.empty-path-end .empty-path-city')?.textContent.trim();
+      if (fromCity) {
+        citySet.add(fromCity);
+      }
+      if (toCity) {
+        citySet.add(toCity);
+      }
+    });
+  };
+
+  updateCityList();
+  const cityArray = Array.from(citySet).sort();
+  if (cityList) {
+    cityList.textContent = cityArray.join(', ');
+  }
+
+  // Автозаполнение
+  const filterSuggestions = (input, suggestionsBox) => {
+    const inputValue = input.value.trim().toLowerCase();
+    suggestionsBox.innerHTML = '';
+
+    if (inputValue.length > 0) {
+      const filteredCities = cityArray.filter(city => city.toLowerCase().includes(inputValue));
+
+      filteredCities.forEach(city => {
+        const suggestion = document.createElement('div');
+        suggestion.textContent = city;
+        suggestion.classList.add('suggestion-item');
+        suggestionsBox.appendChild(suggestion);
+
+        suggestion.addEventListener('click', () => {
+          input.value = city;
+          suggestionsBox.innerHTML = '';
+          console.log('Выбранный город:', city); // Для проверки выбранного города
+        });
+      });
+    }
+  };
+
+  cityInputs.forEach(input => {
+    const suggestionsBox = input.nextElementSibling;
+
+    input.addEventListener('input', () => {
+      filterSuggestions(input, suggestionsBox);
+    });
+
+    input.addEventListener('blur', () => {
+      setTimeout(() => {
+        suggestionsBox.innerHTML = '';
+      }, 200);
+    });
+  });
+
+  // Фильтрация .plane-item
+  const filterPlanes = () => {
+    const fromCity = cityInputs[0].value.trim().toLowerCase();
+    const toCity = cityInputs[1].value.trim().toLowerCase();
+    const passengerCount = parseInt(passengerInput.value, 10) || 1;
+    const selectedDate = dateInput.value;
+
+    planeItems.forEach(item => {
+      const itemFromCity = item.querySelector('.empty-path-start .empty-path-city')?.textContent.trim().toLowerCase();
+      const itemToCity = item.querySelector('.empty-path-end .empty-path-city')?.textContent.trim().toLowerCase();
+      const itemSeats = parseInt(item.querySelector('.empty-path-seat .empty-path-info')?.textContent.trim(), 10) || 0;
+      const itemDate = item.querySelector('.empty-path-date .empty-path-info')?.textContent.trim(); // Дата в формате строки
+
+      let matches = true;
+
+      // Проверяем город отправления
+      if (fromCity && itemFromCity && !itemFromCity.includes(fromCity)) {
+        matches = false;
+      }
+
+      // Проверяем город прибытия
+      if (toCity && itemToCity && !itemToCity.includes(toCity)) {
+        matches = false;
+      }
+
+      // Проверяем количество пассажиров
+      if (itemSeats < passengerCount) {
+        matches = false;
+      }
+
+      // Проверяем дату
+      if (selectedDate) {
+        const selectedDateObj = new Date(selectedDate);
+        const itemDateObj = new Date(itemDate.split(',')[0]); // Преобразуем строку в дату
+        if (selectedDateObj.toDateString() !== itemDateObj.toDateString()) {
+          matches = false;
+        }
+      }
+
+      // Скрыть или показать plane-item
+      if (matches) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  };
+
+  // Слушаем нажатие кнопки "Найти"
+  searchButton?.addEventListener('click', (event) => {
+    event.preventDefault(); // Предотвращаем отправку формы
+    filterPlanes();
+  });
+
+  // // Сообщение для отсутсвия результатов
+  // const noResultsMessage = document.createElement('p');
+  // noResultsMessage.textContent = 'Нет доступных рейсов';
+  // noResultsMessage.style.display = 'none';
+  // document.querySelector('.empty-grid')?.appendChild(noResultsMessage);
+
+  // // Показать сообщение, если все блоки скрыты
+  // const visibleItems = Array.from(planeItems).some(item => item.style.display !== 'none');
+  // noResultsMessage.style.display = visibleItems ? 'none' : '';
+});
+
+
 
 // our-fleet
-document.querySelector('.btn-find').addEventListener('click', () => {
+document.querySelector('.btn-find')?.addEventListener('click', () => {
   // Получаем значения фильтров
   const selectedManufacturer = document.querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')?.getAttribute('data-value');
   const selectedRange = document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')?.getAttribute('data-value');
@@ -414,7 +557,7 @@ function checkSeatRange(seats, ranges) {
 }
 
 // Сброс фильтров
-document.querySelector('.btn-reset').addEventListener('click', () => {
+document.querySelector('.btn-reset')?.addEventListener('click', () => {
   // Сбросить активные фильтры
   document.querySelectorAll('.dropdown__list-item_active').forEach(item => item.classList.remove('dropdown__list-item_active'));
   document.querySelectorAll('.dropdown__list-item:first-child').forEach(item => item.classList.add('dropdown__list-item_active'));
