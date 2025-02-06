@@ -4,6 +4,13 @@
 
 <?php get_header(); ?>
 
+<section class="breadcrumbs-sect">
+    <div class="container">
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
+    </div>
+</section>
+
 <section class="blog-sect">
     <div class="container">
         <h1 class="h1 center">Новостной блог</h1>
@@ -46,12 +53,26 @@
                                 <?php endif; ?>
 
                                 <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <a href="<?php the_permalink(); ?>" class="h2"><?php the_title(); ?></a>
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+
+                                        <?php
+                                        $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
+
+                                        $time_suffix = ($language === 'en') ? ' min' : ' мин';
+                                        $fallback = ($language === 'en') ? '3 min' : '3 мин';
+
+                                        $reading_time = (function_exists('carbon_get_post_meta') && get_the_ID())
+                                            ? carbon_get_post_meta(get_the_ID(), 'reading_time')
+                                            : '';
+
+                                        ?>
+                                        <span class="article-info-time">
+                                            <?php echo !empty($reading_time) ? esc_html($reading_time) . $time_suffix : $fallback; ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -90,12 +111,26 @@
                                 <?php endif; ?>
 
                                 <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <a href="<?php the_permalink(); ?>" class="h2"><?php the_title(); ?></a>
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+
+                                        <?php
+                                        $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
+
+                                        $time_suffix = ($language === 'en') ? ' min' : ' мин';
+                                        $fallback = ($language === 'en') ? '3 min' : '3 мин';
+
+                                        $reading_time = (function_exists('carbon_get_post_meta') && get_the_ID())
+                                            ? carbon_get_post_meta(get_the_ID(), 'reading_time')
+                                            : '';
+
+                                        ?>
+                                        <span class="article-info-time">
+                                            <?php echo !empty($reading_time) ? esc_html($reading_time) . $time_suffix : $fallback; ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -131,12 +166,27 @@
                                 <?php endif; ?>
 
                                 <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <a href="<?php the_permalink(); ?>" class="h2"><?php the_title(); ?></a>
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+
+                                        <?php
+                                        $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
+
+                                        $time_suffix = ($language === 'en') ? ' min' : ' мин';
+                                        $fallback = ($language === 'en') ? '3 min' : '3 мин';
+
+                                        $reading_time = (function_exists('carbon_get_post_meta') && get_the_ID())
+                                            ? carbon_get_post_meta(get_the_ID(), 'reading_time')
+                                            : '';
+
+                                        ?>
+                                        <span class="article-info-time">
+                                            <?php echo !empty($reading_time) ? esc_html($reading_time) . $time_suffix : $fallback; ?>
+                                        </span>
+
                                     </div>
                                 </div>
                             </div>

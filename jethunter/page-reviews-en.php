@@ -4,6 +4,13 @@
 
 <?php get_header(); ?>
 
+<section class="breadcrumbs-sect">
+    <div class="container">
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
+    </div>
+</section>
+
 <section class="review-overall-sect">
     <div class="container">
         <div class="review-overall-row">
@@ -24,35 +31,62 @@
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     </div>
                 </div>
-                <a href="/" class="logo"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.svg" alt="Logo"></a>
+                <a href="/" class="logo"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" alt="Logo"></a>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tabs-heading">Тип отзыва:</div>
+            <div class="tabs-options">
+                <a href="#" data-filter="all" class="btn btn-tab-type is-active">Все</a>
+                <a href="#" data-filter="rent" class="btn btn-tab-type">Об аренде</a>
+                <a href="#" data-filter="purchase" class="btn btn-tab-type">О покупке</a>
             </div>
         </div>
 
         <div class="tabs">
             <div class="tabs-heading">Показать сначала: </div>
             <div class="tabs-options">
-                <a href="" class="btn btn-tab is-active">Новые</a>
-                <a href="" class="btn btn-tab">Старые</a>
-                <a href="" class="btn btn-tab">Положительные</a>
-                <a href="" class="btn btn-tab">Отрицательные</a>
+                <a href="#" data-sort="newest" class="btn btn-tab is-active">Новые</a>
+                <a href="#" data-sort="oldest" class="btn btn-tab">Старые</a>
+                <a href="#" data-sort="positive" class="btn btn-tab">Положительные</a>
+                <a href="#" data-sort="negative" class="btn btn-tab">Отрицательные</a>
             </div>
         </div>
 
         <div class="reviews-grid">
-            <div class="reviews-item">
-                <span class="reviews-rate">4.9</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+            <?php foreach ($reviews as $review):
+                $rate = isset($review['rate']) ? floatval($review['rate']) : 0;
+                $author = isset($review['author']) ? esc_html($review['author']) : 'Аноним';
+                $text = isset($review['text']) ? esc_html($review['text']) : '';
+                $date = isset($review['date']) ? esc_html($review['date']) : '';
+                $type = isset($review['review_type']) ? $review['review_type'] : [];
+                $typeClass = implode(" ", $type);
+            ?>
+                <div class="reviews-item <?= esc_attr($typeClass) ?>"
+                    data-date="<?= esc_attr($date) ?>"
+                    data-rate="<?= esc_attr($rate) ?>"
+                    data-type="<?= esc_attr($typeClass) ?>">
+                    <span class="reviews-rate"><?= esc_html($rate) ?></span>
+                    <div class="reviews-stars">
+                        <?php
+                        $fullStars = floor($rate);
+                        $halfStar = ($rate <= 4.7) ? 1 : 0;
+                        for ($i = 0; $i < $fullStars; $i++) {
+                            echo '<img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="Full star">';
+                        }
+                        if ($halfStar) {
+                            echo '<img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="Half star">';
+                        }
+                        ?>
+                    </div>
+                    <p><?= esc_html($text) ?></p>
+                    <p><?= esc_html($author) ?></p>
                 </div>
-                <p>Первый раз летела на частном самолете с Jet Hunter, и это просто восторг. Сервис на высшем
-                    уровне: встретили с цветами, проводили, доставили на борт все по запросу. Полет прошел идеально
-                    – быстро, комфортно, без малейших задержек, не было повода переживать.</p>
-                <p>- Елена Пономарева -</p>
-            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- <div class="reviews-grid">
             <div class="reviews-item">
                 <span class="reviews-rate">4.8</span>
                 <div class="reviews-stars">
@@ -60,12 +94,10 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Благодаря Jet Hunter я успел на важнейшую встречу в другом городе, хотя вылет мог задержаться
-                    из-за непогоды. Оперативно поменяли маршрут, всё чётко, профессионально. Впечатлен сервисом и
-                    вниманием к деталям. Рекомендую всем, кто ценит свое время!</p>
-                <p>- Андрей Х. -</p>
+                <p>Jet Hunter внимательно прислушивались к нашим потребностям и очень быстро реагировали, предлагая индивидуальные экономически-эффективные решения. Вам будет трудно найти другую организацию, которая может сравниться с их гибкостью и универсальностью. Я бы порекомендовал любую из услуг Jet Hunter любому владельцу бизнеса или оператору.</p>
+                <p>Евгений С.</p>
             </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.9</span>
@@ -76,24 +108,8 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Организовывали семейный полет в Европу. Всё прошло на ура! Дети в восторге от двух диванов в
-                    самолете и большого количества развлечений для них. Бортпроводник была замечательная. Спасибо
-                    Jet Hunter за незабываемые впечатления.</p>
-                <p>- Оксана и Артем Левины -</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">5.0</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>От лица крупного холдинга выражаю благодарность компании Jet Hunter за организацию полета. Учли
-                    все наши специфические требования по закрывающим документам, которые не хотели выполнять другие
-                    брокеры. Самолет был подан вовремя, все требования учтены.</p>
-                <p>- Иван В. -</p>
+                <p>Продажа самолета похожа на прокладывание пути по минному полю потенциальных ошибок: но Jet Hunter устранила все неопределенности, которые у нас были, и дала нам уверенность в правильности своего курса действий, тщательно объясняя и обосновывая свои доводы на каждом этапе пути. Мы не могли быть более довольны руководством, поддержкой и личным вниманием, которые мы получили от всей команды Jet Hunter!</p>
+                <p>Агентство Х.</p>
             </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.5</span>
@@ -104,10 +120,8 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Часто летаю по бизнесу, и для меня комфорт и конфиденциальность – на первом месте. Ребята все
-                    четко организовали, проинструктировали бортпроводника в соответствии с моими требованиями. Особо
-                    отмечу удобство оплаты, много вариантов. Буду летать еще.</p>
-                <p>- Виталий -</p>
+                <p>Мы обратились в Jet Hunter по рекомендации партнеров и не пожалели! Высокий профессионализм, оперативность и широкий выбор самолетов — вот что отличает эту компанию. Мы уверены в нашем выборе и рекомендуем Jet Hunter всем, кто ценит свой комфорт.</p>
+                <p>Корпорация А</p>
             </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.7</span>
@@ -118,26 +132,51 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Часто заказываю частные самолеты для своего руководителя и успела поработать с большим
-                    количеством чартерных компаний. Такого внимания к деталям не видела никогда. А когда аэропорт
-                    перенес время вылета на несколько часов позже, менеджер через свои связи смог получить удобный
-                    слот. Компания – настоящие профессионалы, будем обращаться еще.</p>
-                <p>- Екатерина Л. -</p>
+                <p>Сделка по покупке самолета — это всегда сложный и многоэтапный процесс. Но с Jet Hunter все прошло гладко и прозрачно. Отдельное спасибо юридической службе за оперативное решение всех вопросов!</p>
+                <p>Виталий</p>
             </div>
-        </div>
+            <div class="reviews-item">
+                <span class="reviews-rate">4.9</span>
+                <div class="reviews-stars">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                </div>
+                <p>Как профессионал, я могу оценить техническое состояние самолетов, предлагаемых Jet Hunter. Все машины находятся в отличном состоянии и соответствуют высочайшим стандартам безопасности.</p>
+                <p>Леонид Х.</p>
+            </div>
+            <div class="reviews-item">
+                <span class="reviews-rate">4.8</span>
+                <div class="reviews-stars">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                </div>
+                <p>Творчество моего руководителя требует вдохновения, и он нашел его в путешествиях. Благодаря Jet Hunter у него появилась возможность проводить выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
+                <p>Менеджер Майкла О</p>
+            </div>
+        </div> -->
     </div>
 </section>
 
 <section class="about-sect">
     <div class="container">
-        <h2 class="h2 center">О компании</h2>
+        <h2 class="h2 center">Слово генерального директора</h2>
 
         <div class="about-text">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/about.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
 
-            <p>Авиаброкер Jet Hunter компания №1 в бизнес авиации РФ. Компания была образована в 2010 году и на протяжении всех этих лет мы ежемесячно выполняем более 500 перелетов на частных самолетах по всему миру. С нами работают представители крупного бизнеса, крупнейшие мировые корпорации, лица деловой и политической элиты, представители шоу-бизнеса, бизнес туроператоры и др. </p>
-            <p>Наша команда состоит из лучших специалистов в отрасли, каждый из которых имеет большой опыт работы в этой области. Приверженность самым высоким стандартам безопасности и обслуживания клиентов гарантирует, что наши клиенты всегда обеспечены наилучшим опытом.</p>
-            <p>Инновации и опыт лежат в основе нашей деятельности, гарантируя, что мы сможем найти идеальный чартер для наших клиентов. Мы разработали эффективный алгоритм, который позволяет нам быстро и точно сканировать рынок бизнес авиации на наличие лучших типов самолетов по оптимальным ценам для наши клиентов.</p>
+            <p>В Jet Hunter мы верим, что время – самый ценный ресурс, небо – не предел, а пространство для новых возможностей. Мы помогаем людям, ценящим свое время и стремящимся к максимальной эффективности, преодолевать любые расстояния с непревзойденным комфортом и стилем.</p>
+            <p>Jet Hunter – это не просто компания по продаже бизнес-джетов. Это команда, страстно преданных своему делу и готовых превзойти ваши ожидания. Мы учитываем индивидуальные потребности каждого клиента, предлагая не только широкий выбор самолетов от ведущих мировых производителей, но и полный спектр услуг, связанных с владением и эксплуатацией бизнес-джета.</p>
+            <p>Мы ценим доверие, которое вы нам оказываете, и стремимся строить долгосрочные и взаимовыгодные отношения с каждым клиентом.</p>
+            <p>С Jet Hunter вы получаете не просто самолет, вы получаете ключ к безграничным возможностям!</p>
+            <br>
+            <p>С уважением,</p>
+            <p>Алексей Мордвинцев</p>
         </div>
     </div>
 </section>

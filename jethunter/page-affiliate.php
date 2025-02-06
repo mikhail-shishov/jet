@@ -4,12 +4,19 @@
 
 <?php get_header(); ?>
 
+<section class="breadcrumbs-sect">
+    <div class="container">
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
+    </div>
+</section>
+
 <section class="affiliate-intro-sect">
     <div class="container">
         <h1 class="h1">Вступайте в нашу партнерскую программу</h1>
         <h2 class="h3">Получайте кешбек от продаж с каждого приведенного клиента</h2>
         <div class="center">
-            <a href="" class="btn btn-green-fill">Зарегистрироваться</a>
+            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Зарегистрироваться</button>
         </div>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/affiliate-section-image.png" class="intro-img" alt="">
     </div>
@@ -45,7 +52,7 @@
 
 <section class="about-sect">
     <div class="container">
-        <h2 class="h2 center">Партнерская программа от Лидер Джет</h2>
+        <h2 class="h2 center">Партнерская программа от JetHunter</h2>
 
         <div class="about-text">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/comfort-2.svg" width="460" height="460" class="about-img about-img-left" loading="lazy" alt="">

@@ -455,4 +455,18 @@
     </div>
 </div>
 
+<section class="regular-sect">
+    <div class="container">
+        <h2 class="h2 center">Наши другие услуги</h2>
+        <div class="btn-container btn-container-wrap">
+            <a href="" class="btn">Аренда малых самолетов</a>
+            <a href="" class="btn">Аренда дальнемагистральных самолетов </a>
+            <a href="" class="btn">Аренда средних самолетов</a>
+            <a href="" class="btn">Аренда больших самолетов</a>
+            <a href="" class="btn">Аренда турбовинтовых самолетов</a>
+            <a href="" class="btn">Аренда очень легких самолетов </a>
+        </div>
+    </div>
+</section>
+
 <?php get_footer(); ?>

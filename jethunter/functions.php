@@ -1,35 +1,186 @@
 <?php
+
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
-add_action( 'carbon_fields_register_fields', 'crb_attach_theme_options' );
-function crb_attach_theme_options() {
-    Container::make( 'theme_options', __( 'Theme Options' ) )
-        ->add_fields( array(
-            Field::make( 'text', 'crb_text', 'Text Field' ),
-        ) );
-}
+add_action('after_setup_theme', function () {
+    \Carbon_Fields\Carbon_Fields::boot();
+});
 
-add_action('carbon_fields_register_fields', function() {
-    Container::make('post_meta', 'Наполнение страницы')
-        ->where('post_template', '=', 'page-empty-legs.php')
+// add_action('carbon_fields_register_fields', 'crb_attach_theme_options');
+// function crb_attach_theme_options()
+// {
+//     Container::make('theme_options', __('Theme Options'))
+//         ->add_fields(array(
+//             Field::make('text', 'crb_text', 'Text Field'),
+//         ));
+// }
+
+add_action('carbon_fields_register_fields', function () {
+    Container::make('theme_options', __('Theme Options'))
         ->add_fields([
-            Field::make('complex', 'planes', 'Список самолетов')
-                ->add_fields([
-                    Field::make('text', 'title', 'Название самолета')->set_required(true),
-                    Field::make('image', 'image', 'Изображение')->set_required(true),
-                    Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
-                    Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
-                    Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
-                    Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
-                    Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
-                    Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
-                    Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
-                    Field::make('text', 'seats', 'Количество мест')->set_required(true),
-                    Field::make('text', 'price', 'Цена в USD')->set_required(true),
-                ]),
+            Field::make('text', 'crb_text', 'Text Field'),
         ]);
 });
+
+add_action('carbon_fields_register_fields', function () {
+    Container::make('post_meta', 'Время чтения')
+        ->where('post_type', '=', 'post')
+        ->add_fields([
+            Field::make('text', 'reading_time')
+                ->set_help_text('Напишите время чтения в минутах (например, 5)'),
+        ]);
+});
+
+add_action('carbon_fields_register_fields', function () {
+    $planes_fields = [
+        Field::make('text', 'title', 'Название самолета')->set_required(true),
+        Field::make('image', 'image', 'Изображение')->set_required(true),
+        Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
+        Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
+        Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
+        Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
+        Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
+        Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
+        Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
+        Field::make('text', 'seats', 'Количество мест')->set_required(true),
+        Field::make('text', 'price', 'Цена в USD')->set_required(true),
+    ];
+
+    Container::make('post_meta', 'Пустые перелёты')
+        ->where('post_template', '=', 'page-empty-legs.php')
+        ->add_fields([
+            Field::make('complex', 'planes', 'Список самолетов')->add_fields($planes_fields),
+        ]);
+
+    Container::make('post_meta', 'Empty legs')
+        ->where('post_template', '=', 'page-empty-legs-en.php')
+        ->add_fields([
+            Field::make('complex', 'planes', 'Список самолетов')->add_fields($planes_fields),
+        ]);
+
+    Container::make('post_meta', 'Отзывы')
+        ->where('post_template', '=', 'page-reviews.php')
+        ->add_fields([
+            Field::make('complex', 'reviews', 'Отзывы')
+                ->add_fields([
+                    Field::make('text', 'rate', 'Рейтинг')->set_attribute('type', 'number')->set_attribute('step', '0.1'),
+                    Field::make('text', 'author', 'Автор'),
+                    Field::make('textarea', 'text', 'Текст отзыва'),
+                    Field::make('text', 'date', 'Дата')->set_attribute('type', 'date'),
+                    Field::make('set', 'review_type', 'Тип отзыва')
+                    ->add_options([
+                        'rent' => 'Об аренде',
+                        'purchase' => 'О покупке',
+                    ])
+                ])
+        ]);
+
+    Container::make('post_meta', 'Отзывы')
+        ->where('post_template', '=', 'page-reviews-en.php')
+        ->add_fields([
+            Field::make('complex', 'reviews', 'Отзывы')
+                ->add_fields([
+                    Field::make('text', 'rate', 'Рейтинг')->set_attribute('type', 'number')->set_attribute('step', '0.1'),
+                    Field::make('text', 'author', 'Автор'),
+                    Field::make('textarea', 'text', 'Текст отзыва'),
+                    Field::make('text', 'date', 'Дата')->set_attribute('type', 'date'),
+                    Field::make('set', 'review_type', 'Тип отзыва')
+                    ->add_options([
+                        'rent' => 'Об аренде',
+                        'purchase' => 'О покупке',
+                    ])
+                ])
+        ]);
+});
+
+// add_action('carbon_fields_register_fields', function () {
+//     Container::make('post_meta', 'Наполнение страницы')
+//         ->where('post_template', '=', 'page-empty-legs.php')
+//         ->add_fields([
+//             Field::make('complex', 'planes', 'Список самолетов')
+//                 ->add_fields([
+//                     Field::make('text', 'title', 'Название самолета')->set_required(true),
+//                     Field::make('image', 'image', 'Изображение')->set_required(true),
+//                     Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
+//                     Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
+//                     Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
+//                     Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
+//                     Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
+//                     Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
+//                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
+//                     Field::make('text', 'seats', 'Количество мест')->set_required(true),
+//                     Field::make('text', 'price', 'Цена в USD')->set_required(true),
+//                 ]),
+//         ]);
+// });
+
+// add_action('carbon_fields_register_fields', function () {
+//     Container::make('post_meta', 'Время чтения')
+//         ->where('post_type', '=', 'post')
+//         ->add_fields([
+//             Field::text('reading_time')
+//                 ->set_help_text('Напишите время чтения в минутах (например, 5)')
+//         ]);
+// });
+
+// add_action('carbon_fields_register_fields', function () {
+//     Container::make('post_meta', 'Наполнение страницы')
+//         ->where('post_template', '=', 'page-empty-legs-en.php')
+//         ->add_fields([
+//             Field::make('complex', 'planes', 'Список самолетов')
+//                 ->add_fields([
+//                     Field::make('text', 'title', 'Название самолета')->set_required(true),
+//                     Field::make('image', 'image', 'Изображение')->set_required(true),
+//                     Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
+//                     Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
+//                     Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
+//                     Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
+//                     Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
+//                     Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
+//                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
+//                     Field::make('text', 'seats', 'Количество мест')->set_required(true),
+//                     Field::make('text', 'price', 'Цена в USD')->set_required(true),
+//                 ]),
+//         ]);
+// });
+
+// views
+function gt_get_post_view()
+{
+    $count = get_post_meta(get_the_ID(), 'post_views_count', true);
+    return "$count";
+}
+
+
+function gt_set_post_view()
+{
+    $key = 'post_views_count';
+    $post_id = get_the_ID();
+    $count = (int) get_post_meta($post_id, $key, true);
+    $count++;
+    update_post_meta($post_id, $key, $count);
+}
+
+
+function gt_posts_column_views($columns)
+{
+    $columns['post_views'] = 'Views';
+    return $columns;
+}
+
+
+function gt_posts_custom_column_views($column)
+{
+    if ($column === 'post_views') {
+        echo gt_get_post_view();
+    }
+}
+
+
+add_filter('manage_posts_columns', 'gt_posts_column_views');
+add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
+
 
 
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');

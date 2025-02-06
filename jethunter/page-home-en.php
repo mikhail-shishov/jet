@@ -6,11 +6,11 @@
 
 <section class="intro-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
+        <h1 class="h1">Продажа и аренда частных самолётов по всему миру</h1>
         <h2 class="h3">Новое слово в бизнес-авиации</h2>
         <div class="btn-container">
-            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Узнать стоимость</button>
-            <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
+            <a href="/our-fleet" class="btn btn-green-fill">Узнать больше</a>
+            <button type="button" class="btn js-modal" data-modal="#call">Заказать звонок</button>
         </div>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">
     </div>
@@ -170,8 +170,6 @@
         </div>
     </div>
 </section>
-
-<?php include_once 'components/looking-sect.php';?>
 
 <section class="instruction-sect">
     <div class="container">
@@ -566,55 +564,43 @@
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-1.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Многолетний опыт</h3>
-                    <p>Мы занимаемся организацией полетов более 15 лет и уже воплотили в жизнь более 500
-                        персональных
-                        перелетов по всему миру.</p>
+                    <h3 class="h3">Опыт продаж</h3>
+                    <p>Мы — не новички в мире бизнес-авиации.  За нашими плечами более 10 лет успешных сделок, что гарантирует вам профессионализм и глубокое понимание рынка.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-2.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Быстрое бронирование</h3>
-                    <p>Забудьте о длительном поиске самолета! Заказать рейс можно всего за несколько часов до
-                        вылета,
-                        что идеально подходит для срочных поездок.</p>
+                    <h3 class="h3">Собственная юридическая служба</h3>
+                    <p>Забудьте о бюрократических препонах и юридических тонкостях.  Наши опытные юристы обеспечат безупречную чистоту и прозрачность сделки на всех этапах.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-3.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Всегда на связи</h3>
-                    <p>Мы работаем круглосуточно, без выходных и праздничных дней, чтобы быть готовыми к вашим
-                        запросам
-                        в любое время дня и ночи.</p>
+                    <h3 class="h3">Одобрение основными эскроу-агентами</h3>
+                    <p>Мы сотрудничаем с ведущими эскроу-агентами, что гарантирует безопасность и надежность ваших финансовых операций.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-4.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Прозрачность полета</h3>
-                    <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
-                        необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших
-                        предпочтений
-                        и координируем работу служб в аэропортах. С нами у вас не будет никаких сюрпризов!</p>
+                    <h3 class="h3">Удобные способы оплаты</h3>
+                    <p>Мы предлагаем гибкие условия и большой выбор способов оплаты, чтобы сделка была максимально комфортной для вас.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-5.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Индивидуальный подход</h3>
-                    <p>Мы заранее проверяем все данные и готовим для вас бриф со всем деталями вашего идеального
-                        полета:
-                        маршрут, номер самолета, контакты экипажа и терминалов.</p>
+                    <h3 class="h3">Эксклюзивный доступ к рынку</h3>
+                    <p>Мы обладаем обширной базой данных бизнес-джетов и налаженными контактами с владельцами самолетов, что даёт нам доступ к эксклюзивным предложениям и редким моделям самолетов.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-6.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Доступная оплата</h3>
-                    <p>Платите так, как вам удобно! Выбирайте оптимальный способ оплаты из множества доступных
-                        вариантов.</p>
+                    <h3 class="h3">Партнерские отношения с мировыми лидерами</h3>
+                    <p>Мы сотрудничаем с ведущими производителями и сервисными центрами по всему миру, что позволяет нам предлагать лучшие условия и  гарантировать  высочайший  уровень  обслуживания.</p>
                 </div>
             </div>
         </div>
@@ -830,6 +816,8 @@
     </div>
 </section>
 
+<?php include_once 'components/looking-sect.php';?>
+
 <section class="reviews-sect">
     <div class="container">
         <h2 class="h2 center">Отзывы клиентов о нас</h2>
@@ -843,7 +831,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Первый раз летела на частном самолете с The Jet, и это просто восторг. Сервис на высшем
+                <p>Первый раз летела на частном самолете с JetHunter, и это просто восторг. Сервис на высшем
                     уровне: встретили с цветами, проводили, доставили на борт все по запросу. Полет прошел идеально
                     – быстро, комфортно, без малейших задержек, не было повода переживать.</p>
                 <p>- Елена Пономарева -</p>
@@ -857,7 +845,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Благодаря The Jet я успел на важнейшую встречу в другом городе, хотя вылет мог задержаться
+                <p>Благодаря JetHunter я успел на важнейшую встречу в другом городе, хотя вылет мог задержаться
                     из-за непогоды. Оперативно поменяли маршрут, всё чётко, профессионально. Впечатлен сервисом и
                     вниманием к деталям. Рекомендую всем, кто ценит свое время!</p>
                 <p>- Андрей Х. -</p>
@@ -873,7 +861,7 @@
                 </div>
                 <p>Организовывали семейный полет в Европу. Всё прошло на ура! Дети в восторге от двух диванов в
                     самолете и большого количества развлечений для них. Бортпроводник была замечательная. Спасибо
-                    The Jet за незабываемые впечатления.</p>
+                    JetHunter за незабываемые впечатления.</p>
                 <p>- Оксана и Артем Левины -</p>
             </div>
             <div class="reviews-item">
@@ -885,7 +873,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>От лица крупного холдинга выражаю благодарность компании The Jet за организацию полета. Учли
+                <p>От лица крупного холдинга выражаю благодарность компании JetHunter за организацию полета. Учли
                     все наши специфические требования по закрывающим документам, которые не хотели выполнять другие
                     брокеры. Самолет был подан вовремя, все требования учтены.</p>
                 <p>- Иван В. -</p>

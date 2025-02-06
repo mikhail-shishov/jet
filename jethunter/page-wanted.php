@@ -4,10 +4,21 @@
 
 <?php get_header(); ?>
 
+<section class="breadcrumbs-sect">
+    <div class="container">
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
+    </div>
+</section>
+
 <section class="intro-fleet-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных охотников</h1>
-        <h2 class="h3">Для тех, кто всегда на высоте</h2>
+        <h1 class="h1">Продажа и аренда частных самолётов по всему миру</h1>
+        <h2 class="h3">Новая эра бизнес-авиации</h2>
+        <div class="btn-container">
+            <a href="/our-fleet" class="btn btn-green-fill">Узнать больше</a>
+            <button type="button" class="btn js-modal" data-modal="#call">Связаться с нами</button>
+        </div>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-wanted-image.webp" class="intro-img" alt="">
     </div>
 </section>
@@ -17,7 +28,6 @@
         <div class="search-wrap">
             <form action="" class="search-form">
                 <div class="search-form-options">
-
                     <div class="dropdown">
                         <button class="dropdown__button" type="button">Тип</button>
                         <ul class="dropdown__list">
@@ -300,7 +310,57 @@
     </div>
 </div>
 
-<section class="app-sect">
+<section class="features-sect">
+    <div class="container">
+        <h2 class="h2 center">Наши преимущества</h2>
+        <div class="features-grid">
+            <div class="features-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-1.svg" class="features-item-icon" loading="lazy" alt="">
+                <div class="features-item-text">
+                    <h3 class="h3">Опыт продаж</h3>
+                    <p>Мы — не новички в мире бизнес-авиации.  За нашими плечами более 10 лет успешных сделок, что гарантирует вам профессионализм и глубокое понимание рынка.</p>
+                </div>
+            </div>
+            <div class="features-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-2.svg" class="features-item-icon" loading="lazy" alt="">
+                <div class="features-item-text">
+                    <h3 class="h3">Собственная юридическая служба</h3>
+                    <p>Забудьте о бюрократических препонах и юридических тонкостях.  Наши опытные юристы обеспечат безупречную чистоту и прозрачность сделки на всех этапах.</p>
+                </div>
+            </div>
+            <div class="features-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-3.svg" class="features-item-icon" loading="lazy" alt="">
+                <div class="features-item-text">
+                    <h3 class="h3">Одобрение основными эскроу-агентами</h3>
+                    <p>Мы сотрудничаем с ведущими эскроу-агентами, что гарантирует безопасность и надежность ваших финансовых операций.</p>
+                </div>
+            </div>
+            <div class="features-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-4.svg" class="features-item-icon" loading="lazy" alt="">
+                <div class="features-item-text">
+                    <h3 class="h3">Удобные способы оплаты</h3>
+                    <p>Мы предлагаем гибкие условия и большой выбор способов оплаты, чтобы сделка была максимально комфортной для вас.</p>
+                </div>
+            </div>
+            <div class="features-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-5.svg" class="features-item-icon" loading="lazy" alt="">
+                <div class="features-item-text">
+                    <h3 class="h3">Эксклюзивный доступ к рынку</h3>
+                    <p>Мы обладаем обширной базой данных бизнес-джетов и налаженными контактами с владельцами самолетов, что даёт нам доступ к эксклюзивным предложениям и редким моделям самолетов.</p>
+                </div>
+            </div>
+            <div class="features-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-6.svg" class="features-item-icon" loading="lazy" alt="">
+                <div class="features-item-text">
+                    <h3 class="h3">Партнерские отношения с мировыми лидерами</h3>
+                    <p>Мы сотрудничаем с ведущими производителями и сервисными центрами по всему миру, что позволяет нам предлагать лучшие условия и  гарантировать  высочайший  уровень  обслуживания.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="app-sect">
     <div class="container">
         <div class="app-row">
             <div class="app-col">
@@ -319,6 +379,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <?php get_footer(); ?>

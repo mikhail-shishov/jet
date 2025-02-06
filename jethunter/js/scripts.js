@@ -51,8 +51,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     backdrop.classList.add('hidden');
   }
 
-  // все селекты
+  // передача ссылки в вывод формы
+  document.querySelectorAll('.wpcf7 input[name="page-url"]')?.forEach(function (element) {
+    element.value = window.location.href;
+  });
 
+  // все селекты
   document.querySelectorAll('.dropdown').forEach(function (dropdownWrapper) {
     const dropdownBtn = dropdownWrapper.querySelector('.dropdown__button');
     const dropdownList = dropdownWrapper.querySelector('.dropdown__list');
@@ -326,11 +330,11 @@ window.addEventListener("load", () => {
   const cityInputs = document.querySelectorAll('.city-input');
   const cityList = document.querySelector('.city-list');
   const planeItems = document.querySelectorAll('.empty-item');
-  const searchButton = document.querySelector('.search-flight-form .btn'); // Кнопка "Найти"
-  const passengerInput = document.querySelector('.passenger-counter-input'); // Количество пассажиров
-  const dateInput = document.querySelector('.search-flight-form input[type="date"]'); // Поле даты
+  const searchButton = document.querySelector('.search-flight-form .btn'); // кнопка "Найти"
+  const passengerInput = document.querySelector('.passenger-counter-input'); // количество пассажиров
+  const dateInput = document.querySelector('.search-flight-form input[type="date"]'); // поле даты
 
-  // Сбор уникальных городов
+  // сбор уникальных городов
   const citySet = new Set();
 
   const updateCityList = () => {
@@ -353,7 +357,7 @@ window.addEventListener("load", () => {
     cityList.textContent = cityArray.join(', ');
   }
 
-  // Автозаполнение
+  // автозаполнение
   const filterSuggestions = (input, suggestionsBox) => {
     const inputValue = input.value.trim().toLowerCase();
     suggestionsBox.innerHTML = '';
@@ -370,7 +374,7 @@ window.addEventListener("load", () => {
         suggestion.addEventListener('click', () => {
           input.value = city;
           suggestionsBox.innerHTML = '';
-          console.log('Выбранный город:', city); // Для проверки выбранного города
+          console.log('Выбранный город:', city); // для проверки выбранного города
         });
       });
     }
@@ -390,7 +394,7 @@ window.addEventListener("load", () => {
     });
   });
 
-  // Фильтрация .plane-item
+  // фильтрация .plane-item
   const filterPlanes = () => {
     const fromCity = cityInputs[0].value.trim().toLowerCase();
     const toCity = cityInputs[1].value.trim().toLowerCase();
@@ -405,31 +409,31 @@ window.addEventListener("load", () => {
 
       let matches = true;
 
-      // Проверяем город отправления
+      // проверяем город отправления
       if (fromCity && itemFromCity && !itemFromCity.includes(fromCity)) {
         matches = false;
       }
 
-      // Проверяем город прибытия
+      // проверяем город прибытия
       if (toCity && itemToCity && !itemToCity.includes(toCity)) {
         matches = false;
       }
 
-      // Проверяем количество пассажиров
+      // проверяем количество пассажиров
       if (itemSeats < passengerCount) {
         matches = false;
       }
 
-      // Проверяем дату
+      // проверяем дату
       if (selectedDate) {
         const selectedDateObj = new Date(selectedDate);
-        const itemDateObj = new Date(itemDate.split(',')[0]); // Преобразуем строку в дату
+        const itemDateObj = new Date(itemDate.split(',')[0]); // преобразуем строку в дату
         if (selectedDateObj.toDateString() !== itemDateObj.toDateString()) {
           matches = false;
         }
       }
 
-      // Скрыть или показать plane-item
+      // скрыть или показать plane-item
       if (matches) {
         item.style.display = '';
       } else {
@@ -438,7 +442,7 @@ window.addEventListener("load", () => {
     });
   };
 
-  // Слушаем нажатие кнопки "Найти"
+  // слушаем нажатие кнопки "Найти"
   searchButton?.addEventListener('click', (event) => {
     event.preventDefault(); // Предотвращаем отправку формы
     filterPlanes();
@@ -456,113 +460,291 @@ window.addEventListener("load", () => {
 });
 
 
-
 // our-fleet
-document.querySelector('.btn-find')?.addEventListener('click', () => {
-  // Получаем значения фильтров
-  const selectedManufacturer = document.querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')?.getAttribute('data-value');
-  const selectedRange = document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')?.getAttribute('data-value');
-  const selectedPrice = document.querySelector('.dropdown:nth-child(5) .dropdown__list-item_active')?.getAttribute('data-value') || null;
-  const selectedSeats = Array.from(document.querySelectorAll('.dropdown_with-chk__list-item input:checked'))
-    .map(checkbox => checkbox.id); // Извлекаем диапазоны мест
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector('.btn-find')?.addEventListener('click', () => {
+    // получаем значения фильтров
+    const selectedManufacturer = document.querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')?.getAttribute('data-value');
+    const selectedRange = document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')?.getAttribute('data-value');
+    const selectedPrice = document.querySelector('.dropdown:nth-child(5) .dropdown__list-item_active')?.getAttribute('data-value') || null;
+    const selectedSeats = Array.from(document.querySelectorAll('.dropdown_with-chk__list-item input:checked'))
+      .map(checkbox => checkbox.id); // Извлекаем диапазоны мест
 
-  // Получаем все элементы самолетов
-  const items = document.querySelectorAll('.looking-item');
+    // получаем все элементы самолетов
+    const items = document.querySelectorAll('.looking-item');
 
-  console.log('Фильтры:');
-  console.log('Производитель:', selectedManufacturer || 'Любой');
-  console.log('Дальность:', selectedRange || 'Любая');
-  console.log('Цена:', selectedPrice || 'Любая');
-  console.log('Места:', selectedSeats.length ? selectedSeats : 'Любые');
+    console.log('Фильтры:');
+    console.log('Производитель:', selectedManufacturer || 'Любой');
+    console.log('Дальность:', selectedRange || 'Любая');
+    console.log('Цена:', selectedPrice || 'Любая');
+    console.log('Места:', selectedSeats.length ? selectedSeats : 'Любые');
 
-  // Если ни один фильтр не выбран
-  if (!selectedManufacturer && !selectedRange && !selectedPrice && selectedSeats.length === 0) {
-    console.log('Нет выбранных фильтров. Показываем все блоки.');
-    items.forEach(item => {
-      item.style.display = 'block'; // Показываем все элементы, если фильтры не выбраны
-    });
-    return; // Прерываем выполнение функции, если нет фильтров
-  }
-
-  // Если фильтры выбраны, продолжаем фильтрацию
-  items.forEach(item => {
-    // Данные для фильтрации
-    const title = item.querySelector('h3').innerText.trim(); // Название самолета
-    const rangeText = item.querySelector('.looking-row:nth-child(2) .looking-row-desc').innerText.trim(); // Текст дальности
-    const seatsText = item.querySelector('.looking-row:nth-child(3) .looking-row-desc').innerText.trim(); // Места
-    const priceText = item.querySelector('.looking-row:nth-child(4) .looking-row-desc').innerText.trim(); // Цена
-
-    console.log('Название:', title);
-    console.log('Дальность (текст):', rangeText);
-    console.log('Места (текст):', seatsText);
-    console.log('Цена (текст):', priceText);
-
-    // Извлекаем производителя из названия
-    const manufacturer = title.split(' ')[0];
-
-    // Извлекаем последнее значение перед "км" из текста дальности
-    const rangeMatch = rangeText.match(/(\d+)\s*км/);
-    const range = rangeMatch ? parseInt(rangeMatch[1], 10) : 0;
-
-    // Преобразуем значения
-    const seats = parseInt(seatsText, 10);
-    const price = parseInt(priceText.replace(/\D/g, ''), 10);
-
-    // Проверяем соответствие фильтрам
-    const matchManufacturer = !selectedManufacturer || selectedManufacturer === 'Любой' || manufacturer === selectedManufacturer;
-    const matchRange = !selectedRange || selectedRange === 'Любой' || range >= parseInt(selectedRange, 10);
-    const matchPrice = !selectedPrice || (selectedPrice.includes('-') && checkPriceRange(price, selectedPrice));
-    const matchSeats = selectedSeats.length === 0 || checkSeatRange(seats, selectedSeats);
-
-    console.log('---');
-    console.log('Проверяем блок:', item.querySelector('h3').innerText);
-    console.log('matchManufacturer:', matchManufacturer);
-    console.log('matchRange:', matchRange);
-    console.log('matchPrice:', matchPrice);
-    console.log('matchSeats:', matchSeats);
-    console.log('Производитель:', manufacturer);
-    console.log('Дальность (число):', range);
-    console.log('Места (число):', seats);
-    console.log('Цена (число):', price);
-
-    // Показываем или скрываем элемент
-    if (matchManufacturer && matchRange && matchPrice && matchSeats) {
-      console.log('Элемент отображается:', title);
-      item.style.display = 'block';
-    } else {
-      console.log('Элемент скрывается:', title);
-      item.style.display = 'none';
+    // если ни один фильтр не выбран
+    if (!selectedManufacturer && !selectedRange && !selectedPrice && selectedSeats.length === 0) {
+      console.log('Нет выбранных фильтров. Показываем все блоки.');
+      items.forEach(item => {
+        item.style.display = 'block'; // показываем все элементы, если фильтры не выбраны
+      });
+      return; // прерываем выполнение функции, если нет фильтров
     }
+
+    // если фильтры выбраны, продолжаем фильтрацию
+    items.forEach(item => {
+      // данные для фильтрации
+      const title = item.querySelector('h3').innerText.trim(); // Название самолета
+      const rangeText = item.querySelector('.looking-row:nth-child(2) .looking-row-desc').innerText.trim(); // Текст дальности
+      const seatsText = item.querySelector('.looking-row:nth-child(3) .looking-row-desc').innerText.trim(); // Места
+      const priceText = item.querySelector('.looking-row:nth-child(4) .looking-row-desc').innerText.trim(); // Цена
+
+      console.log('Название:', title);
+      console.log('Дальность (текст):', rangeText);
+      console.log('Места (текст):', seatsText);
+      console.log('Цена (текст):', priceText);
+
+      // извлекаем производителя из названия
+      const manufacturer = title.split(' ')[0];
+
+      // извлекаем последнее значение перед "км" из текста дальности
+      const rangeMatch = rangeText.match(/(\d+)\s*км/);
+      const range = rangeMatch ? parseInt(rangeMatch[1], 10) : 0;
+
+      // преобразуем значения
+      const seats = parseInt(seatsText, 10);
+      const price = parseInt(priceText.replace(/\D/g, ''), 10);
+
+      // проверяем соответствие фильтрам
+      const matchManufacturer = !selectedManufacturer || selectedManufacturer === 'Любой' || manufacturer === selectedManufacturer;
+      const matchRange = !selectedRange || selectedRange === 'Любой' || range >= parseInt(selectedRange, 10);
+      const matchPrice = !selectedPrice || (selectedPrice.includes('-') && checkPriceRange(price, selectedPrice));
+      const matchSeats = selectedSeats.length === 0 || checkSeatRange(seats, selectedSeats);
+
+      console.log('---');
+      console.log('Проверяем блок:', item.querySelector('h3').innerText);
+      console.log('matchManufacturer:', matchManufacturer);
+      console.log('matchRange:', matchRange);
+      console.log('matchPrice:', matchPrice);
+      console.log('matchSeats:', matchSeats);
+      console.log('Производитель:', manufacturer);
+      console.log('Дальность (число):', range);
+      console.log('Места (число):', seats);
+      console.log('Цена (число):', price);
+
+      // показываем или скрываем элемент
+      if (matchManufacturer && matchRange && matchPrice && matchSeats) {
+        console.log('Элемент отображается:', title);
+        item.style.display = 'block';
+      } else {
+        console.log('Элемент скрывается:', title);
+        item.style.display = 'none';
+      }
+    });
   });
-});
 
-// Проверка диапазона цены
-function checkPriceRange(price, range) {
-  console.log('Проверяем диапазон цены:', price, range);
-  const [min, max] = range.split('-').map(Number);
-  if (isNaN(min) || isNaN(max)) {
-    console.error('Некорректный диапазон цены:', range);
-    return true; // Если диапазон некорректный, пропускаем фильтр
-  }
-  return price >= min && price <= max;
-}
-
-// Проверка диапазона мест
-function checkSeatRange(seats, ranges) {
-  console.log('Проверяем диапазон мест:', seats, ranges);
-  return ranges.some(range => {
+  // проверка диапазона цены
+  function checkPriceRange(price, range) {
+    console.log('Проверяем диапазон цены:', price, range);
     const [min, max] = range.split('-').map(Number);
-    return seats >= min && (max ? seats <= max : true);
+    if (isNaN(min) || isNaN(max)) {
+      console.error('Некорректный диапазон цены:', range);
+      return true; // если диапазон некорректный, пропускаем фильтр
+    }
+    return price >= min && price <= max;
+  }
+
+  // проверка диапазона мест
+  function checkSeatRange(seats, ranges) {
+    console.log('Проверяем диапазон мест:', seats, ranges);
+    return ranges.some(range => {
+      const [min, max] = range.split('-').map(Number);
+      return seats >= min && (max ? seats <= max : true);
+    });
+  }
+
+  // сброс фильтров
+  document.querySelector('.btn-reset')?.addEventListener('click', () => {
+    // сбросить активные фильтры
+    document.querySelectorAll('.dropdown__list-item_active').forEach(item => item.classList.remove('dropdown__list-item_active'));
+    document.querySelectorAll('.dropdown__list-item:first-child').forEach(item => item.classList.add('dropdown__list-item_active'));
+    document.querySelectorAll('.dropdown_with-chk__list-item input').forEach(checkbox => checkbox.checked = false);
+
+    // показать все самолеты
+    document.querySelectorAll('.looking-item').forEach(item => item.style.display = 'block');
   });
-}
 
-// Сброс фильтров
-document.querySelector('.btn-reset')?.addEventListener('click', () => {
-  // Сбросить активные фильтры
-  document.querySelectorAll('.dropdown__list-item_active').forEach(item => item.classList.remove('dropdown__list-item_active'));
-  document.querySelectorAll('.dropdown__list-item:first-child').forEach(item => item.classList.add('dropdown__list-item_active'));
-  document.querySelectorAll('.dropdown_with-chk__list-item input').forEach(checkbox => checkbox.checked = false);
+  // открывающиеся меню
+  accordion = document.querySelectorAll('.accordion-block');
+  accordion.forEach((el) => {
+    el.firstElementChild.addEventListener('click', () => {
+      if (!el.classList.contains('is-active')) {
+        el.classList.add('is-active');
+      } else {
+        el.classList.remove('is-active');
+      }
+    });
+  });
 
-  // Показать все самолеты
-  document.querySelectorAll('.looking-item').forEach(item => item.style.display = 'block');
+
+  // форма с квизом
+  let currentStep = 1;
+  const firstStep = document.querySelector(".quiz-step.step-1");
+  if (firstStep) {
+    firstStep.classList.add("active");
+  }
+  // Обработчик для кнопок "Продолжить"
+  document.querySelectorAll(".next-step").forEach((button) => {
+    button.addEventListener("click", function () {
+      if (currentStep === 1) {
+        // Получаем выбранное значение услуги
+        let selectedService = document.querySelector('input[name="service"]:checked');
+
+        if (!selectedService) {
+          alert("Выберите услугу, чтобы продолжить.");
+          return;
+        }
+
+        let serviceValue = selectedService.value;
+        console.log("Выбрана услуга:", serviceValue);
+
+        // Скрываем первый шаг и показываем нужный второй шаг
+        document.querySelector(".quiz-step.step-1").style.display = "none";
+        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
+          step.style.display = "none";
+        });
+
+        let nextStep = document.querySelector(`.quiz-step.step-2[data-service="${serviceValue}"]`);
+        if (nextStep) {
+          nextStep.style.display = "block";
+          currentStep = 2;
+        }
+      } else if (currentStep === 2) {
+        // Скрываем второй шаг и показываем третий
+        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
+          step.style.display = "none";
+        });
+        document.querySelector(".quiz-step.step-3").style.display = "block";
+        currentStep = 3;
+      }
+    });
+  });
+
+  // Обработчик для кнопок "Назад"
+  document.querySelectorAll(".prev-step").forEach((button) => {
+    button.addEventListener("click", function () {
+      if (currentStep === 2) {
+        // Показываем первый шаг
+        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
+          step.style.display = "none";
+        });
+        document.querySelector(".quiz-step.step-1").style.display = "block";
+        currentStep = 1;
+      } else if (currentStep === 3) {
+        // Показываем соответствующий второй шаг
+        document.querySelector(".quiz-step.step-3").style.display = "none";
+        let selectedService = document.querySelector('input[name="service"]:checked');
+        if (selectedService) {
+          let serviceValue = selectedService.value;
+          document.querySelector(`.quiz-step.step-2[data-service="${serviceValue}"]`).style.display = "block";
+          currentStep = 2;
+        }
+      }
+    });
+  });
+
+  const swiper = new Swiper('.services-swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    // slidesOffsetBefore: 36,
+    // slidesOffsetAfter: 36,
+    breakpoints: {
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 2,
+      },
+      // when window width is >= 992px
+      992: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+        // slidesOffsetBefore: 70,
+        // slidesOffsetAfter: 70
+      },
+      // when window width is >= 668px
+      1280: {
+        slidesPerView: 3,
+        spaceBetween: 32
+      }
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.services-swiper-button-next',
+      prevEl: '.services-swiper-button-prev',
+    },
+  });
+
+  // табы в отзывах
+  const reviewsTabs = document.querySelectorAll(".btn-tab-reviews");
+  const filterTabs = document.querySelectorAll(".btn-tab-type");
+  const reviewsContainer = document.querySelector(".reviews-grid");
+
+  if (!reviewsContainer) return;
+
+  let reviews = Array.from(reviewsContainer.children);
+  let activeFilter = "all";
+
+  function sortReviews(sortType) {
+    let sortedReviews = [...reviews];
+
+    if (sortType === "newest") {
+      sortedReviews.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+    } else if (sortType === "oldest") {
+      sortedReviews.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+    } else if (sortType === "positive") {
+      sortedReviews.sort((a, b) => b.dataset.rate - a.dataset.rate);
+    } else if (sortType === "negative") {
+      sortedReviews.sort((a, b) => a.dataset.rate - b.dataset.rate);
+    }
+
+    reviewsContainer.innerHTML = "";
+    sortedReviews.forEach(review => {
+      if (activeFilter === "all" || review.dataset.type.includes(activeFilter)) {
+        reviewsContainer.appendChild(review);
+      }
+    });
+  }
+
+  function filterReviews(filterType) {
+    activeFilter = filterType;
+
+    reviews.forEach(review => {
+      review.style.display = "none";
+      if (filterType === "all" || review.dataset.type.includes(filterType)) {
+        review.style.display = "block";
+      }
+    });
+  }
+
+  reviewsTabs.forEach(tab => {
+    tab.addEventListener("click", function (e) {
+      e.preventDefault();
+      reviewsTabs.forEach(t => t.classList.remove("is-active"));
+      this.classList.add("is-active");
+
+      const sortType = this.getAttribute("data-sort");
+      sortReviews(sortType);
+    });
+  });
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener("click", function (e) {
+      e.preventDefault();
+      filterTabs.forEach(t => t.classList.remove("is-active"));
+      this.classList.add("is-active");
+
+      const filterType = this.getAttribute("data-filter");
+      filterReviews(filterType);
+    });
+  });
 });

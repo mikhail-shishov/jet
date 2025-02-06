@@ -6,11 +6,11 @@
 
 <section class="intro-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
+        <h1 class="h1">Продажа и аренда частных самолётов по всему миру</h1>
         <h2 class="h3">Новое слово в бизнес-авиации</h2>
         <div class="btn-container">
-            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Узнать стоимость</button>
-            <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
+            <a href="/our-fleet" class="btn btn-green-fill">Узнать больше</a>
+            <button type="button" class="btn js-modal" data-modal="#call">Заказать звонок</button>
         </div>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">
     </div>
@@ -30,7 +30,7 @@
                     <li>Piaggio Avanti II</li>
                     <li>Beechcraft Denali</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Очень легкие</h3>
@@ -42,7 +42,7 @@
                     <li>Phenom 100EX</li>
                     <li>Cirrus Vision Jet</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Легкие</h3>
@@ -54,7 +54,7 @@
                     <li>Learjet 75</li>
                     <li>Phenom 300E</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Средние</h3>
@@ -66,7 +66,7 @@
                     <li>Learjet 60 XR</li>
                     <li>Praetor 500</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Супер-средние</h3>
@@ -78,7 +78,7 @@
                     <li>Gulfstream G280</li>
                     <li>Praetor 600</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
 
             <div class="plane-grid-item">
@@ -91,7 +91,7 @@
                     <li>Falcon 2000S</li>
                     <li>Falcon 2000LXS</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Ультра-большие</h3>
@@ -103,7 +103,7 @@
                     <li>Legacy 600</li>
                     <li>Legacy 650</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Дальне магистральные</h3>
@@ -115,7 +115,7 @@
                     <li>Gulfstream G550</li>
                     <li>Gulfstream G650ER</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Бизнес-лайнеры</h3>
@@ -127,7 +127,7 @@
                     <li>Lineage 1000E</li>
                     <li>Sukhoi Business jet</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
             <div class="plane-grid-item">
                 <h3 class="h3">Вертолеты</h3>
@@ -139,7 +139,7 @@
                     <li>Leonardo AW109</li>
                     <li>MI-8AMT</li>
                 </ul>
-                <a href="" class="link">Посмотреть все</a>
+                <a href="/our-fleet/" class="link">Посмотреть все</a>
             </div>
         </div>
     </div>
@@ -170,8 +170,6 @@
         </div>
     </div>
 </section>
-
-<?php include_once 'components/looking-sect.php';?>
 
 <section class="instruction-sect">
     <div class="container">
@@ -566,55 +564,43 @@
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-1.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Многолетний опыт</h3>
-                    <p>Мы занимаемся организацией полетов более 15 лет и уже воплотили в жизнь более 500
-                        персональных
-                        перелетов по всему миру.</p>
+                    <h3 class="h3">Опыт продаж</h3>
+                    <p>Мы — не новички в мире бизнес-авиации. За нашими плечами более 10 лет успешных сделок, что гарантирует вам профессионализм и глубокое понимание рынка.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-2.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Быстрое бронирование</h3>
-                    <p>Забудьте о длительном поиске самолета! Заказать рейс можно всего за несколько часов до
-                        вылета,
-                        что идеально подходит для срочных поездок.</p>
+                    <h3 class="h3">Собственная юридическая служба</h3>
+                    <p>Забудьте о бюрократических препонах и юридических тонкостях. Наши опытные юристы обеспечат безупречную чистоту и прозрачность сделки на всех этапах.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-3.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Всегда на связи</h3>
-                    <p>Мы работаем круглосуточно, без выходных и праздничных дней, чтобы быть готовыми к вашим
-                        запросам
-                        в любое время дня и ночи.</p>
+                    <h3 class="h3">Одобрение основными эскроу-агентами</h3>
+                    <p>Мы сотрудничаем с ведущими эскроу-агентами, что гарантирует безопасность и надежность ваших финансовых операций.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-4.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Прозрачность полета</h3>
-                    <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
-                        необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших
-                        предпочтений
-                        и координируем работу служб в аэропортах. С нами у вас не будет никаких сюрпризов!</p>
+                    <h3 class="h3">Удобные способы оплаты</h3>
+                    <p>Мы предлагаем гибкие условия и большой выбор способов оплаты, чтобы сделка была максимально комфортной для вас.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-5.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Индивидуальный подход</h3>
-                    <p>Мы заранее проверяем все данные и готовим для вас бриф со всем деталями вашего идеального
-                        полета:
-                        маршрут, номер самолета, контакты экипажа и терминалов.</p>
+                    <h3 class="h3">Эксклюзивный доступ к рынку</h3>
+                    <p>Мы обладаем обширной базой данных бизнес-джетов и налаженными контактами с владельцами самолетов, что даёт нам доступ к эксклюзивным предложениям и редким моделям самолетов.</p>
                 </div>
             </div>
             <div class="features-item">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-6.svg" class="features-item-icon" loading="lazy" alt="">
                 <div class="features-item-text">
-                    <h3 class="h3">Доступная оплата</h3>
-                    <p>Платите так, как вам удобно! Выбирайте оптимальный способ оплаты из множества доступных
-                        вариантов.</p>
+                    <h3 class="h3">Партнерские отношения с мировыми лидерами</h3>
+                    <p>Мы сотрудничаем с ведущими производителями и сервисными центрами по всему миру, что позволяет нам предлагать лучшие условия и гарантировать высочайший уровень обслуживания.</p>
                 </div>
             </div>
         </div>
@@ -830,24 +816,12 @@
     </div>
 </section>
 
+<?php include_once 'components/looking-sect.php'; ?>
+
 <section class="reviews-sect">
     <div class="container">
         <h2 class="h2 center">Отзывы клиентов о нас</h2>
         <div class="reviews-grid">
-            <div class="reviews-item">
-                <span class="reviews-rate">4.9</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Первый раз летела на частном самолете с The Jet, и это просто восторг. Сервис на высшем
-                    уровне: встретили с цветами, проводили, доставили на борт все по запросу. Полет прошел идеально
-                    – быстро, комфортно, без малейших задержек, не было повода переживать.</p>
-                <p>- Елена Пономарева -</p>
-            </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.8</span>
                 <div class="reviews-stars">
@@ -855,12 +829,10 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Благодаря The Jet я успел на важнейшую встречу в другом городе, хотя вылет мог задержаться
-                    из-за непогоды. Оперативно поменяли маршрут, всё чётко, профессионально. Впечатлен сервисом и
-                    вниманием к деталям. Рекомендую всем, кто ценит свое время!</p>
-                <p>- Андрей Х. -</p>
+                <p>Jet Hunter внимательно прислушивались к нашим потребностям и очень быстро реагировали, предлагая индивидуальные экономически-эффективные решения. Вам будет трудно найти другую организацию, которая может сравниться с их гибкостью и универсальностью. Я бы порекомендовал любую из услуг Jet Hunter любому владельцу бизнеса или оператору.</p>
+                <p>Евгений С.</p>
             </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.9</span>
@@ -871,24 +843,8 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Организовывали семейный полет в Европу. Всё прошло на ура! Дети в восторге от двух диванов в
-                    самолете и большого количества развлечений для них. Бортпроводник была замечательная. Спасибо
-                    The Jet за незабываемые впечатления.</p>
-                <p>- Оксана и Артем Левины -</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">5.0</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>От лица крупного холдинга выражаю благодарность компании The Jet за организацию полета. Учли
-                    все наши специфические требования по закрывающим документам, которые не хотели выполнять другие
-                    брокеры. Самолет был подан вовремя, все требования учтены.</p>
-                <p>- Иван В. -</p>
+                <p>Продажа самолета похожа на прокладывание пути по минному полю потенциальных ошибок: но Jet Hunter устранила все неопределенности, которые у нас были, и дала нам уверенность в правильности своего курса действий, тщательно объясняя и обосновывая свои доводы на каждом этапе пути. Мы не могли быть более довольны руководством, поддержкой и личным вниманием, которые мы получили от всей команды Jet Hunter!</p>
+                <p>Агентство Х.</p>
             </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.5</span>
@@ -899,10 +855,8 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Часто летаю по бизнесу, и для меня комфорт и конфиденциальность – на первом месте. Ребята все
-                    четко организовали, проинструктировали бортпроводника в соответствии с моими требованиями. Особо
-                    отмечу удобство оплаты, много вариантов. Буду летать еще.</p>
-                <p>- Виталий -</p>
+                <p>Мы обратились в Jet Hunter по рекомендации партнеров и не пожалели! Высокий профессионализм, оперативность и широкий выбор самолетов — вот что отличает эту компанию. Мы уверены в нашем выборе и рекомендуем Jet Hunter всем, кто ценит свой комфорт.</p>
+                <p>Корпорация А</p>
             </div>
             <div class="reviews-item">
                 <span class="reviews-rate">4.7</span>
@@ -913,16 +867,153 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Часто заказываю частные самолеты для своего руководителя и успела поработать с большим
-                    количеством чартерных компаний. Такого внимания к деталям не видела никогда. А когда аэропорт
-                    перенес время вылета на несколько часов позже, менеджер через свои связи смог получить удобный
-                    слот. Компания – настоящие профессионалы, будем обращаться еще.</p>
-                <p>- Екатерина Л. -</p>
+                <p>Сделка по покупке самолета — это всегда сложный и многоэтапный процесс. Но с Jet Hunter все прошло гладко и прозрачно. Отдельное спасибо юридической службе за оперативное решение всех вопросов!</p>
+                <p>Виталий</p>
+            </div>
+            <div class="reviews-item">
+                <span class="reviews-rate">4.9</span>
+                <div class="reviews-stars">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                </div>
+                <p>Как профессионал, я могу оценить техническое состояние самолетов, предлагаемых Jet Hunter. Все машины находятся в отличном состоянии и соответствуют высочайшим стандартам безопасности.</p>
+                <p>Леонид Х.</p>
+            </div>
+            <div class="reviews-item">
+                <span class="reviews-rate">4.8</span>
+                <div class="reviews-stars">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
+                </div>
+                <p>Творчество моего руководителя требует вдохновения, и он нашел его в путешествиях. Благодаря Jet Hunter у него появилась возможность проводить выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
+                <p>Менеджер Майкла О</p>
             </div>
         </div>
     </div>
 </section>
 
-<?php include_once 'components/app-sect.php';?>
+<section class="services-slider-sect">
+    <div class="container">
+        <h2 class="h2 center">Наши услуги</h2>
+
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <div class="swiper services-swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Управление самолётом</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Управление самолётом</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev services-swiper-button-prev"></div>
+            <div class="swiper-button-next services-swiper-button-next"></div>
+        </div>
+
+        <!-- <a href="/services/" class="link">Посмотреть все</a> -->
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="quiz-wrap">
+            <div class="quiz-left">
+                <div class="quiz-left-img">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/quiz-img.jpg" alt="">
+                </div>
+            </div>
+            <div class="quiz-right">
+                <?php echo do_shortcode('[contact-form-7 id="a1ae65c" title="Квиз"]'); ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="center">
+            <h2 class="h2">Узнать больше о комплектации самолета</h2>
+            <p class="text">Подскажем, подберем и проконсультруем вас по всем вопросам</p>
+        </div>
+        <?php echo do_shortcode('[contact-form-7 id="a460904" title="CTA 1"]'); ?>
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="cta-row">
+            <div class="cta-left">
+                <h2 class="h1">Остались вопросы?</h2>
+                <p class="text">Оставьте свои контактыне данные, и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
+            </div>
+            <?php echo do_shortcode('[contact-form-7 id="74ced67" title="CTA 2"]'); ?>
+        </div>
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="cta-row-big">
+            <div class="cta-left">
+                <h2 class="h1">Остались вопросы?</h2>
+                <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
+                <h3 class="h3">Также мы есть в соц. сетях:</h3>
+                <div class="form-social">
+                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
+                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
+                </div>
+            </div>
+            <div class="cta-right">
+                <div class="form-bg">
+                    <?php echo do_shortcode('[contact-form-7 id="5c9874b" title="Узнать стоимость"]'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include_once 'components/app-sect.php'; ?>
 
 <?php get_footer(); ?>

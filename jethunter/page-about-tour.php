@@ -6,8 +6,10 @@
 
 <article class="article">
     <div class="container">
-        <a href="" class="breadcrumbs-back">← К предложениям</a>
-        <h1 class="h1">Межклубный женский чемпионат — история пишется в Strawberry Fields</h1>
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
+        <!-- <a href="" class="breadcrumbs-back">← К предложениям</a> -->
+        <h1 class="h1">О турах</h1>
         <span class="article-date">17.07.2024</span>
         <div class="article-hero">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/article-image.jpg" class="article-hero-img" alt="">

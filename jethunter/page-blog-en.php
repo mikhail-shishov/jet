@@ -4,6 +4,13 @@
 
 <?php get_header(); ?>
 
+<section class="breadcrumbs-sect">
+    <div class="container">
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
+    </div>
+</section>
+
 <section class="blog-sect">
     <div class="container">
         <h1 class="h1 center">Новостной блог</h1>
@@ -46,7 +53,7 @@
                                 <?php endif; ?>
 
                                 <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <a href="<?php the_permalink(); ?>" class="h2"><?php the_title(); ?></a>
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
@@ -90,7 +97,7 @@
                                 <?php endif; ?>
 
                                 <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <a href="<?php the_permalink(); ?>" class="h2"><?php the_title(); ?></a>
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
@@ -131,7 +138,7 @@
                                 <?php endif; ?>
 
                                 <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <a href="<?php the_permalink(); ?>" class="h2"><?php the_title(); ?></a>
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">

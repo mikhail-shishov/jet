@@ -36,8 +36,18 @@ if (post_password_required()) {
 
     <section class="plane-sect">
         <div class="container">
+            <div class='breadcrumbs'>
+                <?php if (pll_current_language() == 'en') {
+                    echo '<a href="' . home_url() . '" class="breadcrumbs-link">Home</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;';
+                    echo '<a href="/en/our-fleet-en/" class="breadcrumbs-link">Our fleet</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;';
+                } else {
+                    echo '<a href="' . home_url() . '" class="breadcrumbs-link">Главная</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;';
+                    echo '<a href="/ru/our-fleet/" class="breadcrumbs-link">Наш флот</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;';
+                } ?>
+                <span class="breadcrumbs-item"><?php the_title(); ?></span>
+            </div>
             <div class="plane-name">
-                <h1 class="h1"><?php the_title(); ?></h1>
+                <h1 class="h1">Купить самолет <?php the_title(); ?></h1>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/makes/challenger.png" class="plane-logo" alt="">
             </div>
 
@@ -193,16 +203,16 @@ if (post_password_required()) {
                         <div class="plane-specs-desc">Объем багажника в м<sup>3</sup></div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($_custom_field_suitcases) && trim($_custom_field_suitcases) !== '') : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_suitcases', true); ?></div>
-                        <div class="plane-specs-desc">Чемоданов</div>
-                    </div>
-                <?php endif; ?>
                 <?php if (!empty($_custom_field_rent_price) && trim($_custom_field_rent_price) !== '') : ?>
                     <div class="plane-specs-item">
                         <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_rent_price', true); ?></div>
                         <div class="plane-specs-desc">Цена аренды в $</div>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($_custom_field_suitcases) && trim($_custom_field_suitcases) !== '') : ?>
+                    <div class="plane-specs-item">
+                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_suitcases', true); ?></div>
+                        <div class="plane-specs-desc">Чемоданов</div>
                     </div>
                 <?php endif; ?>
             </div>
@@ -375,6 +385,13 @@ if (post_password_required()) {
         </div>
     </section>
 
+    <section class="tech-sect" style="display: none;">
+        <div class="container">
+            <h2 class="h2 center">Характеристики самолёта <?php the_title(); ?></h2>
+
+        </div>
+    </section>
+
     <section class="step-sect">
         <div class="container">
             <h2 class="h2 center">Особенности самолета</h2>
@@ -406,8 +423,8 @@ if (post_password_required()) {
 
             </div>
             <div class="btn-container">
-                <a href="" class="btn btn-green-fill">Узнать стоимость</a>
-                <a href="" class="btn">Получить звонок</a>
+                <button href="/our-fleet" class="btn btn-green-fill js-modal" data-modal="#call">Узнать стоимость</button>
+                <button type="button" class="btn js-modal" data-modal="#call">Связаться с нами</button>
             </div>
         </div>
     </section>
@@ -778,60 +795,48 @@ if (post_password_required()) {
     <section class="about-sect">
         <div class="container">
             <h2 class="h2 center">Как выбрать самолет в аренду?</h2>
-            <h3 class="h3 center">Выбор самолета для аренды – это важный шаг, от которого зависит комфорт вашего
-                путешествия. Вот ключевые факторы, которые стоит учесть:</h3>
+            <h3 class="h3 center">Выбор самолета для аренды – это важный шаг, от которого зависит комфорт и успешность вашего путешествия. Вот ключевые факторы, которые стоит учесть:</h3>
 
             <div class="about-text">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/comfort.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
 
-                <h3 class="h3">Определите цель поездки</h3>
+                <h3 class="h3">Цель поездки:</h3>
                 <ul class="list">
-                    <li>Деловая поездка: для деловых встреч подойдет небольшой, но комфортабельный самолет, например,
-                        Cessna Citation CJ3+ или Embraer Phenom 300E.</li>
-                    <li>Отдых с семьей/друзьями: если вы путешествуете большой компанией, выбирайте более вместительные
-                        модели, например, Bombardier Challenger 605 или Gulfstream G550.</li>
-                    <li>Трансконтинентальный перелет: для длительных перелетов необходим самолет с большой дальностью,
-                        например, Bombardier Global 6000 или Gulfstream G650ER.</li>
+                    <li>Деловая поездка: для деловых встреч подойдет небольшой, но комфортабельный самолет, например, Cessna Citation CJ3+ или Embraer Phenom 300.</li>
+                    <li>Отдых с семьей/друзьями: если вы путешествуете большой компанией, выбирайте более вместительные модели, например, Bombardier Challenger 605 или Gulfstream G550.</li>
+                    <li>Трансконтинентальный перелет: для длительных перелетов необходим самолет с большим запасом хода, например, Bombardier Global 6000 или Gulfstream G650ER.</li>
                 </ul>
 
-                <h3 class="h3">Количество пассажиров</h3>
+                <h3 class="h3">Количество пассажиров:</h3>
                 <ul class="list">
-                    <li>Определите точное число пассажиров, чтобы выбрать самолет с достаточным количеством мест и
-                        уровнем комфорта для каждого.</li>
+                    <li>Определите точное число пассажиров, чтобы выбрать самолет с достаточным количеством мест и уровнем комфорта.</li>
                 </ul>
 
                 <div class="about-row">
                     <div class="about-col">
-                        <h3 class="h3">Расстояние и маршрут</h3>
+                        <h3 class="h3">Расстояние и маршрут:</h3>
                         <ul class="list">
-                            <li>Учитывайте дальность полета выбранной модели и возможность посадки в аэропорту
-                                назначения.
-                                Изучите особенности маршрута: для горной или морской местности могут потребоваться
-                                самолеты с
-                                определенными техническими характеристиками. В этом мы вам поможем!</li>
+                            <li>Учитывайте дальность полета выбранной модели и возможность посадки в аэропорту назначения. Изучите особенности маршрута: для горной местности могут потребоваться самолеты с определенными техническими характеристиками.</li>
                         </ul>
                     </div>
                     <div class="about-col">
-                        <h3 class="h3">Рассчитайте бюджет</h3>
+                        <h3 class="h3">Бюджет:</h3>
                         <ul class="list">
                             <li>Определите бюджет и сравните стоимость аренды разных моделей.</li>
-                            <li>Учитывайте дополнительные расходы: посадка, обслуживание в аэропорту, питание на борту.
-                            </li>
-                            <li>Мы подскажем, когда можно снизить стоимость, а когда не стоит экономить.</li>
+                            <li>Учитывайте дополнительные расходы: посадка, обслуживание в аэропорту, питание на борту.</li>
                         </ul>
                     </div>
                     <div class="about-col">
-                        <h3 class="h3">Дополнительные требования</h3>
+                        <h3 class="h3">Дополнительные требования:</h3>
                         <ul class="list">
-                            <li>Наличие спальни, кухни, душевой кабины, интернета, развлекательной системы. </li>
+                            <li>Наличие спальни, кухни, душевой кабины, интернета, развлекательной системы.</li>
                             <li>Необходимость перевозки багажа, спортивного инвентаря, домашних животных.</li>
                         </ul>
                     </div>
                 </div>
 
             </div>
-            <h3 class="h3 center">Правильно выбранный самолет – это гарантия комфортного, безопасного и
-                незабываемого путешествия!</h3>
+            <h3 class="h3 center">Правильно выбранный самолет – это гарантия комфортного, безопасного и незабываемого путешествия!</h3>
         </div>
     </section>
 

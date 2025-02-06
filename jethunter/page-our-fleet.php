@@ -12,7 +12,7 @@
     </div>
 </section>
 
-<div class="fleet-sect">
+<section class="fleet-sect">
     <div class="container">
         <div class="search-wrap">
             <form class="search-form">
@@ -453,6 +453,20 @@
                 <button class="btn btn-more">Смотреть ещё</button>
             </div> -->
     </div>
-</div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <h2 class="h2 center">Наши другие услуги</h2>
+        <div class="btn-container btn-container-wrap">
+            <a href="" class="btn">Аренда малых самолетов</a>
+            <a href="" class="btn">Аренда дальнемагистральных самолетов </a>
+            <a href="" class="btn">Аренда средних самолетов</a>
+            <a href="" class="btn">Аренда больших самолетов</a>
+            <a href="" class="btn">Аренда турбовинтовых самолетов</a>
+            <a href="" class="btn">Аренда очень легких самолетов </a>
+        </div>
+    </div>
+</section>
 
 <?php get_footer(); ?>

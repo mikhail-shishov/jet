@@ -83,7 +83,7 @@
                         <p class="compare-col-desc">1000 л</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
+                <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
             </div>
             <div class="compare-col">
                 <div class="compare-edit">
@@ -157,7 +157,7 @@
                         <p class="compare-col-desc">1000 л</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
+                <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
             </div>
             <div class="compare-col">
                 <div class="compare-edit">
@@ -231,7 +231,7 @@
                         <p class="compare-col-desc">1000 л</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
+                <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
             </div>
             <div class="compare-col">
                 <div class="compare-edit">
@@ -305,7 +305,7 @@
                         <p class="compare-col-desc">1000 л</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
+                <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
             </div>
         </div>
     </div>

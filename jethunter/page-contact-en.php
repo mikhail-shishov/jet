@@ -6,7 +6,9 @@
 
 <article class="article">
     <div class="container">
-        <a href="" class="breadcrumbs-back">← К новостям</a>
+        <!-- <a href="" class="breadcrumbs-back">← К новостям</a> -->
+        <?php include_once "breadcrumbs/breadcrumbs.php" ?>
+        <?php get_breadcrumb(); ?>
         <h1 class="h1">Contact</h1>
         <div class="article-info">
             <span class="article-date">17.07.2024</span>
