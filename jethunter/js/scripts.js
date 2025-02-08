@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function (e) {
   // шапка
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-left");
@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   function showModal(modalElem) {
     modalElem.classList.add('show');
-    backdrop.classList.remove('hidden');
+    backdrop.classList.remove('is-hidden');
   }
 
   function hideModal(modalElem) {
     modalElem.classList.remove('show');
-    backdrop.classList.add('hidden');
+    backdrop.classList.add('is-hidden');
   }
 
   // передача ссылки в вывод формы
@@ -230,8 +230,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }
     });
 
-    document.addEventListener('click', function (event) {
-      if (!event.target.closest('.autocomplete')) {
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.autocomplete')) {
         suggestions.innerHTML = '';
       }
     });
@@ -443,8 +443,8 @@ window.addEventListener("load", () => {
   };
 
   // слушаем нажатие кнопки "Найти"
-  searchButton?.addEventListener('click', (event) => {
-    event.preventDefault(); // Предотвращаем отправку формы
+  searchButton?.addEventListener('click', (e) => {
+    e.preventDefault(); // Предотвращаем отправку формы
     filterPlanes();
   });
 
@@ -603,7 +603,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let serviceValue = selectedService.value;
-        console.log("Выбрана услуга:", serviceValue);
+        // console.log("Выбрана услуга:", serviceValue);
 
         // Скрываем первый шаг и показываем нужный второй шаг
         document.querySelector(".quiz-step.step-1").style.display = "none";
@@ -747,4 +747,30 @@ document.addEventListener("DOMContentLoaded", function () {
       filterReviews(filterType);
     });
   });
+
+  // маска для телефона
+  document.addEventListener("submit", function (e) {
+    let form = e.target;
+    let phoneInput = form.querySelector('input[name="your-tel"]');
+
+    if (phoneInput) {
+      let phoneValue = phoneInput.value.trim();
+      let phonePattern = /^\+\d{1,13}$/;
+
+      if (!phonePattern.test(phoneValue)) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        phoneInput.classList.add("wpcf7-not-valid");
+        let errorWrap = phoneInput.closest(".wpcf7-form-control-wrap");
+        errorWrap.querySelector(".wpcf7-not-valid-tip")?.remove();
+        let errorMsg = document.createElement("span");
+        errorMsg.classList.add("wpcf7-not-valid-tip");
+        errorMsg.textContent = "Введите номер в формате +1234567890";
+        errorWrap.appendChild(errorMsg);
+
+        return false;
+      }
+    }
+  }, true);
 });

@@ -1,3 +1,8 @@
+<div class="cookie">
+    <p class="cookie-text">Пользуясь сайтом, вы соглашаетесь на использование файлов Cookies</p>
+    <button type="button" class="btn btn-green-fill btn-cookie-ok">Хорошо</button>
+</div>
+
 <footer class="footer">
     <div class="container">
         <div class="footer-top">
@@ -104,7 +109,7 @@
     </div>
 </div>
 
-<div class="modal-window__backdrop hidden" id="modal-backdrop"></div>
+<div class="modal-window__backdrop is-hidden" id="modal-backdrop"></div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/scripts.js"></script>

@@ -97,6 +97,34 @@
                 </div>
             </form>
         </div>
+        <div class="tabs tabs-line">
+            <div class="tabs-options">
+                <a href="" class="btn btn-grey-fill">Турбовинтовые</a>
+                <a href="" class="btn btn-grey-fill">Очень легкие</a>
+                <a href="" class="btn btn-grey-fill">Легкие</a>
+                <a href="" class="btn btn-grey-fill">Средние</a>
+                <a href="" class="btn btn-grey-fill">Супер-средние</a>
+                <a href="" class="btn btn-grey-fill">Большие</a>
+                <a href="" class="btn btn-grey-fill">Ультра-большие</a>
+                <a href="" class="btn btn-grey-fill">Дальнемагистральные</a>
+                <a href="" class="btn btn-grey-fill">Бизнес-лайнеры</a>
+                <a href="" class="btn btn-grey-fill">Embraer</a>
+                <a href="" class="btn btn-grey-fill">Dassault</a>
+            </div>
+        </div>
+        <div class="tabs tabs-line">
+            <div class="tabs-heading">Сортировать:</div>
+            <div class="tabs-options">
+                <a href="#" data-sort="newest" class="btn btn-tab">Название</a>
+                <a href="#" data-sort="oldest" class="btn btn-tab">Цена аренды</a>
+                <a href="#" data-sort="positive" class="btn btn-tab">Цена покупки</a>
+                <a href="#" data-sort="negative" class="btn btn-tab">Количество мест</a>
+                <a href="#" data-sort="newest" class="btn btn-tab">Объем багажника</a>
+                <a href="#" data-sort="oldest" class="btn btn-tab">Дальность</a>
+                <a href="#" data-sort="positive" class="btn btn-tab">Скорость</a>
+                <a href="#" data-sort="negative" class="btn btn-tab">Высота салона</a>
+            </div>
+        </div>
         <div class="looking-grid looking-grid-full">
             <?php
             $args = array(
@@ -449,9 +477,40 @@
                     <a href="" class="btn btn-green-fill">Подробнее</a>
                 </div> -->
         </div>
-        <!-- <div class="show-more">
-                <button class="btn btn-more">Смотреть ещё</button>
-            </div> -->
+        <div class="show-more is-hidden">
+            <button class="btn btn-more">Смотреть ещё</button>
+        </div>
+        <div class="pagination">
+            <nav class="pagination-left">
+                <a href="" class="btn btn-pagination pagination-back">‹ Назад</a>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">1</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">2</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">3</a>
+                    </li>
+                </ul>
+                <a href="" class="btn btn-pagination pagination-forward">Вперед ›</a>
+            </nav>
+            <div class="pagination-right">
+                <span class="pagination-text">Показывать:</span>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">10</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">20</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">30</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 

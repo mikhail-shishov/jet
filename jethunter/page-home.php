@@ -6,10 +6,11 @@
 
 <section class="intro-sect">
     <div class="container">
-        <h1 class="h1">Продажа и аренда частных самолётов по всему миру</h1>
+        <h1 class="h1">Продажа и аренда частных самолётов по&nbsp;всему миру</h1>
         <h2 class="h3">Новое слово в бизнес-авиации</h2>
         <div class="btn-container">
-            <a href="/our-fleet" class="btn btn-green-fill">Узнать больше</a>
+            <a href="/buy" class="btn btn-green-fill">Купить самолёт</a>
+            <a href="/rent" class="btn btn-green-fill">Арендовать самолёт</a>
             <button type="button" class="btn js-modal" data-modal="#call">Заказать звонок</button>
         </div>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">

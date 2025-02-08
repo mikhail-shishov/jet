@@ -336,27 +336,32 @@ input {
     width: 100%;
 }
 
-.btn-container, .btn-container > p, .form-social, .form-social > p {
+.btn-container,
+.btn-container>p,
+.form-social,
+.form-social>p {
     display: flex;
     justify-content: center;
     margin-top: 48px;
     gap: 32px;
 }
 
-.wpcf7 .btn-container, .form-social {
+.wpcf7 .btn-container,
+.form-social {
     margin-top: 0;
 }
 
-.form-social > p {
+.form-social>p {
     margin: 0;
 }
 
-.btn-container > p {
+.btn-container>p {
     align-items: center;
     margin: 0;
 }
 
-.btn-container > p br, .form-social > p br {
+.btn-container>p br,
+.form-social>p br {
     display: none;
 }
 
@@ -368,7 +373,8 @@ input {
     flex-direction: row;
 }
 
-.quiz-btn-container, .quiz-step > div.quiz-btn-container {
+.quiz-btn-container,
+.quiz-step>div.quiz-btn-container {
     margin: 0 0 24px;
 }
 
@@ -787,7 +793,8 @@ h4,
     flex-basis: 33.3333%;
 }
 
-.partners-sect, .regular-sect {
+.partners-sect,
+.regular-sect {
     margin: 256px 0;
 }
 
@@ -1032,10 +1039,6 @@ h4,
     align-items: center;
 }
 
-.hidden {
-    display: none;
-}
-
 .modal-window__backdrop {
     position: fixed;
     top: 0;
@@ -1168,6 +1171,21 @@ h4,
     gap: 48px;
 }
 
+.tabs-line,
+.tabs-line .tabs-options {
+    flex-wrap: nowrap;
+}
+
+.tabs-line {
+    overflow: auto;
+    gap: 24px;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    margin: 32px 0;
+}
+
 .tabs-heading {
     font-size: 32px;
     font-weight: 800;
@@ -1177,6 +1195,27 @@ h4,
     display: flex;
     flex-wrap: wrap;
     gap: 48px;
+}
+
+.tabs-line .tabs-options {
+    gap: 24px;
+}
+
+.tabs-line .tabs-heading {
+    font-size: 16px;
+}
+
+.tabs-line .btn-tab {
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.tabs-line .btn {
+    white-space: nowrap;
+}
+
+.tabs-line::-webkit-scrollbar {
+    display: none;
 }
 
 .btn-tab {
@@ -1200,6 +1239,10 @@ h4,
     display: block;
     text-align: center;
     margin: 64px 0 0;
+}
+
+.is-hidden {
+    display: none;
 }
 
 .search-form {
@@ -2361,7 +2404,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 0;
 }
 
-.cta-row, .cta-row .cta-left, .cta-row .wpcf7 {
+.cta-row,
+.cta-row .cta-left,
+.cta-row .wpcf7 {
     display: flex;
     align-items: center;
     gap: 32px;
@@ -2378,7 +2423,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .cta-row .cta-left .text {
-    max-width: 300px;
+    max-width: 330px;
 }
 
 .cta-row-big {
@@ -2394,12 +2439,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
 }
 
+.cta-row .cta-left .h1 {
+    max-width: 400px;
+}
+
 .quiz-step {
     display: none;
 }
 
 .quiz-step.active {
     display: block;
+}
+
+[data-status="sent"] .quiz-step {
+    display: none !important;
 }
 
 .quiz-wrap {
@@ -2420,12 +2473,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
 }
 
-.quiz-btn input:checked + .btn {
+.quiz-btn input:checked+.btn {
     background: linear-gradient(0deg, rgba(78, 227, 157, 1) 0%, rgba(13, 201, 122, 1) 100%);
     color: white;
 }
 
-.quiz-step > .btn-container {
+.quiz-step>.btn-container {
     margin: 0;
 }
 
@@ -2452,7 +2505,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .services-swiper-item:after {
     content: "";
     z-index: 1;
-    background: linear-gradient(0deg, rgba(7,7,28,1) 0%, rgba(7,7,28,0) 50%);
+    background: linear-gradient(0deg, rgba(7, 7, 28, 1) 0%, rgba(7, 7, 28, 0) 70%);
     width: 100%;
     height: 50%;
     display: inline-block;
@@ -2480,7 +2533,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 2;
 }
 
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
     background-image: url(img/icons/next.svg);
     display: inline-block;
     width: 64px;
@@ -2488,7 +2542,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-size: cover;
 }
 
-.swiper-button-prev::after, .swiper-button-next::after {
+.swiper-button-prev::after,
+.swiper-button-next::after {
     display: none;
 }
 
@@ -2553,6 +2608,94 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .about-license-item-img {
     height: unset;
     border-radius: 0;
+}
+
+.pagination {
+    display: flex;
+    margin: 64px 0 0;
+}
+
+.pagination-left,
+.pagination-right {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.pagination-right {
+    margin-left: auto;
+    justify-content: flex-end;
+}
+
+.pagination-list-item {
+    font-size: 24px;
+    width: 48px;
+    height: 48px;
+    line-height: 42px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.pagination-list-item a {
+    text-decoration: none;
+}
+
+.pagination-list-item.is-active {
+    border: 2px solid var(--green1);
+    border-radius: 8px;
+}
+
+.pagination-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 24px;
+    display: flex;
+    gap: 24px;
+}
+
+.pagination-text {
+    font-weight: 600;
+}
+
+.btn-pagination {
+    padding: 0;
+    border: 0;
+    color: white;
+}
+
+.cookie {
+    opacity: 0;
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    max-width: 1260px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    padding: 8px 8px 8px 24px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    background-color: var(--black3);
+    border-radius: 50px;
+    animation: cookie 2s forwards;
+    animation-delay: 2s;
+}
+
+.cookie-text {
+    margin: 0 auto 0 0;
+}
+
+@keyframes cookie {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .footer {
@@ -2690,6 +2833,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 11px 24px;
     }
 
+    .btn-pagination {
+        padding: 0;
+    }
+
+    .pagination-list-item {
+        font-size: 16px;
+        width: 36px;
+        height: 36px;
+        line-height: 31px;
+    }
+
+    .pagination-list {
+        gap: 12px;
+    }
+
     .btn-tab {
         padding: 0 2px;
     }
@@ -2770,7 +2928,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .exp-sect,
     .distance-map-sect,
     .tour-list-sect,
-    .seo-sect, .regular-sect {
+    .seo-sect,
+    .regular-sect {
         margin: 176px 0;
     }
 
@@ -3000,7 +3159,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         height: unset;
     }
 
-    .wpcf7 .btn-container, .form-social, .form-social > p {
+    .wpcf7 .btn-container,
+    .form-social,
+    .form-social>p {
         margin-top: 0;
         gap: 16px;
     }
@@ -3029,7 +3190,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin: 16px 0;
     }
 
-    .nav-right > .btn.js-modal {
+    .nav-right>.btn.js-modal {
         display: none;
     }
 
@@ -3415,7 +3576,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin: 0 60px;
     }
 
-    .swiper-button-prev, .swiper-button-next {
+    .swiper-button-prev,
+    .swiper-button-next {
         width: 48px;
         height: 48px;
     }
@@ -3448,12 +3610,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: calc(100% - 160px);
     }
 
-    .btn-container, .btn-container > p {
+    .btn-container,
+    .btn-container>p {
         margin-top: 32px;
         gap: 16px;
     }
 
-    .btn-container > p {
+    .btn-container>p {
         margin-top: 12px;
     }
 
@@ -3618,7 +3781,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .exp-sect,
     .distance-map-sect,
     .tour-list-sect,
-    .seo-sect, .regular-sect {
+    .seo-sect,
+    .regular-sect {
         margin: 128px 0;
     }
 
@@ -3779,7 +3943,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin-bottom: 48px;
     }
 
-    .article-wrap-page .wpcf7, .article-wrap-page .form-bg {
+    .article-wrap-page .wpcf7,
+    .article-wrap-page .form-bg {
         min-width: 100%;
     }
 
@@ -3879,12 +4044,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         flex-direction: column;
     }
 
-    .btn-container-row > p {
+    .btn-container-row>p {
         margin-top: 0;
     }
 
     .cta-row-big {
         flex-direction: column;
+    }
+
+    .pagination-list-item {
+        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        line-height: 24px;
+    }
+
+    .pagination-list {
+        margin: 0 12px;
     }
 
     .footer {
@@ -3960,7 +4136,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .exp-sect,
     .distance-map-sect,
     .tour-list-sect,
-    .seo-sect, .regular-sect {
+    .seo-sect,
+    .regular-sect {
         margin: 80px 0;
     }
 
@@ -4048,6 +4225,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .quiz-left {
         margin-top: 20px;
     }
+
+    .tabs-line .tabs-options {
+        gap: 12px;
+    }
+
+    .tabs-line .btn {
+        font-size: 14px;
+        padding: 12px 8px;
+    }
+
+    .cookie {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        bottom: 0;
+        border-radius: 0;
+    }
+
+    .cookie-text {
+        margin: 4px 0 8px 0;
+    }
+
+    .cookie .btn {
+        width: 100%;
+    }
 }
 
 @media (max-width: 640px) {
@@ -4126,24 +4328,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .about-license-item-img {
         height: unset;
-    }    
+    }
 
     .swiper {
         margin: 0 40px;
     }
 
-    .swiper-button-prev, .swiper-button-next {
+    .swiper-button-prev,
+    .swiper-button-next {
         width: 32px;
         height: 32px;
     }
 
-    .wpcf7 .btn-container > p {
+    .wpcf7 .btn-container>p {
         flex-direction: column;
         margin: 0;
     }
 
     .cta-row .wpcf7-form {
         flex-direction: column;
+    }
+
+    .pagination {
+        margin: 32px 0 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pagination-right {
+        margin-top: 24px;
     }
 }
 
@@ -4161,7 +4374,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         font-size: 18px;
     }
 
-    .btn-container, .btn-container > p {
+    .btn-container,
+    .btn-container>p {
         flex-direction: column;
     }
 
@@ -4430,7 +4644,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .btn-container, .btn-container > p {
+    .btn-container,
+    .btn-container>p {
         flex-direction: column;
     }
 
@@ -4531,7 +4746,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         flex-direction: column;
     }
 
-    .quiz-btn, .wpcf7 .btn {
+    .quiz-btn,
+    .wpcf7 .btn {
         width: 100%;
     }
 

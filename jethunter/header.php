@@ -9,6 +9,22 @@
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.umd.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            // cookies
+            if (localStorage.getItem("cookie") == null) {
+                document.querySelector(".btn-cookie-ok").addEventListener("click", function(e) {
+                    e.preventDefault();
+                    document.querySelector(".cookie").style.display = "none";
+                    localStorage.setItem("cookie", "ok");
+                });
+            } else if (localStorage.getItem("cookie") === "ok") {
+                document.querySelector(".cookie").style.display = "none";
+            }
+        })
+    </script>
+
     <?php wp_head(); ?>
 </head>
 
@@ -62,15 +78,15 @@
                             </li>
                         </ul>
                         <ul class="nav-links nav-links-bottom">
-                            <!-- <li class="nav-links-item">
-                                <a href="/">Покупка</a>
+                            <li class="nav-links-item">
+                                <a href="/buy">Покупка</a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/">Аренда</a>
+                                <a href="/rent">Аренда</a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/">Самолёты на продажу</a>
-                            </li> -->
+                                <a href="/">На продажу</a>
+                            </li>
                             <li class="nav-links-item">
                                 <a href="/wanted">Мы ищем</a>
                             </li>
@@ -80,12 +96,12 @@
                             <li class="nav-links-item">
                                 <a href="/services">Услуги</a>
                             </li>
-                            <li class="nav-links-item">
+                            <!-- <li class="nav-links-item">
                                 <a href="/empty-legs">Пустые перелёты</a>
                             </li>
                             <li class="nav-links-item">
                                 <a href="/tour">Предложения</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="nav-right">

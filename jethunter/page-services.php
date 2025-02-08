@@ -26,7 +26,8 @@
                         - Оценка рыночной стоимости, мы предоставим объективную оценку стоимости самолета, чтобы вы могли принять взвешенное решение о покупке.<br>
                         - Мы проконсультируем по всем юридическим и финансовым аспектам владения и эксплуатации самолета.
                     </p>
-                    <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button>
+                    <a href="/about-services" class="link">Узнать больше</a>
+                    <!-- <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button> -->
                 </div>
             </div>
             <div class="service-item">
