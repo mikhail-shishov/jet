@@ -69,10 +69,10 @@ add_action('carbon_fields_register_fields', function () {
                     Field::make('textarea', 'text', 'Текст отзыва'),
                     Field::make('text', 'date', 'Дата')->set_attribute('type', 'date'),
                     Field::make('set', 'review_type', 'Тип отзыва')
-                    ->add_options([
-                        'rent' => 'Об аренде',
-                        'purchase' => 'О покупке',
-                    ])
+                        ->add_options([
+                            'rent' => 'Об аренде',
+                            'purchase' => 'О покупке',
+                        ])
                 ])
         ]);
 
@@ -86,10 +86,10 @@ add_action('carbon_fields_register_fields', function () {
                     Field::make('textarea', 'text', 'Текст отзыва'),
                     Field::make('text', 'date', 'Дата')->set_attribute('type', 'date'),
                     Field::make('set', 'review_type', 'Тип отзыва')
-                    ->add_options([
-                        'rent' => 'Об аренде',
-                        'purchase' => 'О покупке',
-                    ])
+                        ->add_options([
+                            'rent' => 'Об аренде',
+                            'purchase' => 'О покупке',
+                        ])
                 ])
         ]);
 });
@@ -145,7 +145,53 @@ add_action('carbon_fields_register_fields', function () {
 //         ]);
 // });
 
-// views
+// phone number header
+function get_phone_number() {
+    $apiKey = '9bbf93c81405e0';
+
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $userIp = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $userIp = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+    } else {
+        $userIp = $_SERVER['REMOTE_ADDR'];
+    }
+
+    $response = wp_remote_get("https://ipinfo.io/{$userIp}/json?token={$apiKey}");
+
+    if (is_wp_error($response)) {
+        wp_send_json_error(['message' => 'Error fetching IP info']);
+    }
+
+    $data = json_decode(wp_remote_retrieve_body($response), true);
+
+    if (!$data || empty($data['country'])) {
+        wp_send_json_error(['message' => 'Invalid response from IPInfo']);
+    }
+
+    $phoneNumbers = [
+        "KZ" => "+7 (727) 357-46-65",
+        "UZ" => "+998 (712) 05-08-39",
+        "RU" => "+7 (499) 285-50-55",
+        "default" => "+44 (203) 318-05-36"
+    ];
+
+    $formattedPhone = $phoneNumbers[$data['country']] ?? $phoneNumbers['default'];
+    $cleanPhone = preg_replace('/[^+\d]/', '', $formattedPhone); 
+
+    wp_send_json_success([
+        'country' => $data['country'],
+        'formatted' => $formattedPhone,
+        'clean' => $cleanPhone
+    ]);
+}
+
+add_action('wp_ajax_get_phone_number', 'get_phone_number');
+add_action('wp_ajax_nopriv_get_phone_number', 'get_phone_number');
+
+
+
+// views in articles
 function gt_get_post_view()
 {
     $count = get_post_meta(get_the_ID(), 'post_views_count', true);
@@ -188,6 +234,19 @@ function thejet_io_enqueue_styles()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
+
+
+add_filter('upload_mimes', function ($mimes) {
+    $mimes['pdf'] = 'application/pdf';
+    $mimes['docx'] = 'application/docx';
+    $mimes['jpg'] = 'image/jpeg';
+    $mimes['png'] = 'image/png';
+    return $mimes;
+});
+
+add_action('post_edit_form_tag', function () {
+    echo ' enctype="multipart/form-data"';
+});
 
 
 add_filter('woocommerce_product_data_tabs', function ($tabs) {
@@ -235,6 +294,12 @@ function add_custom_fields_to_main_tab()
     echo '<div class="options_group">';
 
     // Add custom fields
+    echo '<p class="form-field">
+        <label for="_custom_file_url">' . __('Загрузка PDF-брошюры', 'woocommerce') . '</label>
+        <input type="file" id="_custom_file_url" name="_custom_file_url">
+        <span class="description">' . __('Загрузите файл к этому самолёту.', 'woocommerce') . '</span>
+    </p>';
+
     woocommerce_wp_text_input(array(
         'id' => '_custom_field_seats',
         'label' => 'Мест',
@@ -355,6 +420,24 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
         }
+    }
+
+    error_log("Загрузка файла началась для товара ID: " . $post_id);
+
+    if (!empty($_FILES['_custom_file_url']['name'])) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+
+        $upload_overrides = ['test_form' => false];
+        $uploaded_file = wp_handle_upload($_FILES['_custom_file_url'], $upload_overrides);
+
+        if ($uploaded_file && !isset($uploaded_file['error'])) {
+            update_post_meta($post_id, '_custom_file_url', $uploaded_file['url']);
+            error_log("Файл успешно загружен: " . $uploaded_file['url']);
+        } else {
+            error_log("Ошибка загрузки файла: " . print_r($uploaded_file, true));
+        }
+    } else {
+        error_log("Файл не был загружен — массив \$_FILES пуст.");
     }
 });
 

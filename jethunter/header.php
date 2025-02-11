@@ -26,6 +26,8 @@
     </script>
 
     <?php wp_head(); ?>
+
+    <script type="text/javascript" async src="https://app.callgear.com/static/cs.min.js?k=LKOTYngKOGm9I5QUL7vp7L6p4mWQ_Ft0"></script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -85,7 +87,7 @@
                                 <a href="/rent">Аренда</a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/">На продажу</a>
+                                <a href="/">Наши самолёты</a>
                             </li>
                             <li class="nav-links-item">
                                 <a href="/wanted">Мы ищем</a>
@@ -112,7 +114,40 @@
                                 <a href="tel:+77710000000" class="nav-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/call-white.svg" alt="Phone number"></a>
                             </div>
 
-                            <a href="tel:+77710000000" class="nav-tel-link">+7 771 000 0000</a>
+                            <script>
+                                async function getPhoneNumber() {
+                                    const cachedData = localStorage.getItem("phone_number_info");
+                                    const cacheTime = localStorage.getItem("phone_number_timestamp");
+                                    const now = new Date().getTime();
+
+                                    if (cachedData && cacheTime && now - cacheTime < 24 * 60 * 60 * 1000) {
+                                        const data = JSON.parse(cachedData);
+                                        document.querySelector(".nav-tel-link").textContent = data.formatted;
+                                        document.querySelector(".nav-tel-link").href = "tel:" + data.clean;
+                                        return;
+                                    }
+
+                                    try {
+                                        const response = await fetch("/wp-admin/admin-ajax.php?action=get_phone_number");
+                                        const data = await response.json();
+
+                                        if (!data.success) return;
+
+                                        document.querySelector(".nav-tel-link").textContent = data.data.formatted;
+                                        document.querySelector(".nav-tel-link").href = "tel:" + data.data.clean;
+
+                                        // Cache response in localStorage
+                                        localStorage.setItem("phone_number_info", JSON.stringify(data.data));
+                                        localStorage.setItem("phone_number_timestamp", now);
+                                    } catch (error) {
+                                        console.error("Error fetching phone number:", error);
+                                    }
+                                }
+
+                                document.addEventListener("DOMContentLoaded", getPhoneNumber);
+                            </script>
+
+                            <a href="#" class="nav-tel-link">&nbsp;</a>
                         </div>
                         <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Обратный звонок</button>
                         <ul class="nav-links">

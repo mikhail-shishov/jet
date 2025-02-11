@@ -48,7 +48,6 @@ if (post_password_required()) {
             </div>
             <div class="plane-name">
                 <h1 class="h1">Купить самолет <?php the_title(); ?></h1>
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/makes/challenger.png" class="plane-logo" alt="">
             </div>
 
 
@@ -73,9 +72,19 @@ if (post_password_required()) {
                 <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Экстерьер</a></li>
                 <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Интерьер</a></li>
                 <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">План салона</a></li>
-                <div class="nav-tabs-right">
-                    <a href="" class="btn">Добавить в сравнение</a>
-                </div>
+
+                <?php
+                $file_url = get_post_meta(get_the_ID(), '_custom_file_url', true);
+
+                if (!empty($file_url)) {
+                    echo '<li class="nav-tabs-item"><a href="' . esc_url($file_url) . '" target="_blank" class="btn btn-tab-full">PDF брошюра</a></li>';
+                }
+                ?>
+
+                <li class="nav-tabs-item"><a href="" class="btn">В сравнение</a></li>
+                <!-- <div class="nav-tabs-right">
+                    <a href="" class="btn">В сравнение</a>
+                </div> -->
             </ul>
             <div class="plane-images">
                 <div class="plane-gallery">
@@ -89,15 +98,15 @@ if (post_password_required()) {
                                             $main_image_exterior_url = esc_url(trim($gallery_exterior[0]));
                                         }
                                         ?>
-                                        <div class="main-image">
+                                        <div class="plane-main-image">
                                             <?php if (!empty($main_image_exterior_url)) : ?>
                                                 <img src="<?php echo $main_image_exterior_url; ?>" alt="" class="plane-gallery-main main-img">
                                             <?php endif; ?>
                                         </div>
-                                        <div class="thumb-wrap">
+                                        <div class="plane-thumb-wrap">
                                             <?php foreach ($gallery_exterior as $image_url) : ?>
                                                 <a href="<?php echo esc_url(trim($image_url)); ?>">
-                                                    <img src="<?php echo esc_url(trim($image_url)); ?>" alt="" class="thumb-img">
+                                                    <img src="<?php echo esc_url(trim($image_url)); ?>" alt="" class="plane-thumb-img">
                                                 </a>
                                             <?php endforeach; ?>
 
@@ -117,15 +126,15 @@ if (post_password_required()) {
                                             $main_image_interior_url = esc_url(trim($gallery_interior[0]));
                                         }
                                         ?>
-                                        <div class="main-image">
+                                        <div class="plane-main-image">
                                             <?php if (!empty($main_image_interior_url)) : ?>
                                                 <img src="<?php echo $main_image_interior_url; ?>" alt="" class="plane-gallery-main main-img">
                                             <?php endif; ?>
                                         </div>
-                                        <div class="thumb-wrap">
+                                        <div class="plane-thumb-wrap">
                                             <?php foreach ($gallery_interior as $image_url) : ?>
                                                 <a href="<?php echo esc_url(trim($image_url)); ?>">
-                                                    <img src="<?php echo esc_url(trim($image_url)); ?>" alt="" class="thumb-img">
+                                                    <img src="<?php echo esc_url(trim($image_url)); ?>" alt="" class="plane-thumb-img">
                                                 </a>
                                             <?php endforeach; ?>
 
@@ -145,15 +154,15 @@ if (post_password_required()) {
                                             $main_image_layout_url = esc_url(trim($gallery_layout[0]));
                                         }
                                         ?>
-                                        <div class="main-image">
+                                        <div class="plane-main-image">
                                             <?php if (!empty($main_image_layout_url)) : ?>
                                                 <img src="<?php echo $main_image_layout_url; ?>" alt="" class="plane-gallery-main main-img">
                                             <?php endif; ?>
                                         </div>
-                                        <div class="thumb-wrap">
+                                        <div class="plane-thumb-wrap">
                                             <?php foreach ($gallery_layout as $image_url) : ?>
                                                 <a href="<?php echo esc_url(trim($image_url)); ?>">
-                                                    <img src="<?php echo esc_url(trim($image_url)); ?>" alt="" class="thumb-img">
+                                                    <img src="<?php echo esc_url(trim($image_url)); ?>" alt="" class="plane-thumb-img">
                                                 </a>
                                             <?php endforeach; ?>
 
@@ -165,8 +174,24 @@ if (post_password_required()) {
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="plane-scheme">
+                <!-- <div class="plane-scheme">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/item/ch-350/ch-350-scheme.png" alt="">
+                </div> -->
+                <div class="plane-main-info">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/makes/challenger.png" class="plane-logo" alt="Challenger">
+                    <div class="plane-main-info-wrap">
+                        <div class="plane-main-info-item">
+                            <p class="plane-main-info-badge">Цена аренды</p>
+                            <p class="plane-main-info-price">$ 10 000</p>
+                            <a href="" class="btn btn-full-width">Арендовать</a>
+                        </div>
+                        <div class="plane-main-info-item">
+                            <p class="plane-main-info-badge">Цена покупки</p>
+                            <p class="plane-main-info-price">$ 1 000 000</p>
+                            <a href="" class="btn btn-full-width">Купить</a>
+                        </div>
+                    </div>
+                    <a href="#call" data-modal="#call" class="btn btn-green-fill js-modal btn-full-width">Заказать звонок</a>
                 </div>
             </div>
 

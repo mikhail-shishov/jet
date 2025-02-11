@@ -301,11 +301,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
       thumbnail: true,
       zoom: true,
       actualSize: false,
-      selector: '.thumb-wrap a'
+      selector: '.plane-thumb-wrap a'
     });
 
     const showMoreBtn = container.querySelector(".show-more-btn");
-    const thumbnails = container.querySelectorAll(".thumb-wrap a");
+    const thumbnails = container.querySelectorAll(".plane-thumb-wrap a");
     const visibleThumbnails = 5;
     const hiddenThumbnails = Math.max(thumbnails.length - visibleThumbnails, 0);
     let currentIndex = 0;
