@@ -1,4 +1,43 @@
 document.addEventListener("DOMContentLoaded", function (e) {
+  async function getPhoneNumber() {
+    const cachedData = localStorage.getItem("phone_number_info");
+    const cacheTime = localStorage.getItem("phone_number_timestamp");
+    const now = new Date().getTime();
+
+    if (cachedData && cacheTime && now - cacheTime < 24 * 60 * 60 * 1000) {
+      const data = JSON.parse(cachedData);
+      document.querySelector(".nav-tel-link").textContent = data.formatted;
+      document.querySelector(".nav-tel-link").href = "tel:" + data.clean;
+      document.querySelector(".nav-social-link-tel").href = "tel:" + data.clean;
+      document.querySelector(".footer-social-link-tel").href = "tel:" + data.clean;
+      document.querySelector(".footer-bottom-tel").textContent = data.formatted;
+      document.querySelector(".footer-bottom-tel").href = "tel:" + data.clean;
+      return;
+    }
+
+    try {
+      const response = await fetch("/wp-admin/admin-ajax.php?action=get_phone_number");
+      const data = await response.json();
+
+      if (!data.success) return;
+
+      document.querySelector(".nav-tel-link").textContent = data.data.formatted;
+      document.querySelector(".nav-tel-link").href = "tel:" + data.data.clean;
+      document.querySelector(".nav-social-link-tel").href = "tel:" + data.data.clean;
+      document.querySelector(".footer-social-link-tel").href = "tel:" + data.data.clean;
+      document.querySelector(".footer-bottom-tel").textContent = data.data.formatted;
+      document.querySelector(".footer-bottom-tel").href = "tel:" + data.data.clean;
+ 
+      // Cache response in localStorage
+      localStorage.setItem("phone_number_info", JSON.stringify(data.data));
+      localStorage.setItem("phone_number_timestamp", now);
+    } catch (error) {
+      console.error("Error fetching phone number:", error);
+    }
+  }
+
+  getPhoneNumber();
+
   // шапка
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-left");

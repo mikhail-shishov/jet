@@ -11,13 +11,13 @@
             <div class="footer-top-links">
                 <a href="" class="btn btn-green-fill">Подписаться на рассылку</a>
                 <div class="footer-top-socials">
-                    <a href="" class="footer-social-link">
+                    <a href="https://t.me/+77776777527" rel="nofollow" class="footer-social-link">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-green.svg" loading="lazy" alt="Telegram">
                     </a>
-                    <a href="" class="footer-social-link">
+                    <a href="https://youtube.com/@alexproavia/" target="_blank" rel="nofollow noopener noreferrer" class="footer-social-link">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/yt-green.svg" loading="lazy" alt="Youtube">
                     </a>
-                    <a href="" class="footer-social-link">
+                    <a href="https://instagram.com/alexprivatejet_/" rel="nofollow" class="footer-social-link">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/ig-green.svg" loading="lazy" alt="Instagram">
                     </a>
                 </div>
@@ -44,13 +44,13 @@
                 измените настройки браузера.</p>
         </div>
         <div class="footer-bottom">
-            <a href="tel:+77710000000" class="footer-bottom-tel">+7 771 000 0000</a>
+            <a href="#" class="footer-bottom-tel">&nbsp;</a>
             <div class="footer-bottom-socials">
-                <a href="" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-white.svg" loading="lazy"
+                <a href="https://t.me/+77776777527" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-white.svg" loading="lazy"
                         alt="Telegram"></a>
-                <a href="" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/wa-white.svg" loading="lazy"
+                <a href="https://wa.me/+77776777527" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/wa-white.svg" loading="lazy"
                         alt="Whatsapp"></a>
-                <a href="" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/call-white.svg" loading="lazy"
+                <a href="#" class="footer-social-link footer-social-link-tel"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/call-white.svg" loading="lazy"
                         alt="Phone number"></a>
             </div>
         </div>
@@ -109,6 +109,13 @@
     </div>
 </div>
 
+<div id="email" class="modal-window modal-quiz">
+    <div class="modal-inner is-active">
+        <a href="#" class="modal-close btn-close">Закрыть</a>
+        <?php echo do_shortcode('[contact-form-7 id="a1ae65c" title="Квиз"]'); ?>
+    </div>
+</div>
+
 <div class="modal-window__backdrop is-hidden" id="modal-backdrop"></div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
@@ -119,21 +126,31 @@
 </div>
 <?php wp_footer(); ?>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<script type="text/javascript">
+    (function(m, e, t, r, i, k, a) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) {
+                return;
+            }
+        }
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-   ym(99736467, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
+    ym(99736467, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true
+    });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/99736467" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/99736467" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
 <!-- /Yandex.Metrika counter -->
 </body>
 

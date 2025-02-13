@@ -972,7 +972,7 @@
     </div>
 </section>
 
-<section class="regular-sect">
+<section class="regular-sect" style="display: none;">
     <div class="container">
         <div class="center">
             <h2 class="h2">Узнать больше о комплектации самолета</h2>
@@ -982,7 +982,7 @@
     </div>
 </section>
 
-<section class="regular-sect">
+<section class="regular-sect" style="display: none;">
     <div class="container">
         <div class="cta-row">
             <div class="cta-left">
@@ -994,7 +994,7 @@
     </div>
 </section>
 
-<section class="regular-sect">
+<section class="regular-sect" style="display: none;">
     <div class="container">
         <div class="cta-row-big">
             <div class="cta-left">
