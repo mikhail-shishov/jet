@@ -421,13 +421,13 @@
                 <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
                 <h3 class="h3">Также мы есть в соц. сетях:</h3>
                 <div class="form-social">
-                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
-                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
+                    <a href="https://t.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
+                    <a href="https://wa.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
                 </div>
             </div>
             <div class="cta-right">
                 <div class="form-bg">
-                    <?php echo do_shortcode('[contact-form-7 id="5c9874b" title="Узнать стоимость"]'); ?>
+                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
                 </div>
             </div>
         </div>

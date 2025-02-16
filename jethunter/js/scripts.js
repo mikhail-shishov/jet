@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function (e) {
+  // ip info phone
   async function getPhoneNumber() {
     const cachedData = localStorage.getItem("phone_number_info");
     const cacheTime = localStorage.getItem("phone_number_timestamp");
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       document.querySelector(".footer-social-link-tel").href = "tel:" + data.data.clean;
       document.querySelector(".footer-bottom-tel").textContent = data.data.formatted;
       document.querySelector(".footer-bottom-tel").href = "tel:" + data.data.clean;
- 
+
       // Cache response in localStorage
       localStorage.setItem("phone_number_info", JSON.stringify(data.data));
       localStorage.setItem("phone_number_timestamp", now);
@@ -37,6 +38,32 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
 
   getPhoneNumber();
+
+  // home form
+  document.querySelector(".home-form-1-open")?.addEventListener("click", function () {
+    document.querySelector(".home-form-1").classList.add("is-active")
+    document.querySelector(".home-form-2").classList.remove("is-active")
+    document.querySelector(".home-form-3").classList.remove("is-active")
+  })
+  document.querySelector(".home-form-1-close")?.addEventListener("click", function () {
+    document.querySelector(".home-form-1").classList.remove("is-active")
+  })
+  document.querySelector(".home-form-2-open")?.addEventListener("click", function () {
+    document.querySelector(".home-form-2").classList.add("is-active")
+    document.querySelector(".home-form-1").classList.remove("is-active")
+    document.querySelector(".home-form-3").classList.remove("is-active")
+  })
+  document.querySelector(".home-form-2-close")?.addEventListener("click", function () {
+    document.querySelector(".home-form-2").classList.remove("is-active")
+  })
+  document.querySelector(".home-form-3-open")?.addEventListener("click", function () {
+    document.querySelector(".home-form-3").classList.add("is-active")
+    document.querySelector(".home-form-2").classList.remove("is-active")
+    document.querySelector(".home-form-1").classList.remove("is-active")
+  })
+  document.querySelector(".home-form-3-close")?.addEventListener("click", function () {
+    document.querySelector(".home-form-3").classList.remove("is-active")
+  })
 
   // шапка
   const hamburger = document.querySelector(".hamburger");
@@ -206,13 +233,28 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
   });
 
+
+  const toggleFlightBtn = document.querySelector(".home-form-flight-toggle");
+  toggleFlightBtn?.addEventListener("click", function () {
+    if (this.innerHTML === "Добавить перелёт") {
+      this.innerHTML = "Удалить перелёт";
+    } else {
+      this.innerHTML = "Добавить перелёт";
+    }
+    document.querySelector(".home-form-flight-set").classList.toggle("is-active");
+  })
+
+  if (window.innerWidth <= 992) {
+    document.querySelector(".home-form-2 .home-form-bottom")?.prepend(toggleFlightBtn);
+  }
+
   // store tabs variable
-  var theTabs = document.querySelectorAll(".nav-tabs > li");
+  var theTabs = document.querySelectorAll(".nav-tabs > .nav-tabs-item");
 
   function theTabClicks(tabClickEvent) {
     var clickedTab = tabClickEvent.currentTarget;
     var tabParent = tabClickEvent.currentTarget.parentNode.parentNode.parentNode;
-    var theTabs = tabParent.querySelectorAll(".nav-tabs > li");
+    var theTabs = tabParent.querySelectorAll(".nav-tabs > .nav-tabs-item");
     for (var i = 0; i < theTabs.length; i++) {
       theTabs[i].classList.remove("active");
     }
@@ -281,6 +323,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     const plusBtn = counter.querySelector('.plus');
     const minusBtn = counter.querySelector('.minus');
     const passengerLabel = counter.querySelector('.passenger-label');
+    const hiddenField = document.querySelector("input[name='your-passengers']");
 
     function getPassengerLabel(value) {
       const lastDigit = value % 10;
@@ -308,7 +351,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
       inputPass.style.width = `${valueLength * 12}px`;
     }
 
+    function updateHiddenField(value) {
+      if (hiddenField) {
+        hiddenField.value = value;
+      }
+    }
+
     updateLabel(parseInt(inputPass.value));
+    updateHiddenField(parseInt(inputPass.value));
 
     plusBtn.addEventListener('click', () => {
       let value = parseInt(inputPass.value);
@@ -317,6 +367,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         inputPass.value = value;
         updateLabel(value);
         adjustInputWidth();
+        if (hiddenField) {
+          updateHiddenField(value);
+        }
       }
     });
 
@@ -327,6 +380,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         inputPass.value = value;
         updateLabel(value);
         adjustInputWidth();
+        if (hiddenField) {
+          updateHiddenField(value);
+        }
       }
     });
   });
@@ -812,4 +868,51 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }, true);
+
+  // сравнение самолётов
+  const compareContainer = document.querySelector(".compare-main");
+  let selectedPlanes = JSON.parse(localStorage.getItem("selectedPlanes")) || [];
+
+  if (selectedPlanes.length === 0) {
+    compareContainer.innerHTML = "<p>Выберите самолеты для сравнения.</p>";
+    return;
+  }
+
+  function renderComparison() {
+    compareContainer.innerHTML = "";
+
+    selectedPlanes.forEach((plane, index) => {
+      const planeHTML = `
+                <div class="compare-col" data-index="${index}">
+                    <div class="compare-edit">
+                        <button class="compare-edit-delete">Удалить</button>
+                    </div>
+                    <img src="${plane.image}" alt="">
+                    <h2 class="h2">${plane.name}</h2>
+                    <div class="compare-col-wrap">
+                        ${plane.attributes.map(attr => `
+                            <div class="compare-col-block">
+                                <p class="compare-col-title">${attr.title}</p>
+                                <p class="compare-col-desc">${attr.value}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
+                </div>
+            `;
+      compareContainer.insertAdjacentHTML("beforeend", planeHTML);
+    });
+  }
+
+  compareContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("compare-edit-delete")) {
+      const planeCol = event.target.closest(".compare-col");
+      const index = planeCol.dataset.index;
+      selectedPlanes.splice(index, 1);
+      localStorage.setItem("selectedPlanes", JSON.stringify(selectedPlanes));
+      renderComparison();
+    }
+  });
+
+  renderComparison();
 });

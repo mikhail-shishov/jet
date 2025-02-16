@@ -7,15 +7,6 @@ add_action('after_setup_theme', function () {
     \Carbon_Fields\Carbon_Fields::boot();
 });
 
-// add_action('carbon_fields_register_fields', 'crb_attach_theme_options');
-// function crb_attach_theme_options()
-// {
-//     Container::make('theme_options', __('Theme Options'))
-//         ->add_fields(array(
-//             Field::make('text', 'crb_text', 'Text Field'),
-//         ));
-// }
-
 add_action('carbon_fields_register_fields', function () {
     Container::make('theme_options', __('Theme Options'))
         ->add_fields([
@@ -232,7 +223,7 @@ add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');
 function thejet_io_enqueue_styles()
 {
-    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css?2');
 }
 
 
@@ -286,6 +277,84 @@ add_filter('woocommerce_product_data_tabs', function ($tabs) {
     ];
     return $tabs;
 });
+
+
+
+
+
+
+// Handle adding a plane to comparison
+
+function add_to_comparison() {
+    if (!isset($_POST['plane_id'])) {
+        wp_send_json_error(['message' => 'No plane ID provided']);
+    }
+
+    $plane_id = intval($_POST['plane_id']);
+    $user_id = get_current_user_id();
+
+    error_log("Adding plane ID: $plane_id for user $user_id"); // Log the request
+
+    $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
+    
+    if (!in_array($plane_id, $planes)) {
+        $planes[] = $plane_id;
+        update_user_meta($user_id, 'comparison_planes', $planes);
+    }
+
+    wp_send_json_success(['planes' => $planes]);
+}
+add_action('wp_ajax_add_to_comparison', 'add_to_comparison');
+add_action('wp_ajax_nopriv_add_to_comparison', 'add_to_comparison');
+
+// Handle removing a plane
+function remove_from_comparison() {
+    if (!isset($_POST['plane_id'])) {
+        wp_send_json_error(['message' => 'No plane ID provided']);
+    }
+
+    $plane_id = intval($_POST['plane_id']);
+    $user_id = get_current_user_id();
+    $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
+
+    if (($key = array_search($plane_id, $planes)) !== false) {
+        unset($planes[$key]);
+        update_user_meta($user_id, 'comparison_planes', array_values($planes));
+    }
+
+    wp_send_json_success(['planes' => $planes]);
+}
+add_action('wp_ajax_remove_from_comparison', 'remove_from_comparison');
+add_action('wp_ajax_nopriv_remove_from_comparison', 'remove_from_comparison');
+
+// Get compared planes
+function get_comparison_planes() {
+    $user_id = get_current_user_id();
+    $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
+
+    error_log("Сравниваемые самолёты: " . json_encode($planes)); // Логируем список
+    wp_send_json_success(['planes' => $planes]);
+}
+add_action('wp_ajax_get_comparison_planes', 'get_comparison_planes');
+add_action('wp_ajax_nopriv_get_comparison_planes', 'get_comparison_planes');
+function allow_woocommerce_rest_access() {
+    add_filter('woocommerce_rest_check_permissions', function($permission, $context, $object_id, $post_type) {
+        if ($post_type === 'product' && $context === 'read') {
+            return true;
+        }
+        return $permission;
+    }, 10, 4);
+}
+add_action('init', 'allow_woocommerce_rest_access');
+
+
+
+
+
+
+
+
+
 
 // Main tab
 add_action('woocommerce_product_options_general_product_data', 'add_custom_fields_to_main_tab');

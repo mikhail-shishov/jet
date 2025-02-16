@@ -27,7 +27,7 @@
 
     <?php wp_head(); ?>
 
-    <script type="text/javascript" async src="https://app.callgear.com/static/cs.min.js?k=LKOTYngKOGm9I5QUL7vp7L6p4mWQ_Ft0"></script>
+    <!-- <script type="text/javascript" async src="https://app.callgear.com/static/cs.min.js?k=LKOTYngKOGm9I5QUL7vp7L6p4mWQ_Ft0"></script> -->
 </head>
 
 <body <?php body_class(); ?>>
@@ -87,7 +87,7 @@
                                 <a href="/rent">Аренда</a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/">Наши самолёты</a>
+                                <a href="/our-fleet">Наши самолёты</a>
                             </li>
                             <li class="nav-links-item">
                                 <a href="/wanted">Мы ищем</a>

@@ -10,7 +10,82 @@
             <h1 class="h1">Сравнение самолетов</h1>
             <p>Сравните характеристики самолетов, чтобы выбрать для себя самых подходящий вариант.</p>
         </div>
-        <div class="compare-main">
+
+        <div class="compare-main" id="comparison-container">
+            <p>Пока в сравнении пусто.</p>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", fetchComparison);
+
+            function fetchComparison() {
+                fetch("<?php echo admin_url('admin-ajax.php?action=get_comparison_planes'); ?>")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && Array.isArray(data.data.planes)) {
+                            renderComparison(data.data.planes);
+                        } else {
+                            document.getElementById('comparison-container').innerHTML =
+                                '<p class="compare-empty">Нет самолётов для сравнения</p>';
+                        }
+                    })
+                    .catch(error => console.error("Ошибка запроса:", error));
+            }
+
+            function renderComparison(planeIDs) {
+                let container = document.getElementById('comparison-container');
+                container.innerHTML = '';
+
+                if (!planeIDs.length) {
+                    container.innerHTML = '<p class="compare-empty">Нет самолётов для сравнения</p>';
+                    return;
+                }
+
+                planeIDs.forEach(id => {
+                    fetch(`<?php echo home_url('/wp-json/wc/v3/products/'); ?>${id}`)
+                        .then(response => response.json())
+                        .then(plane => {
+                            container.innerHTML += `
+                    <div class="compare-col">
+                        <div class="compare-edit">
+                            <button class="compare-edit-delete" onclick="removeFromComparison(${plane.id})">
+                                Удалить
+                            </button>
+                        </div>
+                        <img src="${plane.images?.[0]?.src || ''}" alt="">
+                        <h2 class="h2">${plane.name}</h2>
+                        <div class="compare-col-wrap">
+                            <div class="compare-col-block">
+                                <p class="compare-col-title">Категория</p>
+                                <p class="compare-col-desc">${plane.categories?.[0]?.name || '—'}</p>
+                            </div>
+                            <div class="compare-col-block">
+                                <p class="compare-col-title">Цена</p>
+                                <p class="compare-col-desc">${plane.price}</p>
+                            </div>
+                            <div class="compare-col-block">
+                                <p class="compare-col-title">Скорость</p>
+                                <p class="compare-col-desc">${plane.meta_data?.find(m => m.key === 'speed')?.value || '—'}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                        })
+                        .catch(err => console.error(`Ошибка загрузки самолёта ${id}:`, err));
+                });
+            }
+
+            function removeFromComparison(planeID) {
+                fetch("<?php echo admin_url('admin-ajax.php?action=remove_from_comparison'); ?>", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `plane_id=${planeID}`
+                }).then(() => fetchComparison());
+            }
+        </script>
+
+        <!-- <div class="compare-main">
             <div class="compare-col">
                 <div class="compare-edit">
                     <button class="compare-edit-delete">Удалить</button>
@@ -307,7 +382,7 @@
                 </div>
                 <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 

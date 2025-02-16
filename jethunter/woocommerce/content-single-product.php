@@ -81,7 +81,32 @@ if (post_password_required()) {
                 }
                 ?>
 
-                <li class="nav-tabs-item"><a href="" class="btn">В сравнение</a></li>
+                <li>
+                    <!-- <a href="#" class="btn" data-id="<?php echo get_the_ID(); ?>">В сравнение</a> -->
+                    <button onclick="addToComparison(<?php the_ID(); ?>)" class="btn">Добавить в сравнение</button>
+                </li>
+
+                <a href="/plane-compare" class="" style="display:none;">Переход к сравнению</a>
+                <script>
+                    function addToComparison(planeID) {
+                        fetch("<?php echo admin_url('admin-ajax.php?action=add_to_comparison'); ?>", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                            body: `plane_id=${planeID}`
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Response:", data);
+                            if (data.success) {
+                                alert("Добавлено в сравнение!");
+                                // document.querySelector(".")
+                            } else {
+                                alert("Ошибка: " + data.message);
+                            }
+                        })
+                        .catch(error => console.error("Fetch error:", error));
+                    }
+                </script>
                 <!-- <div class="nav-tabs-right">
                     <a href="" class="btn">В сравнение</a>
                 </div> -->

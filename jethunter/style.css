@@ -2723,6 +2723,146 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
+.home-form-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-form {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+}
+
+.home-form-1,
+.home-form-2,
+.home-form-3 {
+    display: none;
+    border-radius: 16px;
+}
+
+.home-form-1.is-active,
+.home-form-2.is-active {
+    display: flex;
+}
+
+.home-form-3.is-active,
+.home-form-3 .wpcf7-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 940px;
+    justify-self: anchor-center;
+}
+
+.arrow-close {
+    background-color: var(--green1);
+    color: var(--green2);
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 16px;
+    font-size: 0;
+    background-image: url(img/icons/arrow-close.svg);
+    background-size: cover;
+    background-position: center;
+}
+
+.home-form .passenger-counter p {
+    line-height: 0;
+}
+
+.home-form-top,
+.home-form-bottom {
+    display: flex;
+    gap: 16px;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: var(--black3);
+}
+
+.home-form-bottom {
+    max-width: 90%;
+    margin: 0 auto;
+    padding-top: 0;
+    border-radius: 0 0 16px 16px;
+    margin-bottom: 16px;
+}
+
+.home-form .wpcf7-form {
+    gap: 0;
+}
+
+.home-form-3 .arrow-close {
+    margin-right: 20px;
+}
+
+.home-form-3 {
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: var(--black3);
+}
+
+.home-form .wpcf7-form[data-status="sent"] .input-wrap,
+.home-form .wpcf7-form[data-status="sent"] .btn {
+    display: none;
+}
+
+.home-form .wpcf7-form[data-status="sent"] .wpcf7-response-output {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.home-form .input-wrap {
+    position: relative;
+    flex-basis: 33.3%;
+    flex-grow: 1;
+}
+
+.home-form p {
+    margin: 0;
+}
+
+.home-form-2 .home-form-bottom {
+    margin-bottom: 0;
+}
+
+.home-form-3 .wpcf7-form {
+    gap: 8px;
+}
+
+.home-form-flight-set {
+    display: none;
+    padding-top: 0;
+}
+
+.home-form-flight-set.is-active {
+    display: flex;
+}
+
+.home-form-flight-toggle {
+    background-color: transparent;
+    border: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--green1);
+    padding: 6px 22px 12px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: var(--black3);
+    border-radius: 0 0 16px 16px;
+}
+
 .footer {
     background-image: url(img/illustrations/footer-bg.png);
     background-size: cover;
@@ -2841,6 +2981,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .nav-tel-link {
         font-size: 18px;
+    }
+
+    .home-form .passenger-counter {
+        padding: 8px 12px;
+    }
+
+    .home-form {
+        justify-content: center;
     }
 }
 
@@ -3194,6 +3342,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .btn-icon {
         width: 48px;
         height: 48px;
+    }
+
+    .home-form-3.is-active,
+    .home-form-3 .wpcf7-form {
+        max-width: 720px;
     }
 
     .footer {
@@ -4111,6 +4264,36 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin: 0 12px;
     }
 
+    .home-form {
+        justify-content: center;
+        background: var(--black3);
+        padding: 8px;
+    }
+
+    .home-form-top,
+    .home-form-bottom {
+        flex-direction: column;
+    }
+
+    .home-form-top {
+        border-radius: 16px 16px 0 0;
+        padding-top: 0;
+    }
+
+    .home-form-bottom {
+        max-width: 100%;
+        padding-bottom: 0;
+    }
+
+    .home-form-top .input,
+    .home-form-bottom .input {
+        width: 100%;
+    }
+
+    .home-form-flight-toggle {
+        font-size: 14px;
+    }
+
     .footer {
         margin: 128px 0 0;
         padding-bottom: 64px;
@@ -4298,6 +4481,57 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .cookie .btn {
         width: 100%;
     }
+
+    .arrow-close {
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+        margin-right: 8px;
+    }
+
+    .home-form .input {
+        padding: 14px 22px;
+    }
+
+    .home-form-3 {
+        position: static;
+        margin-bottom: 40px;
+    }
+
+    .home-form-top,
+    .home-form-bottom {
+        gap: 8px;
+        padding: 0;
+    }
+
+    .home-form .wpcf7-form {
+        gap: 0;
+    }
+
+    .home-form-3 .wpcf7-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .home-form-3 .wpcf7-form .btn {
+        width: 100%;
+    }
+
+    .home-form-3 p {
+        width: 100%;
+    }
+
+    .home-form .input-wrap-icon {
+        max-width: 24px;
+    }
+
+    .home-form-bottom {
+        margin-top: 8px;
+    }
+
+    .home-form-wrap {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 640px) {
@@ -4469,8 +4703,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .container {
         width: calc(100% - 24px);
     }
-
-    .intro-sect,
+    
     .intro-fleet-sect {
         overflow: hidden;
     }
@@ -4523,6 +4756,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .intro-sect .btn-container {
         margin: 24px 0 36px;
+    }
+
+    .home-form {
+        top: 20px;
     }
 
     .looking-item:nth-last-child(-n+2) {

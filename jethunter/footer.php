@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="footer-middle">
-            <a href="" class="logo">
+            <a href="/" class="logo">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" alt="JetHunter">
             </a>
             <div class="footer-middle-links">
@@ -46,9 +46,9 @@
         <div class="footer-bottom">
             <a href="#" class="footer-bottom-tel">&nbsp;</a>
             <div class="footer-bottom-socials">
-                <a href="https://t.me/+77776777527" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-white.svg" loading="lazy"
+                <a href="https://t.me/+77776777527" rel="nofollow" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/tg-white.svg" loading="lazy"
                         alt="Telegram"></a>
-                <a href="https://wa.me/+77776777527" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/wa-white.svg" loading="lazy"
+                <a href="https://wa.me/+77776777527" rel="nofollow" class="footer-social-link"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/wa-white.svg" loading="lazy"
                         alt="Whatsapp"></a>
                 <a href="#" class="footer-social-link footer-social-link-tel"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/socials/call-white.svg" loading="lazy"
                         alt="Phone number"></a>
@@ -119,7 +119,7 @@
 <div class="modal-window__backdrop is-hidden" id="modal-backdrop"></div>
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/scripts.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/scripts.js?2"></script>
 </body>
 
 </html>

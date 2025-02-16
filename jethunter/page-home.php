@@ -8,10 +8,24 @@
     <div class="container">
         <h1 class="h1">Продажа и аренда частных самолётов по&nbsp;всему миру</h1>
         <h2 class="h3">Новое слово в бизнес-авиации</h2>
-        <div class="btn-container">
-            <a href="/buy" class="btn btn-green-fill">Купить самолёт</a>
-            <a href="/rent" class="btn btn-green-fill">Арендовать самолёт</a>
-            <button type="button" class="btn js-modal" data-modal="#call">Заказать звонок</button>
+        <div class="home-form-wrap">
+            <div class="btn-container home-form-btns">
+                <button type="button" class="btn btn-green-fill home-form-1-open">Купить самолёт</button>
+                <button type="button" class="btn btn-green-fill home-form-2-open">Арендовать самолёт</button>
+                <button type="button" class="btn home-form-3-open">Заказать звонок</button>
+            </div>
+            <div class="home-form home-form-1">
+                <button class="arrow-close home-form-1-close">&#8592;</button>
+                <?php echo do_shortcode('[contact-form-7 id="8653636" title="Купить самолёт на главной"]'); ?>
+            </div>
+            <div class="home-form home-form-2">
+                <button class="arrow-close home-form-2-close">&#8592;</button>
+                <?php echo do_shortcode('[contact-form-7 id="7eee6b9" title="Арендовать самолёт на главной"]'); ?>
+            </div>
+            <div class="home-form home-form-3">
+                <button class="arrow-close home-form-3-close">&#8592;</button>
+                <?php echo do_shortcode('[contact-form-7 id="9dd7d70" title="Заказ звонка"]'); ?>
+            </div>
         </div>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">
     </div>
@@ -1008,7 +1022,7 @@
             </div>
             <div class="cta-right">
                 <div class="form-bg">
-                    <?php echo do_shortcode('[contact-form-7 id="5c9874b" title="Узнать стоимость"]'); ?>
+                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
                 </div>
             </div>
         </div>
