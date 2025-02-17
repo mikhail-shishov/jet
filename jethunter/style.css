@@ -135,6 +135,10 @@ Text Domain:	 jethunter
     display: none !important;
 }
 
+html[lang="en-US"] .ru-only {
+    display: none;
+}
+
 * {
     box-sizing: border-box;
     color: white;
@@ -2861,6 +2865,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     background-color: var(--black3);
     border-radius: 0 0 16px 16px;
+}
+
+.compare-col-block:nth-child(n+20) {
+    display: none;
 }
 
 .footer {

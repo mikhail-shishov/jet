@@ -234,12 +234,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
 
-  const toggleFlightBtn = document.querySelector(".home-form-flight-toggle");
-  toggleFlightBtn?.addEventListener("click", function () {
+  const toggleFlightBtnRu = document.querySelector(".home-form-flight-toggle-ru");
+  toggleFlightBtnRu?.addEventListener("click", function () {
     if (this.innerHTML === "Добавить перелёт") {
       this.innerHTML = "Удалить перелёт";
     } else {
       this.innerHTML = "Добавить перелёт";
+    }
+    document.querySelector(".home-form-flight-set").classList.toggle("is-active");
+  })
+  const toggleFlightBtnEn = document.querySelector(".home-form-flight-toggle-en");
+  toggleFlightBtnEn?.addEventListener("click", function () {
+    if (this.innerHTML === "Add flight") {
+      this.innerHTML = "Remove flight";
+    } else {
+      this.innerHTML = "Add flight";
     }
     document.querySelector(".home-form-flight-set").classList.toggle("is-active");
   })

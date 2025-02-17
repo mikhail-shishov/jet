@@ -13,18 +13,18 @@
 
 <section class="blog-sect">
     <div class="container">
-        <h1 class="h1 center">Новостной блог</h1>
+        <h1 class="h1 center">Blog</h1>
         <ul class="nav-tabs">
-            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Показать все</a></li>
-            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Статьи</a></li>
-            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">Туры</a></li>
+            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Show all</a></li>
+            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Articles</a></li>
+            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">Travels</a></li>
             <div class="nav-tabs-right">
                 <div class="dropdown">
-                    <button class="dropdown__button" type="button">Сортировать по</button>
+                    <button class="dropdown__button" type="button">Sort by</button>
                     <ul class="dropdown__list">
-                        <li class="dropdown__list-item dropdown__list-item_active" data-value="Дате">Дате</li>
-                        <li class="dropdown__list-item" data-value="Популярности">Популярности</li>
-                        <li class="dropdown__list-item" data-value="Времени чтения">Времени чтения</li>
+                        <li class="dropdown__list-item dropdown__list-item_active" data-value="Date">Date</li>
+                        <li class="dropdown__list-item" data-value="Popularity">Popularity</li>
+                        <li class="dropdown__list-item" data-value="Reading time">Reading time</li>
                     </ul>
                     <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                 </div>
@@ -57,8 +57,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>
@@ -101,8 +101,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>
@@ -142,8 +142,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                    <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                    <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>

@@ -346,7 +346,59 @@ function allow_woocommerce_rest_access() {
     }, 10, 4);
 }
 add_action('init', 'allow_woocommerce_rest_access');
+// получаем характеристики самолёта
+function get_plane_specs($post_id) {
+    return [
+        'Мест' => get_post_meta($post_id, '_custom_field_seats', true),
+        // 'Скорость км/ч (m/h)' => get_post_meta($post_id, '_custom_field_speed', true),
+        // 'Дальность км (nm)' => get_post_meta($post_id, '_custom_field_range', true),
+        'Объем багажника в м³' => get_post_meta($post_id, '_custom_field_bag_volume', true),
+        'Чемоданов' => get_post_meta($post_id, '_custom_field_suitcases', true),
+        'Цена аренды в $' => get_post_meta($post_id, '_custom_field_rent_price', true),
+        'Крейсерская скорость' => get_post_meta($post_id, '_cruising_speed', true),
+        'Время в полете, скорость' => get_post_meta($post_id, '_flight_time', true),
+        'Максимальная высота полета' => get_post_meta($post_id, '_max_altitude', true),
+        'Максимальный взлетный вес' => get_post_meta($post_id, '_max_takeoff_weight', true),
+        'Посадочный вес' => get_post_meta($post_id, '_landing_weight', true),
+        'Грузоподъемность' => get_post_meta($post_id, '_payload', true),
+        'Взлетная дистанция' => get_post_meta($post_id, '_takeoff_distance', true),
+        'Посадочная дистанция' => get_post_meta($post_id, '_landing_distance', true),
+        'Количество двигателей' => get_post_meta($post_id, '_engine_count', true),
+        'Двигатель' => get_post_meta($post_id, '_engine', true),
+        'Вспомогательная силовая установка' => get_post_meta($post_id, '_apu', true),
+        'Авионика' => get_post_meta($post_id, '_avionics', true),
+        'Ширина' => get_post_meta($post_id, '_width', true),
+        'Длина салона' => get_post_meta($post_id, '_cabin_length', true),
+        'Высота салона' => get_post_meta($post_id, '_cabin_height', true),
+        'Объем салона' => get_post_meta($post_id, '_cabin_volume', true),
+        'Объём багажного отделения' => get_post_meta($post_id, '_luggage_volume', true),
+        'Длина самолета' => get_post_meta($post_id, '_plane_length', true),
+        'Высота самолета' => get_post_meta($post_id, '_plane_height', true),
+    ];
+}
 
+// обрабатываем AJAX-запрос для получения данных самолёта
+function compare_planes_callback() {
+    if (!isset($_POST['compare_planes'])) {
+        wp_send_json_error('Ошибка: не передан ID самолёта');
+    }
+
+    $plane_id = intval($_POST['compare_planes']);
+    $plane_specs = get_plane_specs($plane_id);
+
+    $plane_data = [
+        'id' => $plane_id,
+        'name' => get_the_title($plane_id),
+        'image' => get_the_post_thumbnail_url($plane_id, 'full') ?: '',
+        'category' => get_the_terms($plane_id, 'product_cat')[0]->name ?? '—',
+        'price' => get_post_meta($plane_id, '_price', true) ?: '—',
+        'specs' => $plane_specs
+    ];
+
+    wp_send_json_success($plane_data);
+}
+add_action('wp_ajax_compare_planes', 'compare_planes_callback');
+add_action('wp_ajax_nopriv_compare_planes', 'compare_planes_callback');
 
 
 

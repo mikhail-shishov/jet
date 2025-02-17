@@ -64,39 +64,72 @@
                     <div class="nav-left">
                         <ul class="nav-links nav-links-top">
                             <li class="nav-links-item">
-                                <a href="/affiliate">Партнерская программа</a>
+                                <!-- <a href="/affiliate">Партнерская программа</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/affiliate-en' : '/affiliate'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Affiliate Program' : 'Партнерская программа'; ?>
+                                </a>
+                            </li>
+                            <li class="nav-links-item ru-only">
+                                <!-- <a href="/reviews">Отзывы</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/reviews-en' : '/reviews'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Reviews' : 'Отзывы'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/reviews">Отзывы</a>
+                                <!-- <a href="/faq">Вопросы и ответы</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/faq-en' : '/faq'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'FAQ' : 'Вопросы и ответы'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/faq">Вопросы и ответы</a>
+                                <!-- <a href="/blog">Блог</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/blog-en' : '/blog'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Blog' : 'Блог'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/blog">Блог</a>
-                            </li>
-                            <li class="nav-links-item">
-                                <a href="/contact">Контакты</a>
+                                <!-- <a href="/contact">Контакты</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/contact-en' : '/contact'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Contacts' : 'Контакты'; ?>
+                                </a>
                             </li>
                         </ul>
                         <ul class="nav-links nav-links-bottom">
                             <li class="nav-links-item">
-                                <a href="/buy">Покупка</a>
+                                <!-- <a href="/buy">Покупка</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/buy-en' : '/buy'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Acquisition' : 'Покупка'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/rent">Аренда</a>
+                                <!-- <a href="/rent">Аренда</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/rent-en' : '/rent'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Rent' : 'Аренда'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/our-fleet">Наши самолёты</a>
+                                <!-- <a href="/our-fleet">Наши самолёты</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/our-fleet-en' : '/our-fleet'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Inventory' : 'Наши самолёты'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/wanted">Мы ищем</a>
+                                <!-- <a href="/wanted">Мы ищем</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/wanted-en' : '/wanted'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'We buy' : 'Мы ищем'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/our-fleet">Все самолёты</a>
+                                <!-- <a href="/our-fleet">Все самолёты</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/our-fleet-en' : '/our-fleet'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Our fleet' : 'Все самолёты'; ?>
+                                </a>
                             </li>
                             <li class="nav-links-item">
-                                <a href="/services">Услуги</a>
+                                <!-- <a href="/services">Услуги</a> -->
+                                <a href="<?php echo pll_current_language() == 'en' ? '/services-en' : '/services'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Services' : 'Услуги'; ?>
+                                </a>
                             </li>
                             <!-- <li class="nav-links-item">
                                 <a href="/empty-legs">Пустые перелёты</a>

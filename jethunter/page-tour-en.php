@@ -14,53 +14,53 @@
 <section class="tour-intro-sect">
     <div class="container">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image-tour.png" class="intro-img" alt="">
-        <h1 class="h1">Давайте отправимся в&nbsp;путешествие</h1>
-        <h2 class="h3">Предложения, подобранные специально для&nbsp;вас!</h2>
+        <h1 class="h1">Let's take a trip</h1>
+        <h2 class="h3">Offers tailored just for you!</h2>
     </div>
 </section>
 
 <section class="tour-goal-sect">
     <div class="container">
-        <h2 class="h2">Выберите цель вашего путешествия</h2>
+        <h2 class="h2">Choose the purpose of your trip</h2>
         <div class="tour-goal-wrap">
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-1.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Отдых</h3>
+                <h3 class="h3">Vacation</h3>
                 <ul class="list">
-                    <li>ОАЭ</li>
-                    <li>Турция</li>
-                    <li>Мальдивы</li>
-                    <li>Тайланд</li>
+                    <li>UAE</li>
+                    <li>Turkey</li>
+                    <li>Maldives</li>
+                    <li>Thailand</li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-2.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Спорт</h3>
+                <h3 class="h3">Sport</h3>
                 <ul class="list">
-                    <li>Гольф</li>
-                    <li>Формула 1</li>
-                    <li>Теннис</li>
-                    <li>Футбол</li>
+                    <li>Golf</li>
+                    <li>Formula 1</li>
+                    <li>Tennis</li>
+                    <li>Football</li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-3.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Шоппинг</h3>
+                <h3 class="h3">Shopping</h3>
                 <ul class="list">
-                    <li>Милан</li>
-                    <li>Париж</li>
-                    <li>Дубай</li>
-                    <li>Гонконг</li>
+                    <li>Milan</li>
+                    <li>Paris</li>
+                    <li>Dubai</li>
+                    <li>Hong Kong</li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-4.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Достопримечательности</h3>
+                <h3 class="h3">Sightseeing</h3>
                 <ul class="list">
-                    <li>Пиза</li>
-                    <li>Париж</li>
-                    <li>Пекин</li>
-                    <li>Нью-Йорк</li>
+                    <li>Pisa</li>
+                    <li>Paris</li>
+                    <li>Beijing</li>
+                    <li>New York</li>
                 </ul>
             </div>
         </div>
@@ -70,17 +70,17 @@
 <section class="tour-list-sect">
     <div class="container">
         <ul class="nav-tabs">
-            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Показать все</a></li>
-            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Горячие предложения</a></li>
-            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">С&nbsp;детьми</a></li>
-            <li class="nav-tabs-item"><a href="#tab-4" class="btn btn-tab-full">С&nbsp;друзьями</a></li>
+            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Show all</a></li>
+            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Hot offers</a></li>
+            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">With children</a></li>
+            <li class="nav-tabs-item"><a href="#tab-4" class="btn btn-tab-full">With friends</a></li>
             <div class="nav-tabs-right">
                 <div class="dropdown">
-                    <button class="dropdown__button" type="button">Сортировать по</button>
+                    <button class="dropdown__button" type="button">Sort by</button>
                     <ul class="dropdown__list">
-                        <li class="dropdown__list-item dropdown__list-item_active" data-value="Дате">Дате</li>
-                        <li class="dropdown__list-item" data-value="Популярности">Популярности</li>
-                        <li class="dropdown__list-item" data-value="Времени чтения">Времени чтения</li>
+                        <li class="dropdown__list-item dropdown__list-item_active" data-value="Date">Date</li>
+                        <li class="dropdown__list-item" data-value="Popularity">Popularity</li>
+                        <li class="dropdown__list-item" data-value="Reading time">Reading time</li>
                     </ul>
                     <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                 </div>
@@ -114,8 +114,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>
@@ -158,8 +158,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>
@@ -202,8 +202,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>
@@ -246,8 +246,8 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +255,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No articles for now.';
                     }
                     ?>
                 </div>

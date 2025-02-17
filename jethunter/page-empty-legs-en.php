@@ -13,13 +13,13 @@
 
 <section class="empty-intro-sect">
     <div class="container">
-        <h1 class="h1">EN Самолеты для прирожденных лидеров</h1>
-        <h2 class="h3">Новая эра бизнес-авиации</h2>
+        <h1 class="h1">Aircraft for sale and rent all over the World</h1>
+        <h2 class="h3">New era of business aviation</h2>
 
         <div class="search-wrap search-flight-wrap">
             <form action="" class="search-flight-form">
                 <div class="city-list" style="display: none;">
-                    Москва, Санкт-Петербург, Новосибирск, Екатеринбург, Нижний Новгород, Казань, Челябинск, Омск, Самара, Ростов-на-Дону, Уфа, Красноярск, Воронеж, Пермь, Волгоград
+                    Moscow, Istanbul, Belgrade
                 </div>
 
                 <div class="autocomplete form-input-wrap">
@@ -48,7 +48,7 @@
                     <button class="plus" type="button">+</button>
                 </div>
 
-                <button class="btn btn-green-fill" type="submit">Найти</button>
+                <button class="btn btn-green-fill" type="submit">Find</button>
             </form>
         </div>
 
@@ -59,8 +59,8 @@
 <section class="empty-all-sect">
     <div class="container">
         <div class="center">
-            <h2 class="h2">Пустые перелеты</h2>
-            <p>Арендуйте со скидкой самолет, который совершает перелет пустым по заданному маршруту. Если у авиакомпании заказали бизнес-джет для перелета только в одну сторону, то обратно он полетит пустым. Такие перелеты продаются с большими скидками.</p>
+            <h2 class="h2">Empty legs</h2>
+            <p>Book an aircraft at a discounted price that flies empty on a given route. When a business jet is booked for a one-way flight only, it flies back empty. Such flights are listed for rent with a massive discount.</p>
         </div>
         <?php
         $planes = carbon_get_the_post_meta('planes');
@@ -103,15 +103,15 @@
                                         echo date('d.m, H:i', strtotime($date));
                                         ?>
                                     </p>
-                                    <p class="empty-path-label">Дата вылета</p>
+                                    <p class="empty-path-label">Date</p>
                                 </div>
                                 <div class="empty-path-seat">
                                     <p class="empty-path-info"><?php echo esc_html($plane['seats']); ?></p>
-                                    <p class="empty-path-label">Всего мест</p>
+                                    <p class="empty-path-label">Seats</p>
                                 </div>
                             </div>
                             <p class="empty-path-price">$<?php echo esc_html($plane['price']); ?></p>
-                            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
+                            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Book</button>
                         </div>
                     </div>
                 <?php endforeach; ?>

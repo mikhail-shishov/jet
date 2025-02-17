@@ -6,8 +6,8 @@
 
 <section class="intro-fleet-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
-        <h2 class="h3">Новое слово в бизнес-авиации</h2>
+        <h1 class="h1">Aircraft for sale and rent all over the World</h1>
+        <h2 class="h3">New era of business aviation</h2>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">
     </div>
 </section>
@@ -92,8 +92,8 @@
 
                 </div>
                 <div class="btn-container">
-                    <button type="button" class="btn btn-green-fill btn-find">Найти</button>
-                    <button type="button" class="btn btn-reset">Сбросить</button>
+                    <button type="button" class="btn btn-green-fill btn-find">Find</button>
+                    <button type="button" class="btn btn-reset">Reset</button>
                 </div>
             </form>
         </div>
@@ -183,23 +183,23 @@
                         <h3 class="h3"><?php the_title(); ?></h3>
                         <div class="looking-desc">
                             <div class="looking-row">
-                                <p class="looking-row-title">Скорость</p>
+                                <p class="looking-row-title">Speed, km</p>
                                 <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Дальность</p>
+                                <p class="looking-row-title">Flight range (distance, km)</p>
                                 <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Количество мест</p>
+                                <p class="looking-row-title">Seats</p>
                                 <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Цена в час</p>
+                                <p class="looking-row-title">Price per hour (USD)</p>
                                 <p class="looking-row-desc">$<?php echo esc_html($price); ?></p>
                             </div>
                         </div>
-                        <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">Подробнее</a>
+                        <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">See more</a>
                     </div>
             <?php
                 endwhile;
@@ -457,14 +457,14 @@
 
 <section class="regular-sect">
     <div class="container">
-        <h2 class="h2 center">Наши другие услуги</h2>
+        <h2 class="h2 center">Other services</h2>
         <div class="btn-container btn-container-wrap">
-            <a href="" class="btn">Аренда малых самолетов</a>
-            <a href="" class="btn">Аренда дальнемагистральных самолетов </a>
-            <a href="" class="btn">Аренда средних самолетов</a>
-            <a href="" class="btn">Аренда больших самолетов</a>
-            <a href="" class="btn">Аренда турбовинтовых самолетов</a>
-            <a href="" class="btn">Аренда очень легких самолетов </a>
+            <a href="/" class="btn">Аренда малых самолетов</a>
+            <a href="/" class="btn">Аренда дальнемагистральных самолетов </a>
+            <a href="/" class="btn">Аренда средних самолетов</a>
+            <a href="/" class="btn">Аренда больших самолетов</a>
+            <a href="/" class="btn">Аренда турбовинтовых самолетов</a>
+            <a href="/" class="btn">Аренда очень легких самолетов </a>
         </div>
     </div>
 </section>

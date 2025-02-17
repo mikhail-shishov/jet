@@ -16,8 +16,8 @@
         <div class="review-overall-row">
             <div class="review-overall-left">
                 <h1 class="h2">Отзывы клиентов о нашей работе</h1>
-                <p>Наши клиенты высоко оценивают качество нашего сервиса. 
-                    Мы внимательно относимся к каждому требованию, стремясь организовать ваш перелет безупречно. Обращаясь в компанию Jet Hunter, вы убедитесь в исключительном профессионализме наших сотрудников. Ваше удовлетворение — наша главная цель.</p>
+                <p>Our customers highly appreciate the quality of our service. 
+                We take care of every requirement, striving to organize your flight flawlessly. When you contact JetHunter you will be convinced of the exceptional professionalism of our employees. Your satisfaction is our main goal.</p>
             </div>
 
             <div class="review-overall-right">
@@ -36,21 +36,21 @@
         </div>
 
         <div class="tabs">
-            <div class="tabs-heading">Тип отзыва:</div>
+            <div class="tabs-heading">Review type:</div>
             <div class="tabs-options">
-                <a href="#" data-filter="all" class="btn btn-tab-type is-active">Все</a>
-                <a href="#" data-filter="rent" class="btn btn-tab-type">Об аренде</a>
-                <a href="#" data-filter="purchase" class="btn btn-tab-type">О покупке</a>
+                <a href="#" data-filter="all" class="btn btn-tab-type is-active">All</a>
+                <a href="#" data-filter="rent" class="btn btn-tab-type">Rent</a>
+                <a href="#" data-filter="purchase" class="btn btn-tab-type">Purchase</a>
             </div>
         </div>
 
         <div class="tabs">
-            <div class="tabs-heading">Показать сначала: </div>
+            <div class="tabs-heading">Sort by: </div>
             <div class="tabs-options">
-                <a href="#" data-sort="newest" class="btn btn-tab is-active">Новые</a>
-                <a href="#" data-sort="oldest" class="btn btn-tab">Старые</a>
-                <a href="#" data-sort="positive" class="btn btn-tab">Положительные</a>
-                <a href="#" data-sort="negative" class="btn btn-tab">Отрицательные</a>
+                <a href="#" data-sort="newest" class="btn btn-tab is-active">Recent</a>
+                <a href="#" data-sort="oldest" class="btn btn-tab">Old</a>
+                <a href="#" data-sort="positive" class="btn btn-tab">Good</a>
+                <a href="#" data-sort="negative" class="btn btn-tab">Bad</a>
             </div>
         </div>
 
@@ -165,18 +165,18 @@
 
 <section class="about-sect">
     <div class="container">
-        <h2 class="h2 center">Слово генерального директора</h2>
+        <h2 class="h2 center">Word of CEO</h2>
 
         <div class="about-text">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/about.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
 
-            <p>В Jet Hunter мы верим, что время – самый ценный ресурс, небо – не предел, а пространство для новых возможностей. Мы помогаем людям, ценящим свое время и стремящимся к максимальной эффективности, преодолевать любые расстояния с непревзойденным комфортом и стилем.</p>
-            <p>Jet Hunter – это не просто компания по продаже бизнес-джетов. Это команда, страстно преданных своему делу и готовых превзойти ваши ожидания. Мы учитываем индивидуальные потребности каждого клиента, предлагая не только широкий выбор самолетов от ведущих мировых производителей, но и полный спектр услуг, связанных с владением и эксплуатацией бизнес-джета.</p>
-            <p>Мы ценим доверие, которое вы нам оказываете, и стремимся строить долгосрочные и взаимовыгодные отношения с каждым клиентом.</p>
-            <p>С Jet Hunter вы получаете не просто самолет, вы получаете ключ к безграничным возможностям!</p>
+            <p>At JetHunter we believe that time is the most valuable resource, the sky is not a limit, but space for new possibilities. We help people who value their time and strive for maximum efficiency to travel any distance with unmatched comfort and style. </p>
+            <p>work and willing to exceed your expectations.  We take into account the individual needs of each client, offering not only a wide selection of aircraft from the world’s leading manufacturers, but also a full range of services related to the ownership and operation of business jet. </p>
+            <p>We value the trust you give us and strive to build long-term and mutually beneficial relationships with each client. </p>
+            <p>With JetHunter you get not just a plane, you get the key to unlimited possibilities! </p>
             <br>
-            <p>С уважением,</p>
-            <p>Алексей Мордвинцев</p>
+            <p>With very best regards,</p>
+            <p>Aleksei Mordvintsev</p>
         </div>
     </div>
 </section>
