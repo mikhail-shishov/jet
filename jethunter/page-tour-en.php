@@ -267,4 +267,46 @@
     </div>
 </section>
 
+<?php get_footer(); ?>e' => 'friends-en',
+                    );
+
+                    $query = new WP_Query($args);
+
+                    if ($query->have_posts()) {
+                        while ($query->have_posts()) {
+                            $query->the_post(); ?>
+
+                            <div class="tour-list-item">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <a href="<?php the_permalink(); ?>" class="tour-list-img" title="<?php the_title(); ?>">
+                                        <?php the_post_thumbnail(); ?>
+                                    </a>
+                                <?php endif; ?>
+
+                                <div class="tour-list-text">
+                                    <h2 class="h2"><?php the_title(); ?></h2>
+                                    <span class="article-date"><?php echo get_the_date(); ?></span>
+                                    <p><?php the_excerpt(); ?></p>
+                                    <div class="article-info">
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <?php }
+                        wp_reset_postdata();
+                    } else {
+                        echo 'No articles for now.';
+                    }
+                    ?>
+                </div>
+                <!-- <div class="center">
+                    <a href="" class="btn">Показать больше</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php get_footer(); ?>

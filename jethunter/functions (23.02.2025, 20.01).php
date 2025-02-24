@@ -1,5 +1,7 @@
 <?php
 
+// carbon start
+
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
@@ -8,9 +10,12 @@ add_action('after_setup_theme', function () {
 });
 
 add_action('carbon_fields_register_fields', function () {
-    Container::make('theme_options', __('Theme Options'))
+    Container::make('post_meta', 'Параметры для покупки')
+        ->where('post_type', '=', 'product')
+        ->where('post_type', 'IN', ['product'])
         ->add_fields([
-            Field::make('text', 'crb_text', 'Text Field'),
+            Field::make('text', 'price', 'Цена'),
+            Field::make('text', 'mileage', 'Налет (часы)'),
         ]);
 });
 
@@ -83,61 +88,55 @@ add_action('carbon_fields_register_fields', function () {
                         ])
                 ])
         ]);
+
+
+    Container::make('post_meta', 'О услугах')
+    ->where('post_template', '=', 'page-about-services.php')
+    ->add_fields([
+        Field::make('text', 'heading', 'Главный заголовок'),
+        Field::make('textarea', 'description', 'Описание услуги'),
+        Field::make('text', 'features_heading_1', 'Заголовок преимуществ'),
+        Field::make('complex', 'features_complex_1', 'Преимущества')
+        ->add_fields([
+            Field::make('text', 'features_number', 'Номер преимущества'),
+            Field::make('text', 'features_name', 'Заголовок'),
+            Field::make('textarea', 'features_text', 'Описание'),
+        ]),
+        Field::make('text', 'features_heading_2', 'Заголовок шагов'),
+        Field::make('complex', 'features_complex_2', 'Шаги')
+        ->add_fields([
+            Field::make('text', 'features_number', 'Номер шага'),
+            Field::make('text', 'features_name', 'Заголовок'),
+            Field::make('textarea', 'features_text', 'Описание'),
+        ])
+    ]);
+
+    Container::make('post_meta', 'About services')
+    ->where('post_template', '=', 'page-about-services-en.php')
+    ->add_fields([
+        Field::make('text', 'heading', 'Главный заголовок'),
+        Field::make('textarea', 'description', 'Описание услуги'),
+        Field::make('text', 'features_heading_1', 'Заголовок преимуществ'),
+        Field::make('complex', 'features_complex_1', 'Преимущества')
+        ->add_fields([
+            Field::make('text', 'features_number', 'Номер преимущества'),
+            Field::make('text', 'features_name', 'Заголовок'),
+            Field::make('textarea', 'features_text', 'Описание'),
+        ]),
+        Field::make('text', 'features_heading_2', 'Заголовок шагов'),
+        Field::make('complex', 'features_complex_2', 'Шаги')
+        ->add_fields([
+            Field::make('text', 'features_number', 'Номер шага'),
+            Field::make('text', 'features_name', 'Заголовок'),
+            Field::make('textarea', 'features_text', 'Описание'),
+        ])
+    ]);
 });
+// carbon end
 
-// add_action('carbon_fields_register_fields', function () {
-//     Container::make('post_meta', 'Наполнение страницы')
-//         ->where('post_template', '=', 'page-empty-legs.php')
-//         ->add_fields([
-//             Field::make('complex', 'planes', 'Список самолетов')
-//                 ->add_fields([
-//                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-//                     Field::make('image', 'image', 'Изображение')->set_required(true),
-//                     Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
-//                     Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
-//                     Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
-//                     Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
-//                     Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
-//                     Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
-//                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
-//                     Field::make('text', 'seats', 'Количество мест')->set_required(true),
-//                     Field::make('text', 'price', 'Цена в USD')->set_required(true),
-//                 ]),
-//         ]);
-// });
-
-// add_action('carbon_fields_register_fields', function () {
-//     Container::make('post_meta', 'Время чтения')
-//         ->where('post_type', '=', 'post')
-//         ->add_fields([
-//             Field::text('reading_time')
-//                 ->set_help_text('Напишите время чтения в минутах (например, 5)')
-//         ]);
-// });
-
-// add_action('carbon_fields_register_fields', function () {
-//     Container::make('post_meta', 'Наполнение страницы')
-//         ->where('post_template', '=', 'page-empty-legs-en.php')
-//         ->add_fields([
-//             Field::make('complex', 'planes', 'Список самолетов')
-//                 ->add_fields([
-//                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-//                     Field::make('image', 'image', 'Изображение')->set_required(true),
-//                     Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
-//                     Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
-//                     Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
-//                     Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
-//                     Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
-//                     Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
-//                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
-//                     Field::make('text', 'seats', 'Количество мест')->set_required(true),
-//                     Field::make('text', 'price', 'Цена в USD')->set_required(true),
-//                 ]),
-//         ]);
-// });
-
-// phone number header
-function get_phone_number() {
+// phone number in header start
+function get_phone_number()
+{
     $apiKey = '9bbf93c81405e0';
 
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -168,7 +167,7 @@ function get_phone_number() {
     ];
 
     $formattedPhone = $phoneNumbers[$data['country']] ?? $phoneNumbers['default'];
-    $cleanPhone = preg_replace('/[^+\d]/', '', $formattedPhone); 
+    $cleanPhone = preg_replace('/[^+\d]/', '', $formattedPhone);
 
     wp_send_json_success([
         'country' => $data['country'],
@@ -179,16 +178,14 @@ function get_phone_number() {
 
 add_action('wp_ajax_get_phone_number', 'get_phone_number');
 add_action('wp_ajax_nopriv_get_phone_number', 'get_phone_number');
+// phone number in header end
 
-
-
-// views in articles
+// views in articles start
 function gt_get_post_view()
 {
     $count = get_post_meta(get_the_ID(), 'post_views_count', true);
     return "$count";
 }
-
 
 function gt_set_post_view()
 {
@@ -199,13 +196,11 @@ function gt_set_post_view()
     update_post_meta($post_id, $key, $count);
 }
 
-
 function gt_posts_column_views($columns)
 {
     $columns['post_views'] = 'Views';
     return $columns;
 }
-
 
 function gt_posts_custom_column_views($column)
 {
@@ -213,20 +208,20 @@ function gt_posts_custom_column_views($column)
         echo gt_get_post_view();
     }
 }
-
-
 add_filter('manage_posts_columns', 'gt_posts_column_views');
 add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
+// views in articles end
 
-
-
+// styles start
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');
 function thejet_io_enqueue_styles()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css?2');
 }
+// styles end
 
 
+// file upload start
 add_filter('upload_mimes', function ($mimes) {
     $mimes['pdf'] = 'application/pdf';
     $mimes['docx'] = 'application/docx';
@@ -238,7 +233,7 @@ add_filter('upload_mimes', function ($mimes) {
 add_action('post_edit_form_tag', function () {
     echo ' enctype="multipart/form-data"';
 });
-
+// file upload end
 
 add_filter('woocommerce_product_data_tabs', function ($tabs) {
     $tabs['commercial_data_tab'] = [
@@ -278,14 +273,10 @@ add_filter('woocommerce_product_data_tabs', function ($tabs) {
     return $tabs;
 });
 
-
-
-
-
-
-// Handle adding a plane to comparison
-
-function add_to_comparison() {
+// plane comparison start
+// handle adding a plane to comparison
+function add_to_comparison()
+{
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
@@ -293,10 +284,10 @@ function add_to_comparison() {
     $plane_id = intval($_POST['plane_id']);
     $user_id = get_current_user_id();
 
-    error_log("Adding plane ID: $plane_id for user $user_id"); // Log the request
+    error_log("Adding plane ID: $plane_id for user $user_id");
 
     $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
-    
+
     if (!in_array($plane_id, $planes)) {
         $planes[] = $plane_id;
         update_user_meta($user_id, 'comparison_planes', $planes);
@@ -307,8 +298,9 @@ function add_to_comparison() {
 add_action('wp_ajax_add_to_comparison', 'add_to_comparison');
 add_action('wp_ajax_nopriv_add_to_comparison', 'add_to_comparison');
 
-// Handle removing a plane
-function remove_from_comparison() {
+// handle removing a plane
+function remove_from_comparison()
+{
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
@@ -327,18 +319,20 @@ function remove_from_comparison() {
 add_action('wp_ajax_remove_from_comparison', 'remove_from_comparison');
 add_action('wp_ajax_nopriv_remove_from_comparison', 'remove_from_comparison');
 
-// Get compared planes
-function get_comparison_planes() {
+// get compared planes
+function get_comparison_planes()
+{
     $user_id = get_current_user_id();
     $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
 
-    error_log("Сравниваемые самолёты: " . json_encode($planes)); // Логируем список
+    error_log("Сравниваемые самолёты: " . json_encode($planes));
     wp_send_json_success(['planes' => $planes]);
 }
 add_action('wp_ajax_get_comparison_planes', 'get_comparison_planes');
 add_action('wp_ajax_nopriv_get_comparison_planes', 'get_comparison_planes');
-function allow_woocommerce_rest_access() {
-    add_filter('woocommerce_rest_check_permissions', function($permission, $context, $object_id, $post_type) {
+function allow_woocommerce_rest_access()
+{
+    add_filter('woocommerce_rest_check_permissions', function ($permission, $context, $object_id, $post_type) {
         if ($post_type === 'product' && $context === 'read') {
             return true;
         }
@@ -346,8 +340,12 @@ function allow_woocommerce_rest_access() {
     }, 10, 4);
 }
 add_action('init', 'allow_woocommerce_rest_access');
+// plane comparison end
+
+
 // получаем характеристики самолёта
-function get_plane_specs($post_id) {
+function get_plane_specs($post_id)
+{
     return [
         'Мест' => get_post_meta($post_id, '_custom_field_seats', true),
         // 'Скорость км/ч (m/h)' => get_post_meta($post_id, '_custom_field_speed', true),
@@ -378,7 +376,8 @@ function get_plane_specs($post_id) {
 }
 
 // обрабатываем AJAX-запрос для получения данных самолёта
-function compare_planes_callback() {
+function compare_planes_callback()
+{
     if (!isset($_POST['compare_planes'])) {
         wp_send_json_error('Ошибка: не передан ID самолёта');
     }
@@ -402,17 +401,59 @@ add_action('wp_ajax_nopriv_compare_planes', 'compare_planes_callback');
 
 
 
-
-
-
-
-
-
-// Main tab
+// main tab start
 add_action('woocommerce_product_options_general_product_data', 'add_custom_fields_to_main_tab');
 function add_custom_fields_to_main_tab()
 {
     echo '<div class="options_group">';
+
+    
+    $json_file = WP_CONTENT_DIR . '/uploads/airports.json'; // путь к JSON
+
+    if (!file_exists($json_file)) {
+        echo '<p style="color: red;">Файл аэропортов не найден!</p>';
+        return;
+    }
+
+    // Загружаем JSON с аэропортами
+    $airports = json_decode(file_get_contents($json_file), true);
+
+    if (!$airports) {
+        echo '<p style="color: red;">Ошибка загрузки данных аэропортов!</p>';
+        return;
+    }
+
+    // Загружаем сохранённое значение
+    global $post;
+    $selected_airport = get_post_meta($post->ID, '_airport_base', true);
+
+    // Формируем список аэропортов
+    $airport_options = ['' => 'Выберите аэропорт'];
+    foreach ($airports as $airport) {
+        $label = "{$airport['iata_code']}, {$airport['country_ru']}, {$airport['name_ru']} ";
+        $airport_options[$airport['icao_code']] = $label;
+    }
+
+    // Добавляем поле в админке
+    woocommerce_wp_select([
+        'id'      => '_airport_base',
+        'label'   => 'Базовый аэропорт',
+        'options' => $airport_options,
+        'desc_tip' => true,
+        'description' => 'Выберите, где базируется самолёт',
+        'value'   => $selected_airport,
+    ]);
+
+    // выпадающий список для выбора категории самолёта
+    woocommerce_wp_select([
+        'id'      => '_db_category',
+        'label'   => __('Категория самолёта', 'woocommerce'),
+        'options' => [
+            ''            => __('Общая карточка самолёта', 'woocommerce'),
+            'for_sale'    => __('Самолёт на продажу', 'woocommerce'),
+            'for_rent'    => __('Самолёт в аренду', 'woocommerce'),
+        ],
+    ]);
 
     // Add custom fields
     echo '<p class="form-field">
@@ -512,7 +553,7 @@ function add_custom_fields_to_main_tab()
     echo '</div>';
 }
 
-// Main tab part 2
+// Main tab part 2 start
 add_action('woocommerce_process_product_meta', 'save_custom_fields');
 function save_custom_fields($post_id)
 {
@@ -531,6 +572,10 @@ function save_custom_fields($post_id)
         if (isset($_POST[$field])) {
             update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
         }
+    }
+
+    if (isset($_POST['_airport_base'])) {
+        update_post_meta($post_id, '_airport_base', sanitize_text_field($_POST['_airport_base']));
     }
 }
 
@@ -564,6 +609,7 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
 
 add_action('woocommerce_product_data_panels', function () {
 ?>
+
     <div id="commercial_data_options" class="panel woocommerce_options_panel hidden">
         <?php
         $fields = [
@@ -580,6 +626,7 @@ add_action('woocommerce_product_data_panels', function () {
             '_d_check_interval'    => 'Интервал D-Check'
         ];
 
+        echo '<div id="aircraft_common_fields">';
         foreach ($fields as $id => $label) {
             woocommerce_wp_text_input([
                 'id'          => $id,
@@ -588,9 +635,41 @@ add_action('woocommerce_product_data_panels', function () {
                 'desc_tip'    => true,
             ]);
         }
+        echo '</div>';
+
+        // поля для продажи
+        echo '<div id="db_sale_fields" style="display: none;">';
+        woocommerce_wp_text_input([
+            'id'          => '_sale_price',
+            'label'       => __('Цена продажи ($)', 'woocommerce'),
+            'description' => __('Укажите цену самолёта для продажи', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
+        woocommerce_wp_text_input([
+            'id'          => '_sale_year',
+            'label'       => __('Год выпуска', 'woocommerce'),
+            'description' => __('Год выпуска самолёта', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
+        echo '</div>';
+
+        // поля для аренды
+        echo '<div id="db_rent_fields" style="display: none;">';
+        woocommerce_wp_text_input([
+            'id'          => '_rental_price',
+            'label'       => __('Цена аренды ($)', 'woocommerce'),
+            'description' => __('Укажите цену аренды самолёта', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
+        woocommerce_wp_text_input([
+            'id'          => '_rental_period',
+            'label'       => __('Срок аренды', 'woocommerce'),
+            'description' => __('Укажите срок аренды (дни, месяцы и т. д.)', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
         ?>
     </div>
-
+    
     <div id="aircraft_features_options" class="panel woocommerce_options_panel hidden">
         <h2><?php _e('Особенности самолета', 'woocommerce'); ?></h2>
         <div id="aircraft_features_wrapper">
@@ -923,6 +1002,7 @@ add_action('woocommerce_product_data_panels', function () {
 <?php
 });
 
+// сохранение данных
 add_action('woocommerce_process_product_meta', function ($post_id) {
     if (isset($_POST['_aircraft_features']) && is_array($_POST['_aircraft_features'])) {
         $features = array_map(function ($feature) {
@@ -989,6 +1069,7 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
     }
 
     $fields = [
+        '_db_category',
         '_cruising_speed',
         '_range',
         '_flight_time',
@@ -1099,62 +1180,6 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
                 '_cabin_volume' => 'Объем салона',
                 '_luggage_volume' => 'Объём багажного отделения',
                 '_plane_length' => 'Длина самолета',
-                '_plane_height' => 'Высота самолета',
-            ];
-
-            echo '<h2>' . __('Технические характеристики', 'woocommerce') . '</h2>';
-            echo '<table class="woocommerce-product-attributes shop_attributes">';
-            foreach ($fields as $meta_key => $label) {
-                $value = get_post_meta($product->get_id(), $meta_key, true);
-                if ($value) {
-                    echo '<tr>';
-                    echo '<th>' . esc_html($label) . '</th>';
-                    echo '<td>' . esc_html($value) . '</td>';
-                    echo '</tr>';
-                }
-            }
-            echo '</table>';
-        },
-    ];
-
-    $tabs['commercial_data'] = [
-        'title'    => __('Коммерческие данные', 'woocommerce'),
-        'priority' => 50,
-        'callback' => function () {
-            global $product;
-
-            $fields = [
-                '_start_year'          => 'Год начала производства',
-                '_end_year'            => 'Год окончания производства',
-                '_country_of_origin'   => 'Страна производства',
-                '_new_plane_cost'      => 'Стоимость нового самолета ($)',
-                '_used_plane_cost'     => 'Стоимость самолета с налетом',
-                '_hour_cost'           => 'Себестоимость летного часа',
-                '_overhaul_interval'   => 'Интервал капитального ремонта (часов)',
-                '_a_check_interval'    => 'Интервал A-Check',
-                '_b_check_interval'    => 'Интервал B-Check',
-                '_c_check_interval'    => 'Интервал C-Check',
-                '_d_check_interval'    => 'Интервал D-Check'
-            ];
-
-            echo '<h2>' . __('Коммерческие данные', 'woocommerce') . '</h2>';
-            echo '<table class="woocommerce-product-attributes shop_attributes">';
-            foreach ($fields as $meta_key => $label) {
-                $value = get_post_meta($product->get_id(), $meta_key, true);
-                if ($value) {
-                    echo '<tr class="woocommerce-product-attributes-item">';
-                    echo '<th class="woocommerce-product-attributes-item__label">' . esc_html($label) . '</th>';
-                    echo '<td class="woocommerce-product-attributes-item__value">' . esc_html($value) . '</td>';
-                    echo '</tr>';
-                }
-            }
-            echo '</table>';
-        }
-    ];
-
-    return $tabs;
-});
-�а самолета',
                 '_plane_height' => 'Высота самолета',
             ];
 

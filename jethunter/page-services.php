@@ -276,4 +276,73 @@
     </div>
 </section> -->
 
+<?php get_footer(); ?>�ть выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
+                <p>Менеджер Майкла О</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="partners-sect">
+    <div class="container">
+        <h2 class="h2 center">Наши партнеры</h2>
+        <div class="partners-grid">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/malindo-airlines-logo-3A2A347831-seeklogo.com 1.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/abc.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/globeair.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/jetlinx.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/planesense.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/volato.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/wheelsup.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/xojet.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/tyrolean.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/solairus.png" class="partners-logo" loading="lazy" alt="">
+        </div>
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="cta-row-big">
+            <div class="cta-left">
+                <h2 class="h1">Остались вопросы?</h2>
+                <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
+                <h3 class="h3">Также мы есть в соц. сетях:</h3>
+                <div class="form-social">
+                    <a href="https://t.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
+                    <a href="https://wa.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
+                </div>
+            </div>
+            <div class="cta-right">
+                <div class="form-bg">
+                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="app-sect">
+    <div class="container">
+        <div class="app-row">
+            <div class="app-col">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/app.svg" class="app-icon" width="144" height="144" alt="">
+                <h2 class="h2">Скачивайте мобильное приложение Jet Hunter</h2>
+                <p>Мгновенно бронируйте свой идеальный полет с Jet Hunter в приложении с круглосуточной поддержкой.
+                </p>
+
+                <div class="btn-container">
+                    <a href=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/google-play.png" class="app-store-icon" alt=""></a>
+                    <a href=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/app-store.png" class="app-store-icon" alt=""></a>
+                </div>
+            </div>
+            <div class="app-col">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/iphone-mockup.png" class="app-mockup" loading="lazy" alt="">
+            </div>
+        </div>
+    </div>
+</section> -->
+
 <?php get_footer(); ?>

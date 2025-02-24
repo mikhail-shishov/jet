@@ -160,4 +160,26 @@
     </div>
 </section>
 
+<?php get_footer(); ?>he_title(); ?></a>
+                                    <span class="article-date"><?php echo get_the_date(); ?></span>
+                                    <p><?php the_excerpt(); ?></p>
+                                    <div class="article-info">
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
+                                        <span class="article-info-time">3 min</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <?php }
+                        wp_reset_postdata();
+                    } else {
+                        echo 'No articles for now.';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php get_footer(); ?>

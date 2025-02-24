@@ -925,3 +925,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderComparison();
 });
+index, 1);
+      localStorage.setItem("selectedPlanes", JSON.stringify(selectedPlanes));
+      renderComparison();
+    }
+  });
+
+  renderComparison();
+});

@@ -462,4 +462,17 @@
     </div>
 </div>
 
+<?php get_footer(); ?>                           <p class="looking-row-title">Цена в час</p>
+                            <p class="looking-row-desc">22 300₽</p>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                </div> -->
+        </div>
+        <!-- <div class="show-more">
+                <button class="btn btn-more">Смотреть ещё</button>
+            </div> -->
+    </div>
+</div>
+
 <?php get_footer(); ?>

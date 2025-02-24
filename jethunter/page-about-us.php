@@ -125,4 +125,12 @@
 </section>
 
 
+<?php get_footer(); ?> ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <?php get_footer(); ?>
