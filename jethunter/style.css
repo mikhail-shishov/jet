@@ -2841,6 +2841,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-bottom: 0;
 }
 
+.home-form-2 p br {
+    display: none;
+}
+
 .home-form-3 .wpcf7-form {
     gap: 8px;
 }
@@ -3232,7 +3236,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .plane-images {
-        align-items: center;
+        /* align-items: center; */
     }
 
     .plane-gallery-main,
@@ -5085,9 +5089,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .plane-grid-item {
-        padding: 0;
-    }
-}ne-grid-item {
         padding: 0;
     }
 }

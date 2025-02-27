@@ -1,18 +1,153 @@
 <?php
 
+// carbon start
+
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
-add_action('after_setup_theme', function () {
-    \Carbon_Fields\Carbon_Fields::boot();
-});
-
 add_action('carbon_fields_register_fields', function () {
-    Container::make('theme_options', __('Theme Options'))
+    Container::make('post_meta', 'Параметры самолёта')
+        ->where('post_type', '=', 'product')
         ->add_fields([
-            Field::make('text', 'crb_text', 'Text Field'),
+            Field::make('file', 'aircraft_json', 'Файл JSON')
+                ->set_type('application/json')
+                ->set_value_type('url')
+                ->set_help_text('Загрузите JSON с характеристиками самолёта.'),
+
+            Field::make('select', 'aircraft_category', 'Категория самолёта')
+                ->set_options([
+                    'encyclopedia' => 'Энциклопедия',
+                    'buy' => 'Покупка',
+                    'rent' => 'Аренда',
+                ])
+                ->set_required(true),
+
+
+            Field::make('text', 'aircraft_model', 'Модель'),
+
+            Field::make('text', 'aircraft_type', 'Тип'),
+
+            Field::make('text', 'aircraft_cat', 'Категория'),
+
+            Field::make('text', 'aircraft_make', 'Производитель'),
+
+            Field::make('text', 'purchase_price', 'Цена покупки')
+                ->set_conditional_logic([
+                    ['field' => 'aircraft_category', 'value' => 'buy', 'compare' => '='],
+                ]),
+
+            Field::make('text', 'rental_price', 'Цена аренды')
+                ->set_conditional_logic([
+                    ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
+                ]),
+
+            Field::make('text', 'rental_period', 'Срок аренды')
+                ->set_conditional_logic([
+                    ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
+                ]),
+
+            Field::make('text', 'cruise_speed_kmh', 'Крейсерская скорость (км/ч)'),
+            Field::make('text', 'cruise_speed_mph', 'Крейсерская скорость (миль/ч)'),
+
+            Field::make('text', 'range_km', 'Дальность (км)'),
+            Field::make('text', 'range_miles', 'Дальность (миль)'),
+
+            Field::make('text', 'max_takeoff_height_m', 'Максимальная высота полета (м)'),
+            Field::make('text', 'max_takeoff_height_ft', 'Максимальная высота полета (ft)'),
+
+            Field::make('text', 'max_takeoff_weight_kg', 'Максимальный взлетный вес (кг)'),
+            Field::make('text', 'max_takeoff_weight_lbs', 'Максимальный взлетный вес (фунты)'),
+
+            Field::make('text', 'max_landing_weight_kg', 'Посадочный вес (кг)'),
+            Field::make('text', 'max_landing_weight_lbs', 'Посадочный вес (lb)'),
+
+            Field::make('text', 'max_landing_height_kg', 'Грузоподъемность (кг)'),
+            Field::make('text', 'max_landing_height_lbs', 'Грузоподъемность (lb)'),
+
+            Field::make('text', 'takeoff_distance_m', 'Посадочная дистанция (м)'),
+            Field::make('text', 'takeoff_distance_ft', 'Посадочная дистанция (ft)'),
+
+            Field::make('text', 'aircraft_engine_count', 'Количество двигателей'),
+
+            Field::make('text', 'aircraft_engine', 'Двигатель'),
+
+            Field::make('text', 'vsu', 'Вспомогательная силовая установка (ВСУ)'),
+
+            Field::make('text', 'avionics', 'Авионика'),
+
+            Field::make('text', 'propeller', 'Пропеллер'),
+
+            Field::make('text', 'aircraft_seats', 'Количество мест'),
+
+            Field::make('text', 'cabin_width_m', 'Ширина салона (м)'),
+            Field::make('text', 'cabin_width_ft', 'Ширина салона (футы)'),
+
+            Field::make('text', 'cabin_height_m', 'Высота салона (м)'),
+            Field::make('text', 'cabin_height_ft', 'Высота салона (футы)'),
+
+            Field::make('text', 'cabin_length_m', 'Длина салона (м)'),
+            Field::make('text', 'cabin_length_ft', 'Длина салона (ft)'),
+
+            Field::make('text', 'cabin_volume_m', 'Объем салона (куб.м)'),
+            Field::make('text', 'cabin_volume_ft', 'Объем салона (cu ft)'),
+
+            Field::make('text', 'luggage_volume_m', 'Объём багажного отделения (куб.м)'),
+            Field::make('text', 'luggage_volume_ft', 'Объём багажного отделения (cu ft)'),
+
+            Field::make('text', 'luggage_number', 'Количество чемоданов'),
+
+            Field::make('text', 'aircraft_length_m', 'Длина самолета (м)'),
+            Field::make('text', 'aircraft_length_ft', 'Длина самолета (ft)'),
+
+            Field::make('text', 'aircraft_height_m', 'Высота самолета (м)'),
+            Field::make('text', 'aircraft_height_ft', 'Высота самолета (ft)'),
+
+            Field::make('text', 'aircraft_wing_length_m', 'Размах крыла (м)'),
+            Field::make('text', 'aircraft_wing_length_ft', 'Размах крыла (ft)'),
+
+            Field::make('text', 'aircraft_features_heading_1', 'Особенности самолета, 1 заголовок'),
+            Field::make('text', 'aircraft_features_desc_1', 'Особенности самолета, 1 описание'),
+
+            Field::make('text', 'aircraft_features_heading_2', 'Особенности самолета, 2 заголовок'),
+            Field::make('text', 'aircraft_features_desc_2', 'Особенности самолета, 2 описание'),
+
+            Field::make('text', 'aircraft_features_heading_3', 'Особенности самолета, 3 заголовок'),
+            Field::make('text', 'aircraft_features_desc_3', 'Особенности самолета, 3 описание'),
+
+            Field::make('text', 'aircraft_features_heading_4', 'Особенности самолета, 4 заголовок'),
+            Field::make('text', 'aircraft_features_desc_4', 'Особенности самолета, 4 описание'),
+
+            Field::make('text', 'aircraft_features_heading_5', 'Особенности самолета, 5 заголовок'),
+            Field::make('text', 'aircraft_features_desc_5', 'Особенности самолета, 5 описание'),
+
+            Field::make('text', 'aircraft_features_heading_6', 'Особенности самолета, 6 заголовок'),
+            Field::make('text', 'aircraft_features_desc_6', 'Особенности самолета, 6 описание'),
+
+            Field::make('text', 'variable_cost_hour', 'Переменные расходы (USD)/час'),
+            Field::make('text', 'programs_engine', 'Программы двигатель'),
+            Field::make('text', 'programs_planer', 'Программы планер'),
+            Field::make('text', 'programs_vsu_propeller', 'Программы ВСУ/Пропеллер'),
+            Field::make('text', 'fuel_cost', 'Топливо (при цене $800/тонна)'),
+            Field::make('text', 'aircraft_navigation', 'Навигация'),
+            Field::make('text', 'crew_payment', 'Командировочные экипажа'),
+            Field::make('text', 'other_costs', 'Другие затраты'),
+            Field::make('text', 'variable_cost_sum', 'Сумма переменные расходы'),
+            Field::make('text', 'crew_salary', 'Зарплата экипажа'),
+            Field::make('text', 'engineer_salary', 'Зарплата инженера'),
+            Field::make('text', 'crew_education', 'Обучение экипажа'),
+            Field::make('text', 'sw_navigation', 'ПО и навигация'),
+            Field::make('text', 'aircraft_insurance', 'Страховка'),
+            Field::make('text', 'aircraft_parking', 'Стоянка'),
+            Field::make('text', 'company_income', 'Доход управляющей компании'),
+            Field::make('text', 'samp', 'CAMP'),
+            Field::make('text', 'technical_management', 'Технический менеджмент'),
+            Field::make('text', 'other_different_costs', 'Разные'),
+            Field::make('text', 'constant_cost_sum', 'Сумма постоянные расходы'),
+            Field::make('text', 'total_cost', 'ИТОГО расходы'),
+            Field::make('text', 'total_cost_hour', 'Итого цена летного часа'),
         ]);
 });
+
 
 add_action('carbon_fields_register_fields', function () {
     Container::make('post_meta', 'Время чтения')
@@ -83,61 +218,343 @@ add_action('carbon_fields_register_fields', function () {
                         ])
                 ])
         ]);
+
+
+    Container::make('post_meta', 'О услугах')
+        ->where('post_template', '=', 'page-about-services.php')
+        ->add_fields([
+            Field::make('text', 'heading', 'Главный заголовок'),
+            Field::make('textarea', 'description', 'Описание услуги'),
+            Field::make('text', 'features_heading_1', 'Заголовок преимуществ'),
+            Field::make('complex', 'features_complex_1', 'Преимущества')
+                ->add_fields([
+                    Field::make('text', 'features_number', 'Номер преимущества'),
+                    Field::make('text', 'features_name', 'Заголовок'),
+                    Field::make('textarea', 'features_text', 'Описание'),
+                ]),
+            Field::make('text', 'features_heading_2', 'Заголовок шагов'),
+            Field::make('complex', 'features_complex_2', 'Шаги')
+                ->add_fields([
+                    Field::make('text', 'features_number', 'Номер шага'),
+                    Field::make('text', 'features_name', 'Заголовок'),
+                    Field::make('textarea', 'features_text', 'Описание'),
+                ])
+        ]);
+
+    Container::make('post_meta', 'About services')
+        ->where('post_template', '=', 'page-about-services-en.php')
+        ->add_fields([
+            Field::make('text', 'heading', 'Главный заголовок'),
+            Field::make('textarea', 'description', 'Описание услуги'),
+            Field::make('text', 'features_heading_1', 'Заголовок преимуществ'),
+            Field::make('complex', 'features_complex_1', 'Преимущества')
+                ->add_fields([
+                    Field::make('text', 'features_number', 'Номер преимущества'),
+                    Field::make('text', 'features_name', 'Заголовок'),
+                    Field::make('textarea', 'features_text', 'Описание'),
+                ]),
+            Field::make('text', 'features_heading_2', 'Заголовок шагов'),
+            Field::make('complex', 'features_complex_2', 'Шаги')
+                ->add_fields([
+                    Field::make('text', 'features_number', 'Номер шага'),
+                    Field::make('text', 'features_name', 'Заголовок'),
+                    Field::make('textarea', 'features_text', 'Описание'),
+                ])
+        ]);
 });
 
-// add_action('carbon_fields_register_fields', function () {
-//     Container::make('post_meta', 'Наполнение страницы')
-//         ->where('post_template', '=', 'page-empty-legs.php')
-//         ->add_fields([
-//             Field::make('complex', 'planes', 'Список самолетов')
-//                 ->add_fields([
-//                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-//                     Field::make('image', 'image', 'Изображение')->set_required(true),
-//                     Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
-//                     Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
-//                     Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
-//                     Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
-//                     Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
-//                     Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
-//                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
-//                     Field::make('text', 'seats', 'Количество мест')->set_required(true),
-//                     Field::make('text', 'price', 'Цена в USD')->set_required(true),
-//                 ]),
-//         ]);
-// });
+add_action('after_setup_theme', function () {
+    \Carbon_Fields\Carbon_Fields::boot();
+});
+// carbon end
 
-// add_action('carbon_fields_register_fields', function () {
-//     Container::make('post_meta', 'Время чтения')
-//         ->where('post_type', '=', 'post')
-//         ->add_fields([
-//             Field::text('reading_time')
-//                 ->set_help_text('Напишите время чтения в минутах (например, 5)')
-//         ]);
-// });
+function allow_json_uploads($mimes)
+{
+    $mimes['json'] = 'application/json';
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_json_uploads');
 
-// add_action('carbon_fields_register_fields', function () {
-//     Container::make('post_meta', 'Наполнение страницы')
-//         ->where('post_template', '=', 'page-empty-legs-en.php')
-//         ->add_fields([
-//             Field::make('complex', 'planes', 'Список самолетов')
-//                 ->add_fields([
-//                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-//                     Field::make('image', 'image', 'Изображение')->set_required(true),
-//                     Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
-//                     Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
-//                     Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
-//                     Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
-//                     Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
-//                     Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
-//                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
-//                     Field::make('text', 'seats', 'Количество мест')->set_required(true),
-//                     Field::make('text', 'price', 'Цена в USD')->set_required(true),
-//                 ]),
-//         ]);
-// });
+// json for aircraft start
+function process_aircraft_json($post_id)
+{
+    if (get_post_type($post_id) !== 'product') {
+        return;
+    }
 
-// phone number header
-function get_phone_number() {
+    $json_url = carbon_get_post_meta($post_id, 'aircraft_json');
+    if (!$json_url) {
+        return;
+    }
+
+    // Приводим URL к серверному пути
+    $upload_dir = wp_upload_dir();
+    $json_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $json_url);
+
+    if (!file_exists($json_path) || !is_readable($json_path)) {
+        error_log("Ошибка: файл JSON не найден или не доступен - $json_path");
+        return;
+    }
+
+    // Загружаем JSON
+    $json_data = file_get_contents($json_path);
+    $aircraft_data = json_decode($json_data, true);
+
+    if (!$aircraft_data || !is_array($aircraft_data)) {
+        error_log("Ошибка: JSON поврежден или имеет неверный формат - $json_path");
+        return;
+    }
+
+    // Обрабатываем данные, убираем пустые строки
+    foreach ($aircraft_data as $entry) {
+        if (empty($entry['Общие данные']) || empty($entry['Параметры'])) {
+            continue;
+        }
+
+        $key = trim($entry['Общие данные']);
+        $value = trim($entry['Параметры']);
+
+        if ($value === '') {
+            continue;
+        }
+
+        // Сопоставляем JSON-данные с Carbon Fields
+        switch ($key) {
+            case 'Модель':
+                carbon_set_post_meta($post_id, 'aircraft_model', $value);
+                break;
+            case 'Тип':
+                carbon_set_post_meta($post_id, 'aircraft_type', $value);
+                break;
+            case 'Категория':
+                carbon_set_post_meta($post_id, 'aircraft_cat', $value);
+                break;
+            case 'Производитель':
+                carbon_set_post_meta($post_id, 'aircraft_make', $value);
+                break;
+            case 'Крейсерская скорость (км/ч)':
+                carbon_set_post_meta($post_id, 'cruise_speed_kmh', $value);
+                break;
+            case 'Крейсерская скорость (миль/ч)':
+                carbon_set_post_meta($post_id, 'cruise_speed_mph', $value);
+                break;
+            case 'Дальность (км)':
+                carbon_set_post_meta($post_id, 'range_km', $value);
+                break;
+            case 'Дальность (миль)':
+                carbon_set_post_meta($post_id, 'range_miles', $value);
+                break;
+            case 'Максимальная высота полета (м)':
+                carbon_set_post_meta($post_id, 'max_takeoff_height_m', $value);
+                break;
+            case 'Максимальная высота полета (ft)':
+                carbon_set_post_meta($post_id, 'max_takeoff_height_ft', $value);
+                break;
+            case 'Максимальный взлетный вес (кг)':
+                carbon_set_post_meta($post_id, 'max_takeoff_weight_kg', $value);
+                break;
+            case 'Максимальный взлетный вес (фунты)':
+                carbon_set_post_meta($post_id, 'max_takeoff_weight_lbs', $value);
+                break;
+            case 'Посадочный вес (кг)':
+                carbon_set_post_meta($post_id, 'max_landing_weight_kg', $value);
+                break;
+            case 'Посадочный вес (lb)':
+                carbon_set_post_meta($post_id, 'max_landing_weight_lbs', $value);
+                break;
+            case 'Грузоподъемность (кг)':
+                carbon_set_post_meta($post_id, 'max_landing_height_kg', $value);
+                break;
+            case 'Грузоподъемность (lb)':
+                carbon_set_post_meta($post_id, 'max_landing_height_lbs', $value);
+                break;
+            case 'Посадочная дистанция (м)':
+                carbon_set_post_meta($post_id, 'takeoff_distance_m', $value);
+                break;
+            case 'Посадочная дистанция (ft)':
+                carbon_set_post_meta($post_id, 'takeoff_distance_ft', $value);
+                break;
+            case 'Количество двигателей':
+                carbon_set_post_meta($post_id, 'aircraft_engine_count', $value);
+                break;
+            case 'Двигатель':
+                carbon_set_post_meta($post_id, 'aircraft_engine', $value);
+                break;
+            case 'Вспомогательная силовая установка (ВСУ)':
+                carbon_set_post_meta($post_id, 'vsu', $value);
+                break;
+            case 'Авионика':
+                carbon_set_post_meta($post_id, 'avionics', $value);
+                break;
+            case 'Пропеллер':
+                carbon_set_post_meta($post_id, 'propeller', $value);
+                break;
+            case 'Количество мест':
+                carbon_set_post_meta($post_id, 'aircraft_seats', $value);
+                break;
+            case 'Ширина салона (м)':
+                carbon_set_post_meta($post_id, 'cabin_width_m', $value);
+                break;
+            case 'Ширина салона (футы)':
+                carbon_set_post_meta($post_id, 'cabin_width_ft', $value);
+                break;
+            case 'Высота салона (м)':
+                carbon_set_post_meta($post_id, 'cabin_height_m', $value);
+                break;
+            case 'Высота салона (футы)':
+                carbon_set_post_meta($post_id, 'cabin_height_ft', $value);
+                break;
+            case 'Длина салона (м)':
+                carbon_set_post_meta($post_id, 'cabin_length_m', $value);
+                break;
+            case 'Длина салона (ft)':
+                carbon_set_post_meta($post_id, 'cabin_length_ft', $value);
+                break;
+            case 'Объем салона (куб.м)':
+                carbon_set_post_meta($post_id, 'cabin_volume_m', $value);
+                break;
+            case 'Объем салона (cu ft)':
+                carbon_set_post_meta($post_id, 'cabin_volume_ft', $value);
+                break;
+            case 'Объём багажного отделения (куб.м)':
+                carbon_set_post_meta($post_id, 'luggage_volume_m', $value);
+                break;
+            case 'Объём багажного отделения (cu ft)':
+                carbon_set_post_meta($post_id, 'luggage_volume_ft', $value);
+                break;
+            case 'Количество чемоданов':
+                carbon_set_post_meta($post_id, 'luggage_number', $value);
+                break;
+            case 'Длина самолета (м)':
+                carbon_set_post_meta($post_id, 'aircraft_length_m', $value);
+                break;
+            case 'Длина самолета (ft)':
+                carbon_set_post_meta($post_id, 'aircraft_length_ft', $value);
+                break;
+            case 'Высота самолета (м)':
+                carbon_set_post_meta($post_id, 'aircraft_height_m', $value);
+                break;
+            case 'Высота самолета (ft)':
+                carbon_set_post_meta($post_id, 'aircraft_height_ft', $value);
+                break;
+            case 'Размах крыла (м)':
+                carbon_set_post_meta($post_id, 'aircraft_wing_length_m', $value);
+                break;
+            case 'Размах крыла (ft)':
+                carbon_set_post_meta($post_id, 'aircraft_wing_length_ft', $value);
+                break;
+            case 'Особенности самолета, 1 заголовок':
+                carbon_set_post_meta($post_id, 'aircraft_features_heading_1', $value);
+                break;
+            case 'Особенности самолета, 1 описание':
+                carbon_set_post_meta($post_id, 'aircraft_features_desc_1', $value);
+                break;
+            case 'Особенности самолета, 2 заголовок':
+                carbon_set_post_meta($post_id, 'aircraft_features_heading_2', $value);
+                break;
+            case 'Особенности самолета, 2 описание':
+                carbon_set_post_meta($post_id, 'aircraft_features_desc_2', $value);
+                break;
+            case 'Особенности самолета, 3 заголовок':
+                carbon_set_post_meta($post_id, 'aircraft_features_heading_3', $value);
+                break;
+            case 'Особенности самолета, 3 описание':
+                carbon_set_post_meta($post_id, 'aircraft_features_desc_3', $value);
+                break;
+            case 'Особенности самолета, 4 заголовок':
+                carbon_set_post_meta($post_id, 'aircraft_features_heading_4', $value);
+                break;
+            case 'Особенности самолета, 4 описание':
+                carbon_set_post_meta($post_id, 'aircraft_features_desc_4', $value);
+                break;
+            case 'Особенности самолета, 5 заголовок':
+                carbon_set_post_meta($post_id, 'aircraft_features_heading_5', $value);
+                break;
+            case 'Особенности самолета, 5 описание':
+                carbon_set_post_meta($post_id, 'aircraft_features_desc_5', $value);
+                break;
+            case 'Особенности самолета, 6 заголовок':
+                carbon_set_post_meta($post_id, 'aircraft_features_heading_6', $value);
+                break;
+            case 'Особенности самолета, 6 описание':
+                carbon_set_post_meta($post_id, 'aircraft_features_desc_6', $value);
+                break;
+            case 'Переменные расходы (USD)/час':
+                carbon_set_post_meta($post_id, 'variable_cost_hour', $value);
+                break;
+            case 'Программы двигатель':
+                carbon_set_post_meta($post_id, 'programs_engine', $value);
+                break;
+            case 'Программы планер':
+                carbon_set_post_meta($post_id, 'programs_planer', $value);
+                break;
+            case 'Программы ВСУ/Пропеллер':
+                carbon_set_post_meta($post_id, 'programs_vsu_propeller', $value);
+                break;
+            case 'Топливо (при цене $800/тонна)':
+                carbon_set_post_meta($post_id, 'fuel_cost', $value);
+                break;
+            case 'Навигация':
+                carbon_set_post_meta($post_id, 'aircraft_navigation', $value);
+                break;
+            case 'Командировочные экипажа':
+                carbon_set_post_meta($post_id, 'crew_payment', $value);
+                break;
+            case 'Другие затраты':
+                carbon_set_post_meta($post_id, 'other_costs', $value);
+                break;
+            case 'Сумма переменные расходы':
+                carbon_set_post_meta($post_id, 'variable_cost_sum', $value);
+                break;
+            case 'Зарплата экипажа':
+                carbon_set_post_meta($post_id, 'crew_salary', $value);
+                break;
+            case 'Зарплата инженера':
+                carbon_set_post_meta($post_id, 'engineer_salary', $value);
+                break;
+            case 'Обучение экипажа':
+                carbon_set_post_meta($post_id, 'crew_education', $value);
+                break;
+            case 'ПО и навигация':
+                carbon_set_post_meta($post_id, 'sw_navigation', $value);
+                break;
+            case 'Страховка':
+                carbon_set_post_meta($post_id, 'aircraft_insurance', $value);
+                break;
+            case 'Стоянка':
+                carbon_set_post_meta($post_id, 'aircraft_parking', $value);
+                break;
+            case 'Доход управляющей компании':
+                carbon_set_post_meta($post_id, 'company_income', $value);
+                break;
+            case 'CAMP':
+                carbon_set_post_meta($post_id, 'samp', $value);
+                break;
+            case 'Технический менеджмент':
+                carbon_set_post_meta($post_id, 'technical_management', $value);
+                break;
+            case 'Разные':
+                carbon_set_post_meta($post_id, 'other_different_costs', $value);
+                break;
+            case 'Сумма постоянные расходы':
+                carbon_set_post_meta($post_id, 'constant_cost_sum', $value);
+                break;
+            case 'ИТОГО расходы':
+                carbon_set_post_meta($post_id, 'total_cost', $value);
+                break;
+            case 'Итого цена летного часа':
+                carbon_set_post_meta($post_id, 'total_cost_hour', $value);
+                break;
+        }
+    }
+}
+
+add_action('carbon_fields_post_meta_container_saved', 'process_aircraft_json');
+// json for aircraft end
+
+// phone number in header start
+function get_phone_number()
+{
     $apiKey = '9bbf93c81405e0';
 
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -168,7 +585,7 @@ function get_phone_number() {
     ];
 
     $formattedPhone = $phoneNumbers[$data['country']] ?? $phoneNumbers['default'];
-    $cleanPhone = preg_replace('/[^+\d]/', '', $formattedPhone); 
+    $cleanPhone = preg_replace('/[^+\d]/', '', $formattedPhone);
 
     wp_send_json_success([
         'country' => $data['country'],
@@ -179,16 +596,14 @@ function get_phone_number() {
 
 add_action('wp_ajax_get_phone_number', 'get_phone_number');
 add_action('wp_ajax_nopriv_get_phone_number', 'get_phone_number');
+// phone number in header end
 
-
-
-// views in articles
+// views in articles start
 function gt_get_post_view()
 {
     $count = get_post_meta(get_the_ID(), 'post_views_count', true);
     return "$count";
 }
-
 
 function gt_set_post_view()
 {
@@ -199,13 +614,11 @@ function gt_set_post_view()
     update_post_meta($post_id, $key, $count);
 }
 
-
 function gt_posts_column_views($columns)
 {
     $columns['post_views'] = 'Views';
     return $columns;
 }
-
 
 function gt_posts_custom_column_views($column)
 {
@@ -213,20 +626,20 @@ function gt_posts_custom_column_views($column)
         echo gt_get_post_view();
     }
 }
-
-
 add_filter('manage_posts_columns', 'gt_posts_column_views');
 add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
+// views in articles end
 
-
-
+// styles start
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');
 function thejet_io_enqueue_styles()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css?2');
 }
+// styles end
 
 
+// file upload start
 add_filter('upload_mimes', function ($mimes) {
     $mimes['pdf'] = 'application/pdf';
     $mimes['docx'] = 'application/docx';
@@ -238,7 +651,7 @@ add_filter('upload_mimes', function ($mimes) {
 add_action('post_edit_form_tag', function () {
     echo ' enctype="multipart/form-data"';
 });
-
+// file upload end
 
 add_filter('woocommerce_product_data_tabs', function ($tabs) {
     $tabs['commercial_data_tab'] = [
@@ -248,44 +661,40 @@ add_filter('woocommerce_product_data_tabs', function ($tabs) {
         'priority' => 11,
     ];
 
-    $tabs['aircraft_features'] = [
-        'label'    => __('Особенности самолета', 'woocommerce'),
-        'target'   => 'aircraft_features_options',
-        'class'    => ['show_if_simple', 'show_if_variable'],
-        'priority' => 12
-    ];
+    // $tabs['aircraft_features'] = [
+    //     'label'    => __('Особенности самолета', 'woocommerce'),
+    //     'target'   => 'aircraft_features_options',
+    //     'class'    => ['show_if_simple', 'show_if_variable'],
+    //     'priority' => 12
+    // ];
 
-    $tabs['operating_costs'] = [
-        'label'    => __('Эксплуатационные расходы самолета', 'woocommerce'),
-        'target'   => 'operating_costs_options',
-        'class'    => ['show_if_simple', 'show_if_variable'],
-        'priority' => 13
-    ];
+    // $tabs['operating_costs'] = [
+    //     'label'    => __('Эксплуатационные расходы самолета', 'woocommerce'),
+    //     'target'   => 'operating_costs_options',
+    //     'class'    => ['show_if_simple', 'show_if_variable'],
+    //     'priority' => 13
+    // ];
 
-    $tabs['technical_specs'] = [
-        'label'    => __('Технические характеристики', 'woocommerce'),
-        'target'   => 'technical_specs_options',
-        'class'    => ['show_if_simple', 'show_if_variable'],
-        'priority' => 14
-    ];
+    // $tabs['technical_specs'] = [
+    //     'label'    => __('Технические характеристики', 'woocommerce'),
+    //     'target'   => 'technical_specs_options',
+    //     'class'    => ['show_if_simple', 'show_if_variable'],
+    //     'priority' => 14
+    // ];
 
-    $tabs['popular_routes'] = [
-        'label'    => __('Популярные направления', 'woocommerce'),
-        'target'   => 'popular_routes_options',
-        'class'    => ['show_if_simple', 'show_if_variable'],
-        'priority' => 15
-    ];
+    // $tabs['popular_routes'] = [
+    //     'label'    => __('Популярные направления', 'woocommerce'),
+    //     'target'   => 'popular_routes_options',
+    //     'class'    => ['show_if_simple', 'show_if_variable'],
+    //     'priority' => 15
+    // ];
     return $tabs;
 });
 
-
-
-
-
-
-// Handle adding a plane to comparison
-
-function add_to_comparison() {
+// plane comparison start
+// handle adding a plane to comparison
+function add_to_comparison()
+{
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
@@ -293,10 +702,10 @@ function add_to_comparison() {
     $plane_id = intval($_POST['plane_id']);
     $user_id = get_current_user_id();
 
-    error_log("Adding plane ID: $plane_id for user $user_id"); // Log the request
+    error_log("Adding plane ID: $plane_id for user $user_id");
 
     $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
-    
+
     if (!in_array($plane_id, $planes)) {
         $planes[] = $plane_id;
         update_user_meta($user_id, 'comparison_planes', $planes);
@@ -307,8 +716,9 @@ function add_to_comparison() {
 add_action('wp_ajax_add_to_comparison', 'add_to_comparison');
 add_action('wp_ajax_nopriv_add_to_comparison', 'add_to_comparison');
 
-// Handle removing a plane
-function remove_from_comparison() {
+// handle removing a plane
+function remove_from_comparison()
+{
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
@@ -327,18 +737,20 @@ function remove_from_comparison() {
 add_action('wp_ajax_remove_from_comparison', 'remove_from_comparison');
 add_action('wp_ajax_nopriv_remove_from_comparison', 'remove_from_comparison');
 
-// Get compared planes
-function get_comparison_planes() {
+// get compared planes
+function get_comparison_planes()
+{
     $user_id = get_current_user_id();
     $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
 
-    error_log("Сравниваемые самолёты: " . json_encode($planes)); // Логируем список
+    error_log("Сравниваемые самолёты: " . json_encode($planes));
     wp_send_json_success(['planes' => $planes]);
 }
 add_action('wp_ajax_get_comparison_planes', 'get_comparison_planes');
 add_action('wp_ajax_nopriv_get_comparison_planes', 'get_comparison_planes');
-function allow_woocommerce_rest_access() {
-    add_filter('woocommerce_rest_check_permissions', function($permission, $context, $object_id, $post_type) {
+function allow_woocommerce_rest_access()
+{
+    add_filter('woocommerce_rest_check_permissions', function ($permission, $context, $object_id, $post_type) {
         if ($post_type === 'product' && $context === 'read') {
             return true;
         }
@@ -346,8 +758,12 @@ function allow_woocommerce_rest_access() {
     }, 10, 4);
 }
 add_action('init', 'allow_woocommerce_rest_access');
+// plane comparison end
+
+
 // получаем характеристики самолёта
-function get_plane_specs($post_id) {
+function get_plane_specs($post_id)
+{
     return [
         'Мест' => get_post_meta($post_id, '_custom_field_seats', true),
         // 'Скорость км/ч (m/h)' => get_post_meta($post_id, '_custom_field_speed', true),
@@ -378,7 +794,8 @@ function get_plane_specs($post_id) {
 }
 
 // обрабатываем AJAX-запрос для получения данных самолёта
-function compare_planes_callback() {
+function compare_planes_callback()
+{
     if (!isset($_POST['compare_planes'])) {
         wp_send_json_error('Ошибка: не передан ID самолёта');
     }
@@ -402,17 +819,59 @@ add_action('wp_ajax_nopriv_compare_planes', 'compare_planes_callback');
 
 
 
-
-
-
-
-
-
-// Main tab
+// main tab start
 add_action('woocommerce_product_options_general_product_data', 'add_custom_fields_to_main_tab');
 function add_custom_fields_to_main_tab()
 {
     echo '<div class="options_group">';
+
+
+    $json_file = WP_CONTENT_DIR . '/uploads/airports.json'; // путь к JSON
+
+    if (!file_exists($json_file)) {
+        echo '<p style="color: red;">Файл аэропортов не найден!</p>';
+        return;
+    }
+
+    // Загружаем JSON с аэропортами
+    $airports = json_decode(file_get_contents($json_file), true);
+
+    if (!$airports) {
+        echo '<p style="color: red;">Ошибка загрузки данных аэропортов!</p>';
+        return;
+    }
+
+    // Загружаем сохранённое значение
+    global $post;
+    $selected_airport = get_post_meta($post->ID, '_airport_base', true);
+
+    // Формируем список аэропортов
+    $airport_options = ['' => 'Выберите аэропорт'];
+    foreach ($airports as $airport) {
+        $label = "{$airport['iata_code']}, {$airport['country_ru']}, {$airport['name_ru']} ";
+        $airport_options[$airport['icao_code']] = $label;
+    }
+
+    // Добавляем поле в админке
+    woocommerce_wp_select([
+        'id'      => '_airport_base',
+        'label'   => 'Базовый аэропорт',
+        'options' => $airport_options,
+        'desc_tip' => true,
+        'description' => 'Выберите, где базируется самолёт',
+        'value'   => $selected_airport,
+    ]);
+
+    // выпадающий список для выбора категории самолёта
+    woocommerce_wp_select([
+        'id'      => '_db_category',
+        'label'   => __('Категория самолёта', 'woocommerce'),
+        'options' => [
+            ''            => __('Общая карточка самолёта', 'woocommerce'),
+            'for_sale'    => __('Самолёт на продажу', 'woocommerce'),
+            'for_rent'    => __('Самолёт в аренду', 'woocommerce'),
+        ],
+    ]);
 
     // Add custom fields
     echo '<p class="form-field">
@@ -512,7 +971,7 @@ function add_custom_fields_to_main_tab()
     echo '</div>';
 }
 
-// Main tab part 2
+// Main tab part 2 start
 add_action('woocommerce_process_product_meta', 'save_custom_fields');
 function save_custom_fields($post_id)
 {
@@ -531,6 +990,10 @@ function save_custom_fields($post_id)
         if (isset($_POST[$field])) {
             update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
         }
+    }
+
+    if (isset($_POST['_airport_base'])) {
+        update_post_meta($post_id, '_airport_base', sanitize_text_field($_POST['_airport_base']));
     }
 }
 
@@ -564,6 +1027,7 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
 
 add_action('woocommerce_product_data_panels', function () {
 ?>
+
     <div id="commercial_data_options" class="panel woocommerce_options_panel hidden">
         <?php
         $fields = [
@@ -580,6 +1044,7 @@ add_action('woocommerce_product_data_panels', function () {
             '_d_check_interval'    => 'Интервал D-Check'
         ];
 
+        echo '<div id="aircraft_common_fields">';
         foreach ($fields as $id => $label) {
             woocommerce_wp_text_input([
                 'id'          => $id,
@@ -588,10 +1053,42 @@ add_action('woocommerce_product_data_panels', function () {
                 'desc_tip'    => true,
             ]);
         }
+        echo '</div>';
+
+        // поля для продажи
+        echo '<div id="db_sale_fields" style="display: none;">';
+        woocommerce_wp_text_input([
+            'id'          => '_sale_price',
+            'label'       => __('Цена продажи ($)', 'woocommerce'),
+            'description' => __('Укажите цену самолёта для продажи', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
+        woocommerce_wp_text_input([
+            'id'          => '_sale_year',
+            'label'       => __('Год выпуска', 'woocommerce'),
+            'description' => __('Год выпуска самолёта', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
+        echo '</div>';
+
+        // поля для аренды
+        echo '<div id="db_rent_fields" style="display: none;">';
+        woocommerce_wp_text_input([
+            'id'          => '_rental_price',
+            'label'       => __('Цена аренды ($)', 'woocommerce'),
+            'description' => __('Укажите цену аренды самолёта', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
+        woocommerce_wp_text_input([
+            'id'          => '_rental_period',
+            'label'       => __('Срок аренды', 'woocommerce'),
+            'description' => __('Укажите срок аренды (дни, месяцы и т. д.)', 'woocommerce'),
+            'desc_tip'    => true,
+        ]);
         ?>
     </div>
 
-    <div id="aircraft_features_options" class="panel woocommerce_options_panel hidden">
+    <!-- <div id="aircraft_features_options" class="panel woocommerce_options_panel hidden">
         <h2><?php _e('Особенности самолета', 'woocommerce'); ?></h2>
         <div id="aircraft_features_wrapper">
             <?php
@@ -637,12 +1134,11 @@ add_action('woocommerce_product_data_panels', function () {
                 wrapper.append(html);
             });
         });
-    </script>
+    </script> -->
 
-    <div id="operating_costs_options" class="panel woocommerce_options_panel hidden">
+    <!-- <div id="operating_costs_options" class="panel woocommerce_options_panel hidden">
         <h2><?php _e('Эксплуатационные расходы самолета', 'woocommerce'); ?></h2>
 
-        <!-- Переменные затраты Table -->
         <h3><?php _e('Переменные затраты (USD)/час', 'woocommerce'); ?></h3>
         <div id="variable_costs_table_wrapper">
             <table class="variable-costs-table" style="width: 100%; border-collapse: collapse;">
@@ -688,7 +1184,6 @@ add_action('woocommerce_product_data_panels', function () {
             <button type="button" class="button add-variable-cost-row"><?php _e('Добавить строку', 'woocommerce'); ?></button>
         </div>
 
-        <!-- Постоянные затраты Table -->
         <h3><?php _e('Постоянные затраты', 'woocommerce'); ?></h3>
         <div id="fixed_costs_table_wrapper">
             <table class="fixed-costs-table" style="width: 100%; border-collapse: collapse;">
@@ -737,7 +1232,6 @@ add_action('woocommerce_product_data_panels', function () {
 
     <script>
         jQuery(function($) {
-            // Add and remove rows dynamically for variable costs.
             $('.add-variable-cost-row').on('click', function() {
                 const wrapper = $('.variable-costs-table tbody');
                 const index = wrapper.children('tr').length;
@@ -765,7 +1259,6 @@ add_action('woocommerce_product_data_panels', function () {
                 wrapper.append(rowHtml);
             });
 
-            // Add and remove rows dynamically for fixed costs.
             $('.add-fixed-cost-row').on('click', function() {
                 const wrapper = $('.fixed-costs-table tbody');
                 const index = wrapper.children('tr').length;
@@ -793,7 +1286,6 @@ add_action('woocommerce_product_data_panels', function () {
                 wrapper.append(rowHtml);
             });
 
-            // Remove rows from either table.
             $(document).on('click', '.remove-cost-row', function() {
                 $(this).closest('tr').remove();
             });
@@ -882,7 +1374,6 @@ add_action('woocommerce_product_data_panels', function () {
     </div>
     <script>
         jQuery(function($) {
-            // Add new route
             $('.add_route_button').on('click', function() {
                 const wrapper = $('#popular_routes_wrapper');
                 const index = wrapper.children('.route-item').length;
@@ -914,12 +1405,12 @@ add_action('woocommerce_product_data_panels', function () {
                 wrapper.append(html);
             });
 
-            // Remove route
             $(document).on('click', '.remove-route-button', function() {
                 $(this).closest('.route-item').remove();
             });
         });
-    </script>
+    </script> -->
+
 <?php
 });
 
@@ -934,7 +1425,7 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
 
         update_post_meta($post_id, '_aircraft_features', $features);
     } else {
-        delete_post_meta($post_id, '_aircraft_features'); // Remove if empty.
+        delete_post_meta($post_id, '_aircraft_features');
     }
 
     if (isset($_POST['_popular_routes'])) {
@@ -989,6 +1480,7 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
     }
 
     $fields = [
+        '_db_category',
         '_cruising_speed',
         '_range',
         '_flight_time',
@@ -1030,148 +1522,92 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
 });
 
 add_filter('woocommerce_product_tabs', function ($tabs) {
-    $tabs['aircraft_features'] = [
-        'title'    => __('Особенности самолета', 'woocommerce'),
-        'priority' => 30,
-        'callback' => function () {
-            global $product;
-            $features = get_post_meta($product->get_id(), '_aircraft_features', true);
+    // $tabs['aircraft_features'] = [
+    //     'title'    => __('Особенности самолета', 'woocommerce'),
+    //     'priority' => 30,
+    //     'callback' => function () {
+    //         global $product;
+    //         $features = get_post_meta($product->get_id(), '_aircraft_features', true);
 
-            if (!empty($features) && is_array($features)) {
-                echo '<h2>' . __('Особенности самолета', 'woocommerce') . '</h2>';
-                foreach ($features as $index => $feature) {
-                    $step_number = $index + 1;
-                    $title = esc_html($feature['title'] ?? '');
-                    $description = esc_html($feature['description'] ?? '');
+    //         if (!empty($features) && is_array($features)) {
+    //             echo '<h2>' . __('Особенности самолета', 'woocommerce') . '</h2>';
+    //             foreach ($features as $index => $feature) {
+    //                 $step_number = $index + 1;
+    //                 $title = esc_html($feature['title'] ?? '');
+    //                 $description = esc_html($feature['description'] ?? '');
 
-                    if ($title || $description) {
-                        echo '<div class="step-item">';
-                        echo '<span class="step-number">' . $step_number . '</span>';
-                        if ($title) {
-                            echo '<h3 class="h3">' . $title . '</h3>';
-                        }
-                        if ($description) {
-                            echo '<p>' . $description . '</p>';
-                        }
-                        echo '</div>';
-                    }
-                }
-            }
-        },
-    ];
+    //                 if ($title || $description) {
+    //                     echo '<div class="step-item">';
+    //                     echo '<span class="step-number">' . $step_number . '</span>';
+    //                     if ($title) {
+    //                         echo '<h3 class="h3">' . $title . '</h3>';
+    //                     }
+    //                     if ($description) {
+    //                         echo '<p>' . $description . '</p>';
+    //                     }
+    //                     echo '</div>';
+    //                 }
+    //             }
+    //         }
+    //     },
+    // ];
 
-    $tabs['operating_costs'] = [
-        'title'    => __('Эксплуатационные расходы самолета', 'woocommerce'),
-        'priority' => 40,
-        'callback' => function () {
-            global $product;
-            $value = get_post_meta($product->get_id(), '_operating_costs', true);
-            if ($value) {
-                echo '<h2>' . __('Эксплуатационные расходы самолета', 'woocommerce') . '</h2>';
-                echo '<p>' . esc_html($value) . '</p>';
-            }
-        },
-    ];
+    // $tabs['operating_costs'] = [
+    //     'title'    => __('Эксплуатационные расходы самолета', 'woocommerce'),
+    //     'priority' => 40,
+    //     'callback' => function () {
+    //         global $product;
+    //         $value = get_post_meta($product->get_id(), '_operating_costs', true);
+    //         if ($value) {
+    //             echo '<h2>' . __('Эксплуатационные расходы самолета', 'woocommerce') . '</h2>';
+    //             echo '<p>' . esc_html($value) . '</p>';
+    //         }
+    //     },
+    // ];
 
-    $tabs['technical_specs'] = [
-        'title'    => __('Технические характеристики', 'woocommerce'),
-        'priority' => 50,
-        'callback' => function () {
-            global $product;
+    // $tabs['technical_specs'] = [
+    //     'title'    => __('Технические характеристики', 'woocommerce'),
+    //     'priority' => 50,
+    //     'callback' => function () {
+    //         global $product;
 
-            $fields = [
-                '_cruising_speed' => 'Крейсерская скорость (км/ч / m/h)',
-                '_range' => 'Дальность (км / nm)',
-                '_flight_time' => 'Время в полете (ч:м)',
-                '_max_altitude' => 'Максимальная высота полета (м / ft)',
-                '_max_takeoff_weight' => 'Максимальный взлетный вес (кг / lb)',
-                '_landing_weight' => 'Посадочный вес (кг / lb)',
-                '_payload' => 'Грузоподъемность (кг)',
-                '_takeoff_distance' => 'Взлетная дистанция (м / ft)',
-                '_landing_distance' => 'Посадочная дистанция (м / ft)',
-                '_engine_count' => 'Количество двигателей',
-                '_engine' => 'Двигатель',
-                '_apu' => 'Вспомогательная силовая установка',
-                '_avionics' => 'Авионика',
-                '_width' => 'Ширина',
-                '_cabin_length' => 'Длина салона',
-                '_cabin_height' => 'Высота салона',
-                '_cabin_volume' => 'Объем салона',
-                '_luggage_volume' => 'Объём багажного отделения',
-                '_plane_length' => 'Длина самолета',
-                '_plane_height' => 'Высота самолета',
-            ];
+    //         $fields = [
+    //             '_cruising_speed' => 'Крейсерская скорость (км/ч / m/h)',
+    //             '_range' => 'Дальность (км / nm)',
+    //             '_flight_time' => 'Время в полете (ч:м)',
+    //             '_max_altitude' => 'Максимальная высота полета (м / ft)',
+    //             '_max_takeoff_weight' => 'Максимальный взлетный вес (кг / lb)',
+    //             '_landing_weight' => 'Посадочный вес (кг / lb)',
+    //             '_payload' => 'Грузоподъемность (кг)',
+    //             '_takeoff_distance' => 'Взлетная дистанция (м / ft)',
+    //             '_landing_distance' => 'Посадочная дистанция (м / ft)',
+    //             '_engine_count' => 'Количество двигателей',
+    //             '_engine' => 'Двигатель',
+    //             '_apu' => 'Вспомогательная силовая установка',
+    //             '_avionics' => 'Авионика',
+    //             '_width' => 'Ширина',
+    //             '_cabin_length' => 'Длина салона',
+    //             '_cabin_height' => 'Высота салона',
+    //             '_cabin_volume' => 'Объем салона',
+    //             '_luggage_volume' => 'Объём багажного отделения',
+    //             '_plane_length' => 'Длина самолета',
+    //             '_plane_height' => 'Высота самолета',
+    //         ];
 
-            echo '<h2>' . __('Технические характеристики', 'woocommerce') . '</h2>';
-            echo '<table class="woocommerce-product-attributes shop_attributes">';
-            foreach ($fields as $meta_key => $label) {
-                $value = get_post_meta($product->get_id(), $meta_key, true);
-                if ($value) {
-                    echo '<tr>';
-                    echo '<th>' . esc_html($label) . '</th>';
-                    echo '<td>' . esc_html($value) . '</td>';
-                    echo '</tr>';
-                }
-            }
-            echo '</table>';
-        },
-    ];
-
-    $tabs['commercial_data'] = [
-        'title'    => __('Коммерческие данные', 'woocommerce'),
-        'priority' => 50,
-        'callback' => function () {
-            global $product;
-
-            $fields = [
-                '_start_year'          => 'Год начала производства',
-                '_end_year'            => 'Год окончания производства',
-                '_country_of_origin'   => 'Страна производства',
-                '_new_plane_cost'      => 'Стоимость нового самолета ($)',
-                '_used_plane_cost'     => 'Стоимость самолета с налетом',
-                '_hour_cost'           => 'Себестоимость летного часа',
-                '_overhaul_interval'   => 'Интервал капитального ремонта (часов)',
-                '_a_check_interval'    => 'Интервал A-Check',
-                '_b_check_interval'    => 'Интервал B-Check',
-                '_c_check_interval'    => 'Интервал C-Check',
-                '_d_check_interval'    => 'Интервал D-Check'
-            ];
-
-            echo '<h2>' . __('Коммерческие данные', 'woocommerce') . '</h2>';
-            echo '<table class="woocommerce-product-attributes shop_attributes">';
-            foreach ($fields as $meta_key => $label) {
-                $value = get_post_meta($product->get_id(), $meta_key, true);
-                if ($value) {
-                    echo '<tr class="woocommerce-product-attributes-item">';
-                    echo '<th class="woocommerce-product-attributes-item__label">' . esc_html($label) . '</th>';
-                    echo '<td class="woocommerce-product-attributes-item__value">' . esc_html($value) . '</td>';
-                    echo '</tr>';
-                }
-            }
-            echo '</table>';
-        }
-    ];
-
-    return $tabs;
-});
-�а самолета',
-                '_plane_height' => 'Высота самолета',
-            ];
-
-            echo '<h2>' . __('Технические характеристики', 'woocommerce') . '</h2>';
-            echo '<table class="woocommerce-product-attributes shop_attributes">';
-            foreach ($fields as $meta_key => $label) {
-                $value = get_post_meta($product->get_id(), $meta_key, true);
-                if ($value) {
-                    echo '<tr>';
-                    echo '<th>' . esc_html($label) . '</th>';
-                    echo '<td>' . esc_html($value) . '</td>';
-                    echo '</tr>';
-                }
-            }
-            echo '</table>';
-        },
-    ];
+    //         echo '<h2>' . __('Технические характеристики', 'woocommerce') . '</h2>';
+    //         echo '<table class="woocommerce-product-attributes shop_attributes">';
+    //         foreach ($fields as $meta_key => $label) {
+    //             $value = get_post_meta($product->get_id(), $meta_key, true);
+    //             if ($value) {
+    //                 echo '<tr>';
+    //                 echo '<th>' . esc_html($label) . '</th>';
+    //                 echo '<td>' . esc_html($value) . '</td>';
+    //                 echo '</tr>';
+    //             }
+    //         }
+    //         echo '</table>';
+    //     },
+    // ];
 
     $tabs['commercial_data'] = [
         'title'    => __('Коммерческие данные', 'woocommerce'),

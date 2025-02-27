@@ -32,6 +32,18 @@ if (post_password_required()) {
     return;
 }
 ?>
+
+<?php
+$product_id = get_the_ID();
+
+$aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
+
+$cruise_speed = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+if (!empty($cruise_speed)) {
+    echo '<p><strong>Крейсерская скорость:</strong> ' . esc_html($cruise_speed) . ' км/ч</p>';
+}
+?>
+
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 
     <section class="plane-sect">
@@ -90,21 +102,23 @@ if (post_password_required()) {
                 <script>
                     function addToComparison(planeID) {
                         fetch("<?php echo admin_url('admin-ajax.php?action=add_to_comparison'); ?>", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                            body: `plane_id=${planeID}`
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log("Response:", data);
-                            if (data.success) {
-                                alert("Добавлено в сравнение!");
-                                // document.querySelector(".")
-                            } else {
-                                alert("Ошибка: " + data.message);
-                            }
-                        })
-                        .catch(error => console.error("Fetch error:", error));
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/x-www-form-urlencoded"
+                                },
+                                body: `plane_id=${planeID}`
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Response:", data);
+                                if (data.success) {
+                                    alert("Добавлено в сравнение!");
+                                    // document.querySelector(".")
+                                } else {
+                                    alert("Ошибка: " + data.message);
+                                }
+                            })
+                            .catch(error => console.error("Fetch error:", error));
                     }
                 </script>
                 <!-- <div class="nav-tabs-right">
@@ -205,16 +219,40 @@ if (post_password_required()) {
                 <div class="plane-main-info">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/makes/challenger.png" class="plane-logo" alt="Challenger">
                     <div class="plane-main-info-wrap">
-                        <div class="plane-main-info-item">
-                            <p class="plane-main-info-badge">Цена аренды</p>
-                            <p class="plane-main-info-price">$ 10 000</p>
-                            <a href="" class="btn btn-full-width">Арендовать</a>
-                        </div>
-                        <div class="plane-main-info-item">
-                            <p class="plane-main-info-badge">Цена покупки</p>
-                            <p class="plane-main-info-price">$ 1 000 000</p>
-                            <a href="" class="btn btn-full-width">Купить</a>
-                        </div>
+                        <?php
+                        if ($aircraft_category === 'rent') {
+                            $rental_price = carbon_get_post_meta($product_id, 'rental_price');
+                            $rental_period = carbon_get_post_meta($product_id, 'rental_period');
+
+                            if (!empty($rental_price)) {
+                                echo '
+                                    <div class="plane-main-info-item">
+                                        <p class="plane-main-info-badge">Цена аренды</p>
+                                        <p class="plane-main-info-price">$ ' . esc_html($rental_price) . '</p>
+                                        ';
+                                        if (!empty($rental_period)) {
+                                            echo '<p class="plane-main-info-price">$ ' . esc_html($rental_period) . '</p>';
+                                        }
+                                echo '<button type="button" class="btn btn-full-width js-modal" data-modal="#call">Арендовать</button>
+                                    </div>
+                                ';
+                            }
+                        }
+                        ?>
+                        <?php
+                        if ($aircraft_category === 'buy') {
+                            $purchase_price = carbon_get_post_meta($product_id, 'purchase_price');
+                            if (!empty($purchase_price)) {
+                                echo '
+                                    <div class="plane-main-info-item">
+                                        <p class="plane-main-info-badge">Цена покупки</p>
+                                        <p class="plane-main-info-price">$  ' . esc_html($purchase_price) . '</p>
+                                        <button type="button" class="btn btn-full-width js-modal" data-modal="#call">Купить</button>
+                                    </div>
+                                ';
+                            }
+                        }
+                        ?>
                     </div>
                     <a href="#call" data-modal="#call" class="btn btn-green-fill js-modal btn-full-width">Заказать звонок</a>
                 </div>
