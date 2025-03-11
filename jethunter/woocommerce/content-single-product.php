@@ -36,12 +36,85 @@ if (post_password_required()) {
 <?php
 $product_id = get_the_ID();
 
+$aircraft_type = carbon_get_post_meta($product_id, 'aircraft_type');
+$aircraft_model = carbon_get_post_meta($product_id, 'aircraft_model');
+$aircraft_cat = carbon_get_post_meta($product_id, 'aircraft_cat');
+$aircraft_make = carbon_get_post_meta($product_id, 'aircraft_make');
+$purchase_price = carbon_get_post_meta($product_id, 'purchase_price');
+$rental_price = carbon_get_post_meta($product_id, 'rental_price');
+$rental_period = carbon_get_post_meta($product_id, 'rental_period');
+$cruise_speed_kmh = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+$cruise_speed_mph = carbon_get_post_meta($product_id, 'cruise_speed_mph');
+$range_km = carbon_get_post_meta($product_id, 'range_km');
+$range_miles = carbon_get_post_meta($product_id, 'range_miles');
+$max_takeoff_height_m = carbon_get_post_meta($product_id, 'max_takeoff_height_m');
+$max_takeoff_height_ft = carbon_get_post_meta($product_id, 'max_takeoff_height_ft');
+$max_takeoff_weight_kg = carbon_get_post_meta($product_id, 'max_takeoff_weight_kg');
+$max_takeoff_weight_lbs = carbon_get_post_meta($product_id, 'max_takeoff_weight_lbs');
+$max_landing_weight_kg = carbon_get_post_meta($product_id, 'max_landing_weight_kg');
+$max_landing_weight_lbs = carbon_get_post_meta($product_id, 'max_landing_weight_lbs');
+$max_landing_height_kg = carbon_get_post_meta($product_id, 'max_landing_height_kg');
+$max_landing_height_lbs = carbon_get_post_meta($product_id, 'max_landing_height_lbs');
+$takeoff_distance_m = carbon_get_post_meta($product_id, 'takeoff_distance_m');
+$takeoff_distance_ft = carbon_get_post_meta($product_id, 'takeoff_distance_ft');
+$aircraft_engine_count = carbon_get_post_meta($product_id, 'aircraft_engine_count');
+$aircraft_engine = carbon_get_post_meta($product_id, 'aircraft_engine');
+$vsu = carbon_get_post_meta($product_id, 'vsu');
+$avionics = carbon_get_post_meta($product_id, 'avionics');
+$propeller = carbon_get_post_meta($product_id, 'propeller');
+$aircraft_seats = carbon_get_post_meta($product_id, 'aircraft_seats');
+$cabin_width_m = carbon_get_post_meta($product_id, 'cabin_width_m');
+$cabin_width_ft = carbon_get_post_meta($product_id, 'cabin_width_ft');
+$cabin_height_m = carbon_get_post_meta($product_id, 'cabin_height_m');
+$cabin_height_ft = carbon_get_post_meta($product_id, 'cabin_height_ft');
+$cabin_length_m = carbon_get_post_meta($product_id, 'cabin_length_m');
+$cabin_length_ft = carbon_get_post_meta($product_id, 'cabin_length_ft');
+$cabin_volume_m = carbon_get_post_meta($product_id, 'cabin_volume_m');
+$cabin_volume_ft = carbon_get_post_meta($product_id, 'cabin_volume_ft');
+$luggage_volume_m = carbon_get_post_meta($product_id, 'luggage_volume_m');
+$luggage_volume_ft = carbon_get_post_meta($product_id, 'luggage_volume_ft');
+$luggage_number = carbon_get_post_meta($product_id, 'luggage_number');
+$aircraft_length_m = carbon_get_post_meta($product_id, 'aircraft_length_m');
+$aircraft_length_ft = carbon_get_post_meta($product_id, 'aircraft_length_ft');
+$aircraft_height_m = carbon_get_post_meta($product_id, 'aircraft_height_m');
+$aircraft_height_ft = carbon_get_post_meta($product_id, 'aircraft_height_ft');
+$aircraft_wing_length_m = carbon_get_post_meta($product_id, 'aircraft_wing_length_m');
+$aircraft_wing_length_ft = carbon_get_post_meta($product_id, 'aircraft_wing_length_ft');
+$aircraft_features_heading_1 = carbon_get_post_meta($product_id, 'aircraft_features_heading_1');
+$aircraft_features_desc_1 = carbon_get_post_meta($product_id, 'aircraft_features_desc_1');
+$aircraft_features_heading_2 = carbon_get_post_meta($product_id, 'aircraft_features_heading_2');
+$aircraft_features_desc_2 = carbon_get_post_meta($product_id, 'aircraft_features_desc_2');
+$aircraft_features_heading_3 = carbon_get_post_meta($product_id, 'aircraft_features_heading_3');
+$aircraft_features_desc_3 = carbon_get_post_meta($product_id, 'aircraft_features_desc_3');
+$aircraft_features_heading_4 = carbon_get_post_meta($product_id, 'aircraft_features_heading_4');
+$aircraft_features_desc_4 = carbon_get_post_meta($product_id, 'aircraft_features_desc_4');
+$aircraft_features_heading_5 = carbon_get_post_meta($product_id, 'aircraft_features_heading_5');
+$aircraft_features_desc_5 = carbon_get_post_meta($product_id, 'aircraft_features_desc_5');
+$aircraft_features_heading_6 = carbon_get_post_meta($product_id, 'aircraft_features_heading_6');
+$aircraft_features_desc_6 = carbon_get_post_meta($product_id, 'aircraft_features_desc_6');
+$variable_cost_hour = carbon_get_post_meta($product_id, 'variable_cost_hour');
+$programs_engine = carbon_get_post_meta($product_id, 'programs_engine');
+$programs_planer = carbon_get_post_meta($product_id, 'programs_planer');
+$programs_vsu_propeller = carbon_get_post_meta($product_id, 'programs_vsu_propeller');
+$fuel_cost = carbon_get_post_meta($product_id, 'fuel_cost');
+$aircraft_navigation = carbon_get_post_meta($product_id, 'aircraft_navigation');
+$crew_payment = carbon_get_post_meta($product_id, 'crew_payment');
+$other_costs = carbon_get_post_meta($product_id, 'other_costs');
+$variable_cost_sum = carbon_get_post_meta($product_id, 'variable_cost_sum');
+$crew_salary = carbon_get_post_meta($product_id, 'crew_salary');
+$engineer_salary = carbon_get_post_meta($product_id, 'engineer_salary');
+$crew_education = carbon_get_post_meta($product_id, 'crew_education');
+$sw_navigation = carbon_get_post_meta($product_id, 'sw_navigation');
+$aircraft_insurance = carbon_get_post_meta($product_id, 'aircraft_insurance');
+$aircraft_parking = carbon_get_post_meta($product_id, 'aircraft_parking');
+$company_income = carbon_get_post_meta($product_id, 'company_income');
+$samp = carbon_get_post_meta($product_id, 'samp');
+$technical_management = carbon_get_post_meta($product_id, 'technical_management');
+$other_different_costs = carbon_get_post_meta($product_id, 'other_different_costs');
+$constant_cost_sum = carbon_get_post_meta($product_id, 'constant_cost_sum');
+$total_cost = carbon_get_post_meta($product_id, 'total_cost');
+$total_cost_hour = carbon_get_post_meta($product_id, 'total_cost_hour');
 $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
-
-$cruise_speed = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
-if (!empty($cruise_speed)) {
-    echo '<p><strong>Крейсерская скорость:</strong> ' . esc_html($cruise_speed) . ' км/ч</p>';
-}
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
@@ -221,18 +294,15 @@ if (!empty($cruise_speed)) {
                     <div class="plane-main-info-wrap">
                         <?php
                         if ($aircraft_category === 'rent') {
-                            $rental_price = carbon_get_post_meta($product_id, 'rental_price');
-                            $rental_period = carbon_get_post_meta($product_id, 'rental_period');
-
                             if (!empty($rental_price)) {
                                 echo '
                                     <div class="plane-main-info-item">
                                         <p class="plane-main-info-badge">Цена аренды</p>
                                         <p class="plane-main-info-price">$ ' . esc_html($rental_price) . '</p>
                                         ';
-                                        if (!empty($rental_period)) {
-                                            echo '<p class="plane-main-info-price">$ ' . esc_html($rental_period) . '</p>';
-                                        }
+                                if (!empty($rental_period)) {
+                                    echo '<p class="plane-main-info-price">$ ' . esc_html($rental_period) . '</p>';
+                                }
                                 echo '<button type="button" class="btn btn-full-width js-modal" data-modal="#call">Арендовать</button>
                                     </div>
                                 ';
@@ -241,7 +311,6 @@ if (!empty($cruise_speed)) {
                         ?>
                         <?php
                         if ($aircraft_category === 'buy') {
-                            $purchase_price = carbon_get_post_meta($product_id, 'purchase_price');
                             if (!empty($purchase_price)) {
                                 echo '
                                     <div class="plane-main-info-item">
@@ -260,46 +329,59 @@ if (!empty($cruise_speed)) {
 
             <div class="plane-specs">
                 <?php
-                $_custom_field_seats = get_post_meta(get_the_ID(), '_custom_field_seats', true);
-                $_custom_field_speed = get_post_meta(get_the_ID(), '_custom_field_speed', true);
-                $_custom_field_range = get_post_meta(get_the_ID(), '_custom_field_range', true);
-                $_custom_field_bag_volume = get_post_meta(get_the_ID(), '_custom_field_bag_volume', true);
-                $_custom_field_suitcases = get_post_meta(get_the_ID(), '_custom_field_suitcases', true);
-                $_custom_field_rent_price = get_post_meta(get_the_ID(), '_custom_field_rent_price', true);
+                // $_custom_field_seats = get_post_meta(get_the_ID(), '_custom_field_seats', true);
+                // $_custom_field_speed = get_post_meta(get_the_ID(), '_custom_field_speed', true);
+                // $_custom_field_range = get_post_meta(get_the_ID(), '_custom_field_range', true);
+                // $_custom_field_bag_volume = get_post_meta(get_the_ID(), '_custom_field_bag_volume', true);
+                // $_custom_field_suitcases = get_post_meta(get_the_ID(), '_custom_field_suitcases', true);
+                // $_custom_field_rent_price = get_post_meta(get_the_ID(), '_custom_field_rent_price', true);
+                ?>
 
-                if (!empty($_custom_field_seats) && trim($_custom_field_seats) !== '') : ?>
+                <?php if (!empty($aircraft_seats)) : ?>
                     <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_seats', true); ?></div>
+                        <div class="plane-specs-number">
+                            <?php echo esc_html($aircraft_seats); ?>
+                        </div>
                         <div class="plane-specs-desc">Мест</div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($_custom_field_speed) && trim($_custom_field_speed) !== '') : ?>
+                <?php if (!empty($cruise_speed_kmh)) : ?>
                     <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_speed', true); ?></div>
+                        <div class="plane-specs-number">
+                            <?php echo esc_html($cruise_speed_kmh); ?>
+                        </div>
                         <div class="plane-specs-desc">Скорость км/ч (m/h)</div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($_custom_field_range) && trim($_custom_field_range) !== '') : ?>
+                <?php if (!empty($range_km)) : ?>
                     <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_range', true); ?></div>
+                        <div class="plane-specs-number">
+                            <?php echo esc_html($range_km); ?>
+                        </div>
                         <div class="plane-specs-desc">Дальность км (nm)</div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($_custom_field_bag_volume) && trim($_custom_field_bag_volume) !== '') : ?>
+                <?php if (!empty($luggage_volume_m)) : ?>
                     <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_bag_volume', true); ?></div>
+                        <div class="plane-specs-number">
+                            <?php echo esc_html($luggage_volume_m); ?>
+                        </div>
                         <div class="plane-specs-desc">Объем багажника в м<sup>3</sup></div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($_custom_field_rent_price) && trim($_custom_field_rent_price) !== '') : ?>
+                <?php if (!empty($rental_price)) : ?>
                     <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_rent_price', true); ?></div>
+                        <div class="plane-specs-number">
+                            <?php echo esc_html($rental_price); ?>
+                        </div>
                         <div class="plane-specs-desc">Цена аренды в $</div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($_custom_field_suitcases) && trim($_custom_field_suitcases) !== '') : ?>
+                <?php if (!empty($luggage_number)) : ?>
                     <div class="plane-specs-item">
-                        <div class="plane-specs-number"><?php echo get_post_meta(get_the_ID(), '_custom_field_suitcases', true); ?></div>
+                        <div class="plane-specs-number">
+                            <?php echo esc_html($luggage_number); ?>
+                        </div>
                         <div class="plane-specs-desc">Чемоданов</div>
                     </div>
                 <?php endif; ?>
@@ -313,97 +395,115 @@ if (!empty($cruise_speed)) {
             <div class="tech-table">
                 <div class="tech-table-col">
                     <?php
-                    $_cruising_speed = get_post_meta(get_the_ID(), '_cruising_speed', true);
-                    $_range = get_post_meta(get_the_ID(), '_range', true);
-                    $_flight_time = get_post_meta(get_the_ID(), '_flight_time', true);
-                    $_max_altitude = get_post_meta(get_the_ID(), '_max_altitude', true);
-                    $_max_takeoff_weight = get_post_meta(get_the_ID(), '_max_takeoff_weight', true);
-                    $_landing_weight = get_post_meta(get_the_ID(), '_landing_weight', true);
-                    $_payload = get_post_meta(get_the_ID(), '_payload', true);
+                    // $_cruising_speed = get_post_meta(get_the_ID(), '_cruising_speed', true);
+                    // $_range = get_post_meta(get_the_ID(), '_range', true);
+                    // $_flight_time = get_post_meta(get_the_ID(), '_flight_time', true);
+                    // $_max_altitude = get_post_meta(get_the_ID(), '_max_altitude', true);
+                    // $_max_takeoff_weight = get_post_meta(get_the_ID(), '_max_takeoff_weight', true);
+                    // $_landing_weight = get_post_meta(get_the_ID(), '_landing_weight', true);
+                    // $_payload = get_post_meta(get_the_ID(), '_payload', true);
 
-                    $_takeoff_distance = get_post_meta(get_the_ID(), '_takeoff_distance', true);
-                    $_landing_distance = get_post_meta(get_the_ID(), '_landing_distance', true);
-                    $_engine_count = get_post_meta(get_the_ID(), '_engine_count', true);
-                    $_engine = get_post_meta(get_the_ID(), '_engine', true);
-                    $_apu = get_post_meta(get_the_ID(), '_apu', true);
-                    $_avionics = get_post_meta(get_the_ID(), '_avionics', true);
+                    // $_takeoff_distance = get_post_meta(get_the_ID(), '_takeoff_distance', true);
+                    // $_landing_distance = get_post_meta(get_the_ID(), '_landing_distance', true);
+                    // $_engine_count = get_post_meta(get_the_ID(), '_engine_count', true);
+                    // $_engine = get_post_meta(get_the_ID(), '_engine', true);
+                    // $_apu = get_post_meta(get_the_ID(), '_apu', true);
+                    // $_avionics = get_post_meta(get_the_ID(), '_avionics', true);
+                    ?>
 
-                    if (!empty($_cruising_speed) && trim($_cruising_speed) !== '') : ?>
+                    <?php if (!empty($cruise_speed_kmh)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Крейсерская скорость</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_cruising_speed', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($cruise_speed_kmh); ?>
+                            </div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_range) && trim($_range) !== '') : ?>
+                    <?php if (!empty($range_km)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Дальность</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_range', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($range_km); ?>
+                            </div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_flight_time) && trim($_flight_time) !== '') : ?>
+                    <?php if (!empty($range_time)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Время в полете, скорость</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_flight_time', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($range_time); ?>
+                            </div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_max_altitude) && trim($_max_altitude) !== '') : ?>
+                    <?php if (!empty($max_takeoff_height_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Максимальная высота полета</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_max_altitude', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($max_takeoff_height_m); ?>
+                            </div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_max_takeoff_weight) && trim($_max_takeoff_weight) !== '') : ?>
+                    <?php if (!empty($max_takeoff_weight_kg)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Максимальный взлетный вес</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_max_takeoff_weight', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($max_takeoff_weight_kg); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_landing_weight) && trim($_landing_weight) !== '') : ?>
+                    <?php if (!empty($max_landing_weight_kg)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Посадочный вес</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_landing_weight', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($max_landing_weight_kg); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_payload) && trim($_payload) !== '') : ?>
+                    <?php if (!empty($max_landing_height_kg)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Грузоподъемность</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_payload', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($max_landing_height_kg); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_takeoff_distance) && trim($_takeoff_distance) !== '') : ?>
+                    <?php if (!empty($takeoff_distance_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Взлетная дистанция</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_takeoff_distance', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($takeoff_distance_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_landing_distance) && trim($_landing_distance) !== '') : ?>
+                    <?php if (!empty($landing_distance_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Посадочная дистанция</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_landing_distance', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($landing_distance_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_engine_count) && trim($_engine_count) !== '') : ?>
+                    <?php if (!empty($aircraft_engine_count)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Количество двигателей</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_engine_count', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($aircraft_engine_count); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_engine) && trim($_engine) !== '') : ?>
+                    <?php if (!empty($aircraft_engine)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Двигатель</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_engine', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($aircraft_engine); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_apu) && trim($_apu) !== '') : ?>
+                    <?php if (!empty($vsu)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Вспомогательная силовая установка</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_apu', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($vsu); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_avionics) && trim($_avionics) !== '') : ?>
+                    <?php if (!empty($avionics)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Авионика</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_avionics', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($avionics); ?></div>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -411,61 +511,70 @@ if (!empty($cruise_speed)) {
                 <div class="tech-table-col">
                     <h3 class="h3">Салон</h3>
                     <?php
-                    $_width = get_post_meta(get_the_ID(), '_width', true);
-                    $_cabin_length = get_post_meta(get_the_ID(), '_cabin_length', true);
-                    $_cabin_height = get_post_meta(get_the_ID(), '_cabin_height', true);
-                    $_cabin_volume = get_post_meta(get_the_ID(), '_cabin_volume', true);
-                    $_luggage_volume = get_post_meta(get_the_ID(), '_luggage_volume', true);
-                    $_plane_length = get_post_meta(get_the_ID(), '_plane_length', true);
-                    $_plane_height = get_post_meta(get_the_ID(), '_plane_height', true);
+                    // $_width = get_post_meta(get_the_ID(), '_width', true);
+                    // $_cabin_length = get_post_meta(get_the_ID(), '_cabin_length', true);
+                    // $_cabin_height = get_post_meta(get_the_ID(), '_cabin_height', true);
+                    // $_cabin_volume = get_post_meta(get_the_ID(), '_cabin_volume', true);
+                    // $_luggage_volume = get_post_meta(get_the_ID(), '_luggage_volume', true);
+                    // $_plane_length = get_post_meta(get_the_ID(), '_plane_length', true);
+                    // $_plane_height = get_post_meta(get_the_ID(), '_plane_height', true);
+                    ?>
 
-                    if (!empty($_width) && trim($_width) !== '') : ?>
+                    <?php if (!empty($cabin_width_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Ширина</div>
-                            <div class="tech-table-desc"><?php echo esc_html($_width); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($cabin_width_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_cabin_length) && trim($_cabin_length) !== '') : ?>
+                    <?php if (!empty($cabin_length_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Длина салона</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_cabin_length', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($cabin_length_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_cabin_height) && trim($_cabin_height) !== '') : ?>
+                    <?php if (!empty($cabin_height_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Высота салона</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_cabin_height', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($cabin_height_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_cabin_volume) && trim($_cabin_volume) !== '') : ?>
+                    <?php if (!empty($cabin_volume_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Объем салона</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_cabin_volume', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($cabin_volume_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_luggage_volume) && trim($_luggage_volume) !== '') : ?>
+                    <?php if (!empty($luggage_volume_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Объём багажного отделения</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_luggage_volume', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($luggage_volume_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_plane_length) && trim($_plane_length) !== '') : ?>
-                        <h3 class="h3">Размер самолёта</h3>
+                    <h3 class="h3">Размер самолёта</h3>
+                    <?php if (!empty($aircraft_length_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Длина самолета</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_plane_length', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($aircraft_length_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_plane_height) && trim($_plane_height) !== '') : ?>
+                    <?php if (!empty($aircraft_height_m)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title">Высота самолета</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_plane_height', true); ?></div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($aircraft_height_m); ?></div>
                         </div>
                     <?php endif; ?>
-                    <?php if (!empty($_cabin_height) && trim($_cabin_height) !== '') : ?>
+                    <?php if (!empty($aircraft_wing_length_m)) : ?>
                         <div class="tech-table-row">
-                            <div class="tech-table-title">Высота салона</div>
-                            <div class="tech-table-desc"><?php echo get_post_meta(get_the_ID(), '_cabin_height', true); ?></div>
+                            <div class="tech-table-title">Размах крыла</div>
+                            <div class="tech-table-desc">
+                                <?php echo esc_html($aircraft_wing_length_m); ?></div>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -490,7 +599,7 @@ if (!empty($cruise_speed)) {
         </div>
     </section>
 
-    <section class="step-sect">
+    <!-- <section class="step-sect">
         <div class="container">
             <h2 class="h2 center">Особенности самолета</h2>
             <div class="step-grid">
@@ -525,7 +634,39 @@ if (!empty($cruise_speed)) {
                 <button type="button" class="btn js-modal" data-modal="#call">Связаться с нами</button>
             </div>
         </div>
+    </section> -->
+    <section class="step-sect">
+        <div class="container">
+            <h2 class="h2 center"><?php _e('Особенности самолёта', 'textdomain'); ?></h2>
+            <div class="step-grid">
+                <?php
+                $lang_suffix = (pll_current_language() === 'en') ? '_en' : '';
+
+                for ($i = 1; $i <= 6; $i++) {
+                    $title = carbon_get_post_meta(get_the_ID(), "aircraft_features_heading_{$i}{$lang_suffix}");
+                    $desc = carbon_get_post_meta(get_the_ID(), "aircraft_features_desc_{$i}{$lang_suffix}");
+
+                    if (!empty($title) || !empty($desc)) {
+                        echo '<div class="step-item">';
+                        echo '<span class="step-number">' . $i . '</span>';
+                        if (!empty($title)) {
+                            echo '<h3 class="h3">' . esc_html($title) . '</h3>';
+                        }
+                        if (!empty($desc)) {
+                            echo '<p>' . esc_html($desc) . '</p>';
+                        }
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+            <div class="btn-container">
+                <button type="button" class="btn btn-green-fill js-modal" data-modal="#call"><?php _e('Узнать стоимость', 'textdomain'); ?></button>
+                <button type="button" class="btn js-modal" data-modal="#call"><?php _e('Связаться с нами', 'textdomain'); ?></button>
+            </div>
+        </div>
     </section>
+
 
     <section class="video-sect">
         <div class="container">
@@ -560,7 +701,7 @@ if (!empty($cruise_speed)) {
     <section class="directions-sect">
         <div class="container">
             <h2 class="h2 center">Популярные направления</h2>
-            <?php $routes = get_post_meta($product->get_id(), '_popular_routes', true);
+            <?php /* $routes = get_post_meta($product->get_id(), '_popular_routes', true);
             if (is_array($routes) && !empty($routes)) {
                 echo '<div class="directions-grid">';
                 foreach ($routes as $route) {
@@ -577,7 +718,28 @@ if (!empty($cruise_speed)) {
             <?php
                 }
                 echo '</div>';
-            } ?>
+            } */ ?>
+
+            <?php
+            $destinations = carbon_get_post_meta(get_the_ID(), 'popular_destinations');
+
+            if (is_array($destinations) && !empty($destinations)) : ?>
+                <div class="directions-grid">
+                    <?php foreach ($destinations as $destination) : ?>
+                        <div class="directions-item">
+                            <img src="https://jethunter.aero/wp-content/themes/jethunter/img/illustrations/direction.png" loading="lazy" alt="">
+                            <p class="directions-name">
+                                <?php echo esc_html($destination['popular_destinations_name']); ?>
+                            </p>
+                            <ul class="list">
+                                <li>Дальность полёта (км) – <?php echo esc_html($destination['popular_destinations_distance']); ?></li>
+                                <li>Время полёта – <?php echo esc_html($destination['popular_destinations_time']); ?></li>
+                                <li>Стоимость – <?php echo esc_html($destination['popular_destinations_cost']); ?></li>
+                            </ul>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
             <div class="btn-container">
                 <a href="" class="btn btn-green-fill">Узнать стоимость</a>
@@ -586,7 +748,7 @@ if (!empty($cruise_speed)) {
         </div>
     </section>
 
-    <section class="commerce-sect">
+    <!-- <section class="commerce-sect">
         <div class="container">
             <h2 class="h2 center">Коммерческие данные</h2>
             <div class="plane-specs">
@@ -636,71 +798,45 @@ if (!empty($cruise_speed)) {
                 </div>
             </div>
         </div>
+    </section> -->
+    <section class="commerce-sect">
+        <div class="container">
+            <h2 class="h2 center">Коммерческие данные</h2>
+            <div class="plane-specs">
+                <?php
+                $fields = [
+                    'production_start' => 'Год начала производства',
+                    'production_end' => 'Год окончания производства',
+                    'production_country' => 'Страна производства',
+                    'aircraft_new_cost' => 'Стоимость нового самолета ($)',
+                    'aircraft_used_cost' => 'Стоимость самолета с налетом ($)',
+                    'aircraft_hour_cost' => 'Себестоимость летного часа ($)',
+                    'interval_total_repair' => 'Интервал капитального ремонта (часов)',
+                    'interval_a_check' => 'Интервал A-Check',
+                    'interval_b_check' => 'Интервал B-Check',
+                    'interval_c_check' => 'Интервал C-Check',
+                    'interval_d_check' => 'Интервал D-Check'
+                ];
+
+                foreach ($fields as $meta_key => $label) :
+                    $value = carbon_get_post_meta(get_the_ID(), $meta_key);
+                    if (!empty($value)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number"><?php echo esc_html($value); ?></div>
+                            <div class="plane-specs-desc"><?php echo esc_html($label); ?></div>
+                        </div>
+                <?php endif;
+                endforeach;
+                ?>
+            </div>
+        </div>
     </section>
+
 
     <section class="exp-sect">
         <div class="container">
             <h2 class="h2 center">Эксплуатационные расходы самолета</h2>
             <p class="center">Приблизительные расходы, рассчитанные для указанного ниже налета</p>
-            <?php
-            // Get the product meta for variable and fixed costs.
-            $variable_costs = get_post_meta(get_the_ID(), '_variable_costs', true);
-            $fixed_costs = get_post_meta(get_the_ID(), '_fixed_costs', true);
-
-            // Check if either table has data.
-            if (!empty($variable_costs) || !empty($fixed_costs)) : ?>
-                <div class="table-container">
-                    <?php if (!empty($variable_costs)) : ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="table-heading">Переменные затраты (USD)/час</th>
-                                    <th class="table-heading center">200<br>часов</th>
-                                    <th class="table-heading center">400<br>часов</th>
-                                    <th class="table-heading center">600<br>часов</th>
-                                    <th class="table-heading center">800<br>часов</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($variable_costs as $cost) : ?>
-                                    <tr>
-                                        <td><?php echo esc_html($cost['name']); ?></td>
-                                        <td><?php echo esc_html($cost['200']); ?></td>
-                                        <td><?php echo esc_html($cost['400']); ?></td>
-                                        <td><?php echo esc_html($cost['600']); ?></td>
-                                        <td><?php echo esc_html($cost['800']); ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
-
-                    <?php if (!empty($fixed_costs)) : ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="table-heading">Постоянные затраты</th>
-                                    <th class="table-heading center">200<br>часов</th>
-                                    <th class="table-heading center">400<br>часов</th>
-                                    <th class="table-heading center">600<br>часов</th>
-                                    <th class="table-heading center">800<br>часов</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($fixed_costs as $cost) : ?>
-                                    <tr>
-                                        <td><?php echo esc_html($cost['name']); ?></td>
-                                        <td><?php echo esc_html($cost['200']); ?></td>
-                                        <td><?php echo esc_html($cost['400']); ?></td>
-                                        <td><?php echo esc_html($cost['600']); ?></td>
-                                        <td><?php echo esc_html($cost['800']); ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
 
             <div class="table-container">
                 <table class="table">
@@ -883,6 +1019,76 @@ if (!empty($cruise_speed)) {
                     </tbody>
                 </table>
             </div>
+            <?php
+            $variable_costs = carbon_get_post_meta(get_the_ID(), 'variable_costs_hour');
+            $constant_costs = carbon_get_post_meta(get_the_ID(), 'constant_costs_hour');
+
+            $variable_total       = carbon_get_post_meta(get_the_ID(), 'variable_cost_total') ?: '-';
+            $constant_total       = carbon_get_post_meta(get_the_ID(), 'constant_cost_total') ?: '-';
+            $total_expenses       = carbon_get_post_meta(get_the_ID(), 'total_expenses') ?: '-';
+            $total_flight_hour_cost = carbon_get_post_meta(get_the_ID(), 'total_flight_hour_cost') ?: '-';
+            ?>
+
+            <div class="table-container">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="table-heading">Переменные затраты (USD)/час</th>
+                            <th class="table-heading center">200<br>часов</th>
+                            <th class="table-heading center">400<br>часов</th>
+                            <th class="table-heading center">600<br>часов</th>
+                            <th class="table-heading center">800<br>часов</th>
+                        </tr>
+                        <?php if (is_array($variable_costs) && !empty($variable_costs)) : ?>
+                            <?php foreach ($variable_costs as $row) : ?>
+                                <tr>
+                                    <td class="table-item"><?php echo esc_html($row['cost_label'] ?: '-'); ?></td>
+                                    <td class="table-item center"><?php echo esc_html($row['cost_200'] ?: '-'); ?></td>
+                                    <td class="table-item center"><?php echo esc_html($row['cost_400'] ?: '-'); ?></td>
+                                    <td class="table-item center"><?php echo esc_html($row['cost_600'] ?: '-'); ?></td>
+                                    <td class="table-item center"><?php echo esc_html($row['cost_800'] ?: '-'); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <tr>
+                            <td class="table-item"><b>Сумма переменных затрат</b></td>
+                            <td class="table-item" colspan="4"><?php echo esc_html($variable_total); ?></td>
+                        </tr>
+                        <!-- Constant Costs Header -->
+                        <tr>
+                            <th class="table-heading">Постоянные затраты</th>
+                            <th class="table-heading">&nbsp;</th>
+                            <th class="table-heading">&nbsp;</th>
+                            <th class="table-heading">&nbsp;</th>
+                            <th class="table-heading">&nbsp;</th>
+                        </tr>
+                        <?php if (is_array($constant_costs) && !empty($constant_costs)) : ?>
+                            <?php foreach ($constant_costs as $row) : ?>
+                                <tr>
+                                    <td class="table-item"><?php echo esc_html($row['cost_label'] ?: '-'); ?></td>
+                                    <td class="table-item"><?php echo esc_html($row['cost_200'] ?: '-'); ?></td>
+                                    <td class="table-item"><?php echo esc_html($row['cost_400'] ?: '-'); ?></td>
+                                    <td class="table-item"><?php echo esc_html($row['cost_600'] ?: '-'); ?></td>
+                                    <td class="table-item"><?php echo esc_html($row['cost_800'] ?: '-'); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <tr>
+                            <td class="table-item"><b>Сумма постоянных затрат</b></td>
+                            <td class="table-item" colspan="4"><?php echo esc_html($constant_total); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="table-item"><b>ИТОГО расходы</b></td>
+                            <td class="table-item" colspan="4"><?php echo esc_html($total_expenses); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="table-item"><b>ИТОГО цена летного часа</b></td>
+                            <td class="table-item" colspan="4"><?php echo esc_html($total_flight_hour_cost); ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="btn-container">
                 <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Узнать больше</button>
                 <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
@@ -938,266 +1144,295 @@ if (!empty($cruise_speed)) {
         </div>
     </section>
 
-    <section class="looking-sect">
-        <div class="container">
-            <h2 class="h2 center">Список самолётов Challenger 350</h2>
-            <div class="looking-grid">
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <p class="looking-serial">sn20670</p>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <p class="looking-serial">sn20670</p>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <p class="looking-serial">sn20670</p>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <p class="looking-serial">sn20670</p>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <p class="looking-serial">sn20670</p>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php
+    $current_id = get_the_ID();
+    $current_model = carbon_get_post_meta($current_id, 'aircraft_model');
 
-    <section class="looking-sect">
-        <div class="container">
-            <h2 class="h2 center">Самолеты такой же категории</h2>
-            <div class="looking-grid">
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => 4,
+        'post__not_in'   => [$current_id], // Exclude the current product
+        'meta_query'     => [
+            [
+                'key'     => 'aircraft_model',
+                'value'   => $current_model,
+                'compare' => '='
+            ],
+            [
+                'key'     => 'aircraft_category',
+                'value'   => 'buy',
+                'compare' => '='
+            ]
+        ]
+    ];
+
+    $queryBuy = new WP_Query($args);
+    if ($queryBuy->have_posts()) : ?>
+        <section class="looking-sect">
+            <div class="container">
+                <h2 class="h2 center">Список самолётов для приобретения</h2>
+                <div class="looking-grid">
+                    <?php while ($queryBuy->have_posts()) : $queryBuy->the_post();
+                        $product_id = get_the_ID();
+                        $model       = carbon_get_post_meta($product_id, 'aircraft_model');
+                        $speed       = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+                        $range       = carbon_get_post_meta($product_id, 'range_km');
+                        $seats       = carbon_get_post_meta($product_id, 'aircraft_seats');
+                        $hour_cost   = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
+                        $id_number_buy = carbon_get_post_meta($product_id, 'id_number_buy');
+
+                        $image = get_the_post_thumbnail_url($product_id, 'full');
+                        if (!$image) {
+                            $image = 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
+                        }
+                    ?>
+                        <div class="looking-item">
+                            <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
+                            <h3 class="h3"><?php echo esc_html($model); ?></h3>
+                            <?php if ($id_number_buy) : ?>
+                                <p class="looking-serial"><?php echo esc_html($id_number_buy); ?></p>
+                            <?php endif; ?>
+                            <div class="looking-desc">
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Скорость</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
+                                </div>
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Дальность</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
+                                </div>
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Количество мест</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
+                                </div>
+                                <?php if (!empty($hour_cost)) : ?>
+                                    <div class="looking-row">
+                                        <p class="looking-row-title">Цена в час</p>
+                                        <p class="looking-row-desc"><?php echo esc_html($hour_cost); ?>₽</p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">Подробнее</a>
                         </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif; ?>
+
+
+    <!-- <div class="looking-grid">
+                <div class="looking-item">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                    <h3 class="h3">Challenger 350</h3>
+                    <p class="looking-serial">sn20670</p>
+                    <div class="looking-desc">
+                        <div class="looking-row">
+                            <p class="looking-row-title">Скорость</p>
+                            <p class="looking-row-desc">ACJ 320 neo</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Дальность</p>
+                            <p class="looking-row-desc">11000 км/
+                                5939 nm</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Количество мест</p>
+                            <p class="looking-row-desc">19</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Цена в час</p>
+                            <p class="looking-row-desc">22 300₽</p>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                </div>
+                <div class="looking-item">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                    <h3 class="h3">Challenger 350</h3>
+                    <p class="looking-serial">sn20670</p>
+                    <div class="looking-desc">
+                        <div class="looking-row">
+                            <p class="looking-row-title">Скорость</p>
+                            <p class="looking-row-desc">ACJ 320 neo</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Дальность</p>
+                            <p class="looking-row-desc">11000 км/
+                                5939 nm</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Количество мест</p>
+                            <p class="looking-row-desc">19</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Цена в час</p>
+                            <p class="looking-row-desc">22 300₽</p>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                </div>
+                <div class="looking-item">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                    <h3 class="h3">Challenger 350</h3>
+                    <p class="looking-serial">sn20670</p>
+                    <div class="looking-desc">
+                        <div class="looking-row">
+                            <p class="looking-row-title">Скорость</p>
+                            <p class="looking-row-desc">ACJ 320 neo</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Дальность</p>
+                            <p class="looking-row-desc">11000 км/
+                                5939 nm</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Количество мест</p>
+                            <p class="looking-row-desc">19</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Цена в час</p>
+                            <p class="looking-row-desc">22 300₽</p>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                </div>
+                <div class="looking-item">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                    <h3 class="h3">Challenger 350</h3>
+                    <p class="looking-serial">sn20670</p>
+                    <div class="looking-desc">
+                        <div class="looking-row">
+                            <p class="looking-row-title">Скорость</p>
+                            <p class="looking-row-desc">ACJ 320 neo</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Дальность</p>
+                            <p class="looking-row-desc">11000 км/
+                                5939 nm</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Количество мест</p>
+                            <p class="looking-row-desc">19</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Цена в час</p>
+                            <p class="looking-row-desc">22 300₽</p>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                </div>
+                <div class="looking-item">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
+                    <h3 class="h3">Challenger 350</h3>
+                    <p class="looking-serial">sn20670</p>
+                    <div class="looking-desc">
+                        <div class="looking-row">
+                            <p class="looking-row-title">Скорость</p>
+                            <p class="looking-row-desc">ACJ 320 neo</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Дальность</p>
+                            <p class="looking-row-desc">11000 км/
+                                5939 nm</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Количество мест</p>
+                            <p class="looking-row-desc">19</p>
+                        </div>
+                        <div class="looking-row">
+                            <p class="looking-row-title">Цена в час</p>
+                            <p class="looking-row-desc">22 300₽</p>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-green-fill">Подробнее</a>
+                </div>
+            </div> -->
+
+    <?php
+    $current_cat = carbon_get_post_meta(get_the_ID(), 'aircraft_cat');
+    if (empty($current_cat)) {
+        return;
+    }
+
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => 4,
+        'post__not_in'   => [get_the_ID()],
+        'meta_query'     => [
+            [
+                'key'     => 'aircraft_cat',
+                'value'   => $current_cat,
+                'compare' => '='
+            ],
+            [
+                'key'     => 'aircraft_category',
+                'value'   => 'encyclopedia',
+                'compare' => '='
+            ]
+        ]
+    ];
+
+    $queryAll = new WP_Query($args);
+
+    if ($queryAll->have_posts()) : ?>
+        <section class="looking-sect">
+            <div class="container">
+                <h2 class="h2 center">Самолеты такой же категории</h2>
+                <div class="looking-grid">
+                    <?php
+                    while ($queryAll->have_posts()) :
+                        $queryAll->the_post();
+                        $product_id = get_the_ID();
+
+                        $model     = carbon_get_post_meta($product_id, 'aircraft_model');
+                        $speed     = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+                        $range     = carbon_get_post_meta($product_id, 'range_km');
+                        $seats     = carbon_get_post_meta($product_id, 'aircraft_seats');
+                        $hour_cost = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
+
+                        $image = get_the_post_thumbnail_url($product_id, 'full');
+                        if (! $image) {
+                            $image = get_stylesheet_directory_uri() . '/img/planes/1.png';
+                        }
+                        $sku = get_post_meta($product_id, '_sku', true);
+                    ?>
+                        <div class="looking-item">
+                            <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
+                            <h3 class="h3"><?php echo esc_html($model); ?></h3>
+                            <?php if ($sku) : ?>
+                                <p class="looking-serial"><?php echo esc_html($sku); ?></p>
+                            <?php endif; ?>
+                            <div class="looking-desc">
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Скорость</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
+                                </div>
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Дальность</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
+                                </div>
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Количество мест</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
+                                </div>
+                                <?php if (! empty($hour_cost)) : ?>
+                                    <div class="looking-row">
+                                        <p class="looking-row-title">Цена в час</p>
+                                        <p class="looking-row-desc"><?php echo esc_html($hour_cost); ?>₽</p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">Подробнее</a>
+                        </div>
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
 </div>
 
 <?php do_action('woocommerce_after_single_product'); ?>

@@ -26,10 +26,22 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('text', 'aircraft_model', 'Модель'),
 
             Field::make('text', 'aircraft_type', 'Тип'),
+            Field::make('text', 'aircraft_type_en', 'EN Тип'),
 
             Field::make('text', 'aircraft_cat', 'Категория'),
+            Field::make('text', 'aircraft_cat_en', 'EN Категория'),
 
             Field::make('text', 'aircraft_make', 'Производитель'),
+
+            Field::make('text', 'id_number_buy', 'Идентификационный номер, покупка')
+                ->set_conditional_logic([
+                    ['field' => 'aircraft_category', 'value' => 'buy', 'compare' => '='],
+                ]),
+
+            Field::make('text', 'id_number_rent', 'Идентификационный номер, аренда')
+                ->set_conditional_logic([
+                    ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
+                ]),
 
             Field::make('text', 'purchase_price', 'Цена покупки')
                 ->set_conditional_logic([
@@ -52,6 +64,22 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('text', 'range_km', 'Дальность (км)'),
             Field::make('text', 'range_miles', 'Дальность (миль)'),
 
+            Field::make('text', 'range_time', 'Время в полете'),
+
+            Field::make('text', 'production_start', 'Год начала производства'),
+            Field::make('text', 'production_end', 'Год окончания производства'),
+            Field::make('text', 'production_country', 'Страна производства'),
+            Field::make('text', 'production_country_en', 'EN Страна производства'),
+            Field::make('text', 'aircraft_new_cost', 'Стоимость нового самолета ($)'),
+            Field::make('text', 'aircraft_used_cost', 'Стоимость самолета с налетом ($)'),
+            Field::make('text', 'aircraft_hour_cost', 'Себестоимость летного часа ($)'),
+            Field::make('text', 'hsi', 'Инспекция горячей части (HSI) (часов)'),
+            Field::make('text', 'interval_total_repair', 'Интервал капитального ремонта (часов)'),
+            Field::make('text', 'interval_a_check', 'Интервал A-Check'),
+            Field::make('text', 'interval_b_check', 'Интервал B-Check'),
+            Field::make('text', 'interval_c_check', 'Интервал C-Check'),
+            Field::make('text', 'interval_d_check', 'Интервал D-Check'),
+
             Field::make('text', 'max_takeoff_height_m', 'Максимальная высота полета (м)'),
             Field::make('text', 'max_takeoff_height_ft', 'Максимальная высота полета (ft)'),
 
@@ -64,8 +92,11 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('text', 'max_landing_height_kg', 'Грузоподъемность (кг)'),
             Field::make('text', 'max_landing_height_lbs', 'Грузоподъемность (lb)'),
 
-            Field::make('text', 'takeoff_distance_m', 'Посадочная дистанция (м)'),
-            Field::make('text', 'takeoff_distance_ft', 'Посадочная дистанция (ft)'),
+            Field::make('text', 'takeoff_distance_m', 'Взлетная дистанция (м)'),
+            Field::make('text', 'takeoff_distance_ft', 'Взлетная дистанция (ft)'),
+
+            Field::make('text', 'landing_distance_m', 'Посадочная дистанция (м)'),
+            Field::make('text', 'landing_distance_ft', 'Посадочная дистанция (ft)'),
 
             Field::make('text', 'aircraft_engine_count', 'Количество двигателей'),
 
@@ -107,21 +138,33 @@ add_action('carbon_fields_register_fields', function () {
 
             Field::make('text', 'aircraft_features_heading_1', 'Особенности самолета, 1 заголовок'),
             Field::make('text', 'aircraft_features_desc_1', 'Особенности самолета, 1 описание'),
+            Field::make('text', 'aircraft_features_heading_1_en', 'EN Особенности самолета, 1 заголовок'),
+            Field::make('text', 'aircraft_features_desc_1_en', 'EN Особенности самолета, 1 описание'),
 
             Field::make('text', 'aircraft_features_heading_2', 'Особенности самолета, 2 заголовок'),
             Field::make('text', 'aircraft_features_desc_2', 'Особенности самолета, 2 описание'),
+            Field::make('text', 'aircraft_features_heading_2_en', 'EN Особенности самолета, 2 заголовок'),
+            Field::make('text', 'aircraft_features_desc_2_en', 'EN Особенности самолета, 2 описание'),
 
             Field::make('text', 'aircraft_features_heading_3', 'Особенности самолета, 3 заголовок'),
             Field::make('text', 'aircraft_features_desc_3', 'Особенности самолета, 3 описание'),
+            Field::make('text', 'aircraft_features_heading_3_en', 'EN Особенности самолета, 3 заголовок'),
+            Field::make('text', 'aircraft_features_desc_3_en', 'EN Особенности самолета, 3 описание'),
 
             Field::make('text', 'aircraft_features_heading_4', 'Особенности самолета, 4 заголовок'),
             Field::make('text', 'aircraft_features_desc_4', 'Особенности самолета, 4 описание'),
+            Field::make('text', 'aircraft_features_heading_4_en', 'EN Особенности самолета, 4 заголовок'),
+            Field::make('text', 'aircraft_features_desc_4_en', 'EN Особенности самолета, 4 описание'),
 
             Field::make('text', 'aircraft_features_heading_5', 'Особенности самолета, 5 заголовок'),
             Field::make('text', 'aircraft_features_desc_5', 'Особенности самолета, 5 описание'),
+            Field::make('text', 'aircraft_features_heading_5_en', 'EN Особенности самолета, 5 заголовок'),
+            Field::make('text', 'aircraft_features_desc_5_en', 'EN Особенности самолета, 5 описание'),
 
             Field::make('text', 'aircraft_features_heading_6', 'Особенности самолета, 6 заголовок'),
             Field::make('text', 'aircraft_features_desc_6', 'Особенности самолета, 6 описание'),
+            Field::make('text', 'aircraft_features_heading_6_en', 'EN Особенности самолета, 6 заголовок'),
+            Field::make('text', 'aircraft_features_desc_6_en', 'EN Особенности самолета, 6 описание'),
 
             Field::make('text', 'variable_cost_hour', 'Переменные расходы (USD)/час'),
             Field::make('text', 'programs_engine', 'Программы двигатель'),
@@ -145,6 +188,58 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('text', 'constant_cost_sum', 'Сумма постоянные расходы'),
             Field::make('text', 'total_cost', 'ИТОГО расходы'),
             Field::make('text', 'total_cost_hour', 'Итого цена летного часа'),
+
+            Field::make('complex', 'popular_destinations', 'Популярные направления')
+                ->add_fields([
+                    Field::make('text', 'popular_destinations_name', 'Название (например, Москва - Казань)'),
+                    Field::make('text', 'popular_destinations_distance', 'Дальность полёта'),
+                    Field::make('text', 'popular_destinations_time', 'Время полёта'),
+                    Field::make('text', 'popular_destinations_cost', 'Стоимость'),
+                ]),
+            Field::make('complex', 'popular_destinations_en', 'EN Популярные направления')
+                ->add_fields([
+                    Field::make('text', 'popular_destinations_name', 'EN Название (например, Москва - Казань)'),
+                    Field::make('text', 'popular_destinations_distance', 'EN Дальность полёта'),
+                    Field::make('text', 'popular_destinations_time', 'EN Время полёта'),
+                    Field::make('text', 'popular_destinations_cost', 'EN Стоимость'),
+                ]),
+
+            Field::make('complex', 'variable_costs_hour', 'Переменные затраты (USD)/час')
+                ->set_layout('tabbed-horizontal')
+                ->add_fields([
+                    Field::make('text', 'cost_label', 'Название затрат'),
+                    Field::make('text', 'cost_200', '200 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_400', '400 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_600', '600 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_800', '800 часов')
+                        ->set_default_value('-'),
+                ]),
+
+            Field::make('complex', 'constant_costs_hour', 'Постоянные затраты')
+                ->set_layout('tabbed-horizontal')
+                ->add_fields([
+                    Field::make('text', 'cost_label', 'Название затрат'),
+                    Field::make('text', 'cost_200', '200 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_400', '400 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_600', '600 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_800', '800 часов')
+                        ->set_default_value('-'),
+                ]),
+
+            Field::make('text', 'variable_cost_total', 'Сумма переменных затрат')
+                ->set_default_value('-'),
+            Field::make('text', 'constant_cost_total', 'Сумма постоянных затрат')
+                ->set_default_value('-'),
+            Field::make('text', 'total_expenses', 'ИТОГО расходы')
+                ->set_default_value('-'),
+            Field::make('text', 'total_flight_hour_cost', 'ИТОГО цена летного часа')
+                ->set_default_value('-'),
         ]);
 });
 
@@ -159,18 +254,83 @@ add_action('carbon_fields_register_fields', function () {
 });
 
 add_action('carbon_fields_register_fields', function () {
+    $country_flags = [
+        'Австралия' => '/wp-content/uploads/flags/australia.png',
+        'Австрия' => '/wp-content/uploads/flags/austria.png',
+        'Азербайджан' => '/wp-content/uploads/flags/azerbaijan.png',
+        'Албания' => '/wp-content/uploads/flags/albania.png',
+        'Андорра' => '/wp-content/uploads/flags/andorra.png',
+        'Армения' => '/wp-content/uploads/flags/armenia.png',
+        'Беларусь' => '/wp-content/uploads/flags/belarus.png',
+        'Бельгия' => '/wp-content/uploads/flags/belgium.png',
+        'Болгария' => '/wp-content/uploads/flags/bulgaria.png',
+        'Босния и Герцеговина' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
+        'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
+        'Венгрия' => '/wp-content/uploads/flags/hungary.png',
+        'Германия' => '/wp-content/uploads/flags/germany.png',
+        'Греция' => '/wp-content/uploads/flags/greece.png',
+        'Грузия' => '/wp-content/uploads/flags/georgia.png',
+        'Дания' => '/wp-content/uploads/flags/denmark.png',
+        'Индия' => '/wp-content/uploads/flags/india.png',
+        'Ирландия' => '/wp-content/uploads/flags/ireland.png',
+        'Исландия' => '/wp-content/uploads/flags/iceland.png',
+        'Испания' => '/wp-content/uploads/flags/span.png',
+        'Италия' => '/wp-content/uploads/flags/italy.png',
+        'Казахстан' => '/wp-content/uploads/flags/kazakhstan.png',
+        'Канада' => '/wp-content/uploads/flags/canada.png',
+        'Кипр' => '/wp-content/uploads/flags/cyprus.png',
+        'Киргизия' => '/wp-content/uploads/flags/kyrgyzstan.png',
+        'Китай' => '/wp-content/uploads/flags/china.png',
+        'Латвия' => '/wp-content/uploads/flags/latvia.png',
+        'Литва' => '/wp-content/uploads/flags/lithuania.png',
+        'Лихтенштейн' => '/wp-content/uploads/flags/liechtenstein.png',
+        'Люксембург' => '/wp-content/uploads/flags/luxembourg.png',
+        'Мальта' => '/wp-content/uploads/flags/malta.png',
+        'Молдова' => '/wp-content/uploads/flags/moldova.png',
+        'Монако' => '/wp-content/uploads/flags/monaco.png',
+        'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
+        'Норвегия' => '/wp-content/uploads/flags/norway.png',
+        'Польша' => '/wp-content/uploads/flags/poland.png',
+        'Португалия' => '/wp-content/uploads/flags/portugal.png',
+        'Россия' => '/wp-content/uploads/flags/russia.png',
+        'Румыния' => '/wp-content/uploads/flags/romania.png',
+        'Сан-Марино' => '/wp-content/uploads/flags/san-marino.png',
+        'Северная Македония' => '/wp-content/uploads/flags/republic-of-macedonia.png',
+        'Сербия' => '/wp-content/uploads/flags/serbia.png',
+        'Словакия' => '/wp-content/uploads/flags/slovakia.png',
+        'Словения' => '/wp-content/uploads/flags/slovenia.png',
+        'США' => '/wp-content/uploads/flags/united-states.png',
+        'Таджикистан' => '/wp-content/uploads/flags/tajikistan.png',
+        'Тайланд' => '/wp-content/uploads/flags/thailand.png',
+        'Туркменистан' => '/wp-content/uploads/flags/turkmenistan.png',
+        'Турция' => '/wp-content/uploads/flags/turkey.png',
+        'Узбекистан' => '/wp-content/uploads/flags/uzbekistan.png',
+        'Украина' => '/wp-content/uploads/flags/ukraine.png',
+        'Финляндия' => '/wp-content/uploads/flags/finland.png',
+        'Франция' => '/wp-content/uploads/flags/france.png',
+        'Хорватия' => '/wp-content/uploads/flags/croatia.png',
+        'Черногория' => '/wp-content/uploads/flags/montenegro.png',
+        'Чехия' => '/wp-content/uploads/flags/czech-republic.png',
+        'Швейцария' => '/wp-content/uploads/flags/switzerland.png',
+        'Швеция' => '/wp-content/uploads/flags/sweden.png',
+        'Эстония' => '/wp-content/uploads/flags/estonia.png',
+        'Япония' => '/wp-content/uploads/flags/japan.png'
+    ];
+
     $planes_fields = [
         Field::make('text', 'title', 'Название самолета')->set_required(true),
         Field::make('image', 'image', 'Изображение')->set_required(true),
-        Field::make('text', 'origin_country', 'Страна вылета')->set_required(true),
+        Field::make('select', 'origin_country', 'Страна вылета')
+            ->set_options(array_combine(array_keys($country_flags), array_keys($country_flags))),
         Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
-        Field::make('text', 'origin_city', 'Город вылета')->set_required(true),
-        Field::make('text', 'destination_country', 'Страна прилета')->set_required(true),
+        Field::make('text', 'origin_city', 'Город вылета')->set_required(false),
+        Field::make('select', 'destination_country', 'Страна прилета')
+            ->set_options(array_combine(array_keys($country_flags), array_keys($country_flags))),
         Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
         Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
         Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
-        Field::make('text', 'seats', 'Количество мест')->set_required(true),
-        Field::make('text', 'price', 'Цена в USD')->set_required(true),
+        Field::make('text', 'seats', 'Количество мест')->set_required(false),
+        Field::make('text', 'price', 'Цена в USD')->set_required(false),
     ];
 
     Container::make('post_meta', 'Пустые перелёты')
@@ -184,6 +344,51 @@ add_action('carbon_fields_register_fields', function () {
         ->add_fields([
             Field::make('complex', 'planes', 'Список самолетов')->add_fields($planes_fields),
         ]);
+
+    Container::make('post_meta', 'Список самолетов')
+        ->where('post_template', '=', 'page-wanted.php')
+        ->add_fields([
+            Field::make('complex', 'planes_wanted', 'Список самолетов')
+                ->add_fields([
+                    Field::make('text', 'title', 'Название самолета')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('text', 'type', 'Тип')->set_required(false),
+                    Field::make('text', 'category', 'Категория')->set_required(false),
+                    Field::make('text', 'type_en', 'Тип (на английском языке)')->set_required(false),
+                    Field::make('text', 'category_en', 'Категория (на английском языке)')->set_required(false),
+                    Field::make('text', 'manufacturer', 'Производитель')->set_required(false),
+                    Field::make('text', 'range_km', 'Дальность полёта (км)')->set_required(false),
+                    Field::make('text', 'produced_year', 'Год выпуска')->set_required(false),
+                    Field::make('text', 'hours_flown', 'Налет часов')->set_required(false),
+                    Field::make('text', 'seats', 'Количество мест')->set_required(false),
+                    Field::make('text', 'price', 'Цена в USD')->set_required(false)
+                ]),
+        ]);
+
+    Container::make('post_meta', 'Список самолетов')
+        ->where('post_template', '=', 'page-wanted-en.php')
+        ->add_fields([
+            Field::make('complex', 'planes_wanted', 'Список самолетов')->add_fields([
+                Field::make('text', 'title', 'Название самолета')->set_required(true),
+                Field::make('image', 'image', 'Изображение')->set_required(true),
+                Field::make('text', 'type', 'Тип')->set_required(false),
+                Field::make('text', 'category', 'Категория')->set_required(false),
+                Field::make('text', 'type_en', 'Тип (на английском языке)')->set_required(false),
+                Field::make('text', 'category_en', 'Категория (на английском языке)')->set_required(false),
+                Field::make('text', 'manufacturer', 'Производитель')->set_required(false),
+                Field::make('text', 'range_km', 'Дальность полёта (км)')->set_required(false),
+                Field::make('text', 'produced_year', 'Год выпуска')->set_required(false),
+                Field::make('text', 'hours_flown', 'Налет часов')->set_required(false),
+                Field::make('text', 'seats', 'Количество мест')->set_required(false),
+                Field::make('text', 'price', 'Цена в USD')->set_required(false)
+            ]),
+        ]);
+
+    // Container::make('post_meta', 'Список самолетов')
+    //     ->where('post_template', '=', 'page-wanted-en.php')
+    //     ->add_fields([
+    //         Field::make('complex', 'planes_wanted', 'Список самолетов')->add_fields($planes_fields_wanted),
+    //     ]);
 
     Container::make('post_meta', 'Отзывы')
         ->where('post_template', '=', 'page-reviews.php')
@@ -268,6 +473,60 @@ add_action('after_setup_theme', function () {
 });
 // carbon end
 
+// empty legs flags start
+// function get_country_flag_url($country_name) {
+//     $flags_path = get_stylesheet_directory_uri() . '/img/flags/';
+
+//     $flags = [
+//         'США' => 'usa.png',
+//         'Канада' => 'canada.png',
+//         'Франция' => 'france.png',
+//         'Германия' => 'germany.png',
+//         'Великобритания' => 'uk.png',
+//         'Россия' => 'russia.png',
+//         'Китай' => 'china.png',
+//         'Япония' => 'japan.png',
+//         'Австралия' => 'australia.png',
+//         'Италия' => 'italy.png',
+//         'Испания' => 'spain.png',
+//         'Африка' => 'africa.png',
+//     ];
+
+//     return isset($flags[$country_name]) ? $flags_path . $flags[$country_name] : '';
+// }
+
+// add_action('carbon_fields_post_meta_save', function ($post_id) {
+//     $planes = carbon_get_post_meta($post_id, 'planes');
+//     $flags = get_country_flags();
+
+//     if (!$planes) return;
+
+//     foreach ($planes as $index => $plane) {
+//         if (!empty($plane['origin_country']) && isset($flags[$plane['origin_country']])) {
+//             $planes[$index]['origin_flag'] = $flags[$plane['origin_country']];
+//         }
+
+//         if (!empty($plane['destination_country']) && isset($flags[$plane['destination_country']])) {
+//             $planes[$index]['destination_flag'] = $flags[$plane['destination_country']];
+//         }
+//     }
+
+//     carbon_set_post_meta($post_id, 'planes', $planes);
+// });
+// empty legs flags end
+
+// lightbox fix
+function my_lbwps_enabled($enabled, $id)
+{
+    if (function_exists('is_product')) {
+        if (is_product()) return false;
+    }
+
+    return $enabled;
+}
+
+add_filter('lbwps_enabled', 'my_lbwps_enabled', 10, 2);
+
 function allow_json_uploads($mimes)
 {
     $mimes['json'] = 'application/json';
@@ -282,41 +541,52 @@ function process_aircraft_json($post_id)
         return;
     }
 
-    $json_url = carbon_get_post_meta($post_id, 'aircraft_json');
-    if (!$json_url) {
+    $json_value = carbon_get_post_meta($post_id, 'aircraft_json');
+
+    if (!$json_value) {
+        error_log("Ошибка: JSON-файл не выбран.");
         return;
     }
 
-    // Приводим URL к серверному пути
-    $upload_dir = wp_upload_dir();
-    $json_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $json_url);
+    // Проверяем, что нам вернул Carbon Fields: ID или URL
+    if (is_numeric($json_value)) {
+        // Это ID вложения
+        $json_path = get_attached_file($json_value);
+    } else {
+        // Это URL файла
+        $upload_dir = wp_upload_dir();
+        $json_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $json_value);
+    }
 
-    if (!file_exists($json_path) || !is_readable($json_path)) {
-        error_log("Ошибка: файл JSON не найден или не доступен - $json_path");
+    if (!$json_path || !file_exists($json_path)) {
+        error_log("Ошибка: JSON-файл не найден - $json_path");
         return;
     }
 
-    // Загружаем JSON
+    error_log("Файл найден: $json_path");
+
     $json_data = file_get_contents($json_path);
     $aircraft_data = json_decode($json_data, true);
 
     if (!$aircraft_data || !is_array($aircraft_data)) {
-        error_log("Ошибка: JSON поврежден или имеет неверный формат - $json_path");
+        error_log("Ошибка: JSON-файл поврежден.");
         return;
     }
 
-    // Обрабатываем данные, убираем пустые строки
     foreach ($aircraft_data as $entry) {
-        if (empty($entry['Общие данные']) || empty($entry['Параметры'])) {
+        if (empty($entry['Общие данные']) || !isset($entry['Параметры'])) {
             continue;
         }
 
         $key = trim($entry['Общие данные']);
-        $value = trim($entry['Параметры']);
+        $value = trim((string)$entry['Параметры']);
+        $value = preg_replace('/\x{00A0}/u', ' ', $value);
 
         if ($value === '') {
             continue;
         }
+
+        error_log("Сохраняем: $key => $value");
 
         // Сопоставляем JSON-данные с Carbon Fields
         switch ($key) {
@@ -344,6 +614,45 @@ function process_aircraft_json($post_id)
             case 'Дальность (миль)':
                 carbon_set_post_meta($post_id, 'range_miles', $value);
                 break;
+            case 'Время в полете':
+                carbon_set_post_meta($post_id, 'range_time', $value);
+                break;
+            case 'Год начала производства':
+                carbon_set_post_meta($post_id, 'production_start', $value);
+                break;
+            case 'Год окончания производства':
+                carbon_set_post_meta($post_id, 'production_end', $value);
+                break;
+            case 'Страна производства':
+                carbon_set_post_meta($post_id, 'production_country', $value);
+                break;
+            case 'Стоимость нового самолета ($)':
+                carbon_set_post_meta($post_id, 'aircraft_new_cost', $value);
+                break;
+            case 'Стоимость самолета с налетом ($)':
+                carbon_set_post_meta($post_id, 'aircraft_used_cost', $value);
+                break;
+            case 'Себестоимость летного часа ($)':
+                carbon_set_post_meta($post_id, 'aircraft_hour_cost', $value);
+                break;
+            case 'Инспекция горячей части (HSI) (часов)':
+                carbon_set_post_meta($post_id, 'hsi', $value);
+                break;
+            case 'Интервал капитального ремонта (часов)':
+                carbon_set_post_meta($post_id, 'interval_total_repair', $value);
+                break;
+            case 'Интервал A-Check':
+                carbon_set_post_meta($post_id, 'interval_a_check', $value);
+                break;
+            case 'Интервал B-Check':
+                carbon_set_post_meta($post_id, 'interval_b_check', $value);
+                break;
+            case 'Интервал C-Check':
+                carbon_set_post_meta($post_id, 'interval_c_check', $value);
+                break;
+            case 'Интервал D-Check':
+                carbon_set_post_meta($post_id, 'interval_d_check', $value);
+                break;
             case 'Максимальная высота полета (м)':
                 carbon_set_post_meta($post_id, 'max_takeoff_height_m', $value);
                 break;
@@ -368,11 +677,17 @@ function process_aircraft_json($post_id)
             case 'Грузоподъемность (lb)':
                 carbon_set_post_meta($post_id, 'max_landing_height_lbs', $value);
                 break;
-            case 'Посадочная дистанция (м)':
+            case 'Взлетная дистанция (м)':
                 carbon_set_post_meta($post_id, 'takeoff_distance_m', $value);
                 break;
-            case 'Посадочная дистанция (ft)':
+            case 'Взлетная дистанция (ft)':
                 carbon_set_post_meta($post_id, 'takeoff_distance_ft', $value);
+                break;
+            case 'Посадочная дистанция (м)':
+                carbon_set_post_meta($post_id, 'landing_distance_m', $value);
+                break;
+            case 'Посадочная дистанция (ft)':
+                carbon_set_post_meta($post_id, 'landing_distance_ft', $value);
                 break;
             case 'Количество двигателей':
                 carbon_set_post_meta($post_id, 'aircraft_engine_count', $value);
@@ -863,15 +1178,15 @@ function add_custom_fields_to_main_tab()
     ]);
 
     // выпадающий список для выбора категории самолёта
-    woocommerce_wp_select([
-        'id'      => '_db_category',
-        'label'   => __('Категория самолёта', 'woocommerce'),
-        'options' => [
-            ''            => __('Общая карточка самолёта', 'woocommerce'),
-            'for_sale'    => __('Самолёт на продажу', 'woocommerce'),
-            'for_rent'    => __('Самолёт в аренду', 'woocommerce'),
-        ],
-    ]);
+    // woocommerce_wp_select([
+    //     'id'      => '_db_category',
+    //     'label'   => __('Категория самолёта', 'woocommerce'),
+    //     'options' => [
+    //         ''            => __('Общая карточка самолёта', 'woocommerce'),
+    //         'for_sale'    => __('Самолёт на продажу', 'woocommerce'),
+    //         'for_rent'    => __('Самолёт в аренду', 'woocommerce'),
+    //     ],
+    // ]);
 
     // Add custom fields
     echo '<p class="form-field">

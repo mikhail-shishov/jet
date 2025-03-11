@@ -21,9 +21,8 @@
                         <button class="dropdown__button" type="button">Тип</button>
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
-                            <li class="dropdown__list-item" data-value="1">1</li>
-                            <li class="dropdown__list-item" data-value="2">2</li>
-                            <li class="dropdown__list-item" data-value="3">3</li>
+                            <li class="dropdown__list-item" data-value="Самолет">Самолет</li>
+                            <li class="dropdown__list-item" data-value="Вертолет">Вертолет</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
@@ -32,9 +31,14 @@
                         <button class="dropdown__button" type="button">Категория</button>
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
-                            <li class="dropdown__list-item" data-value="1">1</li>
-                            <li class="dropdown__list-item" data-value="2">2</li>
-                            <li class="dropdown__list-item" data-value="3">3</li>
+                            <li class="dropdown__list-item" data-value="Турбовинтовые">Турбовинтовые</li>
+                            <li class="dropdown__list-item" data-value="Очень легкие">Очень легкие</li>
+                            <li class="dropdown__list-item" data-value="Легкие">Легкие</li>
+                            <li class="dropdown__list-item" data-value="Средние">Средние</li>
+                            <li class="dropdown__list-item" data-value="Супер-средние">Супер-средние</li>
+                            <li class="dropdown__list-item" data-value="Большие">Большие</li>
+                            <li class="dropdown__list-item" data-value="Ультра-большие">Ультра-большие</li>
+                            <li class="dropdown__list-item" data-value="Дальне магистральные">Дальне магистральные</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
@@ -42,8 +46,9 @@
                     <div class="dropdown">
                         <button class="dropdown__button" type="button">Производитель</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="Challenger">Challenger</li>
                             <li class="dropdown__list-item" data-value="Boeing">Boeing</li>
+                            <li class="dropdown__list-item" data-value="Challenger">Challenger</li>
+                            <li class="dropdown__list-item" data-value="Pilatus">Pilatus</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
@@ -54,6 +59,13 @@
                             <li class="dropdown__list-item" data-value="1000">1000</li>
                             <li class="dropdown__list-item" data-value="2000">2000</li>
                             <li class="dropdown__list-item" data-value="3000">3000</li>
+                            <li class="dropdown__list-item" data-value="4000">4000</li>
+                            <li class="dropdown__list-item" data-value="5000">5000</li>
+                            <li class="dropdown__list-item" data-value="6000">6000</li>
+                            <li class="dropdown__list-item" data-value="7000">7000</li>
+                            <li class="dropdown__list-item" data-value="8000">8000</li>
+                            <li class="dropdown__list-item" data-value="9000">9000</li>
+                            <li class="dropdown__list-item" data-value="10000">10000</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>

@@ -62,36 +62,141 @@
             <h2 class="h2">Пустые перелеты</h2>
             <p>Арендуйте со скидкой самолет, который совершает перелет пустым по заданному маршруту. Если у авиакомпании заказали бизнес-джет для перелета только в одну сторону, то обратно он полетит пустым. Такие перелеты продаются с большими скидками.</p>
         </div>
+
+
         <?php
         $planes = carbon_get_the_post_meta('planes');
 
         if (!empty($planes)) : ?>
             <div class="empty-grid empty-all-grid">
-                <?php foreach ($planes as $plane) : ?>
+                <?php foreach ($planes as $plane) :
+                    // Получаем URL флага по стране
+                    $origin_flag = isset($country_flags[$plane['origin_country']]) ? $country_flags[$plane['origin_country']] : '';
+                    $destination_flag = isset($country_flags[$plane['destination_country']]) ? $country_flags[$plane['destination_country']] : '';
+
+                    // Получаем изображение самолета
+                    $image_url = !empty($plane['image']) ? wp_get_attachment_image_url($plane['image'], 'medium') : get_stylesheet_directory_uri() . '/img/planes/default.png';
+
+                    // Проверяем наличие необходимых данных
+                    if (empty($plane['title']) && empty($plane['origin_country']) && empty($plane['destination_country'])) {
+                        continue;
+                    }
+                ?>
                     <div class="empty-item">
-                        <img src="<?php echo wp_get_attachment_image_url($plane['image'], 'medium'); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title']); ?>">
-                        <h3 class="h3"><?php echo esc_html($plane['title']); ?></h3>
+                        <img src="<?php echo esc_url($image_url); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'Самолет'); ?>">
+                        <h3 class="h3"><?php echo esc_html($plane['title'] ?? 'Без названия'); ?></h3>
 
                         <div class="empty-path">
                             <div class="empty-path-row">
                                 <div class="empty-path-start">
                                     <div class="empty-path-airport">
                                         <span class="empty-path-country">
-                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flags/usa.png" loading="lazy" alt="">
-                                            <?php echo esc_html($plane['origin_country']); ?>
+                                            <?php
+                                            // Получаем страну
+                                            $origin_country = $plane['origin_country'] ?? '';
+                                            $country_flags = [
+                                                'Австралия' => '/wp-content/uploads/flags/australia.png',
+                                                'Австрия' => '/wp-content/uploads/flags/austria.png',
+                                                'Азербайджан' => '/wp-content/uploads/flags/azerbaijan.png',
+                                                'Албания' => '/wp-content/uploads/flags/albania.png',
+                                                'Андорра' => '/wp-content/uploads/flags/andorra.png',
+                                                'Армения' => '/wp-content/uploads/flags/armenia.png',
+                                                'Беларусь' => '/wp-content/uploads/flags/belarus.png',
+                                                'Бельгия' => '/wp-content/uploads/flags/belgium.png',
+                                                'Болгария' => '/wp-content/uploads/flags/bulgaria.png',
+                                                'Босния и Герцеговина' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
+                                                'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
+                                                'Венгрия' => '/wp-content/uploads/flags/hungary.png',
+                                                'Германия' => '/wp-content/uploads/flags/germany.png',
+                                                'Греция' => '/wp-content/uploads/flags/greece.png',
+                                                'Грузия' => '/wp-content/uploads/flags/georgia.png',
+                                                'Дания' => '/wp-content/uploads/flags/denmark.png',
+                                                'Индия' => '/wp-content/uploads/flags/india.png',
+                                                'Ирландия' => '/wp-content/uploads/flags/ireland.png',
+                                                'Исландия' => '/wp-content/uploads/flags/iceland.png',
+                                                'Испания' => '/wp-content/uploads/flags/span.png',
+                                                'Италия' => '/wp-content/uploads/flags/italy.png',
+                                                'Казахстан' => '/wp-content/uploads/flags/kazakhstan.png',
+                                                'Канада' => '/wp-content/uploads/flags/canada.png',
+                                                'Кипр' => '/wp-content/uploads/flags/cyprus.png',
+                                                'Киргизия' => '/wp-content/uploads/flags/kyrgyzstan.png',
+                                                'Китай' => '/wp-content/uploads/flags/china.png',
+                                                'Латвия' => '/wp-content/uploads/flags/latvia.png',
+                                                'Литва' => '/wp-content/uploads/flags/lithuania.png',
+                                                'Лихтенштейн' => '/wp-content/uploads/flags/liechtenstein.png',
+                                                'Люксембург' => '/wp-content/uploads/flags/luxembourg.png',
+                                                'Мальта' => '/wp-content/uploads/flags/malta.png',
+                                                'Молдова' => '/wp-content/uploads/flags/moldova.png',
+                                                'Монако' => '/wp-content/uploads/flags/monaco.png',
+                                                'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
+                                                'Норвегия' => '/wp-content/uploads/flags/norway.png',
+                                                'Польша' => '/wp-content/uploads/flags/poland.png',
+                                                'Португалия' => '/wp-content/uploads/flags/portugal.png',
+                                                'Россия' => '/wp-content/uploads/flags/russia.png',
+                                                'Румыния' => '/wp-content/uploads/flags/romania.png',
+                                                'Сан-Марино' => '/wp-content/uploads/flags/san-marino.png',
+                                                'Северная Македония' => '/wp-content/uploads/flags/republic-of-macedonia.png',
+                                                'Сербия' => '/wp-content/uploads/flags/serbia.png',
+                                                'Словакия' => '/wp-content/uploads/flags/slovakia.png',
+                                                'Словения' => '/wp-content/uploads/flags/slovenia.png',
+                                                'США' => '/wp-content/uploads/flags/united-states.png',
+                                                'Таджикистан' => '/wp-content/uploads/flags/tajikistan.png',
+                                                'Тайланд' => '/wp-content/uploads/flags/thailand.png',
+                                                'Туркменистан' => '/wp-content/uploads/flags/turkmenistan.png',
+                                                'Турция' => '/wp-content/uploads/flags/turkey.png',
+                                                'Узбекистан' => '/wp-content/uploads/flags/uzbekistan.png',
+                                                'Украина' => '/wp-content/uploads/flags/ukraine.png',
+                                                'Финляндия' => '/wp-content/uploads/flags/finland.png',
+                                                'Франция' => '/wp-content/uploads/flags/france.png',
+                                                'Хорватия' => '/wp-content/uploads/flags/croatia.png',
+                                                'Черногория' => '/wp-content/uploads/flags/montenegro.png',
+                                                'Чехия' => '/wp-content/uploads/flags/czech-republic.png',
+                                                'Швейцария' => '/wp-content/uploads/flags/switzerland.png',
+                                                'Швеция' => '/wp-content/uploads/flags/sweden.png',
+                                                'Эстония' => '/wp-content/uploads/flags/estonia.png',
+                                                'Япония' => '/wp-content/uploads/flags/japan.png',
+                                            ];
+
+                                            if ($origin_country) :
+                                                // Выводим флаг и страну
+                                                $flag = $country_flags[$origin_country] ?? '';
+                                                echo $flag ? "<img src='$flag' alt='Флаг $origin_country'> $origin_country" : $origin_country;
+                                            endif;
+                                            ?>
                                         </span>
-                                        <span class="empty-path-code"><?php echo esc_html($plane['origin_code']); ?></span>
-                                        <span class="empty-path-city"><?php echo esc_html($plane['origin_city']); ?></span>
+                                        <span class="empty-path-code"><?php echo esc_html($plane['origin_code'] ?? ''); ?></span>
+                                        <span class="empty-path-city"><?php echo esc_html($plane['origin_city'] ?? ''); ?></span>
                                     </div>
                                 </div>
                                 <div class="empty-path-end">
                                     <div class="empty-path-airport">
                                         <span class="empty-path-country">
-                                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flags/Flag2.png" loading="lazy" alt="">
-                                            <?php echo esc_html($plane['destination_country']); ?>
+                                            <?php
+                                            // Получаем страну
+                                            $destination_country = $plane['destination_country'] ?? '';
+                                            // $country_flags = [
+                                            //     'США' => '/wp-content/uploads/flags/united-states.png',
+                                            //     'Канада' => '/wp-content/uploads/flags/canada.png',
+                                            //     'Франция' => '/wp-content/uploads/flags/france.png',
+                                            //     'Германия' => '/wp-content/uploads/flags/germany.png',
+                                            //     'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
+                                            //     'Россия' => '/wp-content/uploads/flags/russia.png',
+                                            //     'Китай' => '/wp-content/uploads/flags/china.png',
+                                            //     'Япония' => '/wp-content/uploads/flags/japan.png',
+                                            //     'Австралия' => '/wp-content/uploads/flags/australia.png',
+                                            //     'Италия' => '/wp-content/uploads/flags/italy.png',
+                                            //     'Испания' => '/wp-content/uploads/flags/spain.png',
+                                            // ];
+
+                                            if ($destination_country) :
+                                                // Выводим флаг и страну
+                                                $flag = $country_flags[$destination_country] ?? '';
+                                                echo $flag ? "<img src='$flag' alt='Флаг $destination_country'> $destination_country" : $destination_country;
+                                            endif;
+                                            ?>
                                         </span>
-                                        <span class="empty-path-code"><?php echo esc_html($plane['destination_code']); ?></span>
-                                        <span class="empty-path-city"><?php echo esc_html($plane['destination_city']); ?></span>
+                                        <span class="empty-path-code"><?php echo esc_html($plane['origin_code'] ?? ''); ?></span>
+                                        <span class="empty-path-city"><?php echo esc_html($plane['origin_city'] ?? ''); ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -99,24 +204,31 @@
                                 <div class="empty-path-date">
                                     <p class="empty-path-info">
                                         <?php
-                                        $date = $plane['flight_date'];
-                                        echo date('d.m, H:i', strtotime($date));
+                                        if (!empty($plane['flight_date'])) {
+                                            echo date('d.m, H:i', strtotime($plane['flight_date']));
+                                        } else {
+                                            echo 'Дата не указана';
+                                        }
                                         ?>
                                     </p>
                                     <p class="empty-path-label">Дата вылета</p>
                                 </div>
                                 <div class="empty-path-seat">
-                                    <p class="empty-path-info"><?php echo esc_html($plane['seats']); ?></p>
+                                    <p class="empty-path-info"><?php echo esc_html($plane['seats'] ?? '—'); ?></p>
                                     <p class="empty-path-label">Всего мест</p>
                                 </div>
                             </div>
-                            <p class="empty-path-price">$<?php echo esc_html($plane['price']); ?></p>
+                            <p class="empty-path-price">$<?php echo esc_html($plane['price'] ?? '—'); ?></p>
                             <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
+        <?php else : ?>
+            <p>Нет данных о перелётах.</p>
         <?php endif; ?>
+
+
 
         <!-- <div class="empty-grid empty-all-grid" style="display: none;">
             <div class="empty-item">

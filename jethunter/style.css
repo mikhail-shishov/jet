@@ -870,7 +870,7 @@ h4,
 }
 
 .empty-path-country {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 800;
     display: flex;
     gap: 4px;
@@ -1473,6 +1473,7 @@ input[type=checkbox]:checked::after {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 35px;
 }
 
 .plane-name .h1 {
@@ -3016,6 +3017,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .btn {
         font-size: 16px;
         padding: 11px 24px;
+    }
+
+    .dropdown__list, .dropdown_with-chk__list {
+        top: 50px;
     }
 
     .btn-pagination {
@@ -4757,15 +4762,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .looking-grid-full .looking-item:nth-of-type(-n+8) {
         display: block;
     }
-
-    .empty-path-start {
-        margin-left: auto;
-    }
-
-    .empty-path-end {
-        margin-right: auto;
-    }
-
+    
     .intro-sect .btn-container {
         margin: 24px 0 36px;
     }

@@ -4,6 +4,17 @@
 
 <?php get_header(); ?>
 
+<?php
+$page_id = get_the_ID();
+
+$heading = carbon_get_the_post_meta('heading');
+$description = carbon_get_the_post_meta('description');
+$features_heading_1 = carbon_get_the_post_meta('features_heading_1');
+$features_complex_1 = carbon_get_the_post_meta('features_complex_1');
+$features_heading_2 = carbon_get_the_post_meta('features_heading_2');
+$features_complex_2 = carbon_get_the_post_meta('features_complex_2');
+?>
+
 <section class="breadcrumbs-sect">
     <div class="container">
         <?php include_once "breadcrumbs/breadcrumbs.php" ?>
@@ -13,104 +24,52 @@
 
 <section class="services-sect">
     <div class="container">
-        <h1 class="h2 center">Что такое управление самолетом</h1>
-    
+        <h1 class="h2 center"><?php echo esc_html($heading); ?></h1>
+
         <div class="about-text">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/comfort-2.svg" width="460" height="460" class="about-img about-img-left" loading="lazy" alt="">
 
-            <p>Менеджмент воздушных судов – комплексная программа управления воздушным судном заказчика, оптимизирующая расходы и решающая все вопросы, связанные с его эксплуатацией. Частный самолет – пожалуй, один из самых непростых в управлении активов. И после его приобретения начинается череда решений сложных вопросов и внушительных расходов.</p>
-            
-            <p>Владельцы частных джетов ежедневно несут огромную ответственность и от их действий зависит, заработают они или потерпят колоссальные убытки. При этом затраты на владение частным самолетом могут достигать десятков миллионов долларов в год и любая ошибка несет дополнительные расходы.</p>
-
-            <p>Наша компания готова взять ваше судно в коммерческое управление, обеспечивая профессиональный подход и снижение затрат. Доверьте нам заботу о вашем самолете, и мы гарантируем его эффективную и безопасную эксплуатацию.</p>
-
-            <p>У нас найдутся решения на такой случай. Одно из них — зафрахтовать ваш борт. Это возможность получить прибыль, и таким образом компенсировать связанные с владением расходы.</p>
+            <p><?php echo esc_html($description); ?></p>
         </div>
-        <h3 class="h3 center">Мы возьмем в управление каждое воздушное судно: от легких реактивных бортов до вместительных лайнеров. Вы, по-прежнему, сможете использовать самолет в нужное вам время, но, при этом, вы контролируете операционные, транспортные расходы и расходы на техобслуживание. Кроме того, передача борта в коммерческое управление даст вам налоговые преимущества.</h3>
+        <!-- <h3 class="h3 center">Мы возьмем в управление каждое воздушное судно: от легких реактивных бортов до вместительных лайнеров. Вы, по-прежнему, сможете использовать самолет в нужное вам время, но, при этом, вы контролируете операционные, транспортные расходы и расходы на техобслуживание. Кроме того, передача борта в коммерческое управление даст вам налоговые преимущества.</h3> -->
     </div>
 </section>
 
-<section class="step-sect">
-    <div class="container">
-        <h2 class="h2 center">Наши преимущества в управлении самолетом</h2>
-        <div class="step-grid">
-            <div class="step-item">
-                <span class="step-number">1</span>
-                <h3 class="h3">Максимизация прибыли</h3>
-                <p>Брокер найдет  заказы  на  рейсы  в  период  вашего  простоя,  что  поможет  компенсировать  расходы  на  владение  и  обслуживание  самолета.</p>
+<?php if ($features_complex_1): ?>
+    <section class="step-sect">
+        <div class="container">
+            <h2 class="h2 center"><?php echo esc_html($features_heading_1); ?></h2>
+            <div class="step-grid">
+                <?php foreach ($features_complex_1 as $feature): ?>
+                    <div class="step-item">
+                        <span class="step-number"><?php echo esc_html($feature['features_number']); ?></span>
+                        <h3 class="h3"><?php echo esc_html($feature['features_name']); ?></h3>
+                        <p><?php echo esc_html($feature['features_text']); ?></p>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <div class="step-item">
-                <span class="step-number">2</span>
-                <h3 class="h3">Оптимизация расходов</h3>
-                <p>Брокер проведет  анализ  рынка  и  найдет  наиболее  выгодные  условия  для  страхования,  технического  обслуживания,  заправки  и  других  услуг.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-number">3</span>
-                <h3 class="h3">Юридическая защита</h3>
-                <p>Брокер  возьмет  на  себя  решение  всех  юридических  вопросов,  связанных  с  коммерческой  эксплуатацией  самолета,  обеспечив  вам  спокойствие  и  защиту  от  возможных  рисков.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-number">4</span>
-                <h3 class="h3">Прозрачность и  отчетность</h3>
-                <p>Вы  будете  регулярно  получать  прозрачные  отчеты  о  финансовых  показателях  эксплуатации  самолета.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-number">5</span>
-                <h3 class="h3">Расширение географии  полетов</h3>
-                <p>Брокер  поможет  вам  получить  необходимые  разрешения  на  выполнение  международных  рейсов,  расширив  географию  ваших  возможностей.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-number">6</span>
-                <h3 class="h3">Экономия времени  и  ресурсов</h3>
-                <p>Доверьте  все  организационные  вопросы  профессионалам  и  сосредоточьтесь  на  том,  что  действительно  важно  -  вашем  бизнесе  и  отдыхе.</p>
+            <div class="center">
+                <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
             </div>
         </div>
-        <div class="center">
-            <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
-        </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
-<section class="instruction-sect">
-    <div class="container">
-        <h2 class="h2 center">Этапы покупки самолета</h2>
-        <div class="instruction-wrap">
-            <div class="instruction-block">
-                <h3 class="h3">Определить требования к самолету</h3>
-                <p>Определите свой бюджет и потребности к перелетам: Куда вы хотите летать? Как часто? Сколько пассажиров будете перевозить? Какой уровень комфорта предпочитаете?</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Связаться с нами</h3>
-                <p>Свяжитесь с нашим менеджером, который поможет вам разобраться в технических характеристиках самолетов и выбрать наиболее подходящую модель.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Выбрать модель самолета</h3>
-                <p>Исходя из ваших требований, мы подберем несколько моделей самолетов, оптимально подходящих по техническим характеристикам, вместимости, дальности  полета  и  другим  параметрам. А также поможем вам сравнить выбранные модели и сделать осознанный выбор. Мы рекомендуем выбирать самолет, который на 80% соответствует вашему идеалу.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Визуальный осмотр самолета</h3>
-                <p>Выберите один или два самолета из предложенных вариантов. Мы договоримся о проведении визуального осмотра, где вы сможете лично осмотреть самолет, оценить состояние его интерьера и экстерьера и определить наиболее подходящий вариант для покупки.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">LOI и договор</h3>
-                <p>Необходимо будем подписать Письмо о намерениях приобрести воздушное судно (LOI), внести депозит и подписать Договор на покупку ВС, составленный нашими опытными юристами.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Предпродажная инспекция (PPI)</h3>
-                <p>Мы организуем независимую техническую инспекцию самолета в сертифицированном центре, чтобы убедиться в его безопасности и исправности. Вы получите подробный отчет о техническом состоянии самолета, чтобы быть уверены в его надежности. В результате вы получите полностью исправный самолет в летной годности.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Закрытие сделки</h3>
-                <p>На этом этапе самолет перелетает в место закрытия сделки и проводится оплата самолета любым удобным вам способом. Сделка проходит через эскроу-агента, что гарантирует безопасность и прозрачность при проведении сделки. Ваши средства будут отправлены продавцу только после получения всех необходимых документов на самолет.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Получение самолета</h3>
-                <p>ММы организуем торжественную церемонию передачи самолета в ваше распоряжение.
-                И обеспечим комфортное начало эксплуатации вашего нового самолета. При необходимости мы рекомендуем эксплуатанта, страховую компанию и сервисный центр.</p>
+<?php if ($features_complex_2): ?>
+    <section class="instruction-sect">
+        <div class="container">
+            <h2 class="h2 center"><?php echo esc_html($features_heading_2); ?></h2>
+            <div class="instruction-wrap">
+                <?php foreach ($features_complex_2 as $step): ?>
+                    <div class="instruction-block">
+                        <h3 class="h3"><?php echo esc_html($step['features_name']); ?></h3>
+                        <p><?php echo esc_html($step['features_text']); ?></p>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <div class="video-sect">
     <div class="container">
@@ -158,7 +117,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Мы обратились в Jet Hunter по рекомендации партнеров и не пожалели!  Высокий профессионализм, оперативность и широкий выбор самолетов — вот что отличает эту компанию.  Мы уверены в нашем выборе и рекомендуем Jet Hunter всем, кто ценит свой комфорт.</p>
+                <p>Мы обратились в Jet Hunter по рекомендации партнеров и не пожалели! Высокий профессионализм, оперативность и широкий выбор самолетов — вот что отличает эту компанию. Мы уверены в нашем выборе и рекомендуем Jet Hunter всем, кто ценит свой комфорт.</p>
                 <p>Корпорация А</p>
             </div>
             <div class="reviews-item">
@@ -170,7 +129,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Сделка по покупке самолета — это всегда сложный и многоэтапный процесс. Но с Jet Hunter все прошло гладко и прозрачно.  Отдельное спасибо юридической службе за оперативное решение всех вопросов!</p>
+                <p>Сделка по покупке самолета — это всегда сложный и многоэтапный процесс. Но с Jet Hunter все прошло гладко и прозрачно. Отдельное спасибо юридической службе за оперативное решение всех вопросов!</p>
                 <p>Виталий</p>
             </div>
             <div class="reviews-item">
@@ -182,7 +141,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Как профессионал, я могу оценить техническое состояние самолетов, предлагаемых Jet Hunter.  Все машины находятся в отличном состоянии и соответствуют высочайшим стандартам безопасности.</p>
+                <p>Как профессионал, я могу оценить техническое состояние самолетов, предлагаемых Jet Hunter. Все машины находятся в отличном состоянии и соответствуют высочайшим стандартам безопасности.</p>
                 <p>Леонид Х.</p>
             </div>
             <div class="reviews-item">
@@ -194,7 +153,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
                 </div>
-                <p>Творчество моего руководителя требует вдохновения, и он нашел его в путешествиях.  Благодаря Jet Hunter у него появилась возможность проводить выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
+                <p>Творчество моего руководителя требует вдохновения, и он нашел его в путешествиях. Благодаря Jet Hunter у него появилась возможность проводить выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
                 <p>Менеджер Майкла О</p>
             </div>
         </div>
