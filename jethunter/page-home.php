@@ -160,6 +160,112 @@
     </div>
 </section>
 
+<section class="directions-sect">
+    <div class="container">
+        <h2 class="h2 center">Популярные направления</h2>
+        <div class="directions-grid">
+            <div class="directions-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/direction.png" loading="lazy" alt="">
+                <p class="directions-name">Алматы – Дубай</p>
+                <ul class="list">
+                    <li>Дальность (км) – 4500</li>
+                    <li>Время в пути – 05:00</li>
+                    <li>Цена – 120 000 USD</li>
+                </ul>
+            </div>
+            <div class="directions-item">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/direction.png" loading="lazy" alt="">
+                <p class="directions-name">Белград – Шамбери</p>
+                <ul class="list">
+                    <li>Дальность (км) – 4500</li>
+                    <li>Время в пути – 05:00</li>
+                    <li>Цена – 120 000 USD</li>
+                </ul>
+            </div>
+        </div>
+        <div class="btn-container">
+            <a href="" class="btn btn-green-fill">Узнать стоимость</a>
+            <a href="" class="btn">Получить звонок</a>
+        </div>
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="quiz-wrap">
+            <div class="quiz-left">
+                <div class="quiz-left-img">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/quiz-img.jpg" alt="">
+                </div>
+            </div>
+            <div class="quiz-right">
+                <?php echo do_shortcode('[contact-form-7 id="a1ae65c" title="Квиз"]'); ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="about-sect">
+    <div class="container">
+        <h2 class="h2 center">Как выбрать самолет в аренду?</h2>
+        <h3 class="h3 center">Выбор самолета для аренды – это важный шаг, от которого зависит комфорт вашего
+            путешествия. Вот ключевые факторы, которые стоит учесть:</h3>
+
+        <div class="about-text">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/comfort.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
+
+            <h3 class="h3">Определите цель поездки</h3>
+            <ul class="list">
+                <li>Деловая поездка: для деловых встреч подойдет небольшой, но комфортабельный самолет, например,
+                    Cessna Citation CJ3+ или Embraer Phenom 300E.</li>
+                <li>Отдых с семьей/друзьями: если вы путешествуете большой компанией, выбирайте более вместительные
+                    модели, например, Bombardier Challenger 605 или Gulfstream G550.</li>
+                <li>Трансконтинентальный перелет: для длительных перелетов необходим самолет с большой дальностью,
+                    например, Bombardier Global 6000 или Gulfstream G650ER.</li>
+            </ul>
+
+            <h3 class="h3">Количество пассажиров</h3>
+            <ul class="list">
+                <li>Определите точное число пассажиров, чтобы выбрать самолет с достаточным количеством мест и
+                    уровнем комфорта для каждого.</li>
+            </ul>
+
+            <div class="about-row">
+                <div class="about-col">
+                    <h3 class="h3">Расстояние и маршрут</h3>
+                    <ul class="list">
+                        <li>Учитывайте дальность полета выбранной модели и возможность посадки в аэропорту
+                            назначения.
+                            Изучите особенности маршрута: для горной или морской местности могут потребоваться
+                            самолеты с
+                            определенными техническими характеристиками. В этом мы вам поможем!</li>
+                    </ul>
+                </div>
+                <div class="about-col">
+                    <h3 class="h3">Рассчитайте бюджет</h3>
+                    <ul class="list">
+                        <li>Определите бюджет и сравните стоимость аренды разных моделей.</li>
+                        <li>Учитывайте дополнительные расходы: посадка, обслуживание в аэропорту, питание на борту.
+                        </li>
+                        <li>Мы подскажем, когда можно снизить стоимость, а когда не стоит экономить.</li>
+                    </ul>
+                </div>
+                <div class="about-col">
+                    <h3 class="h3">Дополнительные требования</h3>
+                    <ul class="list">
+                        <li>Наличие спальни, кухни, душевой кабины, интернета, развлекательной системы. </li>
+                        <li>Необходимость перевозки багажа, спортивного инвентаря, домашних животных.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <h3 class="h3 center">Правильно выбранный самолет – это гарантия комфортного, безопасного и
+            незабываемого путешествия!</h3>
+    </div>
+</section>
+
 <section class="step-sect">
     <div class="container">
         <h2 class="h2 center">3 шага к вашему идеальному полету</h2>
@@ -235,6 +341,34 @@
                 <p>Мы лично проконтролируем подготовку к вылету, встретим вас в терминале и сделаем все, чтобы ваше
                     путешествие было максимально комфортным и безопасным. Вы и ваша семья будете довольны!</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="regular-sect">
+    <div class="container">
+        <div class="center">
+            <h2 class="h2">Узнать больше о комплектации самолета</h2>
+            <p class="text">Подскажем, подберем и проконсультруем вас по всем вопросам</p>
+        </div>
+        <?php echo do_shortcode('[contact-form-7 id="a460904" title="CTA 1"]'); ?>
+    </div>
+</section>
+
+<section class="about-sect">
+    <div class="container">
+        <h2 class="h2 center">Слово генерального директора</h2>
+
+        <div class="about-text">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/about.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
+
+            <p>В Jet Hunter мы верим, что время – самый ценный ресурс, небо – не предел, а пространство для новых возможностей. Мы помогаем людям, ценящим свое время и стремящимся к максимальной эффективности, преодолевать любые расстояния с непревзойденным комфортом и стилем.</p>
+            <p>Jet Hunter – это не просто компания по продаже бизнес-джетов. Это команда, страстно преданных своему делу и готовых превзойти ваши ожидания. Мы учитываем индивидуальные потребности каждого клиента, предлагая не только широкий выбор самолетов от ведущих мировых производителей, но и полный спектр услуг, связанных с владением и эксплуатацией бизнес-джета.</p>
+            <p>Мы ценим доверие, которое вы нам оказываете, и стремимся строить долгосрочные и взаимовыгодные отношения с каждым клиентом.</p>
+            <p>С Jet Hunter вы получаете не просто самолет, вы получаете ключ к безграничным возможностям!</p>
+            <br>
+            <p>С уважением,</p>
+            <p>Алексей Мордвинцев</p>
         </div>
     </div>
 </section>
@@ -750,88 +884,75 @@
     </div>
 </section>
 
-<section class="about-sect">
+<section class="services-slider-sect">
     <div class="container">
-        <h2 class="h2 center">Как выбрать самолет в аренду?</h2>
-        <h3 class="h3 center">Выбор самолета для аренды – это важный шаг, от которого зависит комфорт вашего
-            путешествия. Вот ключевые факторы, которые стоит учесть:</h3>
+        <h2 class="h2 center">Наши услуги</h2>
 
-        <div class="about-text">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/comfort.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
-
-            <h3 class="h3">Определите цель поездки</h3>
-            <ul class="list">
-                <li>Деловая поездка: для деловых встреч подойдет небольшой, но комфортабельный самолет, например,
-                    Cessna Citation CJ3+ или Embraer Phenom 300E.</li>
-                <li>Отдых с семьей/друзьями: если вы путешествуете большой компанией, выбирайте более вместительные
-                    модели, например, Bombardier Challenger 605 или Gulfstream G550.</li>
-                <li>Трансконтинентальный перелет: для длительных перелетов необходим самолет с большой дальностью,
-                    например, Bombardier Global 6000 или Gulfstream G650ER.</li>
-            </ul>
-
-            <h3 class="h3">Количество пассажиров</h3>
-            <ul class="list">
-                <li>Определите точное число пассажиров, чтобы выбрать самолет с достаточным количеством мест и
-                    уровнем комфорта для каждого.</li>
-            </ul>
-
-            <div class="about-row">
-                <div class="about-col">
-                    <h3 class="h3">Расстояние и маршрут</h3>
-                    <ul class="list">
-                        <li>Учитывайте дальность полета выбранной модели и возможность посадки в аэропорту
-                            назначения.
-                            Изучите особенности маршрута: для горной или морской местности могут потребоваться
-                            самолеты с
-                            определенными техническими характеристиками. В этом мы вам поможем!</li>
-                    </ul>
-                </div>
-                <div class="about-col">
-                    <h3 class="h3">Рассчитайте бюджет</h3>
-                    <ul class="list">
-                        <li>Определите бюджет и сравните стоимость аренды разных моделей.</li>
-                        <li>Учитывайте дополнительные расходы: посадка, обслуживание в аэропорту, питание на борту.
-                        </li>
-                        <li>Мы подскажем, когда можно снизить стоимость, а когда не стоит экономить.</li>
-                    </ul>
-                </div>
-                <div class="about-col">
-                    <h3 class="h3">Дополнительные требования</h3>
-                    <ul class="list">
-                        <li>Наличие спальни, кухни, душевой кабины, интернета, развлекательной системы. </li>
-                        <li>Необходимость перевозки багажа, спортивного инвентаря, домашних животных.</li>
-                    </ul>
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <div class="swiper services-swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Управление самолётом</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Управление самолётом</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/services/" class="services-swiper-item">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
+                            <span class="services-swiper-item-name">Консалтинг</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev services-swiper-button-prev"></div>
+            <div class="swiper-button-next services-swiper-button-next"></div>
         </div>
-        <h3 class="h3 center">Правильно выбранный самолет – это гарантия комфортного, безопасного и
-            незабываемого путешествия!</h3>
+
+        <!-- <a href="/services/" class="link">Посмотреть все</a> -->
     </div>
 </section>
 
-<section class="partners-sect">
+<section class="regular-sect">
     <div class="container">
-        <h2 class="h2 center">Наши партнеры</h2>
-        <div class="partners-grid">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/malindo-airlines-logo-3A2A347831-seeklogo.com 1.png" class="partners-logo"
-                loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/abc.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/globeair.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/jetlinx.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/planesense.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/volato.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/wheelsup.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/xojet.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/tyrolean.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/solairus.png" class="partners-logo" loading="lazy" alt="">
+        <div class="cta-row">
+            <div class="cta-left">
+                <h2 class="h1">Остались вопросы?</h2>
+                <p class="text">Оставьте свои контактыне данные, и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
+            </div>
+            <?php echo do_shortcode('[contact-form-7 id="74ced67" title="CTA 2"]'); ?>
         </div>
     </div>
 </section>
-
-<?php include_once 'components/looking-sect.php'; ?>
 
 <section class="reviews-sect">
     <div class="container">
@@ -913,102 +1034,100 @@
     </div>
 </section>
 
-<section class="services-slider-sect">
+<?php include_once 'components/looking-sect.php'; ?>
+
+<section class="partners-sect">
     <div class="container">
-        <h2 class="h2 center">Наши услуги</h2>
-
-        <!-- Slider main container -->
-        <div class="swiper-container">
-            <div class="swiper services-swiper">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Управление самолётом</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Управление самолётом</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev services-swiper-button-prev"></div>
-            <div class="swiper-button-next services-swiper-button-next"></div>
+        <h2 class="h2 center">Наши партнеры</h2>
+        <div class="partners-grid">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/malindo-airlines-logo-3A2A347831-seeklogo.com 1.png" class="partners-logo"
+                loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/abc.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/globeair.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/jetlinx.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/planesense.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/volato.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/wheelsup.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/xojet.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/tyrolean.png" class="partners-logo" loading="lazy" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/solairus.png" class="partners-logo" loading="lazy" alt="">
         </div>
-
-        <!-- <a href="/services/" class="link">Посмотреть все</a> -->
     </div>
 </section>
+
+<div class="article-wrap article-wrap-page">
+    <div class="article-body">
+        <p><strong>В этой статье мы отвечаем на самые частые вопросы о наших клиентов: Как арендовать частный самолет? Как выбрать воздушное судно при заказе самолета? Что входит в стоимость аренды частного самолета? Могу ли я изменить условия забронированного рейса? Каким образом обеспечивается безопасность перелета? Каков уровень подготовки пилотов? Что случится, если я опоздаю на свой рейс?</strong></p>
+        <div class="accordion-container">
+            <div class="accordion-block">
+                <div class="accordion-heading">
+                    <p class="accordion-heading-name">Как арендовать частный самолет?</p>
+                </div>
+                <div class="accordion-text">
+                    <p>Позвонить нам в компанию / оставить заявку любым удобным способом и сообщить желаемые даты перелета и количество пассажиров. Мы подготовим вам лучшее предложение, исходя из ваших пожеланий. Далее вы выбираете понравившийся самолет и после подписания договора – оплачиваете его. После вы предоставляете список пассажиров и пожелания по питанию, а мы организовываем для вас рейс. В назначенный день вы приезжаете в аэропорт, где вас будет ждать заказанный самолет и экипаж.</p>
+                </div>
+            </div>
+            <div class="accordion-block">
+                <div class="accordion-heading">
+                    <p class="accordion-heading-name">Как выбрать воздушное судно при заказе самолета?</p>
+                </div>
+                <div class="accordion-text">
+                    <p>При выборе судна существуют несколько основных критериев: количество пассажиров, дальность перелета, размер самолета, от которого зависит уровень комфорта и бюджет. Мы предоставим несколько самолетов на выбор и расскажем, чем они отличаются.</p>
+                </div>
+            </div>
+            <div class="accordion-block">
+                <div class="accordion-heading">
+                    <p class="accordion-heading-name">Что входит в стоимость аренды частного самолета?</p>
+                </div>
+                <div class="accordion-text">
+                    <p>В стоимость перелета на частном борту включены: воздушное судно с экипажем; VIP-терминалы (при их наличии); VIP-питание, аэропортовые сборы и дополнительные услуги по вашему желанию.</p>
+                </div>
+            </div>
+            <div class="accordion-block">
+                <div class="accordion-heading">
+                    <p class="accordion-heading-name">Могу ли я изменить условия забронированного рейса?</p>
+                </div>
+                <div class="accordion-text">
+                    <p>Вы, несомненно, можете изменить условия рейса, а мы приложим все усилия, чтобы все изменения были выполнены.</p>
+                </div>
+            </div>
+            <div class="accordion-block">
+                <div class="accordion-heading">
+                    <p class="accordion-heading-name">Каким образом обеспечивается безопасность перелета? Каков уровень подготовки пилотов?</p>
+                </div>
+                <div class="accordion-text">
+                    <p>Мы предлагаем самолеты только в летной годности, с действующими страховыми сертификатами и своевременно пройденным техобслуживанием. Все пилоты имеют действующие лицензии и регулярно проходят обучение.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <h3 class="h3">Что случится, если я опоздаю на свой рейс?</h3>
+            <div class="article-note article-note-contact">
+                <div class="article-note-person">
+                    <p class="article-note-name">При опоздании самолет и экипаж будет ждать вас, и вы сможете вылететь во столько, во сколько вам будет удобно. В случае сильной задержки мы согласуем с авиакомпанией перенос рейса на более позднее время или следующий день.</p>
+                </div>
+            </div> -->
+    </div>
+    <aside class="article-sidebar">
+        <div class="form-bg">
+            <?php echo do_shortcode('[contact-form-7 id="1f2bdf6" title="Вопрос в FAQ"]'); ?>
+        </div>
+    </aside>
+</div>
+
+<div class="seo-sect">
+    <div class="container">
+        <h2 class="h2 center">Как найти расписание пустых перелетов</h2>
+        <p>Партнерская программа является отличной возможностью для тех, кто хочет монетизировать свою страсть к роскошным путешествиям на частных самолетах. Эта программа открывает дверь в мир бизнес авиации: от частных самолетов и групповых чартеров до грузовых услуг, аренды самолетов и продажи реактивных джетов.</p>
+        <p>Эта программа создана для энтузиастов из различных отраслей сегмента люкс. Если вы работаете с людьми из премиального сегмента, то вы можете стать нашим амбассадором и получать кэшбэк с успешных рейсов ваших клиентов. </p>
+        <p>Мы обеспечиваем поддержку 24/7, предоставляя всю необходимую информацию. Вам предоставляется персональный советник по вопросам частной авиации, который будет отвечать на все интересующие вопросы. </p>
+        <p>Лидер.Джет сочетает конкурентные цены с качеством работы, благодаря нашему многолетнему опыту и доступу к эксклюзивным предложениям.</p>
+    </div>
+</div>
 
 <section class="regular-sect">
-    <div class="container">
-        <div class="quiz-wrap">
-            <div class="quiz-left">
-                <div class="quiz-left-img">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/quiz-img.jpg" alt="">
-                </div>
-            </div>
-            <div class="quiz-right">
-                <?php echo do_shortcode('[contact-form-7 id="a1ae65c" title="Квиз"]'); ?>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="regular-sect" style="display: none;">
-    <div class="container">
-        <div class="center">
-            <h2 class="h2">Узнать больше о комплектации самолета</h2>
-            <p class="text">Подскажем, подберем и проконсультруем вас по всем вопросам</p>
-        </div>
-        <?php echo do_shortcode('[contact-form-7 id="a460904" title="CTA 1"]'); ?>
-    </div>
-</section>
-
-<section class="regular-sect" style="display: none;">
-    <div class="container">
-        <div class="cta-row">
-            <div class="cta-left">
-                <h2 class="h1">Остались вопросы?</h2>
-                <p class="text">Оставьте свои контактыне данные, и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
-            </div>
-            <?php echo do_shortcode('[contact-form-7 id="74ced67" title="CTA 2"]'); ?>
-        </div>
-    </div>
-</section>
-
-<section class="regular-sect" style="display: none;">
     <div class="container">
         <div class="cta-row-big">
             <div class="cta-left">

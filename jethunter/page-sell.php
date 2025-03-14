@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Wanted */
+/* Template Name: Buy */
 ?>
 
 <?php get_header(); ?>
@@ -13,20 +13,16 @@
 
 <section class="intro-fleet-sect">
     <div class="container">
-        <h1 class="h1">Продажа и аренда частных самолётов по всему миру</h1>
-        <h2 class="h3">Новая эра бизнес-авиации</h2>
-        <div class="btn-container">
-            <a href="/our-fleet" class="btn btn-green-fill">Узнать больше</a>
-            <button type="button" class="btn js-modal" data-modal="#call">Связаться с нами</button>
-        </div>
-        <!-- <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-wanted-image.webp" class="intro-img" alt=""> -->
+        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
+        <h2 class="h3">Новое слово в бизнес-авиации</h2>
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">
     </div>
 </section>
 
-<section class="fleet-sect regular-sect">
+<section class="fleet-sect">
     <div class="container">
-        <!-- <div class="search-wrap">
-            <form action="" class="search-form">
+        <div class="search-wrap">
+            <form class="search-form">
                 <div class="search-form-options">
                     <div class="dropdown">
                         <button class="dropdown__button" type="button">Тип</button>
@@ -115,240 +111,136 @@
 
                 </div>
                 <div class="btn-container">
-                    <button type="button" class="btn btn-green-fill">Найти</button>
-                    <button type="button" class="btn">Сбросить</button>
+                    <button type="button" class="btn btn-green-fill btn-find">Найти</button>
+                    <button type="button" class="btn btn-reset">Сбросить</button>
                 </div>
             </form>
-        </div> -->
-        <?php
-        $planes_data = carbon_get_post_meta(get_the_ID(), 'planes_wanted');
-        // error_log(print_r($planes_data, true));
+        </div>
+        <div class="tabs tabs-line">
+            <div class="tabs-options tabs-options-cat">
+                <a href="#" class="btn btn-grey-fill">Турбовинтовой</a>
+                <a href="#" class="btn btn-grey-fill">Очень легкий</a>
+                <a href="#" class="btn btn-grey-fill">Легкий</a>
+                <a href="#" class="btn btn-grey-fill">Средний</a>
+                <a href="#" class="btn btn-grey-fill">Супер-средний</a>
+                <a href="#" class="btn btn-grey-fill">Большой</a>
+                <a href="#" class="btn btn-grey-fill">Ультра-большой</a>
+                <a href="#" class="btn btn-grey-fill">Дальнемагистральный</a>
+                <a href="#" class="btn btn-grey-fill">Бизнес-лайнер</a>
+            </div>
+        </div>
+        <div class="tabs tabs-line">
+            <div class="tabs-heading">Сортировать:</div>
+            <div class="tabs-options">
+                <a href="#" data-sort="name" class="btn btn-tab">Название</a>
+                <!-- <a href="#" data-sort="rent_price" class="btn btn-tab">Цена аренды</a>
+                <a href="#" data-sort="buy_price" class="btn btn-tab">Цена покупки</a> -->
+                <a href="#" data-sort="aircraft_seats" class="btn btn-tab">Количество мест</a>
+                <a href="#" data-sort="luggage_volume_m" class="btn btn-tab">Объем багажника</a>
+                <a href="#" data-sort="range_km" class="btn btn-tab">Дальность</a>
+                <a href="#" data-sort="cruise_speed_kmh" class="btn btn-tab">Скорость</a>
+                <a href="#" data-sort="cabin_height_m" class="btn btn-tab">Высота салона</a>
+            </div>
+        </div>
 
-        if ($planes_data) : ?>
-            <div class="looking-grid looking-grid-full">
-                <?php foreach ($planes_data as $plane) : 
-                    $image_url = !empty($plane['image']) ? wp_get_attachment_url($plane['image']) : get_stylesheet_directory_uri() . '/img/planes/1.png';
-                ?>
-                    <div class="looking-item">
-                        <img src="<?php echo esc_url($image_url); ?>" class="looking-img" loading="lazy" alt="<?php echo esc_attr($plane['title']); ?>">
-                        <h3 class="h3"><?php echo esc_html($plane['title']); ?></h3>
+        <div class="looking-grid looking-grid-full">
+            <?php
+            $args = [
+                'post_type'      => 'product',
+                'posts_per_page' => -1,
+                'meta_query'     => ['relation' => 'AND'],
+            ];
+
+            $aircrafts = new WP_Query($args);
+
+            if ($aircrafts->have_posts()) :
+                while ($aircrafts->have_posts()) : $aircrafts->the_post();
+                    $product_id   = get_the_ID();
+                    $manufacturer = carbon_get_post_meta($product_id, 'aircraft_make');
+                    $range_km        = carbon_get_post_meta($product_id, 'range_km');
+                    $aircraft_seats        = carbon_get_post_meta($product_id, 'aircraft_seats');
+                    $aircraft_hour_cost        = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
+                    $luggage_volume_m        = carbon_get_post_meta($product_id, 'luggage_volume_m');
+                    $cabin_height_m        = carbon_get_post_meta($product_id, 'cabin_height_m');
+                    $cruise_speed_kmh        = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+                    $aircraft_cat        = carbon_get_post_meta($product_id, 'aircraft_cat');
+
+                    $image = get_the_post_thumbnail_url($product_id, 'full') ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
+            ?>
+                    <div class="looking-item"
+                        data-manufacturer="<?php echo esc_attr($manufacturer); ?>"
+                        data-range_km="<?php echo esc_attr($range_km); ?>"
+                        data-aircraft_hour_cost="<?php echo esc_attr($aircraft_hour_cost); ?>"
+                        data-aircraft_seats="<?php echo esc_attr($aircraft_seats); ?>"
+                        data-luggage_volume_m="<?php echo esc_attr($luggage_volume_m); ?>"
+                        data-cabin_height_m="<?php echo esc_attr($cabin_height_m); ?>"
+                        data-cruise_speed_kmh="<?php echo esc_attr($cruise_speed_kmh); ?>"
+                        data-aircraft_cat="<?php echo esc_attr($aircraft_cat); ?>">
+                        <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="<?php the_title(); ?>">
+                        <h3 class="h3"><?php the_title(); ?></h3>
                         <div class="looking-desc">
                             <div class="looking-row">
-                                <p class="looking-row-title">Год выпуска</p>
-                                <p class="looking-row-desc"><?php echo esc_html($plane['produced_year'] ?: 'Не указан'); ?></p>
+                                <p class="looking-row-title">Скорость</p>
+                                <p class="looking-row-desc"><?php echo esc_html($cruise_speed_kmh); ?> км/ч</p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Налет часов</p>
-                                <p class="looking-row-desc"><?php echo esc_html($plane['hours_flown'] ?: 'Не указан'); ?></p>
+                                <p class="looking-row-title">Дальность</p>
+                                <p class="looking-row-desc"><?php echo esc_html($range_km); ?> км</p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Цена</p>
-                                <p class="looking-row-desc"><?php echo esc_html($plane['price'] ? ' ' . number_format($plane['price'], 0, ',', ' ') . '$' : 'По запросу'); ?></p>
+                                <p class="looking-row-title">Количество мест</p>
+                                <p class="looking-row-desc"><?php echo esc_html($aircraft_seats); ?></p>
+                            </div>
+                            <div class="looking-row">
+                                <p class="looking-row-title">Цена в час</p>
+                                <p class="looking-row-desc">$<?php echo esc_html($aircraft_hour_cost); ?></p>
                             </div>
                         </div>
-                        <button type="button" class="btn js-modal" data-modal="#call">Предложить</button>
+                        <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">Подробнее</a>
                     </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else : ?>
-            <p>Нет данных о самолетах.</p>
-        <?php endif; ?>
+            <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+                echo '<p>Ничего не найдено.</p>';
+            endif;
+            ?>
+        </div>
 
-        <!-- <div class="looking-grid looking-grid-full">
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-            <div class="looking-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                <h3 class="h3">Challenger 350</h3>
-                <div class="looking-desc">
-                    <div class="looking-row">
-                        <p class="looking-row-title">Год выпуска</p>
-                        <p class="looking-row-desc">2014</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Налет часов</p>
-                        <p class="looking-row-desc">2350</p>
-                    </div>
-                    <div class="looking-row">
-                        <p class="looking-row-title">Цена</p>
-                        <p class="looking-row-desc">до 15 000 000$</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Предложить</a>
-            </div>
-        </div> -->
-        <!-- <div class="show-more is-hidden">
+        <div class="show-more is-hidden">
             <button class="btn btn-more">Смотреть ещё</button>
-        </div> -->
+        </div>
+        <div class="pagination">
+            <nav class="pagination-left">
+                <a href="" class="btn btn-pagination pagination-back">‹ Назад</a>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">1</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">2</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">3</a>
+                    </li>
+                </ul>
+                <a href="" class="btn btn-pagination pagination-forward">Вперед ›</a>
+            </nav>
+            <div class="pagination-right">
+                <span class="pagination-text">Показывать:</span>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">10</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">20</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">30</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1092,8 +984,8 @@
                 <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
                 <h3 class="h3">Также мы есть в соц. сетях:</h3>
                 <div class="form-social">
-                    <a href="https://t.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
-                    <a href="https://wa.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
+                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
+                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
                 </div>
             </div>
             <div class="cta-right">
@@ -1104,150 +996,5 @@
         </div>
     </div>
 </section>
-
-<section class="features-sect">
-    <div class="container">
-        <h2 class="h2 center">Наши преимущества</h2>
-        <div class="features-grid">
-            <div class="features-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-1.svg" class="features-item-icon" loading="lazy" alt="">
-                <div class="features-item-text">
-                    <h3 class="h3">Опыт продаж</h3>
-                    <p>Мы — не новички в мире бизнес-авиации. За нашими плечами более 10 лет успешных сделок, что гарантирует вам профессионализм и глубокое понимание рынка.</p>
-                </div>
-            </div>
-            <div class="features-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-2.svg" class="features-item-icon" loading="lazy" alt="">
-                <div class="features-item-text">
-                    <h3 class="h3">Собственная юридическая служба</h3>
-                    <p>Забудьте о бюрократических препонах и юридических тонкостях. Наши опытные юристы обеспечат безупречную чистоту и прозрачность сделки на всех этапах.</p>
-                </div>
-            </div>
-            <div class="features-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-3.svg" class="features-item-icon" loading="lazy" alt="">
-                <div class="features-item-text">
-                    <h3 class="h3">Одобрение основными эскроу-агентами</h3>
-                    <p>Мы сотрудничаем с ведущими эскроу-агентами, что гарантирует безопасность и надежность ваших финансовых операций.</p>
-                </div>
-            </div>
-            <div class="features-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-4.svg" class="features-item-icon" loading="lazy" alt="">
-                <div class="features-item-text">
-                    <h3 class="h3">Удобные способы оплаты</h3>
-                    <p>Мы предлагаем гибкие условия и большой выбор способов оплаты, чтобы сделка была максимально комфортной для вас.</p>
-                </div>
-            </div>
-            <div class="features-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-5.svg" class="features-item-icon" loading="lazy" alt="">
-                <div class="features-item-text">
-                    <h3 class="h3">Эксклюзивный доступ к рынку</h3>
-                    <p>Мы обладаем обширной базой данных бизнес-джетов и налаженными контактами с владельцами самолетов, что даёт нам доступ к эксклюзивным предложениям и редким моделям самолетов.</p>
-                </div>
-            </div>
-            <div class="features-item">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/feature-6.svg" class="features-item-icon" loading="lazy" alt="">
-                <div class="features-item-text">
-                    <h3 class="h3">Партнерские отношения с мировыми лидерами</h3>
-                    <p>Мы сотрудничаем с ведущими производителями и сервисными центрами по всему миру, что позволяет нам предлагать лучшие условия и гарантировать высочайший уровень обслуживания.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="instruction-sect">
-    <div class="container">
-        <h2 class="h2 center">Мы делаем 8 шагов для Вашего безупречного полета</h2>
-        <div class="instruction-wrap">
-            <div class="instruction-block">
-                <h3 class="h3">Заявка на рейс</h3>
-                <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
-                    необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших
-                    предпочтений и координируем работу служб в аэропортах. С нами у вас не будет никаких
-                    сюрпризов!</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Подбор самолёта</h3>
-                <p>Мы подберем идеальный вариант, отвечающий вашим требованиям и бюджету. Мы предложим несколько
-                    самолетов и подробно расскажем о каждом, чтобы вы могли сделать правильный выбор!</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Договор на перелёт</h3>
-                <p>После согласования всех деталей мы подготовим договор аренды, регламентирующий все нюансы нашей
-                    работы, чтобы вы были уверены в юридической и финансовой безопасности.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Проверка обеспечения</h3>
-                <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
-                    необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших предпочтений
-                    и координируем работу служб в аэропортах. С нами у вас не будет никаких сюрпризов!</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Брифинг по рейсу</h3>
-                <p>Мы заранее проверяем все данные и готовим для вас бриф со всем деталями вашего идеального полета:
-                    маршрут, номер самолета, контакты экипажа и терминалов.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Проверка питания</h3>
-                <p>За сутки до рейса мы проверяем корректность заказа, чтобы не допустить никаких сюрпризов.  Редкие
-                    позиции, которые не может предоставить кейтеринг, мы докупаем самостоятельно. Мы сделаем все для
-                    вашего комфорта и удовольствия.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Проверка подлёта</h3>
-                <p>Отслеживаем местонахождение воздушного судна в режиме реального времени, контролируем
-                    своевременный вылет и информируем вас о времени прибытия самолета в аэропорт. Это нужно, чтобы
-                    не допустить опозданий и предупредить вас о них заранее.</p>
-            </div>
-            <div class="instruction-block">
-                <h3 class="h3">Вылет по расписанию</h3>
-                <p>Мы лично проконтролируем подготовку к вылету, встретим вас в терминале и сделаем все, чтобы ваше
-                    путешествие было максимально комфортным и безопасным. Вы и ваша семья будете довольны!</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="regular-sect">
-    <div class="container">
-        <div class="cta-row-big">
-            <div class="cta-left">
-                <h2 class="h1">Остались вопросы?</h2>
-                <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
-                <h3 class="h3">Также мы есть в соц. сетях:</h3>
-                <div class="form-social">
-                    <a href="https://t.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
-                    <a href="https://wa.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
-                </div>
-            </div>
-            <div class="cta-right">
-                <div class="form-bg">
-                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- <section class="app-sect">
-    <div class="container">
-        <div class="app-row">
-            <div class="app-col">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/app.svg" class="app-icon" width="144" height="144" alt="">
-                <h2 class="h2">Скачивайте мобильное приложение The Jet</h2>
-                <p>Мгновенно бронируйте свой идеальный полет с The Jet в приложении с круглосуточной поддержкой.
-                </p>
-
-                <div class="btn-container">
-                    <a href=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/google-play.png" class="app-store-icon" alt=""></a>
-                    <a href=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/app-store.png" class="app-store-icon" alt=""></a>
-                </div>
-            </div>
-            <div class="app-col">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/iphone-mockup.png" class="app-mockup" loading="lazy" alt="">
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <?php get_footer(); ?>
