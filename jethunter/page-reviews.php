@@ -74,7 +74,10 @@ $reviews = carbon_get_the_post_meta('reviews');
                     <div class="reviews-stars">
                         <?php
                         $fullStars = floor($rate);
-                        $halfStar = ($rate <= 4.7) ? 1 : 0;
+                        $halfStar = ($rate <= 4.7 && $rate > $fullStars) ? 1 : 0; // половинная звезда, если рейтинг <= 4.7
+                        if ($rate > 4.7) {
+                            $fullStars = 5; // гарантируем, что будет 5 полных звезд, если рейтинг больше 4.7
+                        }
                         for ($i = 0; $i < $fullStars; $i++) {
                             echo '<img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="Full star">';
                         }
@@ -164,22 +167,20 @@ $reviews = carbon_get_the_post_meta('reviews');
     </div>
 </section>
 
-<section class="about-sect">
-    <div class="container">
-        <h2 class="h2 center">Слово генерального директора</h2>
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-ceo.php'; ?>
 
-        <div class="about-text">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/about.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
+<?php include_once get_stylesheet_directory() . '/components/ru/features.php'; ?>
 
-            <p>В Jet Hunter мы верим, что время – самый ценный ресурс, небо – не предел, а пространство для новых возможностей. Мы помогаем людям, ценящим свое время и стремящимся к максимальной эффективности, преодолевать любые расстояния с непревзойденным комфортом и стилем.</p>
-            <p>Jet Hunter – это не просто компания по продаже бизнес-джетов. Это команда, страстно преданных своему делу и готовых превзойти ваши ожидания. Мы учитываем индивидуальные потребности каждого клиента, предлагая не только широкий выбор самолетов от ведущих мировых производителей, но и полный спектр услуг, связанных с владением и эксплуатацией бизнес-джета.</p>
-            <p>Мы ценим доверие, которое вы нам оказываете, и стремимся строить долгосрочные и взаимовыгодные отношения с каждым клиентом.</p>
-            <p>С Jet Hunter вы получаете не просто самолет, вы получаете ключ к безграничным возможностям!</p>
-            <br>
-            <p>С уважением,</p>
-            <p>Алексей Мордвинцев</p>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-2.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/blog.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
 
 <?php get_footer(); ?>

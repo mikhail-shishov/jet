@@ -58,7 +58,20 @@
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Read more</a>
-                                        <span class="article-info-time">3 min</span>
+                                        <?php
+                                        $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
+
+                                        $time_suffix = ($language === 'en') ? ' min' : ' мин';
+                                        $fallback = ($language === 'en') ? '3 min' : '3 мин';
+
+                                        $reading_time = (function_exists('carbon_get_post_meta') && get_the_ID())
+                                            ? carbon_get_post_meta(get_the_ID(), 'reading_time')
+                                            : '';
+
+                                        ?>
+                                        <span class="article-info-time">
+                                            <?php echo !empty($reading_time) ? esc_html($reading_time) . $time_suffix : $fallback; ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +93,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'article',
+                        'category_name' => 'article-en',
                     );
 
                     $query = new WP_Query($args);
@@ -121,7 +134,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'tour',
+                        'category_name' => 'tour-en',
                     );
 
                     $query = new WP_Query($args);
@@ -142,28 +155,6 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                    <a href="<?php the_permalink(); ?>" class="link">Read more</a>
-                                    <span class="article-info-time">3 min</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                    <?php }
-                        wp_reset_postdata();
-                    } else {
-                        echo 'No articles for now.';
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<?php get_footer(); ?>he_title(); ?></a>
-                                    <span class="article-date"><?php echo get_the_date(); ?></span>
-                                    <p><?php the_excerpt(); ?></p>
-                                    <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Read more</a>
                                         <span class="article-info-time">3 min</span>
                                     </div>
@@ -181,5 +172,17 @@
         </div>
     </div>
 </section>
+
+<?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/seo-ceo.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/cta-2.php'; ?>
 
 <?php get_footer(); ?>

@@ -428,4 +428,14 @@
     </div>
 </section>
 
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-1.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/blog.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
+
 <?php get_footer(); ?>

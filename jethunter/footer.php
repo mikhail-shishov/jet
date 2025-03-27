@@ -1,5 +1,7 @@
+</div>
+
 <?php if (pll_current_language() == 'ru') : ?>
-    <div class="cookie">
+<div class="cookie">
     <p class="cookie-text">Пользуясь сайтом, вы соглашаетесь на использование файлов Cookies</p>
     <button type="button" class="btn btn-green-fill btn-cookie-ok">Хорошо</button>
 </div>
@@ -114,7 +116,7 @@
     </div>
 </div>
 <?php else : ?>
-    <div class="cookie">
+<div class="cookie">
     <p class="cookie-text">You consent to using our Cookies by continuing browsing our website</p>
     <button type="button" class="btn btn-green-fill btn-cookie-ok">OK</button>
 </div>
@@ -234,10 +236,7 @@
 
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/scripts.js?2"></script>
-</body>
 
-</html>
-</div>
 <?php wp_footer(); ?>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

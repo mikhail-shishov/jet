@@ -4,6 +4,14 @@
 
 <?php get_header(); ?>
 
+<?php
+$page_id = get_the_ID();
+
+$stats = carbon_get_the_post_meta('stats');
+$team = carbon_get_the_post_meta('team');
+$licenses = carbon_get_the_post_meta('licenses');
+?>
+
 <article class="article">
     <div class="container">
         <!-- <a href="" class="breadcrumbs-back">← К новостям</a> -->
@@ -19,7 +27,7 @@
         </div>
         <div class="article-body">
             <div class="about-wrap">
-                <div class="about-item">
+                <!-- <div class="about-item">
                     <div class="about-item-number">11</div>
                     <div class="about-item-text">лет на рынке авиаперелетов</div>
                 </div>
@@ -38,12 +46,18 @@
                 <div class="about-item">
                     <div class="about-item-number">107</div>
                     <div class="about-item-text">более 107 постоянных клиентов по всему миру</div>
-                </div>
+                </div> -->
+                <?php foreach ($stats as $stat) : ?>
+                    <div class="about-item">
+                        <div class="about-item-number"><?php echo esc_html($stat['number']); ?></div>
+                        <div class="about-item-text"><?php echo esc_html($stat['description']); ?></div>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <?php the_content();?>
             <h2 class="h2">Наша команда</h2>
             <div class="about-team">
-                <div class="about-team-item">
+                <!-- <div class="about-team-item">
                     <div class="about-team-item-img">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/about/about-1.jpg" alt="">
                     </div>
@@ -74,63 +88,48 @@
                     <h3 class="h3">Андрей Рябов</h3>
                     <p>руководитель полетов в страны Азии и Ближнего Востока</p>
                     <a href="mailto:andrey.ryabov@jethunter.aero" class="link">andrey.ryabov@jethunter.aero</a>
-                </div>
+                </div> -->
+                <?php foreach ($team as $member) : ?>
+                    <div class="about-team-item">
+                        <div class="about-team-item-img">
+                            <img src="<?php echo esc_url($member['photo']); ?>" alt="">
+                        </div>
+                        <h3 class="h3"><?php echo esc_html($member['name']); ?></h3>
+                        <p><?php echo esc_html($member['position']); ?></p>
+                        <a href="mailto:<?php echo esc_html($member['email']); ?>" class="link"><?php echo esc_html($member['email']); ?></a>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <h2 class="h2">Лицензии</h2>
             <div class="about-team about-license">
-                <div class="about-team-item">
-                    <div class="about-team-item-img about-license-item-img">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/about/license.jpg" alt="">
+                <?php foreach ($licenses as $license) : ?>
+                    <div class="about-team-item">
+                        <div class="about-team-item-img about-license-item-img">
+                            <img src="<?php echo esc_url($license['license']); ?>" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="about-team-item">
-                    <div class="about-team-item-img about-license-item-img">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/about/license.jpg" alt="">
-                    </div>
-                </div>
-                <div class="about-team-item">
-                    <div class="about-team-item-img about-license-item-img">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/about/license.jpg" alt="">
-                    </div>
-                </div>
-                <div class="about-team-item">
-                    <div class="about-team-item-img about-license-item-img">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/about/license.jpg" alt="">
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 </article>
 
-<section class="regular-sect">
-    <div class="container">
-        <div class="cta-row-big">
-            <div class="cta-left">
-                <h2 class="h1">Остались вопросы?</h2>
-                <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
-                <h3 class="h3">Также мы есть в соц. сетях:</h3>
-                <div class="form-social">
-                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
-                    <a href="" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
-                </div>
-            </div>
-            <div class="cta-right">
-                <div class="form-bg">
-                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/services-slider.php'; ?>
 
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
 
-<?php get_footer(); ?> ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-ceo.php'; ?>
 
+<?php include_once get_stylesheet_directory() . '/components/ru/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-2.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/partners.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-empty-legs.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-3.php'; ?>
 
 <?php get_footer(); ?>

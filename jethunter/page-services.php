@@ -13,7 +13,7 @@
 
 <section class="services-sect">
     <div class="container">
-        <h1 class="h1 center"> Оперирование ВС</h1>
+        <h1 class="h1 center">Наши услуги</h1>
         <h3 class="h3 center">Мы поможем подобрать оператора для управления вашим ВС в соответствие с вашими требованиями. Наши услуги:</h3>
         <div class="service-list">
             <div class="service-item">
@@ -21,12 +21,9 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-1.jpg" loading="lazy" alt="">
                 </div>
                 <div class="service-item-text">
-                    <h2 class="h2">Консалтинг</h2>
-                    <p>- Мы поможем выбрать идеальный самолет, опираясь на ваши потребности, бюджет и планы на будущее.<br>
-                        - Оценка рыночной стоимости, мы предоставим объективную оценку стоимости самолета, чтобы вы могли принять взвешенное решение о покупке.<br>
-                        - Мы проконсультируем по всем юридическим и финансовым аспектам владения и эксплуатации самолета.
-                    </p>
-                    <a href="/about-services" class="link">Узнать больше</a>
+                    <h2 class="h2">Покупка самолетов</h2>
+                    <p>Мы предоставляем услуги покупке частных самолетов, которые включают в себя все аспекты, связанные с процессом приобретения и продажи воздушных судов, начиная от оценки и подготовки самолета к сделке и заканчивая дерегистрацией и экспортом ВС. Наша компания предоставляет полный спектр услуг в этой области, обеспечивая клиента экспертизой и поддержкой на каждом этапе.</p>
+                    <a href="/about-services-buy/" class="link">Узнать больше</a>
                     <!-- <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button> -->
                 </div>
             </div>
@@ -35,11 +32,9 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-2.jpg" loading="lazy" alt="">
                 </div>
                 <div class="service-item-text">
-                    <h2 class="h2">Управление самолетом</h2>
-                    <p>- Мы возьмем на себя поиск клиентов на аренду вашего самолета, организацию рейсов и контроль финансов, чтобы ваш актив приносил максимальный доход.<br>
-                        - Мы обеспечим своевременное и качественное техническое обслуживание вашего самолета в лучших сервисных центрах мира.
-                    </p>
-                    <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button>
+                    <h2 class="h2">Продажа самолетов</h2>
+                    <p>Мы предоставляем услуги по продаже частных самолетов, которые включают в себя все аспекты, связанные с процессом приобретения и продажи воздушных судов, начиная от оценки и подготовки самолета к сделке и заканчивая дерегистрацией и экспортом ВС. Наша компания предоставляет полный спектр услуг в этой области, обеспечивая клиента экспертизой и поддержкой на каждом этапе.</p>
+                    <a href="/about-services-sell/" class="link">Узнать больше</a>
                 </div>
             </div>
             <div class="service-item">
@@ -47,11 +42,19 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-3.jpg" loading="lazy" alt="">
                 </div>
                 <div class="service-item-text">
-                    <h2 class="h2">Оперирование ВС</h2>
-                    <p>- Возьмем на себя все организационные вопросы, связанные с планированием и выполнением рейсов: от получения разрешений до заказа кейтеринга.<br>
-                        - Мы подберем для вас опытный и квалифицированный, который обеспечит безопасность и комфорт ваших полетов.
-                    </p>
-                    <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button>
+                    <h2 class="h2">Аренда самолетов</h2>
+                    <p>Услуга аренды самолетов представляет собой возможность временного использования воздушного судна без необходимости его покупки. Это решение подходит как для частных клиентов, так и для бизнесов, которые нуждаются в гибкости и экономии ресурсов. Наша компания предлагает широкий спектр услуг в области аренды самолетов, как краткосрочную, так и долгосрочную. </p>
+                    <a href="/about-services-rent/" class="link">Узнать больше</a>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-3.jpg" loading="lazy" alt="">
+                </div>
+                <div class="service-item-text">
+                    <h2 class="h2">Управление самолетом </h2>
+                    <p>Менеджмент воздушных судов - комплексная программа управления воздушным судном заказчика, оптимизирующая расходы и решающая все вопросы, связанные с его эксплуатацией.</p>
+                    <a href="/about-services-management/" class="link">Узнать больше</a>
                 </div>
             </div>
             <div class="service-item">
@@ -59,11 +62,9 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-4.jpg" loading="lazy" alt="">
                 </div>
                 <div class="service-item-text">
-                    <h2 class="h2">Финансирование</h2>
-                    <p>- Мы поможем приобрести самолет в лизинг на выгодных условиях.<br>
-                        - Предоставим информацию о банках и кредитных организациях, предлагающих кредиты на покупку бизнес-джетов.
-                    </p>
-                    <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button>
+                    <h2 class="h2">Авиационный консалтинг </h2>
+                    <p>Услуга консалтинга в области воздушных судов включает в себя комплексное сопровождение клиентов в оптимизации расходов на эксплуатацию самолетов, управление коммерческой загрузкой, подбор экипажей, восстановление летной годности, а также предоставление рекомендаций по выбору операторов и вопросам покупки или продажи воздушных судов. </p>
+                    <a href="/about-services-consulting/" class="link">Узнать больше</a>
                 </div>
             </div>
             <div class="service-item">
@@ -71,11 +72,29 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-5.jpg" loading="lazy" alt="">
                 </div>
                 <div class="service-item-text">
-                    <h2 class="h2">Страхование</h2>
-                    <p>- Подберем оптимальный вариант страхования вашего самолета у надежной страховой компании.<br>
-                        - Мы окажем помощь в оформлении всех необходимых документов и урегулировании страховых случаев.
-                    </p>
-                    <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button>
+                    <h2 class="h2">Оперирование воздушных судов</h2>
+                    <p>Оперирование воздушных судов (ВС) — это комплекс мероприятий, связанных с управлением, эксплуатацией и техническим обслуживанием самолетов и других летательных аппаратов. Эта услуга включает в себя все аспекты, необходимые для безопасного и эффективного функционирования воздушного транспорта, такие как: управление полетами, техническое обслуживание, обучение экипажа, предоставления отчетности и полное управление воздушными судами. </p>
+                    <a href="/about-services-operating/" class="link">Узнать больше</a>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-6.jpg" loading="lazy" alt="">
+                </div>
+                <div class="service-item-text">
+                    <h2 class="h2">Страхование самолета </h2>
+                    <p>Страхование самолетов — это специализированный вид страхования, который защищает владельцев и операторов воздушных судов от финансовых рисков, связанных с их эксплуатацией. Данный вид страхования включает в себя защиту от убытков, вызванных авиационными инцидентами, повреждениями, кражей и другими непредвиденными ситуациями, а также покрытие ответственности перед третьими лицами, включая пассажиров и грузы.</p>
+                    <a href="/about-services-insurance/" class="link">Узнать больше</a>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-item-img">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/services-6.jpg" loading="lazy" alt="">
+                </div>
+                <div class="service-item-text">
+                    <h2 class="h2">Финансирование приобретения самолета</h2>
+                    <p>Финансирование приобретения самолета — это услуга, позволяющая частным лицам и компаниям получать необходимые средства для покупки воздушных судов. Это может включать различные финансовые решения, такие как кредиты, лизинг и другие формы финансирования, которые помогают сделать покупку более доступной и удобной. </p>
+                    <a href="/about-services-finance/" class="link">Узнать больше</a>
                 </div>
             </div>
             <div class="service-item">
@@ -84,9 +103,8 @@
                 </div>
                 <div class="service-item-text">
                     <h2 class="h2">Дизайн самолетов</h2>
-                    <p>-Создадим уникальный и комфортный интерьер самолета, отражающий ваш стиль и предпочтения.
-                    </p>
-                    <button type="button" class="link js-modal" data-modal="#call">Узнать больше</button>
+                    <p>Услуга дизайна самолетов представляет собой комплексный процесс, включающий разработку уникального внешнего и внутреннего оформления воздушных судов, с учетом современных тенденций и индивидуальных предпочтений клиентов. Дизайн самолета играет ключевую роль не только в его эстетическом восприятии, но и в функциональности, комфорте и безопасности пассажиров. </p>
+                    <a href="/about-services-design/" class="link">Узнать больше</a>
                 </div>
             </div>
         </div>
@@ -95,6 +113,16 @@
         </div> -->
     </div>
 </section>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-ceo.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-1.php'; ?>
 
 <section class="step-sect">
     <div class="container">
@@ -134,196 +162,12 @@
     </div>
 </section>
 
-<section class="reviews-sect">
-    <div class="container">
-        <h2 class="h2 center">Отзывы клиентов о нас</h2>
-        <div class="reviews-grid">
-            <div class="reviews-item">
-                <span class="reviews-rate">4.8</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Jet Hunter внимательно прислушивались к нашим потребностям и очень быстро реагировали, предлагая индивидуальные экономически-эффективные решения. Вам будет трудно найти другую организацию, которая может сравниться с их гибкостью и универсальностью. Я бы порекомендовал любую из услуг Jet Hunter любому владельцу бизнеса или оператору.</p>
-                <p>Евгений С.</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.9</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Продажа самолета похожа на прокладывание пути по минному полю потенциальных ошибок: но Jet Hunter устранила все неопределенности, которые у нас были, и дала нам уверенность в правильности своего курса действий, тщательно объясняя и обосновывая свои доводы на каждом этапе пути. Мы не могли быть более довольны руководством, поддержкой и личным вниманием, которые мы получили от всей команды Jet Hunter!</p>
-                <p>Агентство Х.</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.5</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Мы обратились в Jet Hunter по рекомендации партнеров и не пожалели!  Высокий профессионализм, оперативность и широкий выбор самолетов — вот что отличает эту компанию.  Мы уверены в нашем выборе и рекомендуем Jet Hunter всем, кто ценит свой комфорт.</p>
-                <p>Корпорация А</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.7</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Сделка по покупке самолета — это всегда сложный и многоэтапный процесс. Но с Jet Hunter все прошло гладко и прозрачно.  Отдельное спасибо юридической службе за оперативное решение всех вопросов!</p>
-                <p>Виталий</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.9</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Как профессионал, я могу оценить техническое состояние самолетов, предлагаемых Jet Hunter.  Все машины находятся в отличном состоянии и соответствуют высочайшим стандартам безопасности.</p>
-                <p>Леонид Х.</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.8</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Творчество моего руководителя требует вдохновения, и он нашел его в путешествиях.  Благодаря Jet Hunter у него появилась возможность проводить выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
-                <p>Менеджер Майкла О</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="partners-sect">
-    <div class="container">
-        <h2 class="h2 center">Наши партнеры</h2>
-        <div class="partners-grid">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/malindo-airlines-logo-3A2A347831-seeklogo.com 1.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/abc.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/globeair.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/jetlinx.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/planesense.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/volato.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/wheelsup.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/xojet.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/tyrolean.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/solairus.png" class="partners-logo" loading="lazy" alt="">
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/reviews.php'; ?>
 
-<section class="regular-sect">
-    <div class="container">
-        <div class="cta-row-big">
-            <div class="cta-left">
-                <h2 class="h1">Остались вопросы?</h2>
-                <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
-                <h3 class="h3">Также мы есть в соц. сетях:</h3>
-                <div class="form-social">
-                    <a href="https://t.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
-                    <a href="https://wa.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
-                </div>
-            </div>
-            <div class="cta-right">
-                <div class="form-bg">
-                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/partners.php'; ?>
 
-<!-- <section class="app-sect">
-    <div class="container">
-        <div class="app-row">
-            <div class="app-col">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/app.svg" class="app-icon" width="144" height="144" alt="">
-                <h2 class="h2">Скачивайте мобильное приложение Jet Hunter</h2>
-                <p>Мгновенно бронируйте свой идеальный полет с Jet Hunter в приложении с круглосуточной поддержкой.
-                </p>
-
-                <div class="btn-container">
-                    <a href=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/google-play.png" class="app-store-icon" alt=""></a>
-                    <a href=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/app-store.png" class="app-store-icon" alt=""></a>
-                </div>
-            </div>
-            <div class="app-col">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/iphone-mockup.png" class="app-mockup" loading="lazy" alt="">
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<?php get_footer(); ?>�ть выставки по всему миру, не тратя время на аренду джетов. Не тратили лишнего времени на бухгалтерию, минимальное присутствие, рекомендуем.</p>
-                <p>Менеджер Майкла О</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="partners-sect">
-    <div class="container">
-        <h2 class="h2 center">Наши партнеры</h2>
-        <div class="partners-grid">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/malindo-airlines-logo-3A2A347831-seeklogo.com 1.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/abc.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/globeair.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/jetlinx.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/planesense.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/volato.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/wheelsup.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/xojet.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/tyrolean.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/solairus.png" class="partners-logo" loading="lazy" alt="">
-        </div>
-    </div>
-</section>
-
-<section class="regular-sect">
-    <div class="container">
-        <div class="cta-row-big">
-            <div class="cta-left">
-                <h2 class="h1">Остались вопросы?</h2>
-                <p class="text">Оставьте свои контактные данные и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
-                <h3 class="h3">Также мы есть в соц. сетях:</h3>
-                <div class="form-social">
-                    <a href="https://t.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/tg-gradient.svg" loading="lazy" alt="Telegram"></a>
-                    <a href="https://wa.me/+77776777527" rel="nofollow" class="btn-icon"><img src="https://jethunter.aero/wp-content/themes/jethunter/img/icons/wa-gradient.svg" loading="lazy" alt="WhatsApp"></a>
-                </div>
-            </div>
-            <div class="cta-right">
-                <div class="form-bg">
-                    <?php echo do_shortcode('[contact-form-7 id="2fe469b" title="CTA 3"]'); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-3.php'; ?>
 <!-- <section class="app-sect">
     <div class="container">
         <div class="app-row">

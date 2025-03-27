@@ -15,7 +15,7 @@
     <div class="container">
         <div class="review-overall-row">
             <div class="review-overall-left">
-                <h1 class="h2">Отзывы клиентов о нашей работе</h1>
+                <h1 class="h2">Testimonials</h1>
                 <p>Our customers highly appreciate the quality of our service. 
                 We take care of every requirement, striving to organize your flight flawlessly. When you contact JetHunter you will be convinced of the exceptional professionalism of our employees. Your satisfaction is our main goal.</p>
             </div>
@@ -163,22 +163,20 @@
     </div>
 </section>
 
-<section class="about-sect">
-    <div class="container">
-        <h2 class="h2 center">Word of CEO</h2>
+<?php include_once get_stylesheet_directory() . '/components/en/seo-ceo.php'; ?>
 
-        <div class="about-text">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/about.svg" width="460" height="460" class="about-img" loading="lazy" alt="">
+<?php include_once get_stylesheet_directory() . '/components/en/features.php'; ?>
 
-            <p>At JetHunter we believe that time is the most valuable resource, the sky is not a limit, but space for new possibilities. We help people who value their time and strive for maximum efficiency to travel any distance with unmatched comfort and style. </p>
-            <p>work and willing to exceed your expectations.  We take into account the individual needs of each client, offering not only a wide selection of aircraft from the world’s leading manufacturers, but also a full range of services related to the ownership and operation of business jet. </p>
-            <p>We value the trust you give us and strive to build long-term and mutually beneficial relationships with each client. </p>
-            <p>With JetHunter you get not just a plane, you get the key to unlimited possibilities! </p>
-            <br>
-            <p>With very best regards,</p>
-            <p>Aleksei Mordvintsev</p>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/en/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/cta-2.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/blog.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
 
 <?php get_footer(); ?>

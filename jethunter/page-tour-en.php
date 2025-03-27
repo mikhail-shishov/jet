@@ -25,42 +25,42 @@
         <div class="tour-goal-wrap">
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-1.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Vacation</h3>
+                <h3 class="h3"><a href="/en/category/rest-en/">Vacation</a></h3>
                 <ul class="list">
-                    <li>UAE</li>
-                    <li>Turkey</li>
-                    <li>Maldives</li>
-                    <li>Thailand</li>
+                    <li><a href="/en/category/rest-en/uae-en/">UAE</a></li>
+                    <li><a href="/en/category/rest-en/turkey-en/">Turkey</a></li>
+                    <li><a href="/en/category/rest-en/maldives-en/">Maldives</a></li>
+                    <li><a href="/en/category/rest-en/thailand-en/">Thailand</a></li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-2.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Sport</h3>
+                <h3 class="h3"><a href="/en/category/sport-en/">Sport</a></h3>
                 <ul class="list">
-                    <li>Golf</li>
-                    <li>Formula 1</li>
-                    <li>Tennis</li>
-                    <li>Football</li>
+                    <li><a href="/en/category/sport-en/golf-en/">Golf</a></li>
+                    <li><a href="/en/category/sport-en/formula-1-en/">Formula 1</a></li>
+                    <li><a href="/en/category/sport-en/tennis-en/">Tennis</a></li>
+                    <li><a href="/en/category/sport-en/soccer-en/">Football</a></li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-3.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Shopping</h3>
+                <h3 class="h3"><a href="/en/category/shopping-en/">Shopping</a></h3>
                 <ul class="list">
-                    <li>Milan</li>
-                    <li>Paris</li>
-                    <li>Dubai</li>
-                    <li>Hong Kong</li>
+                    <li><a href="/en/category/shopping-en/milan-en/">Milan</a></li>
+                    <li><a href="/en/category/shopping-en/paris-en/">Paris</a></li>
+                    <li><a href="/en/category/shopping-en/dubai-en/">Dubai</a></li>
+                    <li><a href="/en/category/shopping-en/hongkong-en/">Hong Kong</a></li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-4.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Sightseeing</h3>
+                <h3 class="h3"><a href="/en/category/shopping-en/sights-en/">Sightseeing</a></h3>
                 <ul class="list">
-                    <li>Pisa</li>
-                    <li>Paris</li>
-                    <li>Beijing</li>
-                    <li>New York</li>
+                    <li><a href="/en/category/shopping-en/pisa-en/">Pisa</a></li>
+                    <li><a href="/en/category/shopping-en/paris-en/">Paris</a></li>
+                    <li><a href="/en/category/shopping-en/beijing-en/">Beijing</a></li>
+                    <li><a href="/en/category/shopping-en/ny-en/">New York</a></li>
                 </ul>
             </div>
         </div>
@@ -93,7 +93,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'tour',
+                        'category_name' => 'tour-en',
                     );
 
                     $query = new WP_Query($args);
@@ -115,7 +115,20 @@
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Read more</a>
-                                        <span class="article-info-time">3 min</span>
+                                        <?php
+                                        $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
+
+                                        $time_suffix = ($language === 'en') ? ' min' : ' мин';
+                                        $fallback = ($language === 'en') ? '3 min' : '3 мин';
+
+                                        $reading_time = (function_exists('carbon_get_post_meta') && get_the_ID())
+                                            ? carbon_get_post_meta(get_the_ID(), 'reading_time')
+                                            : '';
+
+                                        ?>
+                                        <span class="article-info-time">
+                                            <?php echo !empty($reading_time) ? esc_html($reading_time) . $time_suffix : $fallback; ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +150,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'hot',
+                        'category_name' => 'hot-en',
                     );
 
                     $query = new WP_Query($args);
@@ -181,7 +194,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'children',
+                        'category_name' => 'children-en',
                     );
 
                     $query = new WP_Query($args);
@@ -225,7 +238,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'friends',
+                        'category_name' => 'friends-en',
                     );
 
                     $query = new WP_Query($args);
@@ -267,46 +280,18 @@
     </div>
 </section>
 
-<?php get_footer(); ?>e' => 'friends-en',
-                    );
+<?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
 
-                    $query = new WP_Query($args);
+<?php include_once get_stylesheet_directory() . '/components/en/about-rent.php'; ?>
 
-                    if ($query->have_posts()) {
-                        while ($query->have_posts()) {
-                            $query->the_post(); ?>
+<?php include_once get_stylesheet_directory() . '/components/en/step-3.php'; ?>
 
-                            <div class="tour-list-item">
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <a href="<?php the_permalink(); ?>" class="tour-list-img" title="<?php the_title(); ?>">
-                                        <?php the_post_thumbnail(); ?>
-                                    </a>
-                                <?php endif; ?>
+<?php include_once get_stylesheet_directory() . '/components/en/instruction-8.php'; ?>
 
-                                <div class="tour-list-text">
-                                    <h2 class="h2"><?php the_title(); ?></h2>
-                                    <span class="article-date"><?php echo get_the_date(); ?></span>
-                                    <p><?php the_excerpt(); ?></p>
-                                    <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
-                                        <span class="article-info-time">3 min</span>
-                                    </div>
-                                </div>
-                            </div>
+<?php include_once get_stylesheet_directory() . '/components/en/cta-2.php'; ?>
 
-                    <?php }
-                        wp_reset_postdata();
-                    } else {
-                        echo 'No articles for now.';
-                    }
-                    ?>
-                </div>
-                <!-- <div class="center">
-                    <a href="" class="btn">Показать больше</a>
-                </div> -->
-            </div>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/seo-empty-legs.php'; ?>
 
 <?php get_footer(); ?>

@@ -13,8 +13,8 @@
 
 <section class="intro-fleet-sect">
     <div class="container">
-        <h1 class="h1">Самолеты для прирожденных лидеров</h1>
-        <h2 class="h3">Новое слово в бизнес-авиации</h2>
+        <h1 class="h1">Aircraft for sale and rent all over the World</h1>
+        <h2 class="h3">New era of business aviation</h2>
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/section-image.png" class="intro-img" alt="">
     </div>
 </section>

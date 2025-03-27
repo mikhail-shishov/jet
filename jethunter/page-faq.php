@@ -17,7 +17,7 @@
         <div class="article-hero">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/faq-hero.jpg" class="article-hero-img" alt="">
         </div>
-        <div class="article-wrap article-wrap-page">
+        <!-- <div class="article-wrap article-wrap-page">
             <div class="article-body">
                 <p><strong>В этой статье мы отвечаем на самые частые вопросы о наших клиентов: Как арендовать частный самолет? Как выбрать воздушное судно при заказе самолета? Что входит в стоимость аренды частного самолета? Могу ли я изменить условия забронированного рейса? Каким образом обеспечивается безопасность перелета? Каков уровень подготовки пилотов? Что случится, если я опоздаю на свой рейс?</strong></p>
                 <div class="accordion-container">
@@ -62,21 +62,28 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <h3 class="h3">Что случится, если я опоздаю на свой рейс?</h3>
-            <div class="article-note article-note-contact">
-                <div class="article-note-person">
-                    <p class="article-note-name">При опоздании самолет и экипаж будет ждать вас, и вы сможете вылететь во столько, во сколько вам будет удобно. В случае сильной задержки мы согласуем с авиакомпанией перенос рейса на более позднее время или следующий день.</p>
-                </div>
-            </div> -->
             </div>
             <aside class="article-sidebar">
                 <div class="form-bg">
                     <?php echo do_shortcode('[contact-form-7 id="1f2bdf6" title="Вопрос в FAQ"]'); ?>
                 </div>
             </aside>
-        </div>
+        </div> -->
+    
+        <?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
     </div>
 </article>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-ceo.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-2.php'; ?>
 
 <?php get_footer(); ?>

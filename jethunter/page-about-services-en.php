@@ -162,105 +162,27 @@ $features_complex_2 = carbon_get_the_post_meta('features_complex_2');
     </div>
 </div>
 
-<section class="reviews-sect">
-    <div class="container">
-        <h2 class="h2 center">Testimonials</h2>
-        <div class="reviews-grid">
-            <div class="reviews-item">
-                <span class="reviews-rate">4.9</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>I flew on a private jet with JetHunter for the first time and it was such a delight. Their service is at the highest level: I was met with flowers; everything was delivered on board as requested. The flight was perfect - fast, comfortable, without the slightest delays, there was no reason to worry. </p>
-                <p>Helen Ponomes</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.8</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>Thanks to JetHunter, I managed to get to an important meeting in another city, although the flight could have been delayed due to bad weather. They promptly changed the route; everything was clear and professional. I was impressed with the service and attention to detail. I recommend them to anyone who values their time!</p>
-                <p>Andrew Х.</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.9</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>We organized a family flight to Europe. Everything went well! The kids loved the two sofas in the airplane and a lot of entertainment for them. The flight attendant was wonderful. Thanks, JetHunter for an unforgettable experience.</p>
-                <p>Levin’s Family</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">5.0</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>On behalf of a large holding company, I would like to thank JetHunter for organizing the flight. They took into account all our specific requirements for closing documents, which other brokers did not want to meet. The airplane was delivered on time, all requirements were considered. The management of my company was pleased.</p>
-                <p>Evan P.</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.5</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>I often fly for business, and for me comfort and privacy come first. JetHunter managers organized everything clearly, instructed the flight attendant according to my requirements. I would like to emphasize the convenience of payment, a lot of options. I will fly again for sure.</p>
-                <p>George Richmond</p>
-            </div>
-            <div class="reviews-item">
-                <span class="reviews-rate">4.7</span>
-                <div class="reviews-stars">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-full.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/star-half.svg" loading="lazy" class="reviews-stars-icon" alt="">
-                </div>
-                <p>I frequently book private jets for my executive office and have worked with many charter companies. I’ve never seen such attention to detail. And when the airport moved the departure time a few hours later, the manager was able to get a convenient slot using his connections. The company are true professionals, we will be contacting them again.</p>
-                <p>Kate ls.</p>
-            </div>
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/en/cta-1.php'; ?>
 
-<section class="partners-sect">
-    <div class="container">
-        <h2 class="h2 center">Our partners</h2>
-        <div class="partners-grid">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/malindo-airlines-logo-3A2A347831-seeklogo.com 1.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/abc.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/globeair.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/jetlinx.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/netjets.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/planesense.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/volato.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/wheelsup.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/xojet.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/tyrolean.png" class="partners-logo" loading="lazy" alt="">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/solairus.png" class="partners-logo" loading="lazy" alt="">
-        </div>
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/en/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/seo-ceo.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/cta-2.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/reviews.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/partners.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/seo-empty-legs.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/cta-3.php'; ?>
 
 <!-- <section class="app-sect">
     <div class="container">

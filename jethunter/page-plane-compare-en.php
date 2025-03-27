@@ -425,4 +425,14 @@
     </div>
 </section>
 
+<?php include_once get_stylesheet_directory() . '/components/en/cta-1.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/blog.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
+
 <?php get_footer(); ?>

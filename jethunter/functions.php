@@ -5,7 +5,54 @@
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
+// параметры для продуктов
 add_action('carbon_fields_register_fields', function () {
+    Container::make('theme_options', 'Общие настройки')
+        ->add_fields(array(
+            Field::make('complex', 'faq_items', 'Частые вопросы')
+                ->add_fields([
+                    Field::make('text', 'question', 'Вопрос')->set_required(true),
+                    Field::make('textarea', 'answer', 'Ответ')->set_required(true),
+                ]),
+            Field::make('complex', 'faq_items_en', 'EN Частые вопросы')
+                ->add_fields([
+                    Field::make('text', 'question', 'Question')->set_required(true),
+                    Field::make('textarea', 'answer', 'Answer')->set_required(true),
+                ]),
+            Field::make('complex', 'partners_logos', 'Логотипы партнеров')
+                ->add_fields([
+                    Field::make('image', 'logo', 'Логотип')->set_value_type('url')->set_required(true),
+                ]),
+            Field::make('complex', 'features_items', 'Наши преимущества')
+                ->add_fields([
+                    Field::make('image', 'icon', 'Иконка')->set_value_type('url')->set_required(true),
+                    Field::make('text', 'title', 'Заголовок')->set_required(true),
+                    Field::make('textarea', 'description', 'Описание')->set_required(true),
+                ]),
+            Field::make('complex', 'features_items_en', 'EN Наши преимущества')
+                ->add_fields([
+                    Field::make('image', 'icon', 'Icon')->set_value_type('url')->set_required(true),
+                    Field::make('text', 'title', 'Title')->set_required(true),
+                    Field::make('textarea', 'description', 'Description')->set_required(true),
+                ]),
+            Field::make('rich_text', 'about_seo_section_text', 'Слово генерального директора - короткий текст'),
+            Field::make('rich_text', 'about_seo_section_text_en', 'EN Word of CEO - короткий текст'),
+            Field::make('rich_text', 'empty_legs_seo_section_text', 'О пустых перелетах - короткий текст'),
+            Field::make('rich_text', 'empty_legs_seo_section_text_en', 'EN About empty legs - короткий текст'),
+            Field::make('complex', 'reviews_short', 'Короткий блок с отзывами')
+                ->add_fields([
+                    Field::make('text', 'rating', 'Оценка (от 1.0 до 5.0)')->set_required(true),
+                    Field::make('textarea', 'description', 'Текст отзыва')->set_required(false),
+                    Field::make('text', 'name', 'Имя')->set_required(false),
+                ]),
+            Field::make('complex', 'reviews_short_en', 'EN Короткий блок с отзывами')
+            ->add_fields([
+                Field::make('text', 'rating', 'Rating (from 1.0 to 5.0)')->set_required(true),
+                Field::make('textarea', 'description', 'Text')->set_required(false),
+                Field::make('text', 'name', 'Name')->set_required(false),
+            ]),
+        ));
+
     Container::make('post_meta', 'Параметры самолёта')
         ->where('post_type', '=', 'product')
         ->add_fields([
@@ -19,9 +66,12 @@ add_action('carbon_fields_register_fields', function () {
                     'encyclopedia' => 'Энциклопедия',
                     'buy' => 'Покупка',
                     'rent' => 'Аренда',
+                    'sell' => 'Продажа',
                 ])
                 ->set_required(true),
 
+            Field::make('checkbox', 'aircraft_hot_offer', 'Горячее предложение')
+                ->set_option_value('yes'),
 
             Field::make('text', 'aircraft_model', 'Модель'),
 
@@ -32,6 +82,7 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('text', 'aircraft_cat_en', 'EN Категория'),
 
             Field::make('text', 'aircraft_make', 'Производитель'),
+            Field::make('image', 'aircraft_logo', 'Логотип'),
 
             Field::make('text', 'id_number_buy', 'Идентификационный номер, покупка')
                 ->set_conditional_logic([
@@ -243,7 +294,7 @@ add_action('carbon_fields_register_fields', function () {
         ]);
 });
 
-
+// время чтения для любых постов
 add_action('carbon_fields_register_fields', function () {
     Container::make('post_meta', 'Время чтения')
         ->where('post_type', '=', 'post')
@@ -506,12 +557,6 @@ add_action('carbon_fields_register_fields', function () {
             ]),
         ]);
 
-    // Container::make('post_meta', 'Список самолетов')
-    //     ->where('post_template', '=', 'page-wanted-en.php')
-    //     ->add_fields([
-    //         Field::make('complex', 'planes_wanted', 'Список самолетов')->add_fields($planes_fields_wanted),
-    //     ]);
-
     Container::make('post_meta', 'Отзывы')
         ->where('post_template', '=', 'page-reviews.php')
         ->add_fields([
@@ -588,54 +633,54 @@ add_action('carbon_fields_register_fields', function () {
                     Field::make('textarea', 'features_text', 'Описание'),
                 ])
         ]);
+
+    Container::make('post_meta', 'О нас')
+        ->where('post_template', '=', 'page-about-us.php')
+        ->add_fields([
+            Field::make('complex', 'stats', 'Статистика')
+                ->add_fields([
+                    Field::make('text', 'number', 'Число')->set_required(true),
+                    Field::make('text', 'description', 'Описание')->set_required(true),
+                ]),
+            Field::make('complex', 'team', 'Команда')
+                ->add_fields([
+                    Field::make('image', 'photo', 'Фото')->set_value_type('url')->set_required(false),
+                    Field::make('text', 'name', 'Имя')->set_required(true),
+                    Field::make('text', 'position', 'Должность')->set_required(false),
+                    Field::make('text', 'email', 'Email')->set_required(false),
+                ]),
+            Field::make('complex', 'licenses', 'Лицензии')
+                ->add_fields([
+                    Field::make('image', 'license', 'Лицензия')->set_value_type('url')->set_required(true),
+                ])
+        ]);
+
+    Container::make('post_meta', 'About is')
+        ->where('post_template', '=', 'page-about-us-en.php')
+        ->add_fields([
+            Field::make('complex', 'stats', 'Статистика')
+                ->add_fields([
+                    Field::make('text', 'number', 'Число')->set_required(true),
+                    Field::make('text', 'description', 'Описание')->set_required(true),
+                ]),
+            Field::make('complex', 'team', 'Команда')
+                ->add_fields([
+                    Field::make('image', 'photo', 'Фото')->set_value_type('url')->set_required(false),
+                    Field::make('text', 'name', 'Имя')->set_required(true),
+                    Field::make('text', 'position', 'Должность')->set_required(false),
+                    Field::make('text', 'email', 'Email')->set_required(false),
+                ]),
+            Field::make('complex', 'licenses', 'Лицензии')
+                ->add_fields([
+                    Field::make('image', 'license', 'Лицензия')->set_value_type('url')->set_required(true),
+                ])
+        ]);
 });
 
 add_action('after_setup_theme', function () {
     \Carbon_Fields\Carbon_Fields::boot();
 });
 // carbon end
-
-// empty legs flags start
-// function get_country_flag_url($country_name) {
-//     $flags_path = get_stylesheet_directory_uri() . '/img/flags/';
-
-//     $flags = [
-//         'США' => 'usa.png',
-//         'Канада' => 'canada.png',
-//         'Франция' => 'france.png',
-//         'Германия' => 'germany.png',
-//         'Великобритания' => 'uk.png',
-//         'Россия' => 'russia.png',
-//         'Китай' => 'china.png',
-//         'Япония' => 'japan.png',
-//         'Австралия' => 'australia.png',
-//         'Италия' => 'italy.png',
-//         'Испания' => 'spain.png',
-//         'Африка' => 'africa.png',
-//     ];
-
-//     return isset($flags[$country_name]) ? $flags_path . $flags[$country_name] : '';
-// }
-
-// add_action('carbon_fields_post_meta_save', function ($post_id) {
-//     $planes = carbon_get_post_meta($post_id, 'planes');
-//     $flags = get_country_flags();
-
-//     if (!$planes) return;
-
-//     foreach ($planes as $index => $plane) {
-//         if (!empty($plane['origin_country']) && isset($flags[$plane['origin_country']])) {
-//             $planes[$index]['origin_flag'] = $flags[$plane['origin_country']];
-//         }
-
-//         if (!empty($plane['destination_country']) && isset($flags[$plane['destination_country']])) {
-//             $planes[$index]['destination_flag'] = $flags[$plane['destination_country']];
-//         }
-//     }
-
-//     carbon_set_post_meta($post_id, 'planes', $planes);
-// });
-// empty legs flags end
 
 // lightbox fix
 function my_lbwps_enabled($enabled, $id)
@@ -646,17 +691,18 @@ function my_lbwps_enabled($enabled, $id)
 
     return $enabled;
 }
-
 add_filter('lbwps_enabled', 'my_lbwps_enabled', 10, 2);
 
+// разрешить загрузку json
 function allow_json_uploads($mimes)
 {
     $mimes['json'] = 'application/json';
+    $mimes['svg'] = 'image/svg+xml';
     return $mimes;
 }
 add_filter('upload_mimes', 'allow_json_uploads');
 
-// json for aircraft start
+// импорт json для загрузки нового самолёта
 function process_aircraft_json($post_id)
 {
     if (get_post_type($post_id) !== 'product') {
@@ -985,11 +1031,9 @@ function process_aircraft_json($post_id)
         }
     }
 }
-
 add_action('carbon_fields_post_meta_container_saved', 'process_aircraft_json');
-// json for aircraft end
 
-// phone number in header start
+// номер телефона с проверкой айпи в шапке сайта и в подвале
 function get_phone_number()
 {
     $apiKey = '9bbf93c81405e0';
@@ -1033,9 +1077,8 @@ function get_phone_number()
 
 add_action('wp_ajax_get_phone_number', 'get_phone_number');
 add_action('wp_ajax_nopriv_get_phone_number', 'get_phone_number');
-// phone number in header end
 
-// views in articles start
+// показ кол-ва просмотров в статьях
 function gt_get_post_view()
 {
     $count = get_post_meta(get_the_ID(), 'post_views_count', true);
@@ -1065,18 +1108,16 @@ function gt_posts_custom_column_views($column)
 }
 add_filter('manage_posts_columns', 'gt_posts_column_views');
 add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
-// views in articles end
 
 // styles start
 add_action('wp_enqueue_scripts', 'thejet_io_enqueue_styles');
 function thejet_io_enqueue_styles()
 {
-    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css?2');
+    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
 // styles end
 
-
-// file upload start
+// разрешение загрузки файлов с разными расширениями
 add_filter('upload_mimes', function ($mimes) {
     $mimes['pdf'] = 'application/pdf';
     $mimes['docx'] = 'application/docx';
@@ -1088,48 +1129,9 @@ add_filter('upload_mimes', function ($mimes) {
 add_action('post_edit_form_tag', function () {
     echo ' enctype="multipart/form-data"';
 });
-// file upload end
 
-add_filter('woocommerce_product_data_tabs', function ($tabs) {
-    $tabs['commercial_data_tab'] = [
-        'label'    => __('Коммерческие данные', 'woocommerce'),
-        'target'   => 'commercial_data_options',
-        'class'    => ['show_if_simple', 'show_if_variable'],
-        'priority' => 11,
-    ];
-
-    // $tabs['aircraft_features'] = [
-    //     'label'    => __('Особенности самолета', 'woocommerce'),
-    //     'target'   => 'aircraft_features_options',
-    //     'class'    => ['show_if_simple', 'show_if_variable'],
-    //     'priority' => 12
-    // ];
-
-    // $tabs['operating_costs'] = [
-    //     'label'    => __('Эксплуатационные расходы самолета', 'woocommerce'),
-    //     'target'   => 'operating_costs_options',
-    //     'class'    => ['show_if_simple', 'show_if_variable'],
-    //     'priority' => 13
-    // ];
-
-    // $tabs['technical_specs'] = [
-    //     'label'    => __('Технические характеристики', 'woocommerce'),
-    //     'target'   => 'technical_specs_options',
-    //     'class'    => ['show_if_simple', 'show_if_variable'],
-    //     'priority' => 14
-    // ];
-
-    // $tabs['popular_routes'] = [
-    //     'label'    => __('Популярные направления', 'woocommerce'),
-    //     'target'   => 'popular_routes_options',
-    //     'class'    => ['show_if_simple', 'show_if_variable'],
-    //     'priority' => 15
-    // ];
-    return $tabs;
-});
-
-// plane comparison start
-// handle adding a plane to comparison
+// сравнение самолетов
+// добавление к сравнению
 function add_to_comparison()
 {
     if (!isset($_POST['plane_id'])) {
@@ -1153,7 +1155,7 @@ function add_to_comparison()
 add_action('wp_ajax_add_to_comparison', 'add_to_comparison');
 add_action('wp_ajax_nopriv_add_to_comparison', 'add_to_comparison');
 
-// handle removing a plane
+// удаление из сравнения
 function remove_from_comparison()
 {
     if (!isset($_POST['plane_id'])) {
@@ -1174,7 +1176,7 @@ function remove_from_comparison()
 add_action('wp_ajax_remove_from_comparison', 'remove_from_comparison');
 add_action('wp_ajax_nopriv_remove_from_comparison', 'remove_from_comparison');
 
-// get compared planes
+// получить сравниваемые самолеты
 function get_comparison_planes()
 {
     $user_id = get_current_user_id();
@@ -1195,16 +1197,12 @@ function allow_woocommerce_rest_access()
     }, 10, 4);
 }
 add_action('init', 'allow_woocommerce_rest_access');
-// plane comparison end
-
 
 // получаем характеристики самолёта
 function get_plane_specs($post_id)
 {
     return [
         'Мест' => get_post_meta($post_id, '_custom_field_seats', true),
-        // 'Скорость км/ч (m/h)' => get_post_meta($post_id, '_custom_field_speed', true),
-        // 'Дальность км (nm)' => get_post_meta($post_id, '_custom_field_range', true),
         'Объем багажника в м³' => get_post_meta($post_id, '_custom_field_bag_volume', true),
         'Чемоданов' => get_post_meta($post_id, '_custom_field_suitcases', true),
         'Цена аренды в $' => get_post_meta($post_id, '_custom_field_rent_price', true),
@@ -1256,6 +1254,10 @@ add_action('wp_ajax_nopriv_compare_planes', 'compare_planes_callback');
 
 
 
+
+
+
+
 // main tab start
 add_action('woocommerce_product_options_general_product_data', 'add_custom_fields_to_main_tab');
 function add_custom_fields_to_main_tab()
@@ -1298,17 +1300,6 @@ function add_custom_fields_to_main_tab()
         'description' => 'Выберите, где базируется самолёт',
         'value'   => $selected_airport,
     ]);
-
-    // выпадающий список для выбора категории самолёта
-    // woocommerce_wp_select([
-    //     'id'      => '_db_category',
-    //     'label'   => __('Категория самолёта', 'woocommerce'),
-    //     'options' => [
-    //         ''            => __('Общая карточка самолёта', 'woocommerce'),
-    //         'for_sale'    => __('Самолёт на продажу', 'woocommerce'),
-    //         'for_rent'    => __('Самолёт в аренду', 'woocommerce'),
-    //     ],
-    // ]);
 
     // Add custom fields
     echo '<p class="form-field">
@@ -1408,7 +1399,6 @@ function add_custom_fields_to_main_tab()
     echo '</div>';
 }
 
-// Main tab part 2 start
 add_action('woocommerce_process_product_meta', 'save_custom_fields');
 function save_custom_fields($post_id)
 {
@@ -1462,627 +1452,6 @@ add_action('woocommerce_process_product_meta', function ($post_id) {
     }
 });
 
-add_action('woocommerce_product_data_panels', function () {
-?>
-
-    <div id="commercial_data_options" class="panel woocommerce_options_panel hidden">
-        <?php
-        $fields = [
-            '_start_year'          => 'Год начала производства',
-            '_end_year'            => 'Год окончания производства',
-            '_country_of_origin'   => 'Страна производства',
-            '_new_plane_cost'      => 'Стоимость нового самолета ($)',
-            '_used_plane_cost'     => 'Стоимость самолета с налетом',
-            '_hour_cost'           => 'Себестоимость летного часа',
-            '_overhaul_interval'   => 'Интервал капитального ремонта (часов)',
-            '_a_check_interval'    => 'Интервал A-Check',
-            '_b_check_interval'    => 'Интервал B-Check',
-            '_c_check_interval'    => 'Интервал C-Check',
-            '_d_check_interval'    => 'Интервал D-Check'
-        ];
-
-        echo '<div id="aircraft_common_fields">';
-        foreach ($fields as $id => $label) {
-            woocommerce_wp_text_input([
-                'id'          => $id,
-                'label'       => __($label, 'woocommerce'),
-                'description' => __('Введите значение для ' . $label, 'woocommerce'),
-                'desc_tip'    => true,
-            ]);
-        }
-        echo '</div>';
-
-        // поля для продажи
-        echo '<div id="db_sale_fields" style="display: none;">';
-        woocommerce_wp_text_input([
-            'id'          => '_sale_price',
-            'label'       => __('Цена продажи ($)', 'woocommerce'),
-            'description' => __('Укажите цену самолёта для продажи', 'woocommerce'),
-            'desc_tip'    => true,
-        ]);
-        woocommerce_wp_text_input([
-            'id'          => '_sale_year',
-            'label'       => __('Год выпуска', 'woocommerce'),
-            'description' => __('Год выпуска самолёта', 'woocommerce'),
-            'desc_tip'    => true,
-        ]);
-        echo '</div>';
-
-        // поля для аренды
-        echo '<div id="db_rent_fields" style="display: none;">';
-        woocommerce_wp_text_input([
-            'id'          => '_rental_price',
-            'label'       => __('Цена аренды ($)', 'woocommerce'),
-            'description' => __('Укажите цену аренды самолёта', 'woocommerce'),
-            'desc_tip'    => true,
-        ]);
-        woocommerce_wp_text_input([
-            'id'          => '_rental_period',
-            'label'       => __('Срок аренды', 'woocommerce'),
-            'description' => __('Укажите срок аренды (дни, месяцы и т. д.)', 'woocommerce'),
-            'desc_tip'    => true,
-        ]);
-        ?>
-    </div>
-
-    <!-- <div id="aircraft_features_options" class="panel woocommerce_options_panel hidden">
-        <h2><?php _e('Особенности самолета', 'woocommerce'); ?></h2>
-        <div id="aircraft_features_wrapper">
-            <?php
-            $features = get_post_meta(get_the_ID(), '_aircraft_features', true);
-            $features = is_array($features) ? $features : [];
-            foreach ($features as $index => $feature) {
-            ?>
-                <div class="aircraft-feature">
-                    <p>
-                        <label><?php _e('Заголовок', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="Заголовок" name="_aircraft_features[<?php echo $index; ?>][title]"
-                            value="<?php echo esc_attr($feature['title']); ?>" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Описание', 'woocommerce'); ?></label>
-                        <textarea placeholder="Описание" name="_aircraft_features[<?php echo $index; ?>][description]" class="short"><?php echo esc_textarea($feature['description']); ?></textarea>
-                    </p>
-                </div>
-            <?php
-            }
-            ?>
-            <p>Не забудьте сохранить продукт после внесения изменений.</p>
-        </div>
-        <button type="button" class="button add_aircraft_feature"><?php _e('Добавить особенность', 'woocommerce'); ?></button>
-    </div>
-    <script>
-        jQuery(function($) {
-            $('.add_aircraft_feature').on('click', function() {
-                const wrapper = $('#aircraft_features_wrapper');
-                const index = wrapper.children('.aircraft-feature').length;
-                const html = `
-                <div class="aircraft-feature">
-                    <p>
-                        <label><?php _e('Заголовок', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="Заголовок" name="_aircraft_features[${index}][title]" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Описание', 'woocommerce'); ?></label>
-                        <textarea placeholder="Описание" name="_aircraft_features[${index}][description]" class="short"></textarea>
-                    </p>
-                </div>
-            `;
-                wrapper.append(html);
-            });
-        });
-    </script> -->
-
-    <!-- <div id="operating_costs_options" class="panel woocommerce_options_panel hidden">
-        <h2><?php _e('Эксплуатационные расходы самолета', 'woocommerce'); ?></h2>
-
-        <h3><?php _e('Переменные затраты (USD)/час', 'woocommerce'); ?></h3>
-        <div id="variable_costs_table_wrapper">
-            <table class="variable-costs-table" style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="border: 1px solid #ccc; padding: 5px;"><?php _e('Переменные затраты (USD)/час', 'woocommerce'); ?></th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">200 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">400 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">600 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">800 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;"><?php _e('Действие', 'woocommerce'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $variable_costs = get_post_meta(get_the_ID(), '_variable_costs', true);
-                    $variable_costs = is_array($variable_costs) ? $variable_costs : [];
-                    foreach ($variable_costs as $index => $cost) {
-                    ?>
-                        <tr>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" style="width: 100%;" name="_variable_costs[<?php echo $index; ?>][name]" value="<?php echo esc_attr($cost['name']); ?>" placeholder="Название" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" style="width: 100%;" name="_variable_costs[<?php echo $index; ?>][200]" value="<?php echo esc_attr($cost['200']); ?>" placeholder="200 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" style="width: 100%;" name="_variable_costs[<?php echo $index; ?>][400]" value="<?php echo esc_attr($cost['400']); ?>" placeholder="400 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" style="width: 100%;" name="_variable_costs[<?php echo $index; ?>][600]" value="<?php echo esc_attr($cost['600']); ?>" placeholder="600 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" style="width: 100%;" name="_variable_costs[<?php echo $index; ?>][800]" value="<?php echo esc_attr($cost['800']); ?>" placeholder="800 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <button type="button" class="button remove-cost-row"><?php _e('Удалить', 'woocommerce'); ?></button>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-            <button type="button" class="button add-variable-cost-row"><?php _e('Добавить строку', 'woocommerce'); ?></button>
-        </div>
-
-        <h3><?php _e('Постоянные затраты', 'woocommerce'); ?></h3>
-        <div id="fixed_costs_table_wrapper">
-            <table class="fixed-costs-table" style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="border: 1px solid #ccc; padding: 5px;"><?php _e('Постоянные затраты', 'woocommerce'); ?></th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">200 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">400 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">600 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;">800 часов</th>
-                        <th style="border: 1px solid #ccc; padding: 5px;"><?php _e('Действие', 'woocommerce'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $fixed_costs = get_post_meta(get_the_ID(), '_fixed_costs', true);
-                    $fixed_costs = is_array($fixed_costs) ? $fixed_costs : [];
-                    foreach ($fixed_costs as $index => $cost) {
-                    ?>
-                        <tr>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" name="_fixed_costs[<?php echo $index; ?>][name]" value="<?php echo esc_attr($cost['name']); ?>" placeholder="Название" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" name="_fixed_costs[<?php echo $index; ?>][200]" value="<?php echo esc_attr($cost['200']); ?>" placeholder="200 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" name="_fixed_costs[<?php echo $index; ?>][400]" value="<?php echo esc_attr($cost['400']); ?>" placeholder="400 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" name="_fixed_costs[<?php echo $index; ?>][600]" value="<?php echo esc_attr($cost['600']); ?>" placeholder="600 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <input type="text" name="_fixed_costs[<?php echo $index; ?>][800]" value="<?php echo esc_attr($cost['800']); ?>" placeholder="800 часов" class="short">
-                            </td>
-                            <td style="border: 1px solid #ccc; padding: 5px;">
-                                <button type="button" class="button remove-cost-row"><?php _e('Удалить', 'woocommerce'); ?></button>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-            <button type="button" class="button add-fixed-cost-row"><?php _e('Добавить строку', 'woocommerce'); ?></button>
-        </div>
-    </div>
-
-    <script>
-        jQuery(function($) {
-            $('.add-variable-cost-row').on('click', function() {
-                const wrapper = $('.variable-costs-table tbody');
-                const index = wrapper.children('tr').length;
-                const rowHtml = `
-                <tr>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" style="width: 100%;" name="_variable_costs[${index}][name]" placeholder="Название" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" style="width: 100%;" name="_variable_costs[${index}][200]" placeholder="200 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" style="width: 100%;" name="_variable_costs[${index}][400]" placeholder="400 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" style="width: 100%;" name="_variable_costs[${index}][600]" placeholder="600 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" style="width: 100%;" name="_variable_costs[${index}][800]" placeholder="800 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <button type="button" class="button remove-cost-row"><?php _e('Удалить', 'woocommerce'); ?></button>
-                    </td>
-                </tr>`;
-                wrapper.append(rowHtml);
-            });
-
-            $('.add-fixed-cost-row').on('click', function() {
-                const wrapper = $('.fixed-costs-table tbody');
-                const index = wrapper.children('tr').length;
-                const rowHtml = `
-                <tr>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" name="_fixed_costs[${index}][name]" placeholder="Название" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" name="_fixed_costs[${index}][200]" placeholder="200 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" name="_fixed_costs[${index}][400]" placeholder="400 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" name="_fixed_costs[${index}][600]" placeholder="600 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <input type="text" name="_fixed_costs[${index}][800]" placeholder="800 часов" class="short">
-                    </td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">
-                        <button type="button" class="button remove-cost-row"><?php _e('Удалить', 'woocommerce'); ?></button>
-                    </td>
-                </tr>`;
-                wrapper.append(rowHtml);
-            });
-
-            $(document).on('click', '.remove-cost-row', function() {
-                $(this).closest('tr').remove();
-            });
-        });
-    </script>
-
-    <div id="technical_specs_options" class="panel woocommerce_options_panel hidden">
-        <h2><?php _e('Технические характеристики', 'woocommerce'); ?></h2>
-        <?php
-        $fields = [
-            '_cruising_speed' => 'Крейсерская скорость (км/ч / m/h)',
-            '_range' => 'Дальность (км / nm)',
-            '_flight_time' => 'Время в полете (ч:м)',
-            '_max_altitude' => 'Максимальная высота полета (м / ft)',
-            '_max_takeoff_weight' => 'Максимальный взлетный вес (кг / lb)',
-            '_landing_weight' => 'Посадочный вес (кг / lb)',
-            '_payload' => 'Грузоподъемность (кг)',
-            '_takeoff_distance' => 'Взлетная дистанция (м / ft)',
-            '_landing_distance' => 'Посадочная дистанция (м / ft)',
-            '_engine_count' => 'Количество двигателей',
-            '_engine' => 'Двигатель',
-            '_apu' => 'Вспомогательная силовая установка',
-            '_avionics' => 'Авионика',
-            '_width' => 'Ширина',
-            '_cabin_length' => 'Длина салона',
-            '_cabin_height' => 'Высота салона',
-            '_cabin_volume' => 'Объем салона',
-            '_luggage_volume' => 'Объём багажного отделения',
-            '_plane_length' => 'Длина самолета',
-            '_plane_height' => 'Высота самолета',
-        ];
-
-        foreach ($fields as $id => $label) {
-            woocommerce_wp_text_input([
-                'id'          => $id,
-                'label'       => __($label, 'woocommerce'),
-                'description' => __('Введите значение для ' . $label, 'woocommerce'),
-                'desc_tip'    => true,
-            ]);
-        }
-        ?>
-    </div>
-
-
-    <div id="popular_routes_options" class="panel woocommerce_options_panel hidden">
-        <h2><?php _e('Популярные направления', 'woocommerce'); ?></h2>
-        <div id="popular_routes_wrapper">
-            <?php
-            $routes = get_post_meta(get_the_ID(), '_popular_routes', true);
-            $routes = is_array($routes) ? $routes : [];
-            foreach ($routes as $index => $route) {
-            ?>
-                <div class="route-item">
-                    <p>
-                        <label><?php _e('Город (откуда)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="Москва" name="_popular_routes[<?php echo $index; ?>][from_city]"
-                            value="<?php echo esc_attr($route['from_city'] ?? ''); ?>" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Город (куда)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="Дубай" name="_popular_routes[<?php echo $index; ?>][to_city]"
-                            value="<?php echo esc_attr($route['to_city'] ?? ''); ?>" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Дальность полёта (км)', 'woocommerce'); ?></label>
-                        <input type="number" placeholder="4500" name="_popular_routes[<?php echo $index; ?>][distance]"
-                            value="<?php echo esc_attr($route['distance'] ?? ''); ?>" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Время полёта (пример - 05:35)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="05:35" name="_popular_routes[<?php echo $index; ?>][time]"
-                            value="<?php echo esc_attr($route['time'] ?? ''); ?>" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Стоимость и валюта (пример - 10 000 USD)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="10 000 USD" name="_popular_routes[<?php echo $index; ?>][cost]"
-                            value="<?php echo esc_attr($route['cost'] ?? ''); ?>" class="short">
-                    </p>
-                    <button type="button" class="button remove-route-button"><?php _e('Удалить направление', 'woocommerce'); ?></button>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
-        <button type="button" class="button add_route_button"><?php _e('Добавить направление', 'woocommerce'); ?></button>
-    </div>
-    <script>
-        jQuery(function($) {
-            $('.add_route_button').on('click', function() {
-                const wrapper = $('#popular_routes_wrapper');
-                const index = wrapper.children('.route-item').length;
-                const html = `
-                <div class="route-item">
-                    <p>
-                        <label><?php _e('Город (откуда)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="Москва" name="_popular_routes[${index}][from_city]" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Город (куда)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="Дубай" name="_popular_routes[${index}][to_city]" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Дальность полёта (км)', 'woocommerce'); ?></label>
-                        <input type="number" placeholder="4500" name="_popular_routes[${index}][distance]" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Время полёта (пример - 05:35)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="05:35" name="_popular_routes[${index}][time]" class="short">
-                    </p>
-                    <p>
-                        <label><?php _e('Стоимость и валюта (пример - 10 000 USD)', 'woocommerce'); ?></label>
-                        <input type="text" placeholder="10 000 USD" name="_popular_routes[${index}][cost]" class="short">
-                    </p>
-                    <button type="button" class="button remove-route-button"><?php _e('Удалить направление', 'woocommerce'); ?></button>
-                </div>
-                `;
-                wrapper.append(html);
-            });
-
-            $(document).on('click', '.remove-route-button', function() {
-                $(this).closest('.route-item').remove();
-            });
-        });
-    </script> -->
-
-<?php
-});
-
-add_action('woocommerce_process_product_meta', function ($post_id) {
-    if (isset($_POST['_aircraft_features']) && is_array($_POST['_aircraft_features'])) {
-        $features = array_map(function ($feature) {
-            return [
-                'title' => sanitize_text_field($feature['title'] ?? ''),
-                'description' => sanitize_textarea_field($feature['description'] ?? ''),
-            ];
-        }, $_POST['_aircraft_features']);
-
-        update_post_meta($post_id, '_aircraft_features', $features);
-    } else {
-        delete_post_meta($post_id, '_aircraft_features');
-    }
-
-    if (isset($_POST['_popular_routes'])) {
-        $routes = array_map(function ($route) {
-            return [
-                'from_city' => sanitize_text_field($route['from_city'] ?? ''),
-                'to_city' => sanitize_text_field($route['to_city'] ?? ''),
-                'distance' => sanitize_text_field($route['distance'] ?? ''),
-                'time' => sanitize_text_field($route['time'] ?? ''),
-                'cost' => sanitize_text_field($route['cost'] ?? ''),
-            ];
-        }, $_POST['_popular_routes']);
-        update_post_meta($post_id, '_popular_routes', $routes);
-    }
-
-    // Save variable costs.
-    if (isset($_POST['_variable_costs']) && is_array($_POST['_variable_costs'])) {
-        $variable_costs = [];
-        foreach ($_POST['_variable_costs'] as $cost) {
-            $variable_costs[] = [
-                'name' => sanitize_text_field($cost['name'] ?? ''),
-                '200'  => sanitize_text_field($cost['200'] ?? ''),
-                '400'  => sanitize_text_field($cost['400'] ?? ''),
-                '600'  => sanitize_text_field($cost['600'] ?? ''),
-                '800'  => sanitize_text_field($cost['800'] ?? ''),
-            ];
-        }
-        update_post_meta($post_id, '_variable_costs', $variable_costs);
-    } else {
-        delete_post_meta($post_id, '_variable_costs'); // Remove if empty.
-    }
-
-    // Save fixed costs.
-    if (isset($_POST['_fixed_costs']) && is_array($_POST['_fixed_costs'])) {
-        $fixed_costs = [];
-        foreach ($_POST['_fixed_costs'] as $cost) {
-            $fixed_costs[] = [
-                'name' => sanitize_text_field($cost['name'] ?? ''),
-                '200'  => sanitize_text_field($cost['200'] ?? ''),
-                '400'  => sanitize_text_field($cost['400'] ?? ''),
-                '600'  => sanitize_text_field($cost['600'] ?? ''),
-                '800'  => sanitize_text_field($cost['800'] ?? ''),
-            ];
-        }
-        update_post_meta($post_id, '_fixed_costs', $fixed_costs);
-    } else {
-        delete_post_meta($post_id, '_fixed_costs'); // Remove if empty.
-    }
-
-    if (isset($_POST['_flight_range'])) {
-        update_post_meta($post_id, '_flight_range', sanitize_text_field($_POST['_flight_range']));
-    }
-
-    $fields = [
-        '_db_category',
-        '_cruising_speed',
-        '_range',
-        '_flight_time',
-        '_max_altitude',
-        '_max_takeoff_weight',
-        '_landing_weight',
-        '_payload',
-        '_takeoff_distance',
-        '_landing_distance',
-        '_engine_count',
-        '_engine',
-        '_apu',
-        '_avionics',
-        '_width',
-        '_cabin_length',
-        '_cabin_height',
-        '_cabin_volume',
-        '_luggage_volume',
-        '_plane_length',
-        '_plane_height',
-        '_start_year',
-        '_end_year',
-        '_country_of_origin',
-        '_new_plane_cost',
-        '_used_plane_cost',
-        '_hour_cost',
-        '_overhaul_interval',
-        '_a_check_interval',
-        '_b_check_interval',
-        '_c_check_interval',
-        '_d_check_interval'
-    ];
-
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
-        }
-    }
-});
-
-add_filter('woocommerce_product_tabs', function ($tabs) {
-    // $tabs['aircraft_features'] = [
-    //     'title'    => __('Особенности самолета', 'woocommerce'),
-    //     'priority' => 30,
-    //     'callback' => function () {
-    //         global $product;
-    //         $features = get_post_meta($product->get_id(), '_aircraft_features', true);
-
-    //         if (!empty($features) && is_array($features)) {
-    //             echo '<h2>' . __('Особенности самолета', 'woocommerce') . '</h2>';
-    //             foreach ($features as $index => $feature) {
-    //                 $step_number = $index + 1;
-    //                 $title = esc_html($feature['title'] ?? '');
-    //                 $description = esc_html($feature['description'] ?? '');
-
-    //                 if ($title || $description) {
-    //                     echo '<div class="step-item">';
-    //                     echo '<span class="step-number">' . $step_number . '</span>';
-    //                     if ($title) {
-    //                         echo '<h3 class="h3">' . $title . '</h3>';
-    //                     }
-    //                     if ($description) {
-    //                         echo '<p>' . $description . '</p>';
-    //                     }
-    //                     echo '</div>';
-    //                 }
-    //             }
-    //         }
-    //     },
-    // ];
-
-    // $tabs['operating_costs'] = [
-    //     'title'    => __('Эксплуатационные расходы самолета', 'woocommerce'),
-    //     'priority' => 40,
-    //     'callback' => function () {
-    //         global $product;
-    //         $value = get_post_meta($product->get_id(), '_operating_costs', true);
-    //         if ($value) {
-    //             echo '<h2>' . __('Эксплуатационные расходы самолета', 'woocommerce') . '</h2>';
-    //             echo '<p>' . esc_html($value) . '</p>';
-    //         }
-    //     },
-    // ];
-
-    // $tabs['technical_specs'] = [
-    //     'title'    => __('Технические характеристики', 'woocommerce'),
-    //     'priority' => 50,
-    //     'callback' => function () {
-    //         global $product;
-
-    //         $fields = [
-    //             '_cruising_speed' => 'Крейсерская скорость (км/ч / m/h)',
-    //             '_range' => 'Дальность (км / nm)',
-    //             '_flight_time' => 'Время в полете (ч:м)',
-    //             '_max_altitude' => 'Максимальная высота полета (м / ft)',
-    //             '_max_takeoff_weight' => 'Максимальный взлетный вес (кг / lb)',
-    //             '_landing_weight' => 'Посадочный вес (кг / lb)',
-    //             '_payload' => 'Грузоподъемность (кг)',
-    //             '_takeoff_distance' => 'Взлетная дистанция (м / ft)',
-    //             '_landing_distance' => 'Посадочная дистанция (м / ft)',
-    //             '_engine_count' => 'Количество двигателей',
-    //             '_engine' => 'Двигатель',
-    //             '_apu' => 'Вспомогательная силовая установка',
-    //             '_avionics' => 'Авионика',
-    //             '_width' => 'Ширина',
-    //             '_cabin_length' => 'Длина салона',
-    //             '_cabin_height' => 'Высота салона',
-    //             '_cabin_volume' => 'Объем салона',
-    //             '_luggage_volume' => 'Объём багажного отделения',
-    //             '_plane_length' => 'Длина самолета',
-    //             '_plane_height' => 'Высота самолета',
-    //         ];
-
-    //         echo '<h2>' . __('Технические характеристики', 'woocommerce') . '</h2>';
-    //         echo '<table class="woocommerce-product-attributes shop_attributes">';
-    //         foreach ($fields as $meta_key => $label) {
-    //             $value = get_post_meta($product->get_id(), $meta_key, true);
-    //             if ($value) {
-    //                 echo '<tr>';
-    //                 echo '<th>' . esc_html($label) . '</th>';
-    //                 echo '<td>' . esc_html($value) . '</td>';
-    //                 echo '</tr>';
-    //             }
-    //         }
-    //         echo '</table>';
-    //     },
-    // ];
-
-    $tabs['commercial_data'] = [
-        'title'    => __('Коммерческие данные', 'woocommerce'),
-        'priority' => 50,
-        'callback' => function () {
-            global $product;
-
-            $fields = [
-                '_start_year'          => 'Год начала производства',
-                '_end_year'            => 'Год окончания производства',
-                '_country_of_origin'   => 'Страна производства',
-                '_new_plane_cost'      => 'Стоимость нового самолета ($)',
-                '_used_plane_cost'     => 'Стоимость самолета с налетом',
-                '_hour_cost'           => 'Себестоимость летного часа',
-                '_overhaul_interval'   => 'Интервал капитального ремонта (часов)',
-                '_a_check_interval'    => 'Интервал A-Check',
-                '_b_check_interval'    => 'Интервал B-Check',
-                '_c_check_interval'    => 'Интервал C-Check',
-                '_d_check_interval'    => 'Интервал D-Check'
-            ];
-
-            echo '<h2>' . __('Коммерческие данные', 'woocommerce') . '</h2>';
-            echo '<table class="woocommerce-product-attributes shop_attributes">';
-            foreach ($fields as $meta_key => $label) {
-                $value = get_post_meta($product->get_id(), $meta_key, true);
-                if ($value) {
-                    echo '<tr class="woocommerce-product-attributes-item">';
-                    echo '<th class="woocommerce-product-attributes-item__label">' . esc_html($label) . '</th>';
-                    echo '<td class="woocommerce-product-attributes-item__value">' . esc_html($value) . '</td>';
-                    echo '</tr>';
-                }
-            }
-            echo '</table>';
-        }
-    ];
-
-    return $tabs;
-});
 
 add_action('admin_footer', function () {
     if ('product' !== get_post_type()) return;

@@ -131,12 +131,21 @@
                                     <?php echo pll_current_language() == 'en' ? 'Services' : 'Услуги'; ?>
                                 </a>
                             </li>
-                            <!-- <li class="nav-links-item">
-                                <a href="/empty-legs">Пустые перелёты</a>
+                            <li class="nav-links-item mob-only">
+                                <a href="<?php echo pll_current_language() == 'en' ? '/empty-legs-en' : '/empty-legs'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Empty legs' : 'Пустые перелёты'; ?>
+                                </a>
                             </li>
-                            <li class="nav-links-item">
-                                <a href="/tour">Предложения</a>
-                            </li> -->
+                            <li class="nav-links-item mob-only">
+                                <a href="<?php echo pll_current_language() == 'en' ? '/tour-en' : '/tour'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Offers' : 'Предложения'; ?>
+                                </a>
+                            </li>
+                            <li class="nav-links-item mob-only">
+                                <a href="<?php echo pll_current_language() == 'en' ? '/about-us-en' : '/about-us'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'About us' : 'О нас'; ?>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="nav-right">
@@ -149,7 +158,11 @@
 
                             <a href="#" class="nav-tel-link">&nbsp;</a>
                         </div>
-                        <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Обратный звонок</button>
+                        <?php if (pll_current_language() == 'ru') : ?>
+                            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Обратный звонок</button>
+                        <?php else : ?>
+                            <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Call Me Back</button>
+                        <?php endif; ?>
                         <ul class="nav-links">
                             <!-- <li class="nav-links-item">
                                 <a href="">RU</a>
@@ -216,7 +229,7 @@
 
                             // Выводим результат
                             if (!empty($custom_language_switcher)) {
-                                echo '<ul class="nav-links">' . $custom_language_switcher . '</ul>';
+                                echo '<div class="nav-links">' . $custom_language_switcher . '</div>';
                             }
                             ?>
                         </ul>
@@ -226,13 +239,24 @@
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </div>
-                </nav>
-            </div>
-        </header>>
-                    <div class="hamburger">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
+                    <div class="nav-right-more">
+                        <ul class="nav-links">
+                            <li class="nav-links-item">
+                                <a href="<?php echo pll_current_language() == 'en' ? '/empty-legs-en' : '/empty-legs'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Empty legs' : 'Пустые перелёты'; ?>
+                                </a>
+                            </li>
+                            <li class="nav-links-item">
+                                <a href="<?php echo pll_current_language() == 'en' ? '/tour-en' : '/tour'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'Offers' : 'Предложения'; ?>
+                                </a>
+                            </li>
+                            <li class="nav-links-item">
+                                <a href="<?php echo pll_current_language() == 'en' ? '/about-us-en' : '/about-us'; ?>">
+                                    <?php echo pll_current_language() == 'en' ? 'About us' : 'О нас'; ?>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
             </div>

@@ -25,42 +25,42 @@
         <div class="tour-goal-wrap">
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-1.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Отдых</h3>
+                <h3 class="h3"><a href="/ru/category/rest/">Отдых</a></h3>
                 <ul class="list">
-                    <li>ОАЭ</li>
-                    <li>Турция</li>
-                    <li>Мальдивы</li>
-                    <li>Тайланд</li>
+                    <li><a href="/ru/category/rest/uae/">ОАЭ</a></li>
+                    <li><a href="/ru/category/rest/turkey/">Турция</a></li>
+                    <li><a href="/ru/category/rest/maldives/">Мальдивы</a></li>
+                    <li><a href="/ru/category/rest/thailand/">Тайланд</a></li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-2.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Спорт</h3>
+                <h3 class="h3"><a href="/ru/category/sport/">Спорт</a></h3>
                 <ul class="list">
-                    <li>Гольф</li>
-                    <li>Формула 1</li>
-                    <li>Теннис</li>
-                    <li>Футбол</li>
+                    <li><a href="/ru/category/sport/golf/">Гольф</a></li>
+                    <li><a href="/ru/category/sport/formula-1/">Формула 1</a></li>
+                    <li><a href="/ru/category/sport/tennis/">Теннис</a></li>
+                    <li><a href="/ru/category/sport/soccer/">Футбол</a></li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-3.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Шоппинг</h3>
+                <h3 class="h3"><a href="/ru/category/shopping/">Шоппинг</a></h3>
                 <ul class="list">
-                    <li>Милан</li>
-                    <li>Париж</li>
-                    <li>Дубай</li>
-                    <li>Гонконг</li>
+                    <li><a href="/ru/category/shopping/milan/">Милан</a></li>
+                    <li><a href="/ru/category/shopping/paris/">Париж</a></li>
+                    <li><a href="/ru/category/shopping/dubai/">Дубай</a></li>
+                    <li><a href="/ru/category/shopping/hongkong/">Гонконг</a></li>
                 </ul>
             </div>
             <div class="tour-goal-col">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/tour-4.svg" class="tour-goal-img" loading="lazy" alt="">
-                <h3 class="h3">Достопримечательности</h3>
+                <h3 class="h3"><a href="/ru/category/shopping/">Достопримечательности</a></h3>
                 <ul class="list">
-                    <li>Пиза</li>
-                    <li>Париж</li>
-                    <li>Пекин</li>
-                    <li>Нью-Йорк</li>
+                    <li><a href="/ru/category/shopping/pisa/">Пиза</a></li>
+                    <li><a href="/ru/category/shopping/paris/">Париж</a></li>
+                    <li><a href="/ru/category/shopping/beijing/">Пекин</a></li>
+                    <li><a href="/ru/category/shopping/ny/">Нью-Йорк</a></li>
                 </ul>
             </div>
         </div>
@@ -93,7 +93,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'tour',
+                        'category_name' => 'tour-ru',
                     );
 
                     $query = new WP_Query($args);
@@ -115,7 +115,20 @@
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
                                         <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
-                                        <span class="article-info-time">3 мин</span>
+                                        <?php
+                                        $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
+
+                                        $time_suffix = ($language === 'en') ? ' min' : ' мин';
+                                        $fallback = ($language === 'en') ? '3 min' : '3 мин';
+
+                                        $reading_time = (function_exists('carbon_get_post_meta') && get_the_ID())
+                                            ? carbon_get_post_meta(get_the_ID(), 'reading_time')
+                                            : '';
+
+                                        ?>
+                                        <span class="article-info-time">
+                                            <?php echo !empty($reading_time) ? esc_html($reading_time) . $time_suffix : $fallback; ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +194,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'children',
+                        'category_name' => 'children-ru',
                     );
 
                     $query = new WP_Query($args);
@@ -225,7 +238,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'friends',
+                        'category_name' => 'friends-ru',
                     );
 
                     $query = new WP_Query($args);
@@ -267,93 +280,18 @@
     </div>
 </section>
 
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
 
+<?php include_once get_stylesheet_directory() . '/components/ru/about-rent.php'; ?>
 
-<section class="services-slider-sect">
-    <div class="container">
-        <h2 class="h2 center">Наши туры</h2>
+<?php include_once get_stylesheet_directory() . '/components/ru/step-3.php'; ?>
 
-        <!-- Slider main container -->
-        <div class="swiper-container">
-            <div class="swiper services-swiper">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Управление самолётом</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Управление самолётом</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<?php include_once get_stylesheet_directory() . '/components/ru/instruction-8.php'; ?>
 
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev services-swiper-button-prev"></div>
-            <div class="swiper-button-next services-swiper-button-next"></div>
-        </div>
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-2.php'; ?>
 
-        <!-- <a href="/services/" class="link">Посмотреть все</a> -->
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
 
-<?php get_footer(); ?>rvices-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Управление самолётом</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/services/" class="services-swiper-item">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/service-img.jpg" loading="lazy" class="services-swiper-item-img" alt="">
-                            <span class="services-swiper-item-name">Консалтинг</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev services-swiper-button-prev"></div>
-            <div class="swiper-button-next services-swiper-button-next"></div>
-        </div>
-
-        <!-- <a href="/services/" class="link">Посмотреть все</a> -->
-    </div>
-</section>
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-empty-legs.php'; ?>
 
 <?php get_footer(); ?>

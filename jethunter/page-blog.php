@@ -94,7 +94,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'article',
+                        'category_name' => 'article-ru',
                     );
 
                     $query = new WP_Query($args);
@@ -149,7 +149,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'tour',
+                        'category_name' => 'tour-ru',
                     );
 
                     $query = new WP_Query($args);
@@ -203,4 +203,16 @@
     </div>
 </section>
 
-<?php get_footer(); ?>(); ?>
+<?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/seo-ceo.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/cta-2.php'; ?>
+
+<?php get_footer(); ?>

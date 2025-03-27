@@ -40,6 +40,7 @@ $aircraft_type = carbon_get_post_meta($product_id, 'aircraft_type');
 $aircraft_model = carbon_get_post_meta($product_id, 'aircraft_model');
 $aircraft_cat = carbon_get_post_meta($product_id, 'aircraft_cat');
 $aircraft_make = carbon_get_post_meta($product_id, 'aircraft_make');
+$aircraft_logo = carbon_get_post_meta($product_id, 'aircraft_logo');
 $purchase_price = carbon_get_post_meta($product_id, 'purchase_price');
 $rental_price = carbon_get_post_meta($product_id, 'rental_price');
 $rental_period = carbon_get_post_meta($product_id, 'rental_period');
@@ -290,7 +291,13 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/item/ch-350/ch-350-scheme.png" alt="">
                 </div> -->
                 <div class="plane-main-info">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logos/makes/challenger.png" class="plane-logo" alt="Challenger">
+                    <?php if (!empty($aircraft_logo)) :
+                        $aircraft_logo_url = wp_get_attachment_url($aircraft_logo);
+                        if ($aircraft_logo_url) : ?>
+                            <img src="<?php echo esc_url($aircraft_logo_url); ?>" class="plane-logo" alt="Logo">
+                    <?php endif;
+                    endif;
+                    ?>
                     <div class="plane-main-info-wrap">
                         <?php
                         if ($aircraft_category === 'rent') {
@@ -582,51 +589,51 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
         </div>
     </section>
 
-    <section class="tech-sect" style="display: none;">
+    <!-- <section class="regular-sect">
         <div class="container">
-            <h2 class="h2 center">Характеристики самолёта <?php the_title(); ?></h2>
-
-        </div>
-    </section>
-
-    <section class="regular-sect">
-        <div class="container">
-            <div class="center">
-                <h2 class="h2">Узнать больше о комплектации самолета</h2>
-                <p class="text">Подскажем, подберем и проконсультруем вас по всем вопросам</p>
+            <div class="quiz-wrap">
+                <div class="quiz-left">
+                    <div class="quiz-left-img">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/quiz-img.jpg" alt="">
+                    </div>
+                </div>
+                <div class="quiz-right">
+                    <?php echo do_shortcode('[contact-form-7 id="a1ae65c" title="Квиз"]'); ?>
+                </div>
             </div>
-            <?php echo do_shortcode('[contact-form-7 id="a460904" title="CTA 1"]'); ?>
         </div>
-    </section>
+    </section> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
 
     <!-- <section class="step-sect">
         <div class="container">
             <h2 class="h2 center">Особенности самолета</h2>
             <div class="step-grid">
-                <?php
-                global $product;
-                $features = get_post_meta($product->get_id(), '_aircraft_features', true);
+            <?php
+            global $product;
+            $features = get_post_meta($product->get_id(), '_aircraft_features', true);
 
-                if (!empty($features) && is_array($features)) {
-                    foreach ($features as $index => $feature) {
-                        $step_number = $index + 1;
-                        $title = esc_html($feature['title'] ?? '');
-                        $description = esc_html($feature['description'] ?? '');
+            if (!empty($features) && is_array($features)) {
+                foreach ($features as $index => $feature) {
+                    $step_number = $index + 1;
+                    $title = esc_html($feature['title'] ?? '');
+                    $description = esc_html($feature['description'] ?? '');
 
-                        if ($title || $description) {
-                            echo '<div class="step-item">';
-                            echo '<span class="step-number">' . $step_number . '</span>';
-                            if ($title) {
-                                echo '<h3 class="h3">' . $title . '</h3>';
-                            }
-                            if ($description) {
-                                echo '<p>' . $description . '</p>';
-                            }
-                            echo '</div>';
+                    if ($title || $description) {
+                        echo '<div class="step-item">';
+                        echo '<span class="step-number">' . $step_number . '</span>';
+                        if ($title) {
+                            echo '<h3 class="h3">' . $title . '</h3>';
                         }
+                        if ($description) {
+                            echo '<p>' . $description . '</p>';
+                        }
+                        echo '</div>';
                     }
                 }
-                ?>
+            }
+            ?>
 
             </div>
             <div class="btn-container">
@@ -663,87 +670,6 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
             <div class="btn-container">
                 <button type="button" class="btn btn-green-fill js-modal" data-modal="#call"><?php _e('Узнать стоимость', 'textdomain'); ?></button>
                 <button type="button" class="btn js-modal" data-modal="#call"><?php _e('Связаться с нами', 'textdomain'); ?></button>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="video-sect">
-        <div class="container">
-            <div class="video-wrap" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/planes/item/ch-350/image2264.jpg);">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/play-text.png" class="video-overlay" id="video-overlay">
-                <iframe class="video-player" src="https://www.youtube.com/embed/<?php echo get_post_meta(get_the_ID(), '_custom_yt_id', true); ?>?controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="opacity:0;" id="video-player"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="distance-map-sect">
-        <div class="container">
-            <h2 class="h2 center">Карта дальности</h2>
-            <div class="distance-map-wrap">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/distance-map.png" class="distance-map" loading="lazy" alt="">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/distance-1.svg" class="distance-shown" loading="lazy" alt="">
-            </div>
-            <?php
-            $flight_range = (int) get_post_meta(get_the_ID(), '_flight_range', true);
-            $max_distance = 11000;
-            $circle_percent = ($flight_range / $max_distance) * 100;
-
-            echo '<style>
-                .woocommerce .distance-shown {
-                    width: ' . $circle_percent . '%;
-                }
-            </style>';
-            ?>
-        </div>
-    </section>
-
-    <section class="directions-sect">
-        <div class="container">
-            <h2 class="h2 center">Популярные направления</h2>
-            <?php /* $routes = get_post_meta($product->get_id(), '_popular_routes', true);
-            if (is_array($routes) && !empty($routes)) {
-                echo '<div class="directions-grid">';
-                foreach ($routes as $route) {
-            ?>
-                    <div class="directions-item">
-                        <img src="https://jethunter.aero/wp-content/themes/jethunter/img/illustrations/direction.png" loading="lazy" alt="">
-                        <p class="directions-name"><?php echo esc_html($route['from_city'] . ' – ' . $route['to_city']); ?></p>
-                        <ul class="list">
-                            <li>Дальность полёта (км) – <?php echo esc_html($route['distance']); ?></li>
-                            <li>Время полёта – <?php echo esc_html($route['time']); ?></li>
-                            <li>Стоимость – <?php echo esc_html($route['cost']); ?></li>
-                        </ul>
-                    </div>
-            <?php
-                }
-                echo '</div>';
-            } */ ?>
-
-            <?php
-            $destinations = carbon_get_post_meta(get_the_ID(), 'popular_destinations');
-
-            if (is_array($destinations) && !empty($destinations)) : ?>
-                <div class="directions-grid">
-                    <?php foreach ($destinations as $destination) : ?>
-                        <div class="directions-item">
-                            <img src="https://jethunter.aero/wp-content/themes/jethunter/img/illustrations/direction.png" loading="lazy" alt="">
-                            <p class="directions-name">
-                                <?php echo esc_html($destination['popular_destinations_name']); ?>
-                            </p>
-                            <ul class="list">
-                                <li>Дальность полёта (км) – <?php echo esc_html($destination['popular_destinations_distance']); ?></li>
-                                <li>Время полёта – <?php echo esc_html($destination['popular_destinations_time']); ?></li>
-                                <li>Стоимость – <?php echo esc_html($destination['popular_destinations_cost']); ?></li>
-                            </ul>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="btn-container">
-                <a href="" class="btn btn-green-fill">Узнать стоимость</a>
-                <a href="" class="btn">Получить звонок</a>
             </div>
         </div>
     </section>
@@ -832,13 +758,12 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
         </div>
     </section>
 
-
     <section class="exp-sect">
         <div class="container">
             <h2 class="h2 center">Эксплуатационные расходы самолета</h2>
             <p class="center">Приблизительные расходы, рассчитанные для указанного ниже налета</p>
 
-            <div class="table-container">
+            <!-- <div class="table-container">
                 <table class="table">
                     <tbody>
                         <tr>
@@ -1018,7 +943,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
             <?php
             $variable_costs = carbon_get_post_meta(get_the_ID(), 'variable_costs_hour');
             $constant_costs = carbon_get_post_meta(get_the_ID(), 'constant_costs_hour');
@@ -1089,6 +1014,110 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                 </table>
             </div>
 
+            <!-- <div class="btn-container">
+                <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Узнать больше</button>
+                <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- <section class="regular-sect">
+        <div class="container">
+            <div class="center">
+                <h2 class="h2">Узнать больше о комплектации самолета</h2>
+                <p class="text">Подскажем, подберем и проконсультруем вас по всем вопросам</p>
+            </div>
+            <?php echo do_shortcode('[contact-form-7 id="a460904" title="CTA 1"]'); ?>
+        </div>
+    </section> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/cta-1.php'; ?>
+
+    <section class="video-sect">
+        <div class="container">
+            <div class="video-wrap" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/planes/item/ch-350/image2264.jpg);">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/play-text.png" class="video-overlay" id="video-overlay">
+                <iframe class="video-player" src="https://www.youtube.com/embed/<?php echo get_post_meta(get_the_ID(), '_custom_yt_id', true); ?>?controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="opacity:0;" id="video-player"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="distance-map-sect">
+        <div class="container">
+            <h2 class="h2 center">Карта дальности</h2>
+            <div class="distance-map-wrap">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/distance-map.png" class="distance-map" loading="lazy" alt="">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/distance-1.svg" class="distance-shown" loading="lazy" alt="">
+            </div>
+            <?php
+            $flight_range = (int) get_post_meta(get_the_ID(), '_flight_range', true);
+            $max_distance = 11000;
+            $circle_percent = ($flight_range / $max_distance) * 100;
+
+            echo '<style>
+                .woocommerce .distance-shown {
+                    width: ' . $circle_percent . '%;
+                }
+            </style>';
+            ?>
+        </div>
+    </section>
+
+    <section class="regular-sect">
+        <div class="container">
+            <div class="cta-row">
+                <div class="cta-left">
+                    <h2 class="h1">Остались вопросы?</h2>
+                    <p class="text">Оставьте свои контактыне данные, и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
+                </div>
+                <?php echo do_shortcode('[contact-form-7 id="74ced67" title="CTA 2"]'); ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="directions-sect">
+        <div class="container">
+            <h2 class="h2 center">Популярные направления</h2>
+            <?php /* $routes = get_post_meta($product->get_id(), '_popular_routes', true);
+            if (is_array($routes) && !empty($routes)) {
+                echo '<div class="directions-grid">';
+                foreach ($routes as $route) {
+            ?>
+                    <div class="directions-item">
+                        <img src="https://jethunter.aero/wp-content/themes/jethunter/img/illustrations/direction.png" loading="lazy" alt="">
+                        <p class="directions-name"><?php echo esc_html($route['from_city'] . ' – ' . $route['to_city']); ?></p>
+                        <ul class="list">
+                            <li>Дальность полёта (км) – <?php echo esc_html($route['distance']); ?></li>
+                            <li>Время полёта – <?php echo esc_html($route['time']); ?></li>
+                            <li>Стоимость – <?php echo esc_html($route['cost']); ?></li>
+                        </ul>
+                    </div>
+            <?php
+                }
+                echo '</div>';
+            } */ ?>
+
+            <?php
+            $destinations = carbon_get_post_meta(get_the_ID(), 'popular_destinations');
+
+            if (is_array($destinations) && !empty($destinations)) : ?>
+                <div class="directions-grid">
+                    <?php foreach ($destinations as $destination) : ?>
+                        <div class="directions-item">
+                            <img src="https://jethunter.aero/wp-content/themes/jethunter/img/illustrations/direction.png" loading="lazy" alt="">
+                            <p class="directions-name">
+                                <?php echo esc_html($destination['popular_destinations_name']); ?>
+                            </p>
+                            <ul class="list">
+                                <li>Дальность полёта (км) – <?php echo esc_html($destination['popular_destinations_distance']); ?></li>
+                                <li>Время полёта – <?php echo esc_html($destination['popular_destinations_time']); ?></li>
+                                <li>Стоимость – <?php echo esc_html($destination['popular_destinations_cost']); ?></li>
+                            </ul>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="btn-container">
                 <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Узнать больше</button>
                 <button type="button" class="btn js-modal" data-modal="#call">Получить звонок</button>
@@ -1096,7 +1125,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
         </div>
     </section>
 
-    <section class="about-sect">
+    <!-- <section class="about-sect">
         <div class="container">
             <h2 class="h2 center">Как выбрать самолет в аренду?</h2>
             <h3 class="h3 center">Выбор самолета для аренды – это важный шаг, от которого зависит комфорт и успешность вашего путешествия. Вот ключевые факторы, которые стоит учесть:</h3>
@@ -1142,7 +1171,106 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
             </div>
             <h3 class="h3 center">Правильно выбранный самолет – это гарантия комфортного, безопасного и незабываемого путешествия!</h3>
         </div>
-    </section>
+    </section> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/about-rent.php'; ?>
+
+    <!-- <section class="step-sect">
+        <div class="container">
+            <h2 class="h2 center">3 шага к вашему идеальному полету</h2>
+            <div class="step-grid">
+                <div class="step-item">
+                    <span class="step-number">1</span>
+                    <h3 class="h3">Оставьте заявку</h3>
+                    <p>Свяжитесь с нами и расскажите о своих самых смелых пожеланиях. Мы найдем для вас самый
+                        оптимальный самолет!</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">2</span>
+                    <h3 class="h3">Подпишите договор</h3>
+                    <p>Подпишите договор аренды. Это обеспечивает защиту и понимание условий аренды для обеих сторон.
+                    </p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">3</span>
+                    <h3 class="h3">Оплатите рейс</h3>
+                    <p>Оплатите забронированный рейс любым удобным способом. Мы предлагаем более 50 различных вариантов
+                        оплаты.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/step-3.php'; ?>
+
+    <!-- <section class="instruction-sect">
+        <div class="container">
+            <h2 class="h2 center">Мы делаем 8 шагов для Вашего безупречного полета</h2>
+            <div class="instruction-wrap">
+                <div class="instruction-block">
+                    <h3 class="h3">Заявка на рейс</h3>
+                    <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
+                        необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших
+                        предпочтений и координируем работу служб в аэропортах. С нами у вас не будет никаких
+                        сюрпризов!</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Подбор самолёта</h3>
+                    <p>Мы подберем идеальный вариант, отвечающий вашим требованиям и бюджету. Мы предложим несколько
+                        самолетов и подробно расскажем о каждом, чтобы вы могли сделать правильный выбор!</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Договор на перелёт</h3>
+                    <p>После согласования всех деталей мы подготовим договор аренды, регламентирующий все нюансы нашей
+                        работы, чтобы вы были уверены в юридической и финансовой безопасности.</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Проверка обеспечения</h3>
+                    <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
+                        необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших предпочтений
+                        и координируем работу служб в аэропортах. С нами у вас не будет никаких сюрпризов!</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Брифинг по рейсу</h3>
+                    <p>Мы заранее проверяем все данные и готовим для вас бриф со всем деталями вашего идеального полета:
+                        маршрут, номер самолета, контакты экипажа и терминалов.</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Проверка питания</h3>
+                    <p>За сутки до рейса мы проверяем корректность заказа, чтобы не допустить никаких сюрпризов.  Редкие
+                        позиции, которые не может предоставить кейтеринг, мы докупаем самостоятельно. Мы сделаем все для
+                        вашего комфорта и удовольствия.</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Проверка подлёта</h3>
+                    <p>Отслеживаем местонахождение воздушного судна в режиме реального времени, контролируем
+                        своевременный вылет и информируем вас о времени прибытия самолета в аэропорт. Это нужно, чтобы
+                        не допустить опозданий и предупредить вас о них заранее.</p>
+                </div>
+                <div class="instruction-block">
+                    <h3 class="h3">Вылет по расписанию</h3>
+                    <p>Мы лично проконтролируем подготовку к вылету, встретим вас в терминале и сделаем все, чтобы ваше
+                        путешествие было максимально комфортным и безопасным. Вы и ваша семья будете довольны!</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/instruction-8.php'; ?>
+
+    <!-- <section class="regular-sect">
+        <div class="container">
+            <div class="cta-row">
+                <div class="cta-left">
+                    <h2 class="h1">Остались вопросы?</h2>
+                    <p class="text">Оставьте свои контактыне данные, и мы свяжемся с вами в течении 5 минут и подробнее обо всем расскажем</p>
+                </div>
+                <?php echo do_shortcode('[contact-form-7 id="74ced67" title="CTA 2"]'); ?>
+            </div>
+        </div>
+    </section> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/cta-2.php'; ?>
 
     <?php
     $current_id = get_the_ID();
@@ -1433,6 +1561,72 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
         </section>
     <?php endif; ?>
 
+    <!-- <div class="article-wrap article-wrap-page">
+        <div class="article-body">
+            <p><strong>В этой статье мы отвечаем на самые частые вопросы о наших клиентов: Как арендовать частный самолет? Как выбрать воздушное судно при заказе самолета? Что входит в стоимость аренды частного самолета? Могу ли я изменить условия забронированного рейса? Каким образом обеспечивается безопасность перелета? Каков уровень подготовки пилотов? Что случится, если я опоздаю на свой рейс?</strong></p>
+            <div class="accordion-container">
+                <div class="accordion-block">
+                    <div class="accordion-heading">
+                        <p class="accordion-heading-name">Как арендовать частный самолет?</p>
+                    </div>
+                    <div class="accordion-text">
+                        <p>Позвонить нам в компанию / оставить заявку любым удобным способом и сообщить желаемые даты перелета и количество пассажиров. Мы подготовим вам лучшее предложение, исходя из ваших пожеланий. Далее вы выбираете понравившийся самолет и после подписания договора – оплачиваете его. После вы предоставляете список пассажиров и пожелания по питанию, а мы организовываем для вас рейс. В назначенный день вы приезжаете в аэропорт, где вас будет ждать заказанный самолет и экипаж.</p>
+                    </div>
+                </div>
+                <div class="accordion-block">
+                    <div class="accordion-heading">
+                        <p class="accordion-heading-name">Как выбрать воздушное судно при заказе самолета?</p>
+                    </div>
+                    <div class="accordion-text">
+                        <p>При выборе судна существуют несколько основных критериев: количество пассажиров, дальность перелета, размер самолета, от которого зависит уровень комфорта и бюджет. Мы предоставим несколько самолетов на выбор и расскажем, чем они отличаются.</p>
+                    </div>
+                </div>
+                <div class="accordion-block">
+                    <div class="accordion-heading">
+                        <p class="accordion-heading-name">Что входит в стоимость аренды частного самолета?</p>
+                    </div>
+                    <div class="accordion-text">
+                        <p>В стоимость перелета на частном борту включены: воздушное судно с экипажем; VIP-терминалы (при их наличии); VIP-питание, аэропортовые сборы и дополнительные услуги по вашему желанию.</p>
+                    </div>
+                </div>
+                <div class="accordion-block">
+                    <div class="accordion-heading">
+                        <p class="accordion-heading-name">Могу ли я изменить условия забронированного рейса?</p>
+                    </div>
+                    <div class="accordion-text">
+                        <p>Вы, несомненно, можете изменить условия рейса, а мы приложим все усилия, чтобы все изменения были выполнены.</p>
+                    </div>
+                </div>
+                <div class="accordion-block">
+                    <div class="accordion-heading">
+                        <p class="accordion-heading-name">Каким образом обеспечивается безопасность перелета? Каков уровень подготовки пилотов?</p>
+                    </div>
+                    <div class="accordion-text">
+                        <p>Мы предлагаем самолеты только в летной годности, с действующими страховыми сертификатами и своевременно пройденным техобслуживанием. Все пилоты имеют действующие лицензии и регулярно проходят обучение.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <aside class="article-sidebar">
+            <div class="form-bg">
+                <?php echo do_shortcode('[contact-form-7 id="1f2bdf6" title="Вопрос в FAQ"]'); ?>
+            </div>
+        </aside>
+    </div> -->
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
+
+    <?php include_once get_stylesheet_directory() . '/components/ru/seo-sect-empty-legs.php'; ?>
+
+    <!-- <div class="seo-sect">
+        <div class="container">
+            <h2 class="h2 center">Как найти расписание пустых перелетов</h2>
+            <p>Партнерская программа является отличной возможностью для тех, кто хочет монетизировать свою страсть к роскошным путешествиям на частных самолетах. Эта программа открывает дверь в мир бизнес авиации: от частных самолетов и групповых чартеров до грузовых услуг, аренды самолетов и продажи реактивных джетов.</p>
+            <p>Эта программа создана для энтузиастов из различных отраслей сегмента люкс. Если вы работаете с людьми из премиального сегмента, то вы можете стать нашим амбассадором и получать кэшбэк с успешных рейсов ваших клиентов. </p>
+            <p>Мы обеспечиваем поддержку 24/7, предоставляя всю необходимую информацию. Вам предоставляется персональный советник по вопросам частной авиации, который будет отвечать на все интересующие вопросы. </p>
+            <p>Лидер.Джет сочетает конкурентные цены с качеством работы, благодаря нашему многолетнему опыту и доступу к эксклюзивным предложениям.</p>
+        </div>
+    </div> -->
 </div>
 
 <?php do_action('woocommerce_after_single_product'); ?>

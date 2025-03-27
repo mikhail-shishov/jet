@@ -192,36 +192,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
   })
 
-  // sendForm = document.querySelector(".btn-call-send");
-  // sendForm.addEventListener("click", function(e) {
-  //     document.querySelector("#call .modal-inner").classList.remove("is-active");
-  //     document.querySelector("#call .modal-thanks").classList.add("is-active");
-  // })
-
-  // форма на чистом РНР
-  // document.querySelector("#contact-form").addEventListener("submit", function (e) {
-  //   e.preventDefault();
-
-  //   let formData = new FormData(this);
-
-  //   fetch('../components/contact.php', {
-  //     method: 'POST',
-  //     body: formData
-  //   })
-  //     .then(response => response.text())
-  //     .then(data => {
-  //       if (data.includes('Сообщение отправлено!')) {
-  //         document.querySelector("#call .modal-inner").classList.remove("is-active");
-  //         document.querySelector("#call .modal-thanks").classList.add("is-active");
-  //       } else {
-  //         alert("Произошла непредвиденная ошибка. Позвоните нам по номеру телефона на сайте, а мы параллельно исправим её.");
-  //       }
-  //     })
-  //     .catch(error => {
-  //       alert("Код ошибки: " + error);
-  //     });
-  // });
-
   // форма с CF7
   document.addEventListener('wpcf7mailsent', function () {
     const modalInner = document.querySelector('.modal-inner');
@@ -254,7 +224,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
   })
 
   if (window.innerWidth <= 992) {
-    document.querySelector(".home-form-2 .home-form-bottom")?.prepend(toggleFlightBtn);
+    document.querySelector(".home-form-2 .home-form-bottom")?.prepend(toggleFlightBtnRu);
+    document.querySelector(".home-form-2 .home-form-bottom")?.prepend(toggleFlightBtnEn);
   }
 
   // store tabs variable
@@ -402,7 +373,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
 
-  // поправить классы
   document.querySelectorAll('.gallery-container').forEach((container) => {
     const galleryElement = container.querySelector(".lightgallery");
 
@@ -543,21 +513,21 @@ window.addEventListener("load", () => {
       // проверяем дату
       if (selectedDate) {
         const selectedDateObj = new Date(selectedDate); // YYYY-MM-DD
-      
+
         const itemDateRaw = item.querySelector('.empty-path-date .empty-path-info')?.textContent.trim();
-        
+
         if (itemDateRaw) {
           // Разбираем дату формата "15.01, 12:00"
           const dateMatch = itemDateRaw.match(/(\d{2})\.(\d{2})/); // извлекаем день и месяц
-          
+
           if (dateMatch) {
             const day = dateMatch[1];
             const month = dateMatch[2];
             const year = selectedDateObj.getFullYear(); // используем текущий год
-      
+
             // Форматируем дату в ISO
             const itemDateFormatted = `${year}-${month}-${day}`;
-      
+
             // Сравниваем
             if (selectedDate !== itemDateFormatted) {
               matches = false;
@@ -584,129 +554,9 @@ window.addEventListener("load", () => {
     e.preventDefault(); // Предотвращаем отправку формы
     filterPlanes();
   });
-
-  // // Сообщение для отсутсвия результатов
-  // const noResultsMessage = document.createElement('p');
-  // noResultsMessage.textContent = 'Нет доступных рейсов';
-  // noResultsMessage.style.display = 'none';
-  // document.querySelector('.empty-grid')?.appendChild(noResultsMessage);
-
-  // // Показать сообщение, если все блоки скрыты
-  // const visibleItems = Array.from(planeItems).some(item => item.style.display !== 'none');
-  // noResultsMessage.style.display = visibleItems ? 'none' : '';
 });
 
 
-// our-fleet
-// document.addEventListener("DOMContentLoaded", function () {
-//   document.querySelector('.btn-find')?.addEventListener('click', () => {
-//     // получаем значения фильтров
-//     const selectedManufacturer = document.querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')?.getAttribute('data-value');
-//     const selectedRange = document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')?.getAttribute('data-value');
-//     const selectedPrice = document.querySelector('.dropdown:nth-child(5) .dropdown__list-item_active')?.getAttribute('data-value') || null;
-//     const selectedSeats = Array.from(document.querySelectorAll('.dropdown_with-chk__list-item input:checked'))
-//       .map(checkbox => checkbox.id); // Извлекаем диапазоны мест
-
-//     // получаем все элементы самолетов
-//     const items = document.querySelectorAll('.looking-item');
-
-//     console.log('Фильтры:');
-//     console.log('Производитель:', selectedManufacturer || 'Любой');
-//     console.log('Дальность:', selectedRange || 'Любая');
-//     console.log('Цена:', selectedPrice || 'Любая');
-//     console.log('Места:', selectedSeats.length ? selectedSeats : 'Любые');
-
-//     // если ни один фильтр не выбран
-//     if (!selectedManufacturer && !selectedRange && !selectedPrice && selectedSeats.length === 0) {
-//       console.log('Нет выбранных фильтров. Показываем все блоки.');
-//       items.forEach(item => {
-//         item.style.display = 'block'; // показываем все элементы, если фильтры не выбраны
-//       });
-//       return; // прерываем выполнение функции, если нет фильтров
-//     }
-
-//     // если фильтры выбраны, продолжаем фильтрацию
-//     items.forEach(item => {
-//       // данные для фильтрации
-//       const title = item.querySelector('h3').innerText.trim(); // Название самолета
-//       const rangeText = item.querySelector('.looking-row:nth-child(2) .looking-row-desc').innerText.trim(); // Текст дальности
-//       const seatsText = item.querySelector('.looking-row:nth-child(3) .looking-row-desc').innerText.trim(); // Места
-//       const priceText = item.querySelector('.looking-row:nth-child(4) .looking-row-desc').innerText.trim(); // Цена
-
-//       console.log('Название:', title);
-//       console.log('Дальность (текст):', rangeText);
-//       console.log('Места (текст):', seatsText);
-//       console.log('Цена (текст):', priceText);
-
-//       // извлекаем производителя из названия
-//       const manufacturer = title.split(' ')[0];
-
-//       // извлекаем последнее значение перед "км" из текста дальности
-//       const rangeMatch = rangeText.match(/(\d+)\s*км/);
-//       const range = rangeMatch ? parseInt(rangeMatch[1], 10) : 0;
-
-//       // преобразуем значения
-//       const seats = parseInt(seatsText, 10);
-//       const price = parseInt(priceText.replace(/\D/g, ''), 10);
-
-//       // проверяем соответствие фильтрам
-//       const matchManufacturer = !selectedManufacturer || selectedManufacturer === 'Любой' || manufacturer === selectedManufacturer;
-//       const matchRange = !selectedRange || selectedRange === 'Любой' || range >= parseInt(selectedRange, 10);
-//       const matchPrice = !selectedPrice || (selectedPrice.includes('-') && checkPriceRange(price, selectedPrice));
-//       const matchSeats = selectedSeats.length === 0 || checkSeatRange(seats, selectedSeats);
-
-//       console.log('---');
-//       console.log('Проверяем блок:', item.querySelector('h3').innerText);
-//       console.log('matchManufacturer:', matchManufacturer);
-//       console.log('matchRange:', matchRange);
-//       console.log('matchPrice:', matchPrice);
-//       console.log('matchSeats:', matchSeats);
-//       console.log('Производитель:', manufacturer);
-//       console.log('Дальность (число):', range);
-//       console.log('Места (число):', seats);
-//       console.log('Цена (число):', price);
-
-//       // показываем или скрываем элемент
-//       if (matchManufacturer && matchRange && matchPrice && matchSeats) {
-//         console.log('Элемент отображается:', title);
-//         item.style.display = 'block';
-//       } else {
-//         console.log('Элемент скрывается:', title);
-//         item.style.display = 'none';
-//       }
-//     });
-//   });
-
-//   // проверка диапазона цены
-//   function checkPriceRange(price, range) {
-//     console.log('Проверяем диапазон цены:', price, range);
-//     const [min, max] = range.split('-').map(Number);
-//     if (isNaN(min) || isNaN(max)) {
-//       console.error('Некорректный диапазон цены:', range);
-//       return true; // если диапазон некорректный, пропускаем фильтр
-//     }
-//     return price >= min && price <= max;
-//   }
-
-//   // проверка диапазона мест
-//   function checkSeatRange(seats, ranges) {
-//     console.log('Проверяем диапазон мест:', seats, ranges);
-//     return ranges.some(range => {
-//       const [min, max] = range.split('-').map(Number);
-//       return seats >= min && (max ? seats <= max : true);
-//     });
-//   }
-
-//   // сброс фильтров
-//   document.querySelector('.btn-reset')?.addEventListener('click', () => {
-//     // сбросить активные фильтры
-//     document.querySelectorAll('.dropdown__list-item_active').forEach(item => item.classList.remove('dropdown__list-item_active'));
-//     document.querySelectorAll('.dropdown__list-item:first-child').forEach(item => item.classList.add('dropdown__list-item_active'));
-//     document.querySelectorAll('.dropdown_with-chk__list-item input').forEach(checkbox => checkbox.checked = false);
-
-//     // показать все самолеты
-//     document.querySelectorAll('.looking-item').forEach(item => item.style.display = 'block');
-//   });
 document.addEventListener("DOMContentLoaded", function () {
   const itemsContainer = document.querySelector(".looking-grid-full");
   let items = Array.from(document.querySelectorAll(".looking-item"));
@@ -727,7 +577,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // 📌 Фильтрация самолетов
+  // фильтрация самолетов
   btnFind?.addEventListener("click", () => {
     const selectedManufacturer = document
       .querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')
@@ -775,7 +625,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 🔄 Сброс фильтров
+  // Сброс фильтров
   btnReset?.addEventListener("click", () => {
     document.querySelectorAll(".dropdown__list-item_active").forEach(item => item.classList.remove("dropdown__list-item_active"));
     document.querySelectorAll(".dropdown__list-item:first-child").forEach(item => item.classList.add("dropdown__list-item_active"));
@@ -783,7 +633,7 @@ document.addEventListener("DOMContentLoaded", function () {
     items.forEach(item => (item.style.display = "block"));
   });
 
-  // 📌 Сортировка самолетов
+  // Сортировка самолетов
   function sortItems(sortType = "name") {
     let sortedItems = [...items];
 
@@ -813,7 +663,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   sortItems(); // Сортируем сразу при загрузке
 
-  // 📌 Фильтрация по категории (кнопки tabs-options-cat)
+  // Фильтрация по категории (кнопки tabs-options-cat)
   document.querySelectorAll(".tabs-options-cat .btn").forEach(button => {
     button.addEventListener("click", event => {
       event.preventDefault();
@@ -913,123 +763,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-  // открывающиеся меню
-  accordion = document.querySelectorAll('.accordion-block');
-  accordion.forEach((el) => {
-    el.firstElementChild.addEventListener('click', () => {
-      if (!el.classList.contains('is-active')) {
-        el.classList.add('is-active');
-      } else {
-        el.classList.remove('is-active');
-      }
-    });
-  });
-
-
-  // форма с квизом
-  let currentStep = 1;
-  const firstStep = document.querySelector(".quiz-step.step-1");
-  if (firstStep) {
-    firstStep.classList.add("active");
-  }
-  // Обработчик для кнопок "Продолжить"
-  document.querySelectorAll(".next-step").forEach((button) => {
-    button.addEventListener("click", function () {
-      if (currentStep === 1) {
-        // Получаем выбранное значение услуги
-        let selectedService = document.querySelector('input[name="service"]:checked');
-
-        if (!selectedService) {
-          alert("Выберите услугу, чтобы продолжить.");
-          return;
-        }
-
-        let serviceValue = selectedService.value;
-        // console.log("Выбрана услуга:", serviceValue);
-
-        // Скрываем первый шаг и показываем нужный второй шаг
-        document.querySelector(".quiz-step.step-1").style.display = "none";
-        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
-          step.style.display = "none";
-        });
-
-        let nextStep = document.querySelector(`.quiz-step.step-2[data-service="${serviceValue}"]`);
-        if (nextStep) {
-          nextStep.style.display = "block";
-          currentStep = 2;
-        }
-      } else if (currentStep === 2) {
-        // Скрываем второй шаг и показываем третий
-        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
-          step.style.display = "none";
-        });
-        document.querySelector(".quiz-step.step-3").style.display = "block";
-        currentStep = 3;
-      }
-    });
-  });
-
-  // Обработчик для кнопок "Назад"
-  document.querySelectorAll(".prev-step").forEach((button) => {
-    button.addEventListener("click", function () {
-      if (currentStep === 2) {
-        // Показываем первый шаг
-        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
-          step.style.display = "none";
-        });
-        document.querySelector(".quiz-step.step-1").style.display = "block";
-        currentStep = 1;
-      } else if (currentStep === 3) {
-        // Показываем соответствующий второй шаг
-        document.querySelector(".quiz-step.step-3").style.display = "none";
-        let selectedService = document.querySelector('input[name="service"]:checked');
-        if (selectedService) {
-          let serviceValue = selectedService.value;
-          document.querySelector(`.quiz-step.step-2[data-service="${serviceValue}"]`).style.display = "block";
-          currentStep = 2;
-        }
-      }
-    });
-  });
-
-  const swiper = new Swiper('.services-swiper', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 16,
-    // slidesOffsetBefore: 36,
-    // slidesOffsetAfter: 36,
-    breakpoints: {
-      // when window width is >= 768px
-      768: {
-        slidesPerView: 2,
-      },
-      // when window width is >= 992px
-      992: {
-        slidesPerView: 2,
-        spaceBetween: 24,
-        // slidesOffsetBefore: 70,
-        // slidesOffsetAfter: 70
-      },
-      // when window width is >= 668px
-      1280: {
-        slidesPerView: 3,
-        spaceBetween: 32
-      }
-    },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: '.services-swiper-button-next',
-      prevEl: '.services-swiper-button-prev',
-    },
-  });
-
   // табы в отзывах
   const reviewsTabs = document.querySelectorAll(".btn-tab-reviews");
   const filterTabs = document.querySelectorAll(".btn-tab-type");
@@ -1119,9 +852,122 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }, true);
+
+  // костыль для горячих предложений
+  document.querySelectorAll('.hot-offer').forEach(el => {
+    document.querySelector('.looking-grid-hot-offer').appendChild(el);
+  });
 })
 
 window.addEventListener("load", () => {
+  // открывающиеся меню
+  accordion = document.querySelectorAll('.accordion-block');
+  accordion.forEach((el) => {
+    el.firstElementChild.addEventListener('click', () => {
+      if (!el.classList.contains('is-active')) {
+        el.classList.add('is-active');
+      } else {
+        el.classList.remove('is-active');
+      }
+    });
+  });
+
+  const swiper = new Swiper('.services-swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    breakpoints: {
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 2,
+      },
+      // when window width is >= 992px
+      992: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
+      // when window width is >= 668px
+      1280: {
+        slidesPerView: 3,
+        spaceBetween: 32
+      }
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.services-swiper-button-next',
+      prevEl: '.services-swiper-button-prev',
+    },
+  });
+
+  // форма с квизом
+  let currentStep = 1;
+  const firstStep = document.querySelector(".quiz-step.step-1");
+  if (firstStep) {
+    firstStep.classList.add("active");
+  }
+  // Обработчик для кнопок "Продолжить"
+  document.querySelectorAll(".next-step").forEach((button) => {
+    button.addEventListener("click", function () {
+      if (currentStep === 1) {
+        // Получаем выбранное значение услуги
+        let selectedService = document.querySelector('input[name="service"]:checked');
+
+        if (!selectedService) {
+          alert("Выберите услугу, чтобы продолжить.");
+          return;
+        }
+
+        let serviceValue = selectedService.value;
+        // console.log("Выбрана услуга:", serviceValue);
+
+        // Скрываем первый шаг и показываем нужный второй шаг
+        document.querySelector(".quiz-step.step-1").style.display = "none";
+        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
+          step.style.display = "none";
+        });
+
+        let nextStep = document.querySelector(`.quiz-step.step-2[data-service="${serviceValue}"]`);
+        if (nextStep) {
+          nextStep.style.display = "block";
+          currentStep = 2;
+        }
+      } else if (currentStep === 2) {
+        // Скрываем второй шаг и показываем третий
+        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
+          step.style.display = "none";
+        });
+        document.querySelector(".quiz-step.step-3").style.display = "block";
+        currentStep = 3;
+      }
+    });
+  });
+
+  // Обработчик для кнопок "Назад"
+  document.querySelectorAll(".prev-step").forEach((button) => {
+    button.addEventListener("click", function () {
+      if (currentStep === 2) {
+        // Показываем первый шаг
+        document.querySelectorAll(".quiz-step.step-2").forEach((step) => {
+          step.style.display = "none";
+        });
+        document.querySelector(".quiz-step.step-1").style.display = "block";
+        currentStep = 1;
+      } else if (currentStep === 3) {
+        // Показываем соответствующий второй шаг
+        document.querySelector(".quiz-step.step-3").style.display = "none";
+        let selectedService = document.querySelector('input[name="service"]:checked');
+        if (selectedService) {
+          let serviceValue = selectedService.value;
+          document.querySelector(`.quiz-step.step-2[data-service="${serviceValue}"]`).style.display = "block";
+          currentStep = 2;
+        }
+      }
+    });
+  });
+
   // сравнение самолётов
   const compareContainer = document.querySelector(".compare-main");
   let selectedPlanes = JSON.parse(localStorage.getItem("selectedPlanes")) || [];
@@ -1170,4 +1016,4 @@ window.addEventListener("load", () => {
   });
 
   renderComparison();
-});
+})
