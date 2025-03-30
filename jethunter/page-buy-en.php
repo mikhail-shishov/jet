@@ -466,7 +466,7 @@
 
 <?php include_once 'components/looking-sect.php'; ?>
 
-<?php include_once get_stylesheet_directory() . '/components/en/about-rent.php'; ?>
+<?php include_once get_stylesheet_directory() . '/components/en/about-buy.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/en/step-3.php'; ?>
 

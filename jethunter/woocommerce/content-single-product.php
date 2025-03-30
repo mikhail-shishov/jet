@@ -133,7 +133,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                 <span class="breadcrumbs-item"><?php the_title(); ?></span>
             </div>
             <div class="plane-name">
-                <h1 class="h1">Купить самолет <?php the_title(); ?></h1>
+                <h1 class="h1"><span class="capitalize"><?php echo esc_html($aircraft_type); ?></span> <?php the_title(); ?></h1>
             </div>
 
 

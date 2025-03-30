@@ -17,7 +17,7 @@
         <div class="search-wrap">
             <form class="search-form">
                 <div class="search-form-options">
-                    <div class="dropdown">
+                    <div class="dropdown aircraft-type-dropdown">
                         <button class="dropdown__button" type="button">Тип</button>
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
@@ -28,7 +28,7 @@
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
+                    <div class="dropdown aircraft-type-dropdown aircraft-type-plane">
                         <button class="dropdown__button" type="button">Категория</button>
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
@@ -45,7 +45,27 @@
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
+                    <div class="dropdown aircraft-type-dropdown aircraft-type-helicopter" style="display: none;">
+                        <button class="dropdown__button" type="button">Категория</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
+                            <li class="dropdown__list-item" data-value="Однодвигательный">Однодвигательный</li>
+                            <li class="dropdown__list-item" data-value="Двухдвигательный">Двухдвигательный</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
+                    </div>
+
+                    <div class="dropdown aircraft-type-dropdown aircraft-type-vtol" style="display: none;">
+                        <button class="dropdown__button" type="button">Категория</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
+                            <li class="dropdown__list-item" data-value="Классический">Классический</li>
+                            <li class="dropdown__list-item" data-value="Электрический">Электрический</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
+                    </div>
+
+                    <div class="dropdown aircraft-manufacturer-dropdown aircraft-manufacturer-plane">
                         <button class="dropdown__button" type="button">Производитель</button>
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item" data-value="Airbus">Airbus</li>
@@ -79,53 +99,206 @@
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Дальность (км)</button>
+                    <div class="dropdown aircraft-manufacturer-dropdown aircraft-manufacturer-helicopter" style="display: none;">
+                        <button class="dropdown__button" type="button">Производитель</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="1000">1000</li>
-                            <li class="dropdown__list-item" data-value="2000">2000</li>
-                            <li class="dropdown__list-item" data-value="3000">3000</li>
-                            <li class="dropdown__list-item" data-value="4000">4000</li>
-                            <li class="dropdown__list-item" data-value="5000">5000</li>
-                            <li class="dropdown__list-item" data-value="6000">6000</li>
-                            <li class="dropdown__list-item" data-value="7000">7000</li>
-                            <li class="dropdown__list-item" data-value="8000">8000</li>
-                            <li class="dropdown__list-item" data-value="9000">9000</li>
-                            <li class="dropdown__list-item" data-value="10000">10000</li>
+                            <li class="dropdown__list-item" data-value="Airbus Helicopters">Airbus helicopters</li>
+                            <li class="dropdown__list-item" data-value="Bell Helicopters">Bell Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Enstrom Helicopters">Enstrom Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Leonardo Helicopters">Leonardo Helicopters</li>
+                            <li class="dropdown__list-item" data-value="MD Helicopters">MD Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Robinson helicopters">Robinson helicopters</li>
+                            <li class="dropdown__list-item" data-value="Russian Helicopters">Russian Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Sikorsky">Sikorsky</li>
+                            <li class="dropdown__list-item" data-value="Schweizer">Schweizer</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Цена</button>
+                    <div class="dropdown aircraft-manufacturer-dropdown aircraft-manufacturer-vtol" style="display: none;">
+                        <button class="dropdown__button" type="button">Производитель</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="500-1000">500-1000</li>
-                            <li class="dropdown__list-item" data-value="1001-2000">1001-2000</li>
-                            <li class="dropdown__list-item" data-value="2001-3000">2001-3000</li>
+                            <li class="dropdown__list-item" data-value="Joby Aviation">Joby Aviation</li>
+                            <li class="dropdown__list-item" data-value="Archer Aviation Inc.">Archer Aviation Inc.</li>
+                            <li class="dropdown__list-item" data-value="Ehang">Ehang</li>
+                            <li class="dropdown__list-item" data-value="Lilium">Lilium</li>
+                            <li class="dropdown__list-item" data-value="MD Helicopters">MD Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Vertical Aerospace">Vertical Aerospace</li>
+                            <li class="dropdown__list-item" data-value="Volocopter">Volocopter</li>
+                            <li class="dropdown__list-item" data-value="Airbus">Airbus</li>
+                            <li class="dropdown__list-item" data-value="Wisk Aero">Wisk Aero</li>
+                            <li class="dropdown__list-item" data-value="Beta Technologies">Beta Technologies</li>
+                            <li class="dropdown__list-item" data-value="Eve Air Mobility">Eve Air Mobility</li>
+                            <li class="dropdown__list-item" data-value="Wisk Aero">Overair</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown_with-chk">
+                    <div class="dropdown_with-chk aircraft-seats-dropdown aircraft-seats-plane">
                         <button class="dropdown_with-chk__button" type="button">Количество мест</button>
                         <ul class="dropdown_with-chk__list">
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-5" id="2-5" />
-                                <label class="dropdown_with-chk__list-item_label" for="2-5">2-5</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1-8" id="1-8" />
+                                <label class="dropdown_with-chk__list-item_label" for="1-8">1-8</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="6-15" id="6-15" />
-                                <label class="dropdown_with-chk__list-item_label" for="6-15">6-15</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="8-14" id="8-14" />
+                                <label class="dropdown_with-chk__list-item_label" for="8-14">8-14</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="16-30" id="16-30" />
-                                <label class="dropdown_with-chk__list-item_label" for="16-30">16-30</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="14-19" id="14-19" />
+                                <label class="dropdown_with-chk__list-item_label" for="14-19">14-19</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="31" id="31" />
-                                <label class="dropdown_with-chk__list-item_label" for="31">31+</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="19-50" id="19-50" />
+                                <label class="dropdown_with-chk__list-item_label" for="19-50">19-50</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="50" id="50" />
+                                <label class="dropdown_with-chk__list-item_label" for="50">50+</label>
                             </li>
                         </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-seats-dropdown aircraft-seats-helicopter" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Количество мест</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1-2" id="1-2" />
+                                <label class="dropdown_with-chk__list-item_label" for="1-2">1-2</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-4" id="2-4" />
+                                <label class="dropdown_with-chk__list-item_label" for="2-4">2-4</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="4-8" id="4-8" />
+                                <label class="dropdown_with-chk__list-item_label" for="4-8">4-8</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="8-12" id="8-12" />
+                                <label class="dropdown_with-chk__list-item_label" for="8-12">8-12</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="12-18" id="12-18" />
+                                <label class="dropdown_with-chk__list-item_label" for="12-18">12-18</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-seats-dropdown aircraft-seats-vtol" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Количество мест</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1-2" id="1-2" />
+                                <label class="dropdown_with-chk__list-item_label" for="1-2">1-2</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-4" id="2-4" />
+                                <label class="dropdown_with-chk__list-item_label" for="2-4">2-4</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="4-8" id="4-8" />
+                                <label class="dropdown_with-chk__list-item_label" for="4-8">4-8</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="8-12" id="8-12" />
+                                <label class="dropdown_with-chk__list-item_label" for="8-12">8-12</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-range-dropdown aircraft-range-plane">
+                        <button class="dropdown_with-chk__button" type="button">Дальность (км)</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1500" id="1500" />
+                                <label class="dropdown_with-chk__list-item_label" for="1500">до 1500</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1500-4000" id="1500-4000" />
+                                <label class="dropdown_with-chk__list-item_label" for="1500-4000">1500-4000</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="4000-9000" id="4000-9000" />
+                                <label class="dropdown_with-chk__list-item_label" for="4000-9000">4000-9000</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="9000" id="9000" />
+                                <label class="dropdown_with-chk__list-item_label" for="9000">9000+</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-range-dropdown aircraft-range-helicopter" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Дальность (км)</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="600" id="600" />
+                                <label class="dropdown_with-chk__list-item_label" for="600">до 600</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="600-900" id="600-900" />
+                                <label class="dropdown_with-chk__list-item_label" for="600-900">600-900</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="900" id="900" />
+                                <label class="dropdown_with-chk__list-item_label" for="900">900+</label>
+                            </li>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-range-dropdown aircraft-range-vtol" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Дальность (км)</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="150" id="150" />
+                                <label class="dropdown_with-chk__list-item_label" for="1500">до 150</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="150-400" id="150-300" />
+                                <label class="dropdown_with-chk__list-item_label" for="150-300">150-300</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="300-500" id="300-500" />
+                                <label class="dropdown_with-chk__list-item_label" for="300-500">300-500</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown aircraft-price-dropdown aircraft-price-plane">
+                        <button class="dropdown__button" type="button">Цена</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item" data-value="3000000">до $3 000 000 </li>
+                            <li class="dropdown__list-item" data-value="3000000-8000000">$3 000 000 - 8 000 000</li>
+                            <li class="dropdown__list-item" data-value="8000000-15000000">$8 000 000 – 15 000 000</li>
+                            <li class="dropdown__list-item" data-value="15000000-40000000">$15 000 000 – 40 000 000</li>
+                            <li class="dropdown__list-item" data-value="40000000">$40 000 000+</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
+                    </div>
+
+                    <div class="dropdown aircraft-price-dropdown aircraft-price-helicopter" style="display:none;">
+                        <button class="dropdown__button" type="button">Цена</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item" data-value="1500000">до $1 500 000</li>
+                            <li class="dropdown__list-item" data-value="1500000-4000000">$1 500 000 - 4 000 000</li>
+                            <li class="dropdown__list-item" data-value="4000000-8000000">$4 000 000 – 8 000 000</li>
+                            <li class="dropdown__list-item" data-value="8000000-12000000">$8 000 000 – 12 000 000</li>
+                            <li class="dropdown__list-item" data-value="12000000">$12 000 000+</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
+                    </div>
+
+                    <div class="dropdown aircraft-price-dropdown aircraft-price-vtol" style="display:none;">
+                        <button class="dropdown__button" type="button">Цена</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item" data-value="1500000">до $1 500 000</li>
+                            <li class="dropdown__list-item" data-value="1500000-4000000">$1 500 000 - 3 000 000</li>
+                            <li class="dropdown__list-item" data-value="4000000-8000000">$3 000 000 – 6 000 000</li>
+                            <li class="dropdown__list-item" data-value="8000000-12000000">$6 000 000 – 11 000 000</li>
+                            <li class="dropdown__list-item" data-value="12000000">$11 000 000+</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
                 </div>
@@ -183,10 +356,12 @@
                     $cabin_height_m        = carbon_get_post_meta($product_id, 'cabin_height_m');
                     $cruise_speed_kmh        = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
                     $aircraft_cat        = carbon_get_post_meta($product_id, 'aircraft_cat');
+                    $aircraft_type        = carbon_get_post_meta($product_id, 'aircraft_type');
 
                     $image = get_the_post_thumbnail_url($product_id, 'full') ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
             ?>
                     <div class="looking-item"
+                        data-aircraft_type="<?php echo esc_attr($aircraft_type); ?>"
                         data-manufacturer="<?php echo esc_attr($manufacturer); ?>"
                         data-range_km="<?php echo esc_attr($range_km); ?>"
                         data-aircraft_hour_cost="<?php echo esc_attr($aircraft_hour_cost); ?>"

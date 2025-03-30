@@ -192,6 +192,125 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
   })
 
+
+
+
+  // Функция для обработки выбора типа и отображения соответствующих блоков
+  function handleTypeSelection() {
+    // Получаем дропдаун типа воздушного судна
+    const typeDropdown = document.querySelector('.aircraft-type-dropdown');
+
+    if (!typeDropdown) return; // Если дропдаун не найден, выходим из функции
+
+    // Получаем текущее значение типа
+    const typeInput = typeDropdown.querySelector('.dropdown__input_hidden');
+    const initialType = typeInput?.value || 'Любой';
+
+    // Инициализируем с выбором по умолчанию
+    updateVisibleBlocks(initialType);
+
+    // Добавляем обработчик изменения для скрытого поля ввода
+    typeInput?.addEventListener('change', function () {
+      updateVisibleBlocks(this.value);
+    });
+
+    // Добавляем обработчики событий клика для опций типа
+    const typeOptions = typeDropdown.querySelectorAll('.dropdown__list-item');
+    typeOptions?.forEach(option => {
+      option.addEventListener('click', function () {
+        const selectedType = this.getAttribute('data-value');
+        updateVisibleBlocks(selectedType);
+      });
+    });
+  }
+
+  // Функция для отображения соответствующих блоков в зависимости от выбранного типа
+  function updateVisibleBlocks(selectedType) {
+    console.log('Обновление блоков для типа:', selectedType);
+
+    // Дропдауны категорий
+    const categoryDropdowns = {
+      plane: document.querySelector('.aircraft-type-plane'),
+      helicopter: document.querySelector('.aircraft-type-helicopter'),
+      vtol: document.querySelector('.aircraft-type-vtol')
+    };
+
+    // Дропдауны дальности
+    const distanceDropdowns = {
+      plane: document.querySelector('.aircraft-range-plane'),
+      helicopter: document.querySelector('.aircraft-range-helicopter'),
+      vtol: document.querySelector('.aircraft-range-vtol')
+    };
+
+    // Дропдауны количества мест
+    const seatsDropdowns = {
+      plane: document.querySelector('.aircraft-seats-plane'),
+      helicopter: document.querySelector('.aircraft-seats-helicopter'),
+      vtol: document.querySelector('.aircraft-seats-vtol')
+    };
+
+    // Дропдауны цены
+    const priceDropdowns = {
+      plane: document.querySelector('.aircraft-price-plane'),
+      helicopter: document.querySelector('.aircraft-price-helicopter'),
+      vtol: document.querySelector('.aircraft-price-vtol')
+    };
+
+    // Дропдауны производителя
+    const manufacturerDropdowns = {
+      plane: document.querySelector('.aircraft-manufacturer-plane'),
+      helicopter: document.querySelector('.aircraft-manufacturer-helicopter'),
+      vtol: document.querySelector('.aircraft-manufacturer-vtol')
+    };
+
+    // Скрываем все блоки
+    Object.values(categoryDropdowns).forEach(dropdown => {
+      if (dropdown) dropdown.style.display = 'none';
+    });
+
+    Object.values(distanceDropdowns).forEach(dropdown => {
+      if (dropdown) dropdown.style.display = 'none';
+    });
+
+    Object.values(seatsDropdowns).forEach(dropdown => {
+      if (dropdown) dropdown.style.display = 'none';
+    });
+
+    Object.values(priceDropdowns).forEach(dropdown => {
+      if (dropdown) dropdown.style.display = 'none';
+    });
+
+    Object.values(manufacturerDropdowns).forEach(dropdown => {
+      if (dropdown) dropdown.style.display = 'none';
+    });
+
+    // Показываем соответствующие блоки в зависимости от выбранного типа
+    if (selectedType === 'Самолет' || selectedType === 'Любой') {
+      // Показываем блоки для самолетов
+      if (categoryDropdowns.plane) categoryDropdowns.plane.style.display = 'block';
+      if (distanceDropdowns.plane) distanceDropdowns.plane.style.display = 'block';
+      if (seatsDropdowns.plane) seatsDropdowns.plane.style.display = 'block';
+      if (priceDropdowns.plane) priceDropdowns.plane.style.display = 'block';
+      if (manufacturerDropdowns.plane) manufacturerDropdowns.plane.style.display = 'block';
+    } else if (selectedType === 'Вертолет') {
+      // Показываем блоки для вертолетов
+      if (categoryDropdowns.helicopter) categoryDropdowns.helicopter.style.display = 'block';
+      if (distanceDropdowns.helicopter) distanceDropdowns.helicopter.style.display = 'block';
+      if (seatsDropdowns.helicopter) seatsDropdowns.helicopter.style.display = 'block';
+      if (priceDropdowns.helicopter) priceDropdowns.helicopter.style.display = 'block';
+      if (manufacturerDropdowns.helicopter) manufacturerDropdowns.helicopter.style.display = 'block';
+    } else if (selectedType === 'VTOL') {
+      // Показываем блоки для VTOL
+      if (categoryDropdowns.vtol) categoryDropdowns.vtol.style.display = 'block';
+      if (distanceDropdowns.vtol) distanceDropdowns.vtol.style.display = 'block';
+      if (seatsDropdowns.vtol) seatsDropdowns.vtol.style.display = 'block';
+      if (priceDropdowns.vtol) priceDropdowns.vtol.style.display = 'block';
+      if (manufacturerDropdowns.vtol) manufacturerDropdowns.vtol.style.display = 'block';
+    }
+  }
+
+
+
   // форма с CF7
   document.addEventListener('wpcf7mailsent', function () {
     const modalInner = document.querySelector('.modal-inner');
@@ -408,7 +527,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
       }
     }
-  });
+  }); handleTypeSelection();
 });
 
 // empty-legs
@@ -578,38 +697,193 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // фильтрация самолетов
+  // btnFind?.addEventListener("click", () => {
+  //   const selectedManufacturer = document
+  //     .querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')
+  //     ?.getAttribute("data-value");
+
+  //   const selectedRange = parseInt(
+  //     document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')
+  //       ?.getAttribute("data-value")
+  //   );
+
+  //   const selectedPrice = document
+  //     .querySelector('.dropdown:nth-child(5) .dropdown__list-item_active')
+  //     ?.getAttribute("data-value");
+
+  //   const selectedSeats = Array.from(
+  //     document.querySelectorAll('.dropdown_with-chk__list-item input:checked')
+  //   ).map(checkbox => checkbox.id);
+
+  //   console.log("Фильтрация:", { selectedManufacturer, selectedRange, selectedPrice, selectedSeats });
+
+  //   items.forEach(item => {
+  //     const manufacturer = item.dataset.manufacturer || "";
+  //     const range = parseInt(item.dataset.range) || 0;
+  //     const seats = parseInt(item.dataset.seats) || 0;
+  //     const price = parseInt(item.dataset.price.replace(/\D/g, "")) || 0;
+
+  //     const matchManufacturer = !selectedManufacturer || selectedManufacturer === "Любой" || manufacturer === selectedManufacturer;
+  //     const matchRange = !selectedRange || range >= selectedRange;
+  //     const matchPrice = !selectedPrice || checkPriceRange(price, selectedPrice);
+  //     const matchSeats = selectedSeats.length === 0 || checkSeatRange(seats, selectedSeats);
+
+  //     item.style.display = (matchManufacturer && matchRange && matchPrice && matchSeats) ? "block" : "none";
+  //   });
+  // });
   btnFind?.addEventListener("click", () => {
-    const selectedManufacturer = document
-      .querySelector('.dropdown:nth-child(3) .dropdown__list-item_active')
-      ?.getAttribute("data-value");
-
-    const selectedRange = parseInt(
-      document.querySelector('.dropdown:nth-child(4) .dropdown__list-item_active')
-        ?.getAttribute("data-value")
-    );
-
-    const selectedPrice = document
-      .querySelector('.dropdown:nth-child(5) .dropdown__list-item_active')
-      ?.getAttribute("data-value");
-
-    const selectedSeats = Array.from(
-      document.querySelectorAll('.dropdown_with-chk__list-item input:checked')
+    // Получаем выбранный тип воздушного судна
+    const selectedType = document
+      .querySelector('.aircraft-type-dropdown .dropdown__list-item_active')
+      ?.getAttribute("data-value") || "Любой";
+  
+    console.log("Выбранный тип:", selectedType);
+  
+    // Получаем выбранную категорию в зависимости от типа
+    let categorySelector = '.aircraft-type-plane .dropdown__list-item_active';
+    if (selectedType === 'Вертолет') {
+      categorySelector = '.aircraft-type-helicopter .dropdown__list-item_active';
+    } else if (selectedType === 'VTOL') {
+      categorySelector = '.aircraft-type-vtol .dropdown__list-item_active';
+    }
+    
+    const selectedCategory = document.querySelector(categorySelector)?.getAttribute("data-value") || "Любой";
+    console.log("Выбранная категория:", selectedCategory);
+  
+    // Получаем выбранного производителя в зависимости от типа
+    let manufacturerSelector = '.aircraft-manufacturer-plane .dropdown__list-item_active';
+    if (selectedType === 'Вертолет') {
+      manufacturerSelector = '.aircraft-manufacturer-helicopter .dropdown__list-item_active';
+    } else if (selectedType === 'VTOL') {
+      manufacturerSelector = '.aircraft-manufacturer-vtol .dropdown__list-item_active';
+    }
+    
+    const selectedManufacturer = document.querySelector(manufacturerSelector)?.getAttribute("data-value");
+    console.log("Выбранный производитель:", selectedManufacturer);
+  
+    // Получаем выбранные диапазоны дальности в зависимости от типа
+    let rangeSelector = '.aircraft-range-plane input:checked';
+    if (selectedType === 'Вертолет') {
+      rangeSelector = '.aircraft-range-helicopter input:checked';
+    } else if (selectedType === 'VTOL') {
+      rangeSelector = '.aircraft-range-vtol input:checked';
+    }
+    
+    const selectedRanges = Array.from(
+      document.querySelectorAll(rangeSelector)
     ).map(checkbox => checkbox.id);
-
-    console.log("Фильтрация:", { selectedManufacturer, selectedRange, selectedPrice, selectedSeats });
-
+    console.log("Выбранные диапазоны дальности:", selectedRanges);
+  
+    // Получаем выбранные диапазоны мест в зависимости от типа
+    let seatsSelector = '.aircraft-seats-plane input:checked';
+    if (selectedType === 'Вертолет') {
+      seatsSelector = '.aircraft-seats-helicopter input:checked';
+    } else if (selectedType === 'VTOL') {
+      seatsSelector = '.aircraft-seats-vtol input:checked';
+    }
+    
+    const selectedSeats = Array.from(
+      document.querySelectorAll(seatsSelector)
+    ).map(checkbox => checkbox.id);
+    console.log("Выбранные диапазоны мест:", selectedSeats);
+  
+    // Получаем выбранную цену в зависимости от типа
+    let priceSelector = '.aircraft-price-plane .dropdown__list-item_active';
+    if (selectedType === 'Вертолет') {
+      priceSelector = '.aircraft-price-helicopter .dropdown__list-item_active';
+    } else if (selectedType === 'VTOL') {
+      priceSelector = '.aircraft-price-vtol .dropdown__list-item_active';
+    }
+    
+    const selectedPrice = document.querySelector(priceSelector)?.getAttribute("data-value");
+    console.log("Выбранная цена:", selectedPrice);
+  
+    // Отладочный вывод для проверки
+    console.log("Фильтрация:", { 
+      selectedType, 
+      selectedCategory, 
+      selectedManufacturer, 
+      selectedRanges, 
+      selectedSeats, 
+      selectedPrice 
+    });
+  
+    // Фильтрация элементов
     items.forEach(item => {
+      // Получаем данные элемента
+      const itemType = item.dataset.aircraft_type || "";
+      const itemCategory = item.dataset.aircraft_cat || "";
       const manufacturer = item.dataset.manufacturer || "";
-      const range = parseInt(item.dataset.range) || 0;
-      const seats = parseInt(item.dataset.seats) || 0;
-      const price = parseInt(item.dataset.price.replace(/\D/g, "")) || 0;
-
-      const matchManufacturer = !selectedManufacturer || selectedManufacturer === "Любой" || manufacturer === selectedManufacturer;
-      const matchRange = !selectedRange || range >= selectedRange;
-      const matchPrice = !selectedPrice || checkPriceRange(price, selectedPrice);
-      const matchSeats = selectedSeats.length === 0 || checkSeatRange(seats, selectedSeats);
-
-      item.style.display = (matchManufacturer && matchRange && matchPrice && matchSeats) ? "block" : "none";
+      const range = parseInt(item.dataset.range_km) || 0;
+      const seats = parseInt(item.dataset.aircraft_seats) || 0;
+      const price = item.dataset.aircraft_hour_cost ? parseInt(item.dataset.aircraft_hour_cost.replace(/\D/g, "")) : 0;
+  
+      // Проверяем соответствие типа
+      let matchType = true;
+      if (selectedType !== "Любой") {
+        matchType = itemType === selectedType;
+      }
+  
+      // Проверяем соответствие категории
+      let matchCategory = true;
+      if (selectedCategory !== "Любой") {
+        matchCategory = itemCategory === selectedCategory;
+      }
+  
+      // Проверяем соответствие производителя
+      let matchManufacturer = true;
+      if (selectedManufacturer && selectedManufacturer !== "Любой") {
+        matchManufacturer = manufacturer === selectedManufacturer;
+      }
+  
+      // Проверяем соответствие дальности
+      let matchRange = true;
+      if (selectedRanges.length > 0) {
+        matchRange = selectedRanges.some(rangeId => {
+          if (rangeId.includes('-')) {
+            const [min, max] = rangeId.split('-').map(Number);
+            return range >= min && range <= max;
+          } else {
+            const threshold = parseInt(rangeId);
+            if (rangeId.startsWith('9000') || rangeId.startsWith('900') || rangeId.startsWith('500')) {
+              // Для значений "9000+", "900+" и т.д.
+              return range >= threshold;
+            } else {
+              // Для значений "до 1500", "до 600" и т.д.
+              return range <= threshold;
+            }
+          }
+        });
+      }
+  
+      // Проверяем соответствие количества мест
+      let matchSeats = true;
+      if (selectedSeats.length > 0) {
+        matchSeats = selectedSeats.some(seatId => {
+          if (seatId.includes('-')) {
+            const [min, max] = seatId.split('-').map(Number);
+            return seats >= min && seats <= max;
+          } else {
+            // Для значений "50+" и т.д.
+            return seats >= parseInt(seatId);
+          }
+        });
+      }
+  
+      // Проверяем соответствие цены
+      let matchPrice = true;
+      if (selectedPrice) {
+        matchPrice = checkPriceRange(price, selectedPrice);
+      }
+  
+      // Отладочный вывод для проверки фильтрации
+      if (!matchType) {
+        console.log(`Элемент не соответствует типу. Выбрано: ${selectedType}, В элементе: ${itemType}`);
+      }
+  
+      // Применяем фильтрацию
+      const isVisible = matchType && matchCategory && matchManufacturer && matchRange && matchSeats && matchPrice;
+      item.style.display = isVisible ? "block" : "none";
     });
   });
 

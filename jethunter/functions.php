@@ -51,6 +51,46 @@ add_action('carbon_fields_register_fields', function () {
                 Field::make('textarea', 'description', 'Text')->set_required(false),
                 Field::make('text', 'name', 'Name')->set_required(false),
             ]),
+            Field::make('complex', 'about_rent', 'Текст об аренде')
+            ->add_fields([
+                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+            ]),
+            Field::make('complex', 'about_rent_en', 'EN Текст об аренде')
+            ->add_fields([
+                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+            ]),
+            Field::make('complex', 'about_buy', 'Текст о покупке')
+            ->add_fields([
+                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+            ]),
+            Field::make('complex', 'about_buy_en', 'EN Текст о покупке')
+            ->add_fields([
+                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+            ]),
         ));
 
     Container::make('post_meta', 'Параметры самолёта')
@@ -705,34 +745,28 @@ add_filter('upload_mimes', 'allow_json_uploads');
 // импорт json для загрузки нового самолёта
 function process_aircraft_json($post_id)
 {
+    // Проверяем, что это продукт
     if (get_post_type($post_id) !== 'product') {
         return;
     }
 
-    $json_value = carbon_get_post_meta($post_id, 'aircraft_json');
-
-    if (!$json_value) {
+    // Получаем URL JSON-файла
+    $json_url = carbon_get_post_meta($post_id, 'aircraft_json');
+    if (!$json_url) {
         error_log("Ошибка: JSON-файл не выбран.");
         return;
     }
 
-    // Проверяем, что нам вернул Carbon Fields: ID или URL
-    if (is_numeric($json_value)) {
-        // Это ID вложения
-        $json_path = get_attached_file($json_value);
-    } else {
-        // Это URL файла
-        $upload_dir = wp_upload_dir();
-        $json_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $json_value);
-    }
+    // Преобразуем URL в путь к файлу
+    $upload_dir = wp_upload_dir();
+    $json_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $json_url);
 
-    if (!$json_path || !file_exists($json_path)) {
+    if (!file_exists($json_path)) {
         error_log("Ошибка: JSON-файл не найден - $json_path");
         return;
     }
 
-    error_log("Файл найден: $json_path");
-
+    // Читаем и декодируем JSON
     $json_data = file_get_contents($json_path);
     $aircraft_data = json_decode($json_data, true);
 
@@ -740,6 +774,9 @@ function process_aircraft_json($post_id)
         error_log("Ошибка: JSON-файл поврежден.");
         return;
     }
+
+    // Временно отключаем хук, чтобы избежать рекурсии
+    remove_action('carbon_fields_post_meta_container_saved', 'process_aircraft_json');
 
     foreach ($aircraft_data as $entry) {
         if (empty($entry['Общие данные']) || !isset($entry['Параметры'])) {
@@ -1030,8 +1067,10 @@ function process_aircraft_json($post_id)
                 break;
         }
     }
+    // Восстанавливаем хук
+    add_action('carbon_fields_post_meta_container_saved', 'process_aircraft_json');
 }
-add_action('carbon_fields_post_meta_container_saved', 'process_aircraft_json');
+// add_action('carbon_fields_post_meta_container_saved', 'process_aircraft_json');
 
 // номер телефона с проверкой айпи в шапке сайта и в подвале
 function get_phone_number()
