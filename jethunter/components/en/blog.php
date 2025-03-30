@@ -1,10 +1,10 @@
 <section class="blog-sect">
     <div class="container">
-        <h1 class="h1 center">Новостной блог</h1>
+        <h1 class="h1 center">Blog</h1>
         <ul class="nav-tabs">
-            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Показать все</a></li>
-            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Статьи</a></li>
-            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">Туры</a></li>
+            <li class="nav-tabs-item active"><a href="#tab-1" class="btn btn-tab-full">Show all</a></li>
+            <li class="nav-tabs-item"><a href="#tab-2" class="btn btn-tab-full">Articles</a></li>
+            <li class="nav-tabs-item"><a href="#tab-3" class="btn btn-tab-full">Tours</a></li>
             <!-- <div class="nav-tabs-right">
                 <div class="dropdown">
                     <button class="dropdown__button" type="button">Сортировать по</button>
@@ -44,7 +44,7 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
 
                                         <?php
                                         $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
@@ -67,7 +67,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No posts to show.';
                     }
                     ?>
                 </div>
@@ -81,7 +81,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => -1,
-                        'category_name' => 'article-ru',
+                        'category_name' => 'article-en',
                     );
 
                     $query = new WP_Query($args);
@@ -102,7 +102,7 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
 
                                         <?php
                                         $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
@@ -125,7 +125,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No posts to show.';
                     }
                     ?>
                 </div>
@@ -136,7 +136,7 @@
                     $args = array(
                         'post_type' => 'post',
                         'posts_per_page' => 3,
-                        'category_name' => 'tour-ru',
+                        'category_name' => 'tour-en',
                     );
 
                     $query = new WP_Query($args);
@@ -157,7 +157,7 @@
                                     <span class="article-date"><?php echo get_the_date(); ?></span>
                                     <p><?php the_excerpt(); ?></p>
                                     <div class="article-info">
-                                        <a href="<?php the_permalink(); ?>" class="link">Узнать больше</a>
+                                        <a href="<?php the_permalink(); ?>" class="link">Read more</a>
 
                                         <?php
                                         $language = function_exists('pll_current_language') ? pll_current_language() : 'ru';
@@ -181,7 +181,7 @@
                     <?php }
                         wp_reset_postdata();
                     } else {
-                        echo 'Статей пока нет.';
+                        echo 'No posts to show.';
                     }
                     ?>
                 </div>

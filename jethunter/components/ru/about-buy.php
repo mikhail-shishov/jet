@@ -1,3 +1,5 @@
+<?php $about_section = carbon_get_theme_option('about_buy'); ?>
+
 <!-- <section class="about-sect">
     <div class="container">
         <h2 class="h2 center">Как выбрать самолет в аренду?</h2>
@@ -45,8 +47,6 @@
         <h3 class="h3 center">Правильно выбранный самолет – это гарантия комфортного, безопасного и незабываемого путешествия!</h3>
     </div>
 </section> -->
-<?php $about_section = carbon_get_theme_option('about_rent_en'); ?>
-
 <section class="about-sect">
     <div class="container">
         <?php if (!empty($about_section)) {
