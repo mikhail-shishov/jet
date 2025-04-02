@@ -139,6 +139,10 @@ html[lang="en-US"] .ru-only {
     display: none;
 }
 
+html[lang="ru-RU"] .en-only {
+    display: none;
+}
+
 * {
     box-sizing: border-box;
     color: white;

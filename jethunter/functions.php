@@ -517,8 +517,7 @@ add_action('carbon_fields_register_fields', function () {
         ]);
 });
 
-add_action('carbon_fields_register_fields', function () {
-    $country_flags = [
+$country_flags_global = [
         'Австралия' => '/wp-content/uploads/flags/australia.png',
         'Австрия' => '/wp-content/uploads/flags/austria.png',
         'Азербайджан' => '/wp-content/uploads/flags/azerbaijan.png',
@@ -703,15 +702,216 @@ add_action('carbon_fields_register_fields', function () {
         'Япония' => '/wp-content/uploads/flags/japan.png'
     ];
 
+    $country_flags_en_global = [
+        'Afghanistan' => '/wp-content/uploads/flags/afghanistan.png',
+        'Albania' => '/wp-content/uploads/flags/albania.png',
+        'Andorra' => '/wp-content/uploads/flags/andorra.png',
+        'Antigua and Barbuda' => '/wp-content/uploads/flags/antigua-and-barbuda.png',
+        'Armenia' => '/wp-content/uploads/flags/armenia.png',
+        'Australia' => '/wp-content/uploads/flags/australia.png',
+        'Austria' => '/wp-content/uploads/flags/austria.png',
+        'Azerbaijan' => '/wp-content/uploads/flags/azerbaijan.png',
+        'Bahamas' => '/wp-content/uploads/flags/bahamas.png',
+        'Bangladesh' => '/wp-content/uploads/flags/bangladesh.png',
+        'Barbados' => '/wp-content/uploads/flags/barbados.png',
+        'Bahrain' => '/wp-content/uploads/flags/bahrain.png',
+        'Belarus' => '/wp-content/uploads/flags/belarus.png',
+        'Belize' => '/wp-content/uploads/flags/belize.png',
+        'Bolivia' => '/wp-content/uploads/flags/bolivia.png',
+        'Bosnia and Herzegovina' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
+        'Botswana' => '/wp-content/uploads/flags/botswana.png',
+        'Belgium' => '/wp-content/uploads/flags/belgium.png',
+        'Benin' => '/wp-content/uploads/flags/benin.png',
+        'Brazil' => '/wp-content/uploads/flags/brazil.png',
+        'Brunei' => '/wp-content/uploads/flags/brunei.png',
+        'Bulgaria' => '/wp-content/uploads/flags/bulgaria.png',
+        'Burkina Faso' => '/wp-content/uploads/flags/burkina-faso.png',
+        'Burundi' => '/wp-content/uploads/flags/burundi.png',
+        'Bhutan' => '/wp-content/uploads/flags/bhutan.png',
+        'CAR' => '/wp-content/uploads/flags/car.png',
+        'Cape Verde' => '/wp-content/uploads/flags/cabo-verde.png',
+        'Cambodia' => '/wp-content/uploads/flags/cambodia.png',
+        'Cameroon' => '/wp-content/uploads/flags/cameroon.png',
+        'Canada' => '/wp-content/uploads/flags/canada.png',
+        'Chad' => '/wp-content/uploads/flags/chad.png',
+        'China' => '/wp-content/uploads/flags/china.png',
+        'Chile' => '/wp-content/uploads/flags/chile.png',
+        'Colombia' => '/wp-content/uploads/flags/columbia.png',
+        'Congo' => '/wp-content/uploads/flags/congo.png',
+        'Costa Rica' => '/wp-content/uploads/flags/costa-rica.png',
+        'Cuba' => '/wp-content/uploads/flags/cuba.png',
+        'Cyprus' => '/wp-content/uploads/flags/cyprus.png',
+        'Croatia' => '/wp-content/uploads/flags/croatia.png',
+        'Czech Republic' => '/wp-content/uploads/flags/czech-republic.png',
+        'Democratic Republic of Congo' => '/wp-content/uploads/flags/democratic-republic-of-congo.png',
+        'Denmark' => '/wp-content/uploads/flags/denmark.png',
+        'Dominican Republic' => '/wp-content/uploads/flags/dominicana.png',
+        'Egypt' => '/wp-content/uploads/flags/egypt.png',
+        'El Salvador' => '/wp-content/uploads/flags/salvador.png',
+        'Ecuador' => '/wp-content/uploads/flags/ecuador.png',
+        'Equatorial Guinea' => '/wp-content/uploads/flags/equatorial-guinea.png',
+        'Eswatini' => '/wp-content/uploads/flags/eswatini.png',
+        'Estonia' => '/wp-content/uploads/flags/estonia.png',
+        'Ethiopia' => '/wp-content/uploads/flags/ethiopia.png',
+        'Eritrea' => '/wp-content/uploads/flags/erithrea.png',
+        'Fiji' => '/wp-content/uploads/flags/fiji.png',
+        'Finland' => '/wp-content/uploads/flags/finland.png',
+        'France' => '/wp-content/uploads/flags/france.png',
+        'Gabon' => '/wp-content/uploads/flags/gabon.png',
+        'Gambia' => '/wp-content/uploads/flags/gambia.png',
+        'Georgia' => '/wp-content/uploads/flags/georgia.png',
+        'Germany' => '/wp-content/uploads/flags/germany.png',
+        'Grenada' => '/wp-content/uploads/flags/grenada.png',
+        'Greece' => '/wp-content/uploads/flags/greece.png',
+        'Ghana' => '/wp-content/uploads/flags/ghana.png',
+        'Guatemala' => '/wp-content/uploads/flags/guatemala.png',
+        'Guinea' => '/wp-content/uploads/flags/guinea.png',
+        'Guinea-Bissau' => '/wp-content/uploads/flags/guinea-bissau.png',
+        'Guyana' => '/wp-content/uploads/flags/guyana.png',
+        'Haiti' => '/wp-content/uploads/flags/haiti.png',
+        'Honduras' => '/wp-content/uploads/flags/honduras.png',
+        'Hungary' => '/wp-content/uploads/flags/hungary.png',
+        'Israel' => '/wp-content/uploads/flags/israel.png',
+        'India' => '/wp-content/uploads/flags/india.png',
+        'Indonesia' => '/wp-content/uploads/flags/indonesia.png',
+        'Jordan' => '/wp-content/uploads/flags/jordan.png',
+        'Italy' => '/wp-content/uploads/flags/italy.png',
+        'Iraq' => '/wp-content/uploads/flags/iraq.png',
+        'Iran' => '/wp-content/uploads/flags/iran.png',
+        'Ireland' => '/wp-content/uploads/flags/ireland.png',
+        'Iceland' => '/wp-content/uploads/flags/iceland.png',
+        'Ivory Coast' => '/wp-content/uploads/flags/cote-de-ivory.png',
+        'Jamaica' => '/wp-content/uploads/flags/jamaica.png',
+        'Japan' => '/wp-content/uploads/flags/japan.png',
+        'Kazakhstan' => '/wp-content/uploads/flags/kazakhstan.png',
+        'Kenya' => '/wp-content/uploads/flags/kenia.png',
+        'Kiribati' => '/wp-content/uploads/flags/kiribati.png',
+        'Kyrgyzstan' => '/wp-content/uploads/flags/kyrgyzstan.png',
+        'Kuwait' => '/wp-content/uploads/flags/kuwait.png',
+        'Laos' => '/wp-content/uploads/flags/laos.png',
+        'Latvia' => '/wp-content/uploads/flags/latvia.png',
+        'Lesotho' => '/wp-content/uploads/flags/lesotho.png',
+        'Liberia' => '/wp-content/uploads/flags/liberia.png',
+        'Lebanon' => '/wp-content/uploads/flags/lebanon.png',
+        'Lithuania' => '/wp-content/uploads/flags/lithuania.png',
+        'Liechtenstein' => '/wp-content/uploads/flags/liechtenstein.png',
+        'Luxembourg' => '/wp-content/uploads/flags/luxembourg.png',
+        'Mauritius' => '/wp-content/uploads/flags/mauricius.png',
+        'Mauritania' => '/wp-content/uploads/flags/mauritania.png',
+        'Madagascar' => '/wp-content/uploads/flags/madagascar.png',
+        'Malawi' => '/wp-content/uploads/flags/malawi.png',
+        'Malaysia' => '/wp-content/uploads/flags/malaysia.png',
+        'Mali' => '/wp-content/uploads/flags/mali.png',
+        'Maldives' => '/wp-content/uploads/flags/maldives.png',
+        'Malta' => '/wp-content/uploads/flags/malta.png',
+        'Morocco' => '/wp-content/uploads/flags/morocco.png',
+        'Marshall Islands' => '/wp-content/uploads/flags/marshall-islands.png',
+        'Mexico' => '/wp-content/uploads/flags/mexiko.png',
+        'Micronesia' => '/wp-content/uploads/flags/micronesia.png',
+        'Mozambique' => '/wp-content/uploads/flags/mozambique.png',
+        'Moldova' => '/wp-content/uploads/flags/moldova.png',
+        'Monaco' => '/wp-content/uploads/flags/monaco.png',
+        'Mongolia' => '/wp-content/uploads/flags/mongolia.png',
+        'Montenegro' => '/wp-content/uploads/flags/montenegro.png',
+        'Myanmar' => '/wp-content/uploads/flags/myanmar.png',
+        'Namibia' => '/wp-content/uploads/flags/namibia.png',
+        'Nauru' => '/wp-content/uploads/flags/nauru.png',
+        'Nepal' => '/wp-content/uploads/flags/nepal.png',
+        'Niger' => '/wp-content/uploads/flags/niger.png',
+        'Nigeria' => '/wp-content/uploads/flags/nigeria.png',
+        'Netherlands' => '/wp-content/uploads/flags/netherlands.png',
+        'New Zealand' => '/wp-content/uploads/flags/new-zealand.png',
+        'North Korea' => '/wp-content/uploads/flags/north-korea.png',
+        'Norway' => '/wp-content/uploads/flags/norway.png',
+        'North Macedonia' => '/wp-content/uploads/flags/republic-of-macedonia.png',
+        'Oman' => '/wp-content/uploads/flags/oman.png',
+        'Pakistan' => '/wp-content/uploads/flags/pakistan.png',
+        'Palau' => '/wp-content/uploads/flags/palau.png',
+        'Panama' => '/wp-content/uploads/flags/panama.png',
+        'Papua New Guinea' => '/wp-content/uploads/flags/new-guinea.png',
+        'Paraguay' => '/wp-content/uploads/flags/paraguay.png',
+        'Philippines' => '/wp-content/uploads/flags/phillipines.png',
+        'Poland' => '/wp-content/uploads/flags/poland.png',
+        'Portugal' => '/wp-content/uploads/flags/portugal.png',
+        'Qatar' => '/wp-content/uploads/flags/qatar.png',
+        'Russia' => '/wp-content/uploads/flags/russia.png',
+        'Rwanda' => '/wp-content/uploads/flags/rwanda.png',
+        'Romania' => '/wp-content/uploads/flags/romania.png',
+        'Samoa' => '/wp-content/uploads/flags/samoa.png',
+        'San Marino' => '/wp-content/uploads/flags/san-marino.png',
+        'Saudi Arabia' => '/wp-content/uploads/flags/saudi-arabia.png',
+        'Seychelles' => '/wp-content/uploads/flags/seychelles.png',
+        'Senegal' => '/wp-content/uploads/flags/senegal.png',
+        'Saint Vincent and the Grenadines' => '/wp-content/uploads/flags/st-vincent-grenadine.png',
+        'Saint Kitts and Nevis' => '/wp-content/uploads/flags/st-kits-nevis.png',
+        'Saint Lucia' => '/wp-content/uploads/flags/st-lucia.png',
+        'Serbia' => '/wp-content/uploads/flags/serbia.png',
+        'Singapore' => '/wp-content/uploads/flags/singapur.png',
+        'Sierra Leone' => '/wp-content/uploads/flags/sierra-leone.png',
+        'Syria' => '/wp-content/uploads/flags/syria.png',
+        'Slovakia' => '/wp-content/uploads/flags/slovakia.png',
+        'Slovenia' => '/wp-content/uploads/flags/slovenia.png',
+        'USA' => '/wp-content/uploads/flags/united-states.png',
+        'Solomon Islands' => '/wp-content/uploads/flags/solomon-islands.png',
+        'Somalia' => '/wp-content/uploads/flags/somali.png',
+        'South Korea' => '/wp-content/uploads/flags/south-korea.png',
+        'South Africa' => '/wp-content/uploads/flags/south-africa.png',
+        'South Sudan' => '/wp-content/uploads/flags/south-sudan.png',
+        'Spain' => '/wp-content/uploads/flags/spain.png',
+        'Sudan' => '/wp-content/uploads/flags/sudan.png',
+        'Suriname' => '/wp-content/uploads/flags/surinam.png',
+        'Switzerland' => '/wp-content/uploads/flags/switzerland.png',
+        'Sweden' => '/wp-content/uploads/flags/sweden.png',
+        'Sri Lanka' => '/wp-content/uploads/flags/sri-lanka.png',
+        'Tajikistan' => '/wp-content/uploads/flags/tajikistan.png',
+        'Thailand' => '/wp-content/uploads/flags/thailand.png',
+        'Tanzania' => '/wp-content/uploads/flags/tanzania.png',
+        'Togo' => '/wp-content/uploads/flags/togo.png',
+        'Tonga' => '/wp-content/uploads/flags/tonga.png',
+        'Trinidad and Tobago' => '/wp-content/uploads/flags/trinidad-and-tobago.png',
+        'Tuvalu' => '/wp-content/uploads/flags/tuwalu.png',
+        'Turkmenistan' => '/wp-content/uploads/flags/turkmenistan.png',
+        'Turkey' => '/wp-content/uploads/flags/turkey.png',
+        'UAE' => '/wp-content/uploads/flags/united-arab-emirates.png',
+        'Uganda' => '/wp-content/uploads/flags/uganda.png',
+        'United Kingdom' => '/wp-content/uploads/flags/united-kingdom.png',
+        'Uzbekistan' => '/wp-content/uploads/flags/uzbekistan.png',
+        'Ukraine' => '/wp-content/uploads/flags/ukraine.png',
+        'Uruguay' => '/wp-content/uploads/flags/uruguay.png',
+        'Vanuatu' => '/wp-content/uploads/flags/vanuatu.png',
+        'Vatican' => '/wp-content/uploads/flags/vatican.png',
+        'Venezuela' => '/wp-content/uploads/flags/venezuela.png',
+        'Vietnam' => '/wp-content/uploads/flags/vietnam.png',
+        'Yemen' => '/wp-content/uploads/flags/yemen.png',
+        'Zambia' => '/wp-content/uploads/flags/zambia.png',
+        'Zimbabwe' => '/wp-content/uploads/flags/zimbabwe.png', 
+    ];
+
+$args_function_1 = array (
+    'country_flags_global'        =>  $country_flags_global,
+    'country_flags_en_global'     =>  $country_flags_en_global
+);
+add_action('carbon_fields_register_fields',  function() use ( $args_function_1 ) { 
+               carbon_fields_register_fields_function( $args_function_1 ); 
+          });
+
+function carbon_fields_register_fields_function($args){
+    $country_flags = $args['country_flags_global'];
+    $country_flags_en = $args['country_flags_en_global'];
+
     $planes_fields = [
         Field::make('text', 'title', 'Название самолета')->set_required(true),
         Field::make('image', 'image', 'Изображение')->set_required(true),
         Field::make('select', 'origin_country', 'Страна вылета')
             ->set_options(array_combine(array_keys($country_flags), array_keys($country_flags))),
+        Field::make('select', 'origin_country_en', 'Страна вылета EN')
+            ->set_options(array_combine(array_keys($country_flags_en), array_keys($country_flags_en))),
         Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
         Field::make('text', 'origin_city', 'Город вылета')->set_required(false),
         Field::make('select', 'destination_country', 'Страна прилета')
             ->set_options(array_combine(array_keys($country_flags), array_keys($country_flags))),
+        Field::make('select', 'destination_country_en', 'Страна прилета EN')
+            ->set_options(array_combine(array_keys($country_flags_en), array_keys($country_flags_en))),
         Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
         Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
         Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
@@ -888,7 +1088,7 @@ add_action('carbon_fields_register_fields', function () {
                     Field::make('image', 'license', 'Лицензия')->set_value_type('url')->set_required(true),
                 ])
         ]);
-});
+}
 
 add_action('after_setup_theme', function () {
     \Carbon_Fields\Carbon_Fields::boot();
@@ -1059,10 +1259,10 @@ function process_aircraft_json($post_id)
                 carbon_set_post_meta($post_id, 'max_landing_weight_lbs', $value);
                 break;
             case 'Грузоподъемность (кг)':
-                carbon_set_post_meta($post_id, 'max_landing_height_kg', $value);
+                carbon_set_post_meta($post_id, 'payload_kg', $value);
                 break;
             case 'Грузоподъемность (lb)':
-                carbon_set_post_meta($post_id, 'max_landing_height_lbs', $value);
+                carbon_set_post_meta($post_id, 'payload_lbs', $value);
                 break;
             case 'Взлетная дистанция (м)':
                 carbon_set_post_meta($post_id, 'takeoff_distance_m', $value);
@@ -1299,6 +1499,30 @@ function get_phone_number()
 add_action('wp_ajax_get_phone_number', 'get_phone_number');
 add_action('wp_ajax_nopriv_get_phone_number', 'get_phone_number');
 
+
+//фильтр по продуктам
+function search_filter_products()
+{
+
+    wp_send_json_success([
+        'country' => serialize($_REQUEST)
+    ]);
+    die;
+
+    if (!$data || empty($data['country'])) {
+        wp_send_json_error(['message' => 'Invalid response from IPInfo']);
+    }
+
+    wp_send_json_success([
+        'country' => $data['country'],
+        'formatted' => $formattedPhone,
+        'clean' => $cleanPhone
+    ]);
+}
+
+add_action('wp_ajax_search_filter_products', 'search_filter_products');
+add_action('wp_ajax_nopriv_search_filter_products', 'search_filter_products');
+
 // показ кол-ва просмотров в статьях
 function gt_get_post_view()
 {
@@ -1353,99 +1577,113 @@ add_action('post_edit_form_tag', function () {
 
 // сравнение самолетов
 // добавление к сравнению
-function add_to_comparison()
-{
+function add_to_comparison() {
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
 
     $plane_id = intval($_POST['plane_id']);
-    $user_id = get_current_user_id();
 
-    error_log("Adding plane ID: $plane_id for user $user_id");
-
-    $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
-
-    if (!in_array($plane_id, $planes)) {
-        $planes[] = $plane_id;
-        update_user_meta($user_id, 'comparison_planes', $planes);
+    // Получаем текущие сравниваемые самолёты из куков
+    if (isset($_COOKIE['comparison_planes'])) {
+        $comparison_planes = json_decode(stripslashes($_COOKIE['comparison_planes']), true);
+        if (!is_array($comparison_planes)) {
+            $comparison_planes = []; // Если куки повреждены, создаем новый массив
+        }
+    } else {
+        $comparison_planes = [];
     }
 
-    wp_send_json_success(['planes' => $planes]);
+    // Если такого самолета нет в списке, добавляем
+    if (!in_array($plane_id, $comparison_planes)) {
+        $comparison_planes[] = $plane_id;
+        // Обновляем куки с новым списком
+        setcookie('comparison_planes', json_encode($comparison_planes), time() + 3600, '/');
+        // Принудительное обновление куки в PHP
+        $_COOKIE['comparison_planes'] = json_encode($comparison_planes);
+    }
+
+    wp_send_json_success(['planes' => $comparison_planes]);
 }
 add_action('wp_ajax_add_to_comparison', 'add_to_comparison');
 add_action('wp_ajax_nopriv_add_to_comparison', 'add_to_comparison');
 
 // удаление из сравнения
-function remove_from_comparison()
-{
+function remove_from_comparison() {
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
 
     $plane_id = intval($_POST['plane_id']);
-    $user_id = get_current_user_id();
-    $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
 
-    if (($key = array_search($plane_id, $planes)) !== false) {
-        unset($planes[$key]);
-        update_user_meta($user_id, 'comparison_planes', array_values($planes));
+    // Получаем текущие сравниваемые самолёты из куков
+    if (isset($_COOKIE['comparison_planes'])) {
+        $comparison_planes = json_decode(stripslashes($_COOKIE['comparison_planes']), true);
+        if (!is_array($comparison_planes)) {
+            $comparison_planes = []; // Если куки повреждены, создаем новый массив
+        }
+    } else {
+        $comparison_planes = [];
     }
 
-    wp_send_json_success(['planes' => $planes]);
+    // Если самолет в списке, удаляем
+    if (($key = array_search($plane_id, $comparison_planes)) !== false) {
+        unset($comparison_planes[$key]);
+        // Обновляем куки с новым списком
+        setcookie('comparison_planes', json_encode(array_values($comparison_planes)), time() + 3600, '/');
+        // Принудительное обновление куки в PHP
+        $_COOKIE['comparison_planes'] = json_encode(array_values($comparison_planes));
+    }
+
+    wp_send_json_success(['planes' => $comparison_planes]);
 }
 add_action('wp_ajax_remove_from_comparison', 'remove_from_comparison');
 add_action('wp_ajax_nopriv_remove_from_comparison', 'remove_from_comparison');
 
 // получить сравниваемые самолеты
-function get_comparison_planes()
-{
-    $user_id = get_current_user_id();
-    $planes = get_user_meta($user_id, 'comparison_planes', true) ?: [];
+function get_comparison_planes() {
+    // Получаем текущие сравниваемые самолёты из куков
+    if (isset($_COOKIE['comparison_planes'])) {
+        $comparison_planes = json_decode(stripslashes($_COOKIE['comparison_planes']), true);
+        if (!is_array($comparison_planes)) {
+            $comparison_planes = []; // Если куки повреждены, создаем новый массив
+        }
+    } else {
+        $comparison_planes = [];
+    }
 
-    error_log("Сравниваемые самолёты: " . json_encode($planes));
-    wp_send_json_success(['planes' => $planes]);
+    wp_send_json_success(['planes' => $comparison_planes]);
 }
 add_action('wp_ajax_get_comparison_planes', 'get_comparison_planes');
 add_action('wp_ajax_nopriv_get_comparison_planes', 'get_comparison_planes');
-function allow_woocommerce_rest_access()
-{
-    add_filter('woocommerce_rest_check_permissions', function ($permission, $context, $object_id, $post_type) {
-        if ($post_type === 'product' && $context === 'read') {
-            return true;
-        }
-        return $permission;
-    }, 10, 4);
-}
-add_action('init', 'allow_woocommerce_rest_access');
 
 // получаем характеристики самолёта
-function get_plane_specs($post_id)
+function get_plane_specs($product_id)
 {
     return [
-        'Мест' => get_post_meta($post_id, '_custom_field_seats', true),
-        'Объем багажника в м³' => get_post_meta($post_id, '_custom_field_bag_volume', true),
-        'Чемоданов' => get_post_meta($post_id, '_custom_field_suitcases', true),
-        'Цена аренды в $' => get_post_meta($post_id, '_custom_field_rent_price', true),
-        'Крейсерская скорость' => get_post_meta($post_id, '_cruising_speed', true),
-        'Время в полете, скорость' => get_post_meta($post_id, '_flight_time', true),
-        'Максимальная высота полета' => get_post_meta($post_id, '_max_altitude', true),
-        'Максимальный взлетный вес' => get_post_meta($post_id, '_max_takeoff_weight', true),
-        'Посадочный вес' => get_post_meta($post_id, '_landing_weight', true),
-        'Грузоподъемность' => get_post_meta($post_id, '_payload', true),
-        'Взлетная дистанция' => get_post_meta($post_id, '_takeoff_distance', true),
-        'Посадочная дистанция' => get_post_meta($post_id, '_landing_distance', true),
-        'Количество двигателей' => get_post_meta($post_id, '_engine_count', true),
-        'Двигатель' => get_post_meta($post_id, '_engine', true),
-        'Вспомогательная силовая установка' => get_post_meta($post_id, '_apu', true),
-        'Авионика' => get_post_meta($post_id, '_avionics', true),
-        'Ширина' => get_post_meta($post_id, '_width', true),
-        'Длина салона' => get_post_meta($post_id, '_cabin_length', true),
-        'Высота салона' => get_post_meta($post_id, '_cabin_height', true),
-        'Объем салона' => get_post_meta($post_id, '_cabin_volume', true),
-        'Объём багажного отделения' => get_post_meta($post_id, '_luggage_volume', true),
-        'Длина самолета' => get_post_meta($post_id, '_plane_length', true),
-        'Высота самолета' => get_post_meta($post_id, '_plane_height', true),
+        'Мест' => carbon_get_post_meta($product_id, 'aircraft_seats', true),
+        'Объём багажного отделения' => carbon_get_post_meta($product_id, 'luggage_volume_m', true),
+        'Крейсерская скорость' => carbon_get_post_meta($product_id, 'cruise_speed_kmh', true),
+        'Время в полете' => carbon_get_post_meta($product_id, 'range_time', true),
+        'Максимальная высота полета' => carbon_get_post_meta($product_id, 'max_takeoff_height_m', true),
+        'Максимальный взлетный вес' => carbon_get_post_meta($product_id, 'max_takeoff_weight_kg', true),
+        'Посадочный вес' => carbon_get_post_meta($product_id, 'max_landing_weight_kg', true),
+        'Грузоподъемность' => carbon_get_post_meta($product_id, 'payload_kg', true),
+        'Взлетная дистанция' => carbon_get_post_meta($product_id, 'takeoff_distance_m', true),
+        'Посадочная дистанция' => carbon_get_post_meta($product_id, 'landing_distance_m', true),
+        'Количество двигателей' => carbon_get_post_meta($product_id, 'aircraft_engine_count', true),
+        'Двигатель' => carbon_get_post_meta($product_id, 'aircraft_engine', true),
+        'Вспомогательная силовая установка' => carbon_get_post_meta($product_id, 'vsu', true),
+        'Авионика' => carbon_get_post_meta($product_id, 'avionics', true),
+        'Ширина' => carbon_get_post_meta($product_id, 'cabin_width_m', true),
+        'Длина салона' => carbon_get_post_meta($product_id, 'cabin_length_m', true),
+        'Высота салона' => carbon_get_post_meta($product_id, 'cabin_height_m', true),
+        'Объем салона' => carbon_get_post_meta($product_id, 'cabin_volume_m', true),
+        'Длина самолета' => carbon_get_post_meta($product_id, 'aircraft_length_m', true),
+        'Высота самолета' => carbon_get_post_meta($product_id, 'aircraft_height_m', true),
+        'Начало производства' => carbon_get_post_meta($product_id, 'production_start', true),
+        'Конец производства' => carbon_get_post_meta($product_id, 'production_end', true),
+        'Страна происхождения' => carbon_get_post_meta($product_id, 'production_country', true),
     ];
 }
 
@@ -1776,3 +2014,67 @@ function add_aircraft_translation_script() {
     </script>
     <?php
 }
+
+
+
+
+add_filter('woocommerce_rest_prepare_product', function ($response, $product, $request) {
+    // Получаем все метаданные продукта
+    $meta_data = $product->get_meta_data();
+    
+    // Логируем метаданные для проверки
+    error_log(print_r($meta_data, true));
+
+    // Преобразуем в ассоциативный массив
+    $meta_array = [];
+    foreach ($meta_data as $meta) {
+        $meta_array[$meta->get_data()['key']] = $meta->get_data()['value'];
+    }
+
+    // Логируем преобразованный массив
+    error_log(print_r($meta_array, true));
+
+    // Массив с метками
+    $fieldLabels = [
+        'cruise_speed_kmh' => 'Крейсерская скорость',
+        'range_time' => 'Время в полете',
+        'max_takeoff_height_m' => 'Макс. высота полета',
+        'max_takeoff_weight_kg' => 'Макс. взлётный вес',
+        'max_landing_weight_kg' => 'Посадочный вес',
+        'payload_kg' => 'Грузоподъемность',
+        'takeoff_distance_m' => 'Взлетная дистанция',
+        'landing_distance_m' => 'Посадочная дистанция',
+        'aircraft_engine_count' => 'Количество двигателей',
+        'aircraft_engine' => 'Тип двигателя',
+        'vsu' => 'Вспомогательная силовая установка',
+        'avionics' => 'Авионика',
+        'cabin_width_m' => 'Ширина салона',
+        'cabin_length_m' => 'Длина салона',
+        'cabin_height_m' => 'Высота салона',
+        'cabin_volume_m' => 'Объём салона',
+        'luggage_volume_m' => 'Объём багажного отделения',
+        'aircraft_length_m' => 'Длина самолёта',
+        'aircraft_height_m' => 'Высота самолёта',
+        'range_km' => 'Радиус полёта',
+        'aircraft_seats' => 'Мест в салоне',
+        'production_start' => 'Начало производства',
+        'production_end' => 'Конец производства',
+        'production_country' => 'Страна происхождения',
+    ];
+
+    // Выбираем нужные характеристики и проверяем, что есть в метаданных
+    $plane_specs = [];
+    foreach ($fieldLabels as $key => $label) {
+        if (isset($meta_array[$key])) {
+            $plane_specs[$label] = $meta_array[$key];
+        }
+    }
+
+    // Логируем результаты
+    error_log(print_r($plane_specs, true));
+
+    // Добавляем характеристики в REST API
+    $response->data['specs'] = $plane_specs;
+
+    return $response;
+}, 10, 3);

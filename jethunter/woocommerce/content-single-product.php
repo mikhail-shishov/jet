@@ -20,10 +20,6 @@ if (post_password_required()) {
     return;
 }
 
-// Отладочная информация
-echo "<!-- PLL function returns: " . (function_exists('pll_current_language') ? pll_current_language() : 'function not available') . " -->";
-echo "<!-- URL: " . $_SERVER['REQUEST_URI'] . " -->";
-
 // Простая функция перевода, использующая напрямую pll_current_language()
 function t($ru, $en)
 {
@@ -63,8 +59,8 @@ $max_takeoff_weight_kg = carbon_get_post_meta($product_id, 'max_takeoff_weight_k
 $max_takeoff_weight_lbs = carbon_get_post_meta($product_id, 'max_takeoff_weight_lbs');
 $max_landing_weight_kg = carbon_get_post_meta($product_id, 'max_landing_weight_kg');
 $max_landing_weight_lbs = carbon_get_post_meta($product_id, 'max_landing_weight_lbs');
-$max_landing_height_kg = carbon_get_post_meta($product_id, 'max_landing_height_kg');
-$max_landing_height_lbs = carbon_get_post_meta($product_id, 'max_landing_height_lbs');
+$payload_kg = carbon_get_post_meta($product_id, 'payload_kg');
+$payload_lbs = carbon_get_post_meta($product_id, 'payload_lbs');
 $takeoff_distance_m = carbon_get_post_meta($product_id, 'takeoff_distance_m');
 $takeoff_distance_ft = carbon_get_post_meta($product_id, 'takeoff_distance_ft');
 $aircraft_engine_count = carbon_get_post_meta($product_id, 'aircraft_engine_count');
@@ -183,33 +179,32 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                 ?>
 
                 <li>
-                    <button onclick="addToComparison(<?php the_ID(); ?>)" class="btn">
+                    <button onclick="addToComparison(<?php the_ID(); ?>)" class="btn before-comparison">
                         <?php echo t('Добавить в сравнение', 'Add to comparison'); ?>
                     </button>
+                    <a href="/plane-compare" class="btn after-comparison is-hidden"><?php echo t('Перейти к сравнению', 'Go to comparison'); ?></a>
                 </li>
 
-                <a href="/plane-compare" class="" style="display:none;">
-                    <?php echo t('Перейти к сравнению', 'Go to comparison'); ?>
-                </a>
                 <script>
                     function addToComparison(planeID) {
                         fetch("<?php echo admin_url('admin-ajax.php?action=add_to_comparison'); ?>", {
                                 method: "POST",
                                 headers: {
-                                    "Content-Type": "application/x-www-form-urlencoded"
+                                    "Content-Type": "application/x-www-form-urlencoded",
                                 },
-                                body: `plane_id=${planeID}`
+                                body: `plane_id=${planeID}`,
                             })
                             .then(response => response.json())
                             .then(data => {
-                                console.log("Response:", data);
                                 if (data.success) {
-                                    // alert("Добавлено в сравнение!");
+                                    console.log('Updated planes in comparison:', data.data.planes);
+                                    document.querySelector('.before-comparison').classList.add('is-hidden');
+                                    document.querySelector('.after-comparison').classList.remove('is-hidden');
                                 } else {
-                                    // alert("Ошибка: " + data.message);
+                                    console.error('Error adding to comparison:', data.message);
                                 }
                             })
-                            .catch(error => console.error("Fetch error:", error));
+                            .catch(error => console.error('Fetch error:', error));
                     }
                 </script>
             </ul>
@@ -325,7 +320,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
 
                             if ($brand_logo_url) : ?>
                                 <img src="<?php echo esc_url($brand_logo_url); ?>" class="plane-logo" alt="<?php echo esc_attr($brand->name); ?>">
-                            <?php endif;
+                    <?php endif;
                         }
                     }
                     ?>
@@ -1008,10 +1003,10 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
     <?php endif; ?>
     <?php if (pll_current_language() == 'ru') : ?>
         <?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
-        <?php include_once get_stylesheet_directory() . '/components/ru/seo-sect-empty-legs.php'; ?>
+        <?php include_once get_stylesheet_directory() . '/components/ru/seo-empty-legs.php'; ?>
     <?php else : ?>
         <?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
-        <?php include_once get_stylesheet_directory() . '/components/en/seo-sect-empty-legs.php'; ?>
+        <?php include_once get_stylesheet_directory() . '/components/en/seo-empty-legs.php'; ?>
     <?php endif; ?>
 </div>
 

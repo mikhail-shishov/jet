@@ -310,7 +310,7 @@
                 <a href="#" data-sort="aircraft_seats" class="btn btn-tab">Seats</a>
                 <a href="#" data-sort="luggage_volume_m" class="btn btn-tab">Luggage compartment</a>
                 <a href="#" data-sort="range_km" class="btn btn-tab">Range</a>
-                <a href="#" data-sort="cruise_speed_kmh" class="btn btn-tab">Cruise speed</a>
+                <a href="#" data-sort="cruise_speed_kmh" class="btn btn-tab">Cruising speed</a>
                 <a href="#" data-sort="cabin_height_m" class="btn btn-tab">Cabin height</a>
             </div>
         </div>
@@ -466,7 +466,7 @@
                         <h3 class="h3"><?php the_title(); ?></h3>
                         <div class="looking-desc">
                             <div class="looking-row">
-                                <p class="looking-row-title">Cruise speed, km/h</p>
+                                <p class="looking-row-title">Cruising speed, km/h</p>
                                 <p class="looking-row-desc"><?php echo esc_html($cruise_speed_kmh); ?> км/ч</p>
                             </div>
                             <div class="looking-row">

@@ -11,417 +11,146 @@
             <p>Compare airplane features to find the best fit for you.</p>
         </div>
         <div class="compare-main" id="comparison-container">
-            <p>It's empty for now.</p>
+            <p class="ru-only">Загрузка сравнения...</p>
+            <p class="en-only">Loading comparison...</p>
         </div>
 
         <script>
             document.addEventListener("DOMContentLoaded", fetchComparison);
 
             const fieldLabels = {
-                '_cruising_speed': 'Крейсерская скорость',
-                '_flight_time': 'Время в полете',
-                '_max_altitude': 'Макс. высота полета',
-                '_max_takeoff_weight': 'Макс. взлётный вес',
-                '_landing_weight': 'Посадочный вес',
-                '_payload': 'Грузоподъемность',
-                '_takeoff_distance': 'Взлетная дистанция',
-                '_landing_distance': 'Посадочная дистанция',
-                '_engine_count': 'Количество двигателей',
-                '_engine': 'Тип двигателя',
-                '_apu': 'Вспомогательная силовая установка',
-                '_avionics': 'Авионика',
-                '_width': 'Ширина',
-                '_cabin_length': 'Длина салона',
-                '_cabin_height': 'Высота салона',
-                '_cabin_volume': 'Объём салона',
-                '_luggage_volume': 'Объём багажного отделения',
-                '_plane_length': 'Длина самолёта',
-                '_plane_height': 'Высота самолёта',
-                '_range': 'Радиус полёта',
-                '_custom_field_mesta': 'Мест в салоне',
-                '_custom_field_bag_volume': 'Объем багажника в м³',
-                '_custom_field_bag_volume': 'Чемоданов',
-                '_custom_field_rent_price': 'Цена аренды в $',
-                '_start_year': 'Начало производства',
-                '_end_year': 'Конец производства',
-                '_country_of_origin': 'Страна происхождения',
+                '_cruise_speed_kmh': 'Cruising speed, km/h',
+                '_range_time': 'Flight time',
+                '_max_takeoff_height_m': 'Maximum flight altitude, m',
+                '_max_takeoff_weight_kg': 'Maximum takeoff weight, kg',
+                '_max_landing_weight_kg': 'Landing weight, kg',
+                '_payload_kg': 'Payload, kg',
+                '_takeoff_distance_m': 'Takeoff distance, m',
+                '_landing_distance_m': 'Landing distance, m',
+                '_aircraft_engine_count': 'Number of engines',
+                '_aircraft_engine': 'Engine',
+                '_vsu': 'Auxiliary power unit',
+                '_avionics': 'Avionics',
+                '_cabin_width_m': 'Cabin width, m',
+                '_cabin_length_m': 'Cabin length, m',
+                '_cabin_height_m': 'Cabin height, m',
+                '_cabin_volume_m': 'Cabin volume, m',
+                '_luggage_volume_m': 'Luggage compartment, m',
+                '_aircraft_length_m': 'Aircraft length, m',
+                '_aircraft_height_m': 'Aircraft height, m',
+                '_range_km': 'Range, km',
+                '_aircraft_seats': 'Seats',
+                '_production_start': 'Production start',
+                '_production_end': 'Production end',
+                '_production_country': 'Country',
             };
 
             function fetchComparison() {
-                fetch("<?php echo admin_url('admin-ajax.php?action=get_comparison_planes'); ?>")
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success && Array.isArray(data.data.planes)) {
-                            renderComparison(data.data.planes);
-                        } else {
-                            document.getElementById('comparison-container').innerHTML =
-                                '<p class="compare-empty">No planes to compare.</p>';
-                        }
-                    })
-                    .catch(error => console.error("Ошибка запроса:", error));
+                console.log("fetchComparison вызван");
+
+                const comparisonPlanesCookie = getCookie('comparison_planes');
+                const container = document.getElementById('comparison-container');
+
+                if (!comparisonPlanesCookie) {
+                    container.innerHTML = '<p class="compare-empty">Нет самолётов для сравнения</p>';
+                    return;
+                }
+
+                const planeIDs = JSON.parse(decodeURIComponent(comparisonPlanesCookie));
+
+                if (!Array.isArray(planeIDs) || planeIDs.length === 0) {
+                    container.innerHTML = '<p class="compare-empty">Нет самолётов для сравнения</p>';
+                    return;
+                }
+
+                container.innerHTML = ''; // Полностью очищаем контейнер перед рендерингом
+
+                renderComparison(planeIDs);
             }
 
             function renderComparison(planeIDs) {
                 let container = document.getElementById('comparison-container');
-                container.innerHTML = '';
 
-                if (!planeIDs.length) {
-                    container.innerHTML = '<p class="compare-empty">No planes to compare.</p>';
-                    return;
-                }
+                Promise.all(planeIDs.map(id =>
+                    fetch(`https://jethunter.aero/wp-json/wc/v3/products/${id}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Basic ' + btoa('ck_e3b52bac31a8a8848d8e509f18073d2d3237a51e:cs_92a9460a5d930ec5b1423b431c3fe9be07283a38') // Добавляем заголовок авторизации
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(plane => {
+                        console.log(`Самолёт ${id}:`, plane);
+                        console.log("Meta data:", plane.meta_data); // Печатаем meta_data
 
-                planeIDs.forEach(id => {
-                    fetch(`<?php echo home_url('/wp-json/wc/v3/products/'); ?>${id}`)
-                        .then(response => response.json())
-                        .then(plane => {
-                            console.log(plane); // отладка
+                        let specsHTML = '';
+                        if (plane.meta_data && plane.meta_data.length > 0) {
+                            specsHTML = plane.meta_data
+                                .filter(data => fieldLabels.hasOwnProperty(data.key)) // Фильтруем только те, что есть в fieldLabels
+                                .map(data => {
+                                    const label = fieldLabels[data.key];
+                                    return `
+                                <div class="compare-col-block">
+                                    <p class="compare-col-title">${label}</p>
+                                    <p class="compare-col-desc">${data.value || '—'}</p>
+                                </div>`;
+                                })
+                                .join('');
+                        }
 
-                            if (!plane || !plane.id) {
-                                console.error(`Ошибка загрузки самолёта ${id}: данные отсутствуют`);
-                                return;
-                            }
-
-                            // извлекаем meta_data, если оно есть
-                            let specs = {};
-                            if (Array.isArray(plane.meta_data)) {
-                                plane.meta_data.forEach(meta => {
-                                    let label = fieldLabels[meta.key] || meta.key; // заменяем ключ на читаемое название
-                                    specs[label] = meta.value;
-                                });
-                            }
-
-                            container.innerHTML += `
+                        return `
                     <div class="compare-col">
                         <div class="compare-edit">
                             <button class="compare-edit-delete" onclick="removeFromComparison(${plane.id})">
-                                Remove
+                                Удалить
                             </button>
                         </div>
                         <img src="${plane.images?.[0]?.src || ''}" alt="">
                         <h2 class="h2">${plane.name}</h2>
                         <div class="compare-specs">
-                            ${Object.entries(specs)
-                                .map(([key, value]) => `
-                                    <div class="compare-col-block">
-                                        <p class="compare-col-title">${key}</p>
-                                        <p class="compare-col-desc">${value || '—'}</p>
-                                    </div>
-                                `).join('')}
+                            ${specsHTML || '<p class="no-specs">Характеристики не найдены</p>'}
                         </div>
                     </div>`;
-                        })
-                        .catch(err => console.error(`Ошибка загрузки самолёта ${id}:`, err));
+                    })
+                    .catch(err => {
+                        console.error(`Ошибка загрузки самолёта ${id}:`, err);
+                        return '';
+                    })
+                )).then(results => {
+                    container.innerHTML = results.filter(Boolean).join('') || '<p class="compare-empty">Нет самолётов для сравнения</p>';
                 });
             }
 
             function removeFromComparison(planeID) {
-                fetch("<?php echo admin_url('admin-ajax.php?action=remove_from_comparison'); ?>", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: `plane_id=${planeID}`
-                }).then(() => fetchComparison());
+                // Удаление самолёта из куки
+                const comparisonPlanesCookie = getCookie('comparison_planes');
+                let planeIDs = comparisonPlanesCookie ? JSON.parse(decodeURIComponent(comparisonPlanesCookie)) : [];
+
+                // Удаляем самолет по ID
+                planeIDs = planeIDs.filter(id => id !== planeID);
+
+                // Обновляем куки с новыми данными
+                setCookie('comparison_planes', JSON.stringify(planeIDs), 7); // срок действия 7 дней
+
+                fetchComparison(); // Перезагружаем сравнение
             }
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+                return null;
+            }
+
+            function setCookie(name, value, days) {
+                const d = new Date();
+                d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + d.toUTCString();
+                document.cookie = `${name}=${value}; ${expires}; path=/`;
+            }
+
+            document.addEventListener("DOMContentLoaded", fetchComparison);
         </script>
-        <!-- <div class="compare-main">
-            <div class="compare-col">
-                <div class="compare-edit">
-                    <button class="compare-edit-delete">Delete</button>
-                </div>
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" alt="">
-                <h2 class="h2">Gulfstream G450</h2>
-                <div class="compare-col-wrap">
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Категория</p>
-                        <p class="compare-col-desc">Турбированный</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена нового самолета</p>
-                        <p class="compare-col-desc">11 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена самолета с налетом</p>
-                        <p class="compare-col-desc">9 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена аренды</p>
-                        <p class="compare-col-desc">100 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Дальность</p>
-                        <p class="compare-col-desc">10 000 км / 18 000 nm</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Скорость</p>
-                        <p class="compare-col-desc">500 км/ч / 400 m/h</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Время в полете</p>
-                        <p class="compare-col-desc">5 : 00</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Количество пассажиров</p>
-                        <p class="compare-col-desc">12</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина самолета</p>
-                        <p class="compare-col-desc">13 м / 20.12 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота самолета</p>
-                        <p class="compare-col-desc">5 м / 7.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Размах крыла</p>
-                        <p class="compare-col-desc">25 м / 32.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина салона</p>
-                        <p class="compare-col-desc">8 м / 13.8 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота салона</p>
-                        <p class="compare-col-desc">2 м / 5.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Ширина салона</p>
-                        <p class="compare-col-desc">4 м / 8.56 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объём салона</p>
-                        <p class="compare-col-desc">10 000 л</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объем багажника</p>
-                        <p class="compare-col-desc">1000 л</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
-            </div>
-            <div class="compare-col">
-                <div class="compare-edit">
-                    <button class="compare-edit-delete">Удалить</button>
-                </div>
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/2.png" alt="">
-                <h2 class="h2">Falcon 2000LXS</h2>
-                <div class="compare-col-wrap">
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Категория</p>
-                        <p class="compare-col-desc">Турбированный</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена нового самолета</p>
-                        <p class="compare-col-desc">11 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена самолета с налетом</p>
-                        <p class="compare-col-desc">9 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена аренды</p>
-                        <p class="compare-col-desc">100 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Дальность</p>
-                        <p class="compare-col-desc">10 000 км / 18 000 nm</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Скорость</p>
-                        <p class="compare-col-desc">500 км/ч / 400 m/h</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Время в полете</p>
-                        <p class="compare-col-desc">5 : 00</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Количество пассажиров</p>
-                        <p class="compare-col-desc">12</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина самолета</p>
-                        <p class="compare-col-desc">13 м / 20.12 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота самолета</p>
-                        <p class="compare-col-desc">5 м / 7.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Размах крыла</p>
-                        <p class="compare-col-desc">25 м / 32.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина салона</p>
-                        <p class="compare-col-desc">8 м / 13.8 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота салона</p>
-                        <p class="compare-col-desc">2 м / 5.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Ширина салона</p>
-                        <p class="compare-col-desc">4 м / 8.56 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объём салона</p>
-                        <p class="compare-col-desc">10 000 л</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объем багажника</p>
-                        <p class="compare-col-desc">1000 л</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
-            </div>
-            <div class="compare-col">
-                <div class="compare-edit">
-                    <button class="compare-edit-delete">Удалить</button>
-                </div>
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/3.png" alt="">
-                <h2 class="h2">HondaJet Elite II</h2>
-                <div class="compare-col-wrap">
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Категория</p>
-                        <p class="compare-col-desc">Турбированный</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена нового самолета</p>
-                        <p class="compare-col-desc">11 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена самолета с налетом</p>
-                        <p class="compare-col-desc">9 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена аренды</p>
-                        <p class="compare-col-desc">100 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Дальность</p>
-                        <p class="compare-col-desc">10 000 км / 18 000 nm</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Скорость</p>
-                        <p class="compare-col-desc">500 км/ч / 400 m/h</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Время в полете</p>
-                        <p class="compare-col-desc">5 : 00</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Количество пассажиров</p>
-                        <p class="compare-col-desc">12</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина самолета</p>
-                        <p class="compare-col-desc">13 м / 20.12 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота самолета</p>
-                        <p class="compare-col-desc">5 м / 7.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Размах крыла</p>
-                        <p class="compare-col-desc">25 м / 32.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина салона</p>
-                        <p class="compare-col-desc">8 м / 13.8 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота салона</p>
-                        <p class="compare-col-desc">2 м / 5.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Ширина салона</p>
-                        <p class="compare-col-desc">4 м / 8.56 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объём салона</p>
-                        <p class="compare-col-desc">10 000 л</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объем багажника</p>
-                        <p class="compare-col-desc">1000 л</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
-            </div>
-            <div class="compare-col">
-                <div class="compare-edit">
-                    <button class="compare-edit-delete">Удалить</button>
-                </div>
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/4.png" alt="">
-                <h2 class="h2">Citation Longitude</h2>
-                <div class="compare-col-wrap">
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Категория</p>
-                        <p class="compare-col-desc">Турбированный</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена нового самолета</p>
-                        <p class="compare-col-desc">11 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена самолета с налетом</p>
-                        <p class="compare-col-desc">9 000 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Цена аренды</p>
-                        <p class="compare-col-desc">100 000₽</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Дальность</p>
-                        <p class="compare-col-desc">10 000 км / 18 000 nm</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Скорость</p>
-                        <p class="compare-col-desc">500 км/ч / 400 m/h</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Время в полете</p>
-                        <p class="compare-col-desc">5 : 00</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Количество пассажиров</p>
-                        <p class="compare-col-desc">12</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина самолета</p>
-                        <p class="compare-col-desc">13 м / 20.12 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота самолета</p>
-                        <p class="compare-col-desc">5 м / 7.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Размах крыла</p>
-                        <p class="compare-col-desc">25 м / 32.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Длина салона</p>
-                        <p class="compare-col-desc">8 м / 13.8 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Высота салона</p>
-                        <p class="compare-col-desc">2 м / 5.28 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Ширина салона</p>
-                        <p class="compare-col-desc">4 м / 8.56 ft</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объём салона</p>
-                        <p class="compare-col-desc">10 000 л</p>
-                    </div>
-                    <div class="compare-col-block">
-                        <p class="compare-col-title">Объем багажника</p>
-                        <p class="compare-col-desc">1000 л</p>
-                    </div>
-                </div>
-                <a href="" class="btn btn-green-fill">Арендовать</a>
-            </div>
-        </div> -->
     </div>
 </section>
 
