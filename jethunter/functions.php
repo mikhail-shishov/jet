@@ -46,51 +46,125 @@ add_action('carbon_fields_register_fields', function () {
                     Field::make('text', 'name', 'Имя')->set_required(false),
                 ]),
             Field::make('complex', 'reviews_short_en', 'EN Короткий блок с отзывами')
-            ->add_fields([
-                Field::make('text', 'rating', 'Rating (from 1.0 to 5.0)')->set_required(true),
-                Field::make('textarea', 'description', 'Text')->set_required(false),
-                Field::make('text', 'name', 'Name')->set_required(false),
-            ]),
+                ->add_fields([
+                    Field::make('text', 'rating', 'Rating (from 1.0 to 5.0)')->set_required(true),
+                    Field::make('textarea', 'description', 'Text')->set_required(false),
+                    Field::make('text', 'name', 'Name')->set_required(false),
+                ]),
             Field::make('complex', 'about_rent', 'Текст об аренде')
-            ->add_fields([
-                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
-                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
-                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
-                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
-                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
-                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
-                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
-            ]),
+                ->add_fields([
+                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                    Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                    Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                    Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                    Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+                ]),
             Field::make('complex', 'about_rent_en', 'EN Текст об аренде')
-            ->add_fields([
-                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
-                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
-                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
-                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
-                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
-                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
-                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
-            ]),
+                ->add_fields([
+                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                    Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                    Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                    Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                    Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+                ]),
             Field::make('complex', 'about_buy', 'Текст о покупке')
-            ->add_fields([
-                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
-                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
-                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
-                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
-                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
-                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
-                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
-            ]),
+                ->add_fields([
+                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                    Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                    Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                    Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                    Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+                ]),
             Field::make('complex', 'about_buy_en', 'EN Текст о покупке')
-            ->add_fields([
-                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
-                Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
-                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
-                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
-                Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
-                Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
-                Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
-            ]),
+                ->add_fields([
+                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                    Field::make('text', 'h3', 'Второй заголовок')->set_required(false),
+                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                    Field::make('rich_text', 'text_2', 'Текст в первой колонке')->set_required(false),
+                    Field::make('rich_text', 'text_3', 'Текст во второй колонке')->set_required(false),
+                    Field::make('rich_text', 'text_4', 'Текст в третьей колонке')->set_required(false)
+                ]),
+            Field::make('complex', 'steps_3', '3 шага к вашему идеальному полету')
+                ->add_fields([
+                    Field::make('text', 'title', 'Заголовок шага')->set_required(true),
+                    Field::make('textarea', 'description', 'Описание')->set_required(true),
+                ]),
+            Field::make('complex', 'steps_3_en', 'EN 3 шага к вашему идеальному полету')
+                ->add_fields([
+                    Field::make('text', 'title', 'Heading of a step')->set_required(true),
+                    Field::make('textarea', 'description', 'Description')->set_required(true),
+                ]),
+            Field::make('complex', 'steps_4', '4 шага к вашему идеальному полету')
+                ->add_fields([
+                    Field::make('text', 'title', 'Заголовок шага')->set_required(true),
+                    Field::make('textarea', 'description', 'Описание')->set_required(true),
+                ]),
+            Field::make('complex', 'steps_4_en', 'EN 4 шага к вашему идеальному полету')
+                ->add_fields([
+                    Field::make('text', 'title', 'Heading of a step')->set_required(true),
+                    Field::make('textarea', 'description', 'Description')->set_required(true),
+                ]),
+            Field::make('complex', 'steps_8', '8 шагов к вашему идеальному полету')
+                ->add_fields([
+                    Field::make('text', 'title', 'Заголовок шага')->set_required(true),
+                    Field::make('textarea', 'description', 'Описание')->set_required(true),
+                ]),
+            Field::make('complex', 'steps_8_en', 'EN 8 шагов к вашему идеальному полету')
+                ->add_fields([
+                    Field::make('text', 'title', 'Heading of a step')->set_required(true),
+                    Field::make('textarea', 'description', 'Description')->set_required(true),
+                ]),
+            Field::make('complex', 'compare_table', 'Сравните уровень нашего сервиса')
+                ->add_fields([
+                    Field::make('text', 'title', 'Заголовок характеристики')->set_required(true),
+                    Field::make('radio', 'broker', 'Обычный брокер')
+                        ->set_options([
+                            'yes' => 'Есть',
+                            'grey' => 'Нет (серый)',
+                            'invisible' => 'Нет (скрытый)'
+                        ])->set_default_value('no'),
+                    Field::make('radio', 'airline', 'Обычная авиакомпания')
+                        ->set_options([
+                            'yes' => 'Есть',
+                            'grey' => 'Нет (серый)',
+                            'invisible' => 'Нет (скрытый)'
+                        ])->set_default_value('no'),
+                    Field::make('radio', 'jethunter', 'Jet Hunter')
+                        ->set_options([
+                            'yes' => 'Есть',
+                            'grey' => 'Нет (серый)',
+                            'invisible' => 'Нет (скрытый)'
+                        ])->set_default_value('yes')
+                ]),
+            Field::make('complex', 'compare_table_en', 'EN Сравните уровень нашего сервиса')
+                ->add_fields([
+                    Field::make('text', 'title', 'Заголовок характеристики')->set_required(true),
+                    Field::make('radio', 'broker', 'A regular broker')
+                        ->set_options([
+                            'yes' => 'Есть',
+                            'grey' => 'Нет (серый)',
+                            'invisible' => 'Нет (скрытый)'
+                        ])->set_default_value('no'),
+                    Field::make('radio', 'airline', 'A regular airline')
+                        ->set_options([
+                            'yes' => 'Есть',
+                            'grey' => 'Нет (серый)',
+                            'invisible' => 'Нет (скрытый)'
+                        ])->set_default_value('no'),
+                    Field::make('radio', 'jethunter', 'Jet Hunter')
+                        ->set_options([
+                            'yes' => 'Есть',
+                            'grey' => 'Нет (серый)',
+                            'invisible' => 'Нет (скрытый)'
+                        ])->set_default_value('yes')
+                ]),
         ));
 
     Container::make('post_meta', 'Параметры самолёта')
@@ -115,14 +189,55 @@ add_action('carbon_fields_register_fields', function () {
 
             Field::make('text', 'aircraft_model', 'Модель'),
 
-            Field::make('text', 'aircraft_type', 'Тип'),
-            Field::make('text', 'aircraft_type_en', 'EN Тип'),
+            // Field::make('text', 'aircraft_type', 'Тип'),
+            // Field::make('text', 'aircraft_type_en', 'EN Тип'),
 
-            Field::make('text', 'aircraft_cat', 'Категория'),
-            Field::make('text', 'aircraft_cat_en', 'EN Категория'),
+            // Field::make('text', 'aircraft_cat', 'Категория'),
+            // Field::make('text', 'aircraft_cat_en', 'EN Категория'),
 
-            Field::make('text', 'aircraft_make', 'Производитель'),
-            Field::make('image', 'aircraft_logo', 'Логотип'),
+            Field::make('select', 'aircraft_type', 'Тип')
+                ->add_options([
+                    'Самолет' => 'Самолет',
+                    'Вертолет' => 'Вертолет',
+                    'VTOL' => 'VTOL',
+                ]),
+            
+            Field::make('select', 'aircraft_type_en', 'EN Тип')
+                ->add_options([
+                    'Airplane' => 'Airplane',
+                    'Helicopter' => 'Helicopter',
+                    'VTOL' => 'VTOL',
+                ]),
+            
+            // Категория самолета
+            Field::make('select', 'aircraft_cat', 'Категория')
+                ->add_options([
+                    'Турбовинтовые' => 'Турбовинтовые',
+                    'Очень легкие' => 'Очень легкие',
+                    'Легкие' => 'Легкие',
+                    'Средние' => 'Средние',
+                    'Супер-средние' => 'Супер-средние',
+                    'Большие' => 'Большие',
+                    'Ультра-большие' => 'Ультра-большие',
+                    'Дальнемагистральные' => 'Дальнемагистральные',
+                    'Бизнес-лайнеры' => 'Бизнес-лайнеры',
+                ]),
+            
+            Field::make('select', 'aircraft_cat_en', 'EN Категория')
+                ->add_options([
+                    'Turboprop' => 'Turboprop',
+                    'Very Light' => 'Very Light',
+                    'Light' => 'Light',
+                    'Medium' => 'Medium',
+                    'Super-Medium' => 'Super-Medium',
+                    'Large' => 'Large',
+                    'Ultra-Large' => 'Ultra-Large',
+                    'Long-Range' => 'Long-Range',
+                    'Business Airliners' => 'Business Airliners',
+                ]),
+
+            // Field::make('text', 'aircraft_make', 'Производитель'),
+            // Field::make('image', 'aircraft_logo', 'Логотип'),
 
             Field::make('text', 'id_number_buy', 'Идентификационный номер, покупка')
                 ->set_conditional_logic([
@@ -159,8 +274,66 @@ add_action('carbon_fields_register_fields', function () {
 
             Field::make('text', 'production_start', 'Год начала производства'),
             Field::make('text', 'production_end', 'Год окончания производства'),
-            Field::make('text', 'production_country', 'Страна производства'),
-            Field::make('text', 'production_country_en', 'EN Страна производства'),
+
+            // Field::make('text', 'production_country', 'Страна производства'),
+            // Field::make('text', 'production_country_en', 'EN Страна производства'),
+            
+            Field::make('select', 'production_country', 'Страна производства')
+            ->add_options([
+                'США' => 'США',
+                'Франция' => 'Франция',
+                'Бразилия' => 'Бразилия',
+                'Канада' => 'Канада',
+                'Великобритания' => 'Великобритания',
+                'Россия' => 'Россия',
+                'Германия' => 'Германия',
+                'Италия' => 'Италия',
+                'Япония' => 'Япония',
+                'Китай' => 'Китай',
+                'Швеция' => 'Швеция',
+                'Испания' => 'Испания',
+                'Украина' => 'Украина',
+                'Чехия' => 'Чехия',
+                'Швейцария' => 'Швейцария',
+                'Австрия' => 'Австрия',
+                'Израиль' => 'Израиль',
+                'Нидерланды' => 'Нидерланды',
+                'Польша' => 'Польша',
+                'Турция' => 'Турция',
+                'Индия' => 'Индия',
+                'Южная Корея' => 'Южная Корея',
+                'Австралия' => 'Австралия',
+                'Бельгия' => 'Бельгия',
+            ]),
+        
+        Field::make('select', 'production_country_en', 'EN Страна производства')
+            ->add_options([
+                'USA' => 'USA',
+                'France' => 'France',
+                'Brazil' => 'Brazil',
+                'Canada' => 'Canada',
+                'United Kingdom' => 'United Kingdom',
+                'Russia' => 'Russia',
+                'Germany' => 'Germany',
+                'Italy' => 'Italy',
+                'Japan' => 'Japan',
+                'China' => 'China',
+                'Sweden' => 'Sweden',
+                'Spain' => 'Spain',
+                'Ukraine' => 'Ukraine',
+                'Czech Republic' => 'Czech Republic',
+                'Switzerland' => 'Switzerland',
+                'Austria' => 'Austria',
+                'Israel' => 'Israel',
+                'Netherlands' => 'Netherlands',
+                'Poland' => 'Poland',
+                'Turkey' => 'Turkey',
+                'India' => 'India',
+                'South Korea' => 'South Korea',
+                'Australia' => 'Australia',
+                'Belgium' => 'Belgium',
+            ]),
+
             Field::make('text', 'aircraft_new_cost', 'Стоимость нового самолета ($)'),
             Field::make('text', 'aircraft_used_cost', 'Стоимость самолета с налетом ($)'),
             Field::make('text', 'aircraft_hour_cost', 'Себестоимость летного часа ($)'),
@@ -459,7 +632,7 @@ add_action('carbon_fields_register_fields', function () {
         'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
         'Новая Зеландия' => '/wp-content/uploads/flags/new-zealand.png',
         'Норвегия' => '/wp-content/uploads/flags/norway.png',
-        'ОАЭ' => '/wp-content/uploads/flags/uae.png',
+        'ОАЭ' => '/wp-content/uploads/flags/united-arab-emirates.png',
         'Оман' => '/wp-content/uploads/flags/oman.png',
         'Пакистан' => '/wp-content/uploads/flags/pakistan.png',
         'Палау' => '/wp-content/uploads/flags/palau.png',
@@ -721,6 +894,15 @@ add_action('after_setup_theme', function () {
     \Carbon_Fields\Carbon_Fields::boot();
 });
 // carbon end
+
+// исправление для функционала брендов
+// function rename_brand_taxonomy_slug($args, $taxonomy) {
+//     if ('pa_бренд' === $taxonomy) { // если бренд создан с кириллическим названием
+//         $args['rewrite']['slug'] = 'brand'; // задаем латиницу
+//     }
+//     return $args;
+// }
+// add_filter('register_taxonomy_args', 'rename_brand_taxonomy_slug', 10, 2);
 
 // lightbox fix
 function my_lbwps_enabled($enabled, $id)
@@ -1515,3 +1697,82 @@ add_action('admin_footer', function () {
     </script>
 <?php
 });
+
+add_action('admin_footer', 'add_aircraft_translation_script');
+function add_aircraft_translation_script() {
+    $screen = get_current_screen();
+    if (!$screen || $screen->base !== 'post' || $screen->post_type !== 'product') {
+        return;
+    }
+    
+    ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        // Массивы переводов
+        const typeTranslations = {
+            'Самолет': 'Airplane',
+            'Вертолет': 'Helicopter',
+            'VTOL': 'VTOL'
+        };
+        
+        const categoryTranslations = {
+            'Турбовинтовые': 'Turboprop',
+            'Очень легкие': 'Very Light',
+            'Легкие': 'Light',
+            'Средние': 'Medium',
+            'Супер-средние': 'Super-Medium',
+            'Большие': 'Large',
+            'Ультра-большие': 'Ultra-Large',
+            'Дальнемагистральные': 'Long-Range',
+            'Бизнес-лайнеры': 'Business Airliners'
+        };
+        
+        const countryTranslations = {
+            'США': 'USA',
+            'Франция': 'France',
+            'Бразилия': 'Brazil',
+            'Канада': 'Canada',
+            'Великобритания': 'United Kingdom',
+            'Россия': 'Russia',
+            'Германия': 'Germany',
+            'Италия': 'Italy',
+            'Япония': 'Japan',
+            'Китай': 'China',
+            'Швеция': 'Sweden',
+            'Испания': 'Spain',
+            'Украина': 'Ukraine',
+            'Чехия': 'Czech Republic',
+            'Швейцария': 'Switzerland',
+            'Австрия': 'Austria',
+            'Израиль': 'Israel',
+            'Нидерланды': 'Netherlands',
+            'Польша': 'Poland',
+            'Турция': 'Turkey',
+            'Индия': 'India',
+            'Южная Корея': 'South Korea',
+            'Австралия': 'Australia',
+            'Бельгия': 'Belgium'
+        };
+        
+        // Автоматический перевод при изменении русского поля
+        $(document).on('change', '[data-field="aircraft_type"] select, [name$="[aircraft_type]"]', function() {
+            const ruValue = $(this).val();
+            const enValue = typeTranslations[ruValue] || '';
+            $('[data-field="aircraft_type_en"] select, [name$="[aircraft_type_en]"]').val(enValue).trigger('change');
+        });
+        
+        $(document).on('change', '[data-field="aircraft_cat"] select, [name$="[aircraft_cat]"]', function() {
+            const ruValue = $(this).val();
+            const enValue = categoryTranslations[ruValue] || '';
+            $('[data-field="aircraft_cat_en"] select, [name$="[aircraft_cat_en]"]').val(enValue).trigger('change');
+        });
+        
+        $(document).on('change', '[data-field="production_country"] select, [name$="[production_country]"]', function() {
+            const ruValue = $(this).val();
+            const enValue = countryTranslations[ruValue] || '';
+            $('[data-field="production_country_en"] select, [name$="[production_country_en]"]').val(enValue).trigger('change');
+        });
+    });
+    </script>
+    <?php
+}

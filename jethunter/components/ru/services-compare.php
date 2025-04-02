@@ -1,7 +1,7 @@
 <section class="compare-sect">
     <div class="container">
         <h2 class="h2 center">Сравните уровень нашего сервиса</h2>
-        <div class="compare-table">
+        <!-- <div class="compare-table">
             <div class="compare-head">
                 <span class="compare-head-title">Обычный брокер</span>
                 <span class="compare-head-title">Обычная авиакомпания</span>
@@ -122,6 +122,35 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <?php $compare_table = carbon_get_theme_option('compare_table');
+
+        if ($compare_table) : ?>
+            <div class="compare-table">
+                <div class="compare-head">
+                    <span class="compare-head-title">Обычный брокер</span>
+                    <span class="compare-head-title">Обычная авиакомпания</span>
+                    <span class="compare-head-title">Jet Hunter</span>
+                </div>
+                <div class="compare-body">
+                    <?php foreach ($compare_table as $row) : ?>
+                        <div class="compare-row">
+                            <p class="compare-body-title"><?= esc_html($row['title']); ?></p>
+                            <div class="compare-check-row">
+                                <div class="compare-check-img <?= $row['broker'] !== 'yes' ? esc_attr($row['broker']) : ''; ?>">
+                                    <?= $row['broker'] === 'yes' ? 'Есть' : 'Нет'; ?>
+                                </div>
+                                <div class="compare-check-img <?= $row['airline'] !== 'yes' ? esc_attr($row['airline']) : ''; ?>">
+                                    <?= $row['airline'] === 'yes' ? 'Есть' : 'Нет'; ?>
+                                </div>
+                                <div class="compare-check-img <?= $row['jethunter'] !== 'yes' ? esc_attr($row['jethunter']) : ''; ?>">
+                                    <?= $row['jethunter'] === 'yes' ? 'Есть' : 'Нет'; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 </section>

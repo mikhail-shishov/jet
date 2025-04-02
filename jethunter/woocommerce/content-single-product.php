@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying product content in the single-product.php template
  */
@@ -24,7 +25,8 @@ echo "<!-- PLL function returns: " . (function_exists('pll_current_language') ? 
 echo "<!-- URL: " . $_SERVER['REQUEST_URI'] . " -->";
 
 // Простая функция перевода, использующая напрямую pll_current_language()
-function t($ru, $en) {
+function t($ru, $en)
+{
     if (function_exists('pll_current_language') && pll_current_language() === 'en') {
         return $en;
     }
@@ -32,7 +34,8 @@ function t($ru, $en) {
 }
 
 // Альтернативная функция перевода для тестирования
-function translate_text($ru, $en) {
+function translate_text($ru, $en)
+{
     if (strpos($_SERVER['REQUEST_URI'], '/en/') !== false) {
         return $en;
     }
@@ -174,7 +177,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                 $file_url = get_post_meta(get_the_ID(), '_custom_file_url', true);
 
                 if (!empty($file_url)) {
-                    echo '<li class="nav-tabs-item"><a href="' . esc_url($file_url) . '" target="_blank" class="btn btn-tab-full">' . 
+                    echo '<li class="nav-tabs-item"><a href="' . esc_url($file_url) . '" target="_blank" class="btn btn-tab-full">' .
                         t('PDF брошюра', 'PDF brochure') . '</a></li>';
                 }
                 ?>
@@ -305,12 +308,26 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                     </div>
                 </div>
                 <div class="plane-main-info">
-                    <?php if (!empty($aircraft_logo)) :
+                    <?php /* if (!empty($aircraft_logo)) :
                         $aircraft_logo_url = wp_get_attachment_url($aircraft_logo);
                         if ($aircraft_logo_url) : ?>
                             <img src="<?php echo esc_url($aircraft_logo_url); ?>" class="plane-logo" alt="Logo">
                     <?php endif;
-                    endif;
+                    endif; */
+                    ?>
+
+                    <?php
+                    $terms = get_the_terms(get_the_ID(), 'product_brand'); // получаем бренды
+                    if (!empty($terms) && !is_wp_error($terms)) {
+                        foreach ($terms as $brand) {
+                            $brand_logo_id = get_term_meta($brand->term_id, 'thumbnail_id', true); // получаем ID логотипа
+                            $brand_logo_url = wp_get_attachment_url($brand_logo_id); // URL изображения
+
+                            if ($brand_logo_url) : ?>
+                                <img src="<?php echo esc_url($brand_logo_url); ?>" class="plane-logo" alt="<?php echo esc_attr($brand->name); ?>">
+                            <?php endif;
+                        }
+                    }
                     ?>
                     <div class="plane-main-info-wrap">
                         <?php

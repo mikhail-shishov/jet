@@ -1,8 +1,11 @@
+<?php $steps_8 = carbon_get_theme_option('steps_8');
+if (empty($steps_8)) return;
+?>
 <section class="instruction-sect">
     <div class="container">
         <h2 class="h2 center">Мы делаем 8 шагов для Вашего безупречного полета</h2>
         <div class="instruction-wrap">
-            <div class="instruction-block">
+            <!-- <div class="instruction-block">
                 <h3 class="h3">Заявка на рейс</h3>
                 <p>В отличие от многих других брокеров, мы проверяем всю документацию по полету, наличие всех
                     необходимых запросов от оператора и разрешений, заказываем питание исходя из ваших
@@ -46,7 +49,13 @@
                 <h3 class="h3">Вылет по расписанию</h3>
                 <p>Мы лично проконтролируем подготовку к вылету, встретим вас в терминале и сделаем все, чтобы ваше
                     путешествие было максимально комфортным и безопасным. Вы и ваша семья будете довольны!</p>
-            </div>
+            </div> -->
+            <?php foreach ($steps_8 as $index => $step): ?>
+                <div class="instruction-block">
+                    <h3 class="h3"><?php echo esc_html($step['title']); ?></h3>
+                    <p><?php echo esc_html($step['description']); ?></p>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

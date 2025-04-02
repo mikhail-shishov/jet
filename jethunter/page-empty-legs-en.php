@@ -19,31 +19,31 @@
         <div class="search-wrap search-flight-wrap">
             <form action="" class="search-flight-form">
                 <div class="city-list" style="display: none;">
-                    Moscow, Istanbul, Belgrade
+                    Istanbul, Belgrade
                 </div>
 
                 <div class="autocomplete form-input-wrap">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/from.svg" class="form-input-icon" alt="">
-                    <input type="text" class="form-input form-input-round city-input" placeholder="Откуда" autocomplete="off">
+                    <input type="text" class="form-input form-input-round city-input" placeholder="From" autocomplete="off">
                     <div class="suggestions"></div>
                 </div>
 
                 <div class="autocomplete form-input-wrap">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/to.svg" class="form-input-icon" alt="">
-                    <input type="text" class="form-input form-input-round city-input" placeholder="Куда" autocomplete="off">
+                    <input type="text" class="form-input form-input-round city-input" placeholder="To" autocomplete="off">
                     <div class="suggestions"></div>
                 </div>
 
                 <div class="form-input-wrap">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/calendar.svg" class="form-input-icon" alt="">
-                    <input type="date" class="form-input form-input-round" placeholder="Когда" name="" id="">
+                    <input type="date" class="form-input form-input-round" placeholder="When" name="" id="">
                 </div>
 
                 <div class="passenger-counter">
                     <button class="minus" type="button">−</button>
                     <div class="passenger-counter-output">
                         <input type="text" class="passenger-counter-input" value="1" readonly>
-                        <span class="passenger-label">пассажир</span>
+                        <span class="passenger-label">passenger</span>
                     </div>
                     <button class="plus" type="button">+</button>
                 </div>
@@ -81,7 +81,7 @@
                     }
                 ?>
                     <div class="empty-item">
-                        <img src="<?php echo esc_url($image_url); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'Самолет'); ?>">
+                        <img src="<?php echo esc_url($image_url ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png'); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'Самолет'); ?>">
                         <h3 class="h3"><?php echo esc_html($plane['title'] ?? 'Без названия'); ?></h3>
 
                         <div class="empty-path">
@@ -206,7 +206,7 @@
                                                 'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
                                                 'Новая Зеландия' => '/wp-content/uploads/flags/new-zealand.png',
                                                 'Норвегия' => '/wp-content/uploads/flags/norway.png',
-                                                'ОАЭ' => '/wp-content/uploads/flags/uae.png',
+                                                'ОАЭ' => '/wp-content/uploads/flags/united-arab-emirates.png',
                                                 'Оман' => '/wp-content/uploads/flags/oman.png',
                                                 'Пакистан' => '/wp-content/uploads/flags/pakistan.png',
                                                 'Палау' => '/wp-content/uploads/flags/palau.png',
@@ -274,7 +274,190 @@
                                                 'ЮАР' => '/wp-content/uploads/flags/south-africa.png',
                                                 'Южный Судан' => '/wp-content/uploads/flags/south-sudan.png',
                                                 'Ямайка' => '/wp-content/uploads/flags/jamaica.png',
-                                                'Япония' => '/wp-content/uploads/flags/japan.png'
+                                                'Япония' => '/wp-content/uploads/flags/japan.png',
+                                                // English translations
+                                                'Australia' => '/wp-content/uploads/flags/australia.png',
+                                                'Austria' => '/wp-content/uploads/flags/austria.png',
+                                                'Azerbaijan' => '/wp-content/uploads/flags/azerbaijan.png',
+                                                'Albania' => '/wp-content/uploads/flags/albania.png',
+                                                'Andorra' => '/wp-content/uploads/flags/andorra.png',
+                                                'Antigua and Barbuda' => '/wp-content/uploads/flags/antigua-and-barbuda.png',
+                                                'Armenia' => '/wp-content/uploads/flags/armenia.png',
+                                                'Afghanistan' => '/wp-content/uploads/flags/afghanistan.png',
+                                                'Bahamas' => '/wp-content/uploads/flags/bahamas.png',
+                                                'Bangladesh' => '/wp-content/uploads/flags/bangladesh.png',
+                                                'Barbados' => '/wp-content/uploads/flags/barbados.png',
+                                                'Bahrain' => '/wp-content/uploads/flags/bahrain.png',
+                                                'Belarus' => '/wp-content/uploads/flags/belarus.png',
+                                                'Belize' => '/wp-content/uploads/flags/belize.png',
+                                                'Bolivia' => '/wp-content/uploads/flags/bolivia.png',
+                                                'Belgium' => '/wp-content/uploads/flags/belgium.png',
+                                                'Bulgaria' => '/wp-content/uploads/flags/bulgaria.png',
+                                                'Benin' => '/wp-content/uploads/flags/benin.png',
+                                                'Bosnia and Herzegovina' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
+                                                'Botswana' => '/wp-content/uploads/flags/botswana.png',
+                                                'Brazil' => '/wp-content/uploads/flags/brazil.png',
+                                                'Brunei' => '/wp-content/uploads/flags/brunei.png',
+                                                'Burkina Faso' => '/wp-content/uploads/flags/burkina-faso.png',
+                                                'Burundi' => '/wp-content/uploads/flags/burundi.png',
+                                                'Bhutan' => '/wp-content/uploads/flags/bhutan.png',
+                                                'Vanuatu' => '/wp-content/uploads/flags/vanuatu.png',
+                                                'Vatican' => '/wp-content/uploads/flags/vatican.png',
+                                                'United Kingdom' => '/wp-content/uploads/flags/united-kingdom.png',
+                                                'Hungary' => '/wp-content/uploads/flags/hungary.png',
+                                                'Venezuela' => '/wp-content/uploads/flags/venezuela.png',
+                                                'Vietnam' => '/wp-content/uploads/flags/vietnam.png',
+                                                'Gabon' => '/wp-content/uploads/flags/gabon.png',
+                                                'Haiti' => '/wp-content/uploads/flags/haiti.png',
+                                                'Guyana' => '/wp-content/uploads/flags/guyana.png',
+                                                'Gambia' => '/wp-content/uploads/flags/gambia.png',
+                                                'Ghana' => '/wp-content/uploads/flags/ghana.png',
+                                                'Guatemala' => '/wp-content/uploads/flags/guatemala.png',
+                                                'Guinea' => '/wp-content/uploads/flags/guinea.png',
+                                                'Guinea-Bissau' => '/wp-content/uploads/flags/guinea-bissau.png',
+                                                'Germany' => '/wp-content/uploads/flags/germany.png',
+                                                'Honduras' => '/wp-content/uploads/flags/honduras.png',
+                                                'Grenada' => '/wp-content/uploads/flags/grenada.png',
+                                                'Greece' => '/wp-content/uploads/flags/greece.png',
+                                                'Georgia' => '/wp-content/uploads/flags/georgia.png',
+                                                'Denmark' => '/wp-content/uploads/flags/denmark.png',
+                                                'Dominican Republic' => '/wp-content/uploads/flags/dominicana.png',
+                                                'Egypt' => '/wp-content/uploads/flags/egypt.png',
+                                                'Zambia' => '/wp-content/uploads/flags/zambia.png',
+                                                'Zimbabwe' => '/wp-content/uploads/flags/zimbabwe.png',
+                                                'Israel' => '/wp-content/uploads/flags/israel.png',
+                                                'India' => '/wp-content/uploads/flags/india.png',
+                                                'Indonesia' => '/wp-content/uploads/flags/indonesia.png',
+                                                'Jordan' => '/wp-content/uploads/flags/jordan.png',
+                                                'Iraq' => '/wp-content/uploads/flags/iraq.png',
+                                                'Iran' => '/wp-content/uploads/flags/iran.png',
+                                                'Ireland' => '/wp-content/uploads/flags/ireland.png',
+                                                'Iceland' => '/wp-content/uploads/flags/iceland.png',
+                                                'Spain' => '/wp-content/uploads/flags/spain.png',
+                                                'Italy' => '/wp-content/uploads/flags/italy.png',
+                                                'Yemen' => '/wp-content/uploads/flags/yemen.png',
+                                                'Cape Verde' => '/wp-content/uploads/flags/cabo-verde.png',
+                                                'Kazakhstan' => '/wp-content/uploads/flags/kazakhstan.png',
+                                                'Cambodia' => '/wp-content/uploads/flags/cambodia.png',
+                                                'Cameroon' => '/wp-content/uploads/flags/cameroon.png',
+                                                'Canada' => '/wp-content/uploads/flags/canada.png',
+                                                'Qatar' => '/wp-content/uploads/flags/qatar.png',
+                                                'Kenya' => '/wp-content/uploads/flags/kenia.png',
+                                                'Cyprus' => '/wp-content/uploads/flags/cyprus.png',
+                                                'Kiribati' => '/wp-content/uploads/flags/kiribati.png',
+                                                'Kyrgyzstan' => '/wp-content/uploads/flags/kyrgyzstan.png',
+                                                'China' => '/wp-content/uploads/flags/china.png',
+                                                'Colombia' => '/wp-content/uploads/flags/columbia.png',
+                                                'Congo' => '/wp-content/uploads/flags/congo.png',
+                                                'Democratic Republic of Congo' => '/wp-content/uploads/flags/democratic-republic-of-congo.png',
+                                                'North Korea' => '/wp-content/uploads/flags/north-korea.png',
+                                                'South Korea' => '/wp-content/uploads/flags/south-korea.png',
+                                                'Costa Rica' => '/wp-content/uploads/flags/costa-rica.png',
+                                                'Ivory Coast' => '/wp-content/uploads/flags/cote-de-ivory.png',
+                                                'Cuba' => '/wp-content/uploads/flags/cuba.png',
+                                                'Kuwait' => '/wp-content/uploads/flags/kuwait.png',
+                                                'Laos' => '/wp-content/uploads/flags/laos.png',
+                                                'Latvia' => '/wp-content/uploads/flags/latvia.png',
+                                                'Lesotho' => '/wp-content/uploads/flags/lesotho.png',
+                                                'Liberia' => '/wp-content/uploads/flags/liberia.png',
+                                                'Lebanon' => '/wp-content/uploads/flags/lebanon.png',
+                                                'Lithuania' => '/wp-content/uploads/flags/lithuania.png',
+                                                'Liechtenstein' => '/wp-content/uploads/flags/liechtenstein.png',
+                                                'Luxembourg' => '/wp-content/uploads/flags/luxembourg.png',
+                                                'Mauritius' => '/wp-content/uploads/flags/mauricius.png',
+                                                'Mauritania' => '/wp-content/uploads/flags/mauritania.png',
+                                                'Madagascar' => '/wp-content/uploads/flags/madagascar.png',
+                                                'Malawi' => '/wp-content/uploads/flags/malawi.png',
+                                                'Malaysia' => '/wp-content/uploads/flags/malaysia.png',
+                                                'Mali' => '/wp-content/uploads/flags/mali.png',
+                                                'Maldives' => '/wp-content/uploads/flags/maldives.png',
+                                                'Malta' => '/wp-content/uploads/flags/malta.png',
+                                                'Morocco' => '/wp-content/uploads/flags/morocco.png',
+                                                'Marshall Islands' => '/wp-content/uploads/flags/marshall-islands.png',
+                                                'Mexico' => '/wp-content/uploads/flags/mexiko.png',
+                                                'Micronesia' => '/wp-content/uploads/flags/micronesia.png',
+                                                'Mozambique' => '/wp-content/uploads/flags/mozambique.png',
+                                                'Moldova' => '/wp-content/uploads/flags/moldova.png',
+                                                'Monaco' => '/wp-content/uploads/flags/monaco.png',
+                                                'Mongolia' => '/wp-content/uploads/flags/mongolia.png',
+                                                'Myanmar' => '/wp-content/uploads/flags/myanmar.png',
+                                                'Namibia' => '/wp-content/uploads/flags/namibia.png',
+                                                'Nauru' => '/wp-content/uploads/flags/nauru.png',
+                                                'Nepal' => '/wp-content/uploads/flags/nepal.png',
+                                                'Niger' => '/wp-content/uploads/flags/niger.png',
+                                                'Nigeria' => '/wp-content/uploads/flags/nigeria.png',
+                                                'Netherlands' => '/wp-content/uploads/flags/netherlands.png',
+                                                'New Zealand' => '/wp-content/uploads/flags/new-zealand.png',
+                                                'Norway' => '/wp-content/uploads/flags/norway.png',
+                                                'UAE' => '/wp-content/uploads/flags/united-arab-emirates.png',
+                                                'Oman' => '/wp-content/uploads/flags/oman.png',
+                                                'Pakistan' => '/wp-content/uploads/flags/pakistan.png',
+                                                'Palau' => '/wp-content/uploads/flags/palau.png',
+                                                'Panama' => '/wp-content/uploads/flags/panama.png',
+                                                'Papua New Guinea' => '/wp-content/uploads/flags/new-guinea.png',
+                                                'Paraguay' => '/wp-content/uploads/flags/paraguay.png',
+                                                'Poland' => '/wp-content/uploads/flags/poland.png',
+                                                'Portugal' => '/wp-content/uploads/flags/portugal.png',
+                                                'Russia' => '/wp-content/uploads/flags/russia.png',
+                                                'Rwanda' => '/wp-content/uploads/flags/rwanda.png',
+                                                'Romania' => '/wp-content/uploads/flags/romania.png',
+                                                'El Salvador' => '/wp-content/uploads/flags/salvador.png',
+                                                'Samoa' => '/wp-content/uploads/flags/samoa.png',
+                                                'San Marino' => '/wp-content/uploads/flags/san-marino.png',
+                                                'Saudi Arabia' => '/wp-content/uploads/flags/saudi-arabia.png',
+                                                'North Macedonia' => '/wp-content/uploads/flags/republic-of-macedonia.png',
+                                                'Seychelles' => '/wp-content/uploads/flags/seychelles.png',
+                                                'Senegal' => '/wp-content/uploads/flags/senegal.png',
+                                                'Saint Vincent and the Grenadines' => '/wp-content/uploads/flags/st-vincent-grenadine.png',
+                                                'Saint Kitts and Nevis' => '/wp-content/uploads/flags/st-kits-nevis.png',
+                                                'Saint Lucia' => '/wp-content/uploads/flags/st-lucia.png',
+                                                'Serbia' => '/wp-content/uploads/flags/serbia.png',
+                                                'Singapore' => '/wp-content/uploads/flags/singapur.png',
+                                                'Syria' => '/wp-content/uploads/flags/syria.png',
+                                                'Slovakia' => '/wp-content/uploads/flags/slovakia.png',
+                                                'Slovenia' => '/wp-content/uploads/flags/slovenia.png',
+                                                'USA' => '/wp-content/uploads/flags/united-states.png',
+                                                'Solomon Islands' => '/wp-content/uploads/flags/solomon-islands.png',
+                                                'Somalia' => '/wp-content/uploads/flags/somali.png',
+                                                'Sudan' => '/wp-content/uploads/flags/sudan.png',
+                                                'Suriname' => '/wp-content/uploads/flags/surinam.png',
+                                                'Sierra Leone' => '/wp-content/uploads/flags/sierra-leone.png',
+                                                'Tajikistan' => '/wp-content/uploads/flags/tajikistan.png',
+                                                'Thailand' => '/wp-content/uploads/flags/thailand.png',
+                                                'Tanzania' => '/wp-content/uploads/flags/tanzania.png',
+                                                'Togo' => '/wp-content/uploads/flags/togo.png',
+                                                'Tonga' => '/wp-content/uploads/flags/tonga.png',
+                                                'Trinidad and Tobago' => '/wp-content/uploads/flags/trinidad-and-tobago.png',
+                                                'Tuvalu' => '/wp-content/uploads/flags/tuwalu.png',
+                                                'Turkmenistan' => '/wp-content/uploads/flags/turkmenistan.png',
+                                                'Turkey' => '/wp-content/uploads/flags/turkey.png',
+                                                'Uganda' => '/wp-content/uploads/flags/uganda.png',
+                                                'Uzbekistan' => '/wp-content/uploads/flags/uzbekistan.png',
+                                                'Ukraine' => '/wp-content/uploads/flags/ukraine.png',
+                                                'Uruguay' => '/wp-content/uploads/flags/uruguay.png',
+                                                'Fiji' => '/wp-content/uploads/flags/fiji.png',
+                                                'Philippines' => '/wp-content/uploads/flags/phillipines.png',
+                                                'Finland' => '/wp-content/uploads/flags/finland.png',
+                                                'France' => '/wp-content/uploads/flags/france.png',
+                                                'Croatia' => '/wp-content/uploads/flags/croatia.png',
+                                                'CAR' => '/wp-content/uploads/flags/car.png',
+                                                'Chad' => '/wp-content/uploads/flags/chad.png',
+                                                'Montenegro' => '/wp-content/uploads/flags/montenegro.png',
+                                                'Czech Republic' => '/wp-content/uploads/flags/czech-republic.png',
+                                                'Chile' => '/wp-content/uploads/flags/chile.png',
+                                                'Switzerland' => '/wp-content/uploads/flags/switzerland.png',
+                                                'Sweden' => '/wp-content/uploads/flags/sweden.png',
+                                                'Sri Lanka' => '/wp-content/uploads/flags/sri-lanka.png',
+                                                'Ecuador' => '/wp-content/uploads/flags/ecuador.png',
+                                                'Equatorial Guinea' => '/wp-content/uploads/flags/equatorial-guinea.png',
+                                                'Eritrea' => '/wp-content/uploads/flags/erithrea.png',
+                                                'Eswatini' => '/wp-content/uploads/flags/eswatini.png',
+                                                'Estonia' => '/wp-content/uploads/flags/estonia.png',
+                                                'Ethiopia' => '/wp-content/uploads/flags/ethiopia.png',
+                                                'South Africa' => '/wp-content/uploads/flags/south-africa.png',
+                                                'South Sudan' => '/wp-content/uploads/flags/south-sudan.png',
+                                                'Jamaica' => '/wp-content/uploads/flags/jamaica.png',
+                                                'Japan' => '/wp-content/uploads/flags/japan.png'
                                             ];
 
                                             if ($origin_country) :
@@ -294,19 +477,6 @@
                                             <?php
                                             // Получаем страну
                                             $destination_country = $plane['destination_country'] ?? '';
-                                            // $country_flags = [
-                                            //     'США' => '/wp-content/uploads/flags/united-states.png',
-                                            //     'Канада' => '/wp-content/uploads/flags/canada.png',
-                                            //     'Франция' => '/wp-content/uploads/flags/france.png',
-                                            //     'Германия' => '/wp-content/uploads/flags/germany.png',
-                                            //     'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
-                                            //     'Россия' => '/wp-content/uploads/flags/russia.png',
-                                            //     'Китай' => '/wp-content/uploads/flags/china.png',
-                                            //     'Япония' => '/wp-content/uploads/flags/japan.png',
-                                            //     'Австралия' => '/wp-content/uploads/flags/australia.png',
-                                            //     'Италия' => '/wp-content/uploads/flags/italy.png',
-                                            //     'Испания' => '/wp-content/uploads/flags/spain.png',
-                                            // ];
 
                                             if ($destination_country) :
                                                 // Выводим флаг и страну
@@ -854,8 +1024,8 @@
                 <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Забронировать</button>
             </div>
         </div> -->
-        <div class="show-more">
-            <a href="" class="link">Смотреть ещё</a>
+        <div class="show-more is-hidden">
+            <a href="" class="link">Show more</a>
         </div>
     </div>
 </section>

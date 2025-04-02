@@ -1,8 +1,12 @@
+<?php $steps_8 = carbon_get_theme_option('steps_8_en');
+if (empty($steps_8)) return;
+?>
+
 <section class="instruction-sect">
     <div class="container">
         <h2 class="h2 center">We do 8 steps for your perfect flight</h2>
         <div class="instruction-wrap">
-            <div class="instruction-block">
+            <!-- <div class="instruction-block">
                 <h3 class="h3">Flight request</h3>
                 <p>Our experienced team will clarify all details on the route, dates and type of aircraft as well as all your wishes. We will tell you about all the features and possibilities!</p>
             </div>
@@ -33,7 +37,13 @@
             <div class="instruction-block">
                 <h3 class="h3">Departure on time!</h3>
                 <p>We will personally supervise preparation for departure, meet you at the terminal and do everything to make your trip as comfortable and safe as possible. You and your family will be happy!</p>
-            </div>
+            </div> -->
+            <?php foreach ($steps_8 as $index => $step): ?>
+                <div class="instruction-block">
+                    <h3 class="h3"><?php echo esc_html($step['title']); ?></h3>
+                    <p><?php echo esc_html($step['description']); ?></p>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

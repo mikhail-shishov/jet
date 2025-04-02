@@ -252,7 +252,7 @@
                         <ul class="dropdown_with-chk__list">
                             <li class="dropdown_with-chk__list-item">
                                 <input class="dropdown_with-chk__list-item_label" type="checkbox" name="150" id="150" />
-                                <label class="dropdown_with-chk__list-item_label" for="1500">до 150</label>
+                                <label class="dropdown_with-chk__list-item_label" for="150">до 150</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
                                 <input class="dropdown_with-chk__list-item_label" type="checkbox" name="150-400" id="150-300" />

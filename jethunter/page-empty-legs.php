@@ -83,7 +83,7 @@
                     }
                 ?>
                     <div class="empty-item">
-                        <img src="<?php echo esc_url($image_url); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'Самолет'); ?>">
+                        <img src="<?php echo esc_url($image_url ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png'); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'Самолет'); ?>">
                         <h3 class="h3"><?php echo esc_html($plane['title'] ?? 'Без названия'); ?></h3>
 
                         <div class="empty-path">
@@ -208,7 +208,7 @@
                                                 'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
                                                 'Новая Зеландия' => '/wp-content/uploads/flags/new-zealand.png',
                                                 'Норвегия' => '/wp-content/uploads/flags/norway.png',
-                                                'ОАЭ' => '/wp-content/uploads/flags/uae.png',
+                                                'ОАЭ' => '/wp-content/uploads/flags/united-arab-emirates.png',
                                                 'Оман' => '/wp-content/uploads/flags/oman.png',
                                                 'Пакистан' => '/wp-content/uploads/flags/pakistan.png',
                                                 'Палау' => '/wp-content/uploads/flags/palau.png',
@@ -296,19 +296,7 @@
                                             <?php
                                             // Получаем страну
                                             $destination_country = $plane['destination_country'] ?? '';
-                                            // $country_flags = [
-                                            //     'США' => '/wp-content/uploads/flags/united-states.png',
-                                            //     'Канада' => '/wp-content/uploads/flags/canada.png',
-                                            //     'Франция' => '/wp-content/uploads/flags/france.png',
-                                            //     'Германия' => '/wp-content/uploads/flags/germany.png',
-                                            //     'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
-                                            //     'Россия' => '/wp-content/uploads/flags/russia.png',
-                                            //     'Китай' => '/wp-content/uploads/flags/china.png',
-                                            //     'Япония' => '/wp-content/uploads/flags/japan.png',
-                                            //     'Австралия' => '/wp-content/uploads/flags/australia.png',
-                                            //     'Италия' => '/wp-content/uploads/flags/italy.png',
-                                            //     'Испания' => '/wp-content/uploads/flags/spain.png',
-                                            // ];
+
 
                                             if ($destination_country) :
                                                 // Выводим флаг и страну

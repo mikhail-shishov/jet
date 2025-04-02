@@ -800,7 +800,7 @@ h4,
     visibility: hidden;
 }
 
-.compare-check-grey {
+.compare-check-img.grey {
     filter: grayscale(1);
 }
 
