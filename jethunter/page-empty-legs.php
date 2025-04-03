@@ -68,7 +68,7 @@
         $planes = carbon_get_the_post_meta('planes');
 
         if (!empty($planes)) : ?>
-            <div class="empty-grid empty-all-grid">
+            <div class="empty-grid empty-all-grid show-more-grid">
                 <?php foreach ($planes as $plane) :
                     // Получаем URL флага по стране
                     $origin_flag = isset($country_flags[$plane['origin_country']]) ? $country_flags[$plane['origin_country']] : '';
@@ -81,6 +81,8 @@
                     if (empty($plane['title']) && empty($plane['origin_country']) && empty($plane['destination_country'])) {
                         continue;
                     }
+
+                    $item_class = $index >= 10 ? 'empty-item is-hidden' : 'empty-item';
                 ?>
                     <div class="empty-item">
                         <img src="<?php echo esc_url($image_url ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png'); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'Самолет'); ?>">
@@ -141,6 +143,11 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php if (count($planes) > 10) : ?>
+            <div class="show-more">
+                <a href="#" class="link">Смотреть ещё</a>
+            </div>
+            <?php endif; ?>
         <?php else : ?>
             <p>Нет данных о перелётах.</p>
         <?php endif; ?>

@@ -121,6 +121,25 @@ $constant_cost_sum = carbon_get_post_meta($product_id, 'constant_cost_sum');
 $total_cost = carbon_get_post_meta($product_id, 'total_cost');
 $total_cost_hour = carbon_get_post_meta($product_id, 'total_cost_hour');
 $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
+
+// Получаем разделители из настроек WooCommerce
+$thousands_separator = get_option('woocommerce_price_thousand_sep');
+$decimal_separator = get_option('woocommerce_price_decimal_sep');
+
+// Функция для форматирования чисел
+function format_number($number, $decimal_separator, $thousands_separator) {
+    if (empty($number)) return '';
+
+    // Преобразуем число в строку и форматируем
+    $formatted_number = number_format(
+        $number, 
+        2, // количество знаков после запятой
+        $decimal_separator, 
+        $thousands_separator
+    );
+
+    return $formatted_number;
+}
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
@@ -376,7 +395,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                 <?php if (!empty($cruise_speed_kmh)) : ?>
                     <div class="plane-specs-item">
                         <div class="plane-specs-number">
-                            <?php echo esc_html($cruise_speed_kmh); ?>
+                            <?php echo esc_html(format_number($cruise_speed_kmh, $decimal_separator, $thousands_separator)); ?>
                         </div>
                         <div class="plane-specs-desc">
                             <?php echo t('Скорость, км/ч', 'Cruise speed, km/h'); ?>
@@ -386,7 +405,7 @@ $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
                 <?php if (!empty($range_km)) : ?>
                     <div class="plane-specs-item">
                         <div class="plane-specs-number">
-                            <?php echo esc_html($range_km); ?>
+                            <?php echo esc_html(format_number($range_km, $decimal_separator, $thousands_separator)); ?>
                         </div>
                         <div class="plane-specs-desc">
                             <?php echo t('Дальность, км', 'Range, km'); ?>

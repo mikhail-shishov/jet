@@ -4,6 +4,8 @@
 
 <?php get_header(); ?>
 
+<?php $affiliate = carbon_get_the_post_meta('affiliate'); ?>
+
 <section class="breadcrumbs-sect">
     <div class="container">
         <?php include_once "breadcrumbs/breadcrumbs.php" ?>
@@ -26,7 +28,32 @@
 
 <section class="about-sect">
     <div class="container">
-        <h2 class="h2 center">Партнерская программа от JetHunter</h2>
+    <?php if (!empty($affiliate)) {
+            foreach ($affiliate as $section) {
+                if (!empty($section['h2'])) {
+                    echo '<h2 class="h2 center">' . esc_html($section['h2']) . '</h2>';
+                }
+
+                echo '<div class="about-text">';
+
+                if (!empty($section['img'])) {
+                    $img_url = wp_get_attachment_image_url($section['img'], 'full');
+                    echo '<img src="' . esc_url($img_url) . '" class="about-img about-img-left" loading="lazy" alt="">';
+                }
+
+                if (!empty($section['text_1'])) {
+                    echo wp_kses_post($section['text_1']);
+                }
+
+                echo '</div>';
+
+                if (!empty($section['h3'])) {
+                    echo '<h3 class="h3 center">' . esc_html($section['h3']) . '</h3>';
+                }
+            }
+        }
+        ?>
+        <!-- <h2 class="h2 center">Партнерская программа от JetHunter</h2>
 
         <div class="about-text">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/illustrations/comfort-2.svg" width="460" height="460" class="about-img about-img-left" loading="lazy" alt="">
@@ -39,7 +66,7 @@
 
             <p>Jet Hunter сочетает конкурентные цены с качеством работы, благодаря нашему многолетнему опыту и доступу к эксклюзивным предложениям.</p>
         </div>
-        <h3 class="h3 center">Станьте членом нашего сообщества и зарабатывайте вместе с нами.</h3>
+        <h3 class="h3 center">Станьте членом нашего сообщества и зарабатывайте вместе с нами.</h3> -->
     </div>
 </section>
 

@@ -507,7 +507,7 @@
                 <a href="/our-fleet-en/" class="link">See all</a>
             </div>
             <div class="plane-grid-item">
-                <h3 class="h3">Super light jets</h3>
+                <h3 class="h3">Very light jets</h3>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/2.png" class="plane-grid-img" loading="lazy" alt="">
                 <ul class="list">
                     <li>Cessna CJ1+</li>
@@ -568,7 +568,7 @@
                 <a href="/our-fleet-en/" class="link">See all</a>
             </div>
             <div class="plane-grid-item">
-                <h3 class="h3">Ultra-Heavy jets</h3>
+                <h3 class="h3">Ultra-heavy jets</h3>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/7.png" class="plane-grid-img" loading="lazy" alt="">
                 <ul class="list">
                     <li>Gulfstream G450</li>

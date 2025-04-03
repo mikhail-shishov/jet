@@ -1,7 +1,10 @@
 <?php
 
-// carbon start
+// получаем разделители чисел
+$thousands_separator = get_option('woocommerce_price_thousand_sep');
+$decimal_separator = get_option('woocommerce_price_decimal_sep');
 
+// carbon start
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
@@ -226,14 +229,14 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('select', 'aircraft_cat_en', 'EN Категория')
                 ->add_options([
                     'Turboprop' => 'Turboprop',
-                    'Very Light' => 'Very Light',
+                    'Very light' => 'Very light',
                     'Light' => 'Light',
-                    'Medium' => 'Medium',
-                    'Super-Medium' => 'Super-Medium',
-                    'Large' => 'Large',
-                    'Ultra-Large' => 'Ultra-Large',
-                    'Long-Range' => 'Long-Range',
-                    'Business Airliners' => 'Business Airliners',
+                    'Midsize' => 'Midsize',
+                    'Super-Midsize' => 'Super-Midsize',
+                    'Heavy' => 'Heavy',
+                    'Ultra-heavy' => 'Ultra-heavy',
+                    'Long-range' => 'Long-range',
+                    'Business liners' => 'Business liners',
                 ]),
 
             // Field::make('text', 'aircraft_make', 'Производитель'),
@@ -264,11 +267,29 @@ add_action('carbon_fields_register_fields', function () {
                     ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
                 ]),
 
-            Field::make('text', 'cruise_speed_kmh', 'Крейсерская скорость (км/ч)'),
-            Field::make('text', 'cruise_speed_mph', 'Крейсерская скорость (миль/ч)'),
+            Field::make('text', 'cruise_speed_kmh', 'Крейсерская скорость (км/ч)')
+                ->set_attribute('type', 'text')
+                ->set_default_value('0')
+                ->set_attribute('step', '0.01')
+                ->set_attribute('min', '0'),
 
-            Field::make('text', 'range_km', 'Дальность (км)'),
-            Field::make('text', 'range_miles', 'Дальность (миль)'),
+            Field::make('text', 'cruise_speed_mph', 'Крейсерская скорость (миль/ч)')
+                ->set_attribute('type', 'text')
+                ->set_default_value('0')
+                ->set_attribute('step', '0.01')
+                ->set_attribute('min', '0'),
+
+            Field::make('text', 'range_km', 'Дальность (км)')
+                ->set_attribute('type', 'text')
+                ->set_default_value('0')
+                ->set_attribute('step', '0.01')
+                ->set_attribute('min', '0'),
+
+            Field::make('text', 'range_miles', 'Дальность (миль)')
+                ->set_attribute('type', 'text')
+                ->set_default_value('0')
+                ->set_attribute('step', '0.01')
+                ->set_attribute('min', '0'),
 
             Field::make('text', 'range_time', 'Время в полете'),
 
@@ -1068,7 +1089,7 @@ function carbon_fields_register_fields_function($args){
                 ])
         ]);
 
-    Container::make('post_meta', 'About is')
+    Container::make('post_meta', 'About us')
         ->where('post_template', '=', 'page-about-us-en.php')
         ->add_fields([
             Field::make('complex', 'stats', 'Статистика')
@@ -1088,6 +1109,29 @@ function carbon_fields_register_fields_function($args){
                     Field::make('image', 'license', 'Лицензия')->set_value_type('url')->set_required(true),
                 ])
         ]);
+
+
+        Container::make('post_meta', 'Партнёрам')
+            ->where('post_template', '=', 'page-affiliate.php')
+            ->add_fields([
+                Field::make('complex', 'affiliate', 'Основной блок с описанием')->add_fields([
+                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                    Field::make('text', 'h3', 'Последний заголовок')->set_required(false),
+                ]),
+            ]);
+
+        Container::make('post_meta', 'Affiliate')
+            ->where('post_template', '=', 'page-affiliate-en.php')
+            ->add_fields([
+                Field::make('complex', 'affiliate_en', 'Основной блок с описанием')->add_fields([
+                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                    Field::make('text', 'h3', 'Последний заголовок')->set_required(false),
+                ]),
+            ]);
 }
 
 add_action('after_setup_theme', function () {
@@ -1955,14 +1999,14 @@ function add_aircraft_translation_script() {
         
         const categoryTranslations = {
             'Турбовинтовые': 'Turboprop',
-            'Очень легкие': 'Very Light',
+            'Очень легкие': 'Very light',
             'Легкие': 'Light',
-            'Средние': 'Medium',
-            'Супер-средние': 'Super-Medium',
-            'Большие': 'Large',
-            'Ультра-большие': 'Ultra-Large',
-            'Дальнемагистральные': 'Long-Range',
-            'Бизнес-лайнеры': 'Business Airliners'
+            'Средние': 'Midsize',
+            'Супер-средние': 'Super-midsize',
+            'Большие': 'Heavy',
+            'Ультра-большие': 'Ultra-heavy',
+            'Дальнемагистральные': 'Long-range',
+            'Бизнес-лайнеры': 'Business liners'
         };
         
         const countryTranslations = {
@@ -2078,3 +2122,28 @@ add_filter('woocommerce_rest_prepare_product', function ($response, $product, $r
 
     return $response;
 }, 10, 3);
+
+add_action('save_post', 'save_product_field_formatting', 10, 2);
+function save_product_field_formatting($post_id, $post) {
+    if ('product' !== $post->post_type) {
+        return;
+    }
+
+    // Получаем разделители из WooCommerce
+    $thousands_separator = get_option('woocommerce_price_thousand_sep');
+    $decimal_separator = get_option('woocommerce_price_decimal_sep');
+
+    // Форматируем числа для полей
+    $fields = ['cruise_speed_kmh', 'cruise_speed_mph', 'range_km', 'range_miles'];
+    
+    foreach ($fields as $field) {
+        $value = get_post_meta($post_id, $field, true);
+
+        // Убираем разделители тысяч и заменяем дробный разделитель
+        $value = str_replace($thousands_separator, ' ', $value);
+        $value = str_replace($decimal_separator, '.', $value);
+
+        // Сохраняем отформатированное значение
+        update_post_meta($post_id, $field, $value);
+    }
+}

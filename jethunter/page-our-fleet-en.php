@@ -33,14 +33,14 @@
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item dropdown__list-item_active" data-value="Any">Any</li>
                             <li class="dropdown__list-item" data-value="Turboprop">Turboprop</li>
-                            <li class="dropdown__list-item" data-value="Very Light">Very Light</li>
+                            <li class="dropdown__list-item" data-value="Very Light">Very light</li>
                             <li class="dropdown__list-item" data-value="Light">Light</li>
-                            <li class="dropdown__list-item" data-value="Medium">Medium</li>
-                            <li class="dropdown__list-item" data-value="Super-Medium">Super-Medium</li>
-                            <li class="dropdown__list-item" data-value="Large">Large</li>
-                            <li class="dropdown__list-item" data-value="Ultra-Large">Ultra-Large</li>
-                            <li class="dropdown__list-item" data-value="Long-Range">Long-Range</li>
-                            <li class="dropdown__list-item" data-value="Business Airliners">Business Airliners</li>
+                            <li class="dropdown__list-item" data-value="Midsize">Midsize</li>
+                            <li class="dropdown__list-item" data-value="Super-Midsize">Super-Midsize</li>
+                            <li class="dropdown__list-item" data-value="Heavy">Heavy</li>
+                            <li class="dropdown__list-item" data-value="Ultra-heavy">Ultra-heavy</li>
+                            <li class="dropdown__list-item" data-value="Long-range">Long-range</li>
+                            <li class="dropdown__list-item" data-value="Business liners">Business liners</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
