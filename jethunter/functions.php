@@ -1,6 +1,7 @@
 <?php
 
-function add_comparison_api_key() {
+function add_comparison_api_key()
+{
     wp_enqueue_script('comparison-script', get_stylesheet_directory_uri() . '/js/plane-compare.js', array('jquery'), null, true);
 
     wp_localize_script('comparison-script', 'comparisonData', array(
@@ -13,12 +14,392 @@ add_action('wp_enqueue_scripts', 'add_comparison_api_key');
 $thousands_separator = get_option('woocommerce_price_thousand_sep');
 $decimal_separator = get_option('woocommerce_price_decimal_sep');
 
+$country_flags_global = [
+    'Австралия' => '/wp-content/uploads/flags/australia.png',
+    'Австрия' => '/wp-content/uploads/flags/austria.png',
+    'Азербайджан' => '/wp-content/uploads/flags/azerbaijan.png',
+    'Албания' => '/wp-content/uploads/flags/albania.png',
+    'Андорра' => '/wp-content/uploads/flags/andorra.png',
+    'Антигуа и Барбуда' => '/wp-content/uploads/flags/antigua-and-barbuda.png',
+    'Армения' => '/wp-content/uploads/flags/armenia.png',
+    'Афганистан' => '/wp-content/uploads/flags/afghanistan.png',
+    'Багамы' => '/wp-content/uploads/flags/bahamas.png',
+    'Бангладеш' => '/wp-content/uploads/flags/bangladesh.png',
+    'Барбадос' => '/wp-content/uploads/flags/barbados.png',
+    'Бахрейн' => '/wp-content/uploads/flags/bahrain.png',
+    'Беларусь' => '/wp-content/uploads/flags/belarus.png',
+    'Белиз' => '/wp-content/uploads/flags/belize.png',
+    'Боливия' => '/wp-content/uploads/flags/bolivia.png',
+    'Бельгия' => '/wp-content/uploads/flags/belgium.png',
+    'Болгария' => '/wp-content/uploads/flags/bulgaria.png',
+    'Бенин' => '/wp-content/uploads/flags/benin.png',
+    'Босния и Герцеговина' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
+    'Ботсвана' => '/wp-content/uploads/flags/botswana.png',
+    'Бразилия' => '/wp-content/uploads/flags/brazil.png',
+    'Бруней' => '/wp-content/uploads/flags/brunei.png',
+    'Буркина-Фасо' => '/wp-content/uploads/flags/burkina-faso.png',
+    'Бурунди' => '/wp-content/uploads/flags/burundi.png',
+    'Бутан' => '/wp-content/uploads/flags/bhutan.png',
+    'Вануату' => '/wp-content/uploads/flags/vanuatu.png',
+    'Ватикан' => '/wp-content/uploads/flags/vatican.png',
+    'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
+    'Венгрия' => '/wp-content/uploads/flags/hungary.png',
+    'Венесуэла' => '/wp-content/uploads/flags/venezuela.png',
+    'Вьетнам' => '/wp-content/uploads/flags/vietnam.png',
+    'Габон' => '/wp-content/uploads/flags/gabon.png',
+    'Гаити' => '/wp-content/uploads/flags/haiti.png',
+    'Гайана' => '/wp-content/uploads/flags/guyana.png',
+    'Гамбия' => '/wp-content/uploads/flags/gambia.png',
+    'Гана' => '/wp-content/uploads/flags/ghana.png',
+    'Гватемала' => '/wp-content/uploads/flags/guatemala.png',
+    'Гвинея' => '/wp-content/uploads/flags/guinea.png',
+    'Гвинея-Бисау' => '/wp-content/uploads/flags/guinea-bissau.png',
+    'Германия' => '/wp-content/uploads/flags/germany.png',
+    'Гондурас' => '/wp-content/uploads/flags/honduras.png',
+    'Гренада' => '/wp-content/uploads/flags/grenada.png',
+    'Греция' => '/wp-content/uploads/flags/greece.png',
+    'Грузия' => '/wp-content/uploads/flags/georgia.png',
+    'Дания' => '/wp-content/uploads/flags/denmark.png',
+    'Доминикана' => '/wp-content/uploads/flags/dominicana.png',
+    'Египет' => '/wp-content/uploads/flags/egypt.png',
+    'Замбия' => '/wp-content/uploads/flags/zambia.png',
+    'Зимбабве' => '/wp-content/uploads/flags/zimbabwe.png',
+    'Израиль' => '/wp-content/uploads/flags/israel.png',
+    'Индия' => '/wp-content/uploads/flags/india.png',
+    'Индонезия' => '/wp-content/uploads/flags/indonesia.png',
+    'Иордания' => '/wp-content/uploads/flags/jordan.png',
+    'Ирак' => '/wp-content/uploads/flags/iraq.png',
+    'Иран' => '/wp-content/uploads/flags/iran.png',
+    'Ирландия' => '/wp-content/uploads/flags/ireland.png',
+    'Исландия' => '/wp-content/uploads/flags/iceland.png',
+    'Испания' => '/wp-content/uploads/flags/spain.png',
+    'Италия' => '/wp-content/uploads/flags/italy.png',
+    'Йемен' => '/wp-content/uploads/flags/yemen.png',
+    'Кабо-Верде' => '/wp-content/uploads/flags/cabo-verde.png',
+    'Казахстан' => '/wp-content/uploads/flags/kazakhstan.png',
+    'Камбоджа' => '/wp-content/uploads/flags/cambodia.png',
+    'Камерун' => '/wp-content/uploads/flags/cameroon.png',
+    'Канада' => '/wp-content/uploads/flags/canada.png',
+    'Катар' => '/wp-content/uploads/flags/qatar.png',
+    'Кения' => '/wp-content/uploads/flags/kenia.png',
+    'Кипр' => '/wp-content/uploads/flags/cyprus.png',
+    'Кирибати' => '/wp-content/uploads/flags/kiribati.png',
+    'Киргизия' => '/wp-content/uploads/flags/kyrgyzstan.png',
+    'Китай' => '/wp-content/uploads/flags/china.png',
+    'Колумбия' => '/wp-content/uploads/flags/columbia.png',
+    'Конго' => '/wp-content/uploads/flags/congo.png',
+    'Демократическая Республика Конго' => '/wp-content/uploads/flags/democratic-republic-of-congo.png',
+    'КНДР' => '/wp-content/uploads/flags/north-korea.png',
+    'Южная Корея' => '/wp-content/uploads/flags/south-korea.png',
+    'Коста-Рика' => '/wp-content/uploads/flags/costa-rica.png',
+    'Кот-д\'Ивуар' => '/wp-content/uploads/flags/cote-de-ivory.png',
+    'Куба' => '/wp-content/uploads/flags/cuba.png',
+    'Кувейт' => '/wp-content/uploads/flags/kuwait.png',
+    'Лаос' => '/wp-content/uploads/flags/laos.png',
+    'Латвия' => '/wp-content/uploads/flags/latvia.png',
+    'Лесото' => '/wp-content/uploads/flags/lesotho.png',
+    'Либерия' => '/wp-content/uploads/flags/liberia.png',
+    'Ливан' => '/wp-content/uploads/flags/lebanon.png',
+    'Литва' => '/wp-content/uploads/flags/lithuania.png',
+    'Лихтенштейн' => '/wp-content/uploads/flags/liechtenstein.png',
+    'Люксембург' => '/wp-content/uploads/flags/luxembourg.png',
+    'Маврикий' => '/wp-content/uploads/flags/mauricius.png',
+    'Мавритания' => '/wp-content/uploads/flags/mauritania.png',
+    'Мадагаскар' => '/wp-content/uploads/flags/madagascar.png',
+    'Малави' => '/wp-content/uploads/flags/malawi.png',
+    'Малайзия' => '/wp-content/uploads/flags/malaysia.png',
+    'Мали' => '/wp-content/uploads/flags/mali.png',
+    'Мальдивы' => '/wp-content/uploads/flags/maldives.png',
+    'Мальта' => '/wp-content/uploads/flags/malta.png',
+    'Марокко' => '/wp-content/uploads/flags/morocco.png',
+    'Маршалловы острова' => '/wp-content/uploads/flags/marshall-islands.png',
+    'Мексика' => '/wp-content/uploads/flags/mexiko.png',
+    'Микронезия' => '/wp-content/uploads/flags/micronesia.png',
+    'Мозамбик' => '/wp-content/uploads/flags/mozambique.png',
+    'Молдова' => '/wp-content/uploads/flags/moldova.png',
+    'Монако' => '/wp-content/uploads/flags/monaco.png',
+    'Монголия' => '/wp-content/uploads/flags/mongolia.png',
+    'Мьянма' => '/wp-content/uploads/flags/myanmar.png',
+    'Намибия' => '/wp-content/uploads/flags/namibia.png',
+    'Науру' => '/wp-content/uploads/flags/nauru.png',
+    'Непал' => '/wp-content/uploads/flags/nepal.png',
+    'Нигер' => '/wp-content/uploads/flags/niger.png',
+    'Нигерия' => '/wp-content/uploads/flags/nigeria.png',
+    'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
+    'Новая Зеландия' => '/wp-content/uploads/flags/new-zealand.png',
+    'Норвегия' => '/wp-content/uploads/flags/norway.png',
+    'ОАЭ' => '/wp-content/uploads/flags/united-arab-emirates.png',
+    'Оман' => '/wp-content/uploads/flags/oman.png',
+    'Пакистан' => '/wp-content/uploads/flags/pakistan.png',
+    'Палау' => '/wp-content/uploads/flags/palau.png',
+    'Панама' => '/wp-content/uploads/flags/panama.png',
+    'Папуа-Новая Гвинея' => '/wp-content/uploads/flags/new-guinea.png',
+    'Парагвай' => '/wp-content/uploads/flags/paraguay.png',
+    'Польша' => '/wp-content/uploads/flags/poland.png',
+    'Португалия' => '/wp-content/uploads/flags/portugal.png',
+    'Россия' => '/wp-content/uploads/flags/russia.png',
+    'Руанда' => '/wp-content/uploads/flags/rwanda.png',
+    'Румыния' => '/wp-content/uploads/flags/romania.png',
+    'Сальвадор' => '/wp-content/uploads/flags/salvador.png',
+    'Самоа' => '/wp-content/uploads/flags/samoa.png',
+    'Сан-Марино' => '/wp-content/uploads/flags/san-marino.png',
+    'Саудовская Аравия' => '/wp-content/uploads/flags/saudi-arabia.png',
+    'Северная Македония' => '/wp-content/uploads/flags/republic-of-macedonia.png',
+    'Сейшелы' => '/wp-content/uploads/flags/seychelles.png',
+    'Сенегал' => '/wp-content/uploads/flags/senegal.png',
+    'Сент-Винсет и Гренадины' => '/wp-content/uploads/flags/st-vincent-grenadine.png',
+    'Сент-Китс и Невис' => '/wp-content/uploads/flags/st-kits-nevis.png',
+    'Сент-Люсия' => '/wp-content/uploads/flags/st-lucia.png',
+    'Сербия' => '/wp-content/uploads/flags/serbia.png',
+    'Сингапур' => '/wp-content/uploads/flags/singapur.png',
+    'Сирия' => '/wp-content/uploads/flags/syria.png',
+    'Словакия' => '/wp-content/uploads/flags/slovakia.png',
+    'Словения' => '/wp-content/uploads/flags/slovenia.png',
+    'США' => '/wp-content/uploads/flags/united-states.png',
+    'Соломоновы острова' => '/wp-content/uploads/flags/solomon-islands.png',
+    'Сомали' => '/wp-content/uploads/flags/somali.png',
+    'Судан' => '/wp-content/uploads/flags/sudan.png',
+    'Суринам' => '/wp-content/uploads/flags/surinam.png',
+    'Сьерра-Леоне' => '/wp-content/uploads/flags/sierra-leone.png',
+    'Таджикистан' => '/wp-content/uploads/flags/tajikistan.png',
+    'Таиланд' => '/wp-content/uploads/flags/thailand.png',
+    'Танзания' => '/wp-content/uploads/flags/tanzania.png',
+    'Того' => '/wp-content/uploads/flags/togo.png',
+    'Тонга' => '/wp-content/uploads/flags/tonga.png',
+    'Тринидад и Тобаго' => '/wp-content/uploads/flags/trinidad-and-tobago.png',
+    'Тувалу' => '/wp-content/uploads/flags/tuwalu.png',
+    'Туркменистан' => '/wp-content/uploads/flags/turkmenistan.png',
+    'Турция' => '/wp-content/uploads/flags/turkey.png',
+    'Уганда' => '/wp-content/uploads/flags/uganda.png',
+    'Узбекистан' => '/wp-content/uploads/flags/uzbekistan.png',
+    'Украина' => '/wp-content/uploads/flags/ukraine.png',
+    'Уругвай' => '/wp-content/uploads/flags/uruguay.png',
+    'Фиджи' => '/wp-content/uploads/flags/fiji.png',
+    'Филиппины' => '/wp-content/uploads/flags/phillipines.png',
+    'Финляндия' => '/wp-content/uploads/flags/finland.png',
+    'Франция' => '/wp-content/uploads/flags/france.png',
+    'Хорватия' => '/wp-content/uploads/flags/croatia.png',
+    'ЦАР' => '/wp-content/uploads/flags/car.png',
+    'Чад' => '/wp-content/uploads/flags/chad.png',
+    'Черногория' => '/wp-content/uploads/flags/montenegro.png',
+    'Чехия' => '/wp-content/uploads/flags/czech-republic.png',
+    'Чили' => '/wp-content/uploads/flags/chile.png',
+    'Швейцария' => '/wp-content/uploads/flags/switzerland.png',
+    'Швеция' => '/wp-content/uploads/flags/sweden.png',
+    'Шри-Ланка' => '/wp-content/uploads/flags/sri-lanka.png',
+    'Эквадор' => '/wp-content/uploads/flags/ecuador.png',
+    'Экваториальная Гвинея' => '/wp-content/uploads/flags/equatorial-guinea.png',
+    'Эритрея' => '/wp-content/uploads/flags/erithrea.png',
+    'Эсватини' => '/wp-content/uploads/flags/eswatini.png',
+    'Эстония' => '/wp-content/uploads/flags/estonia.png',
+    'Эфиопия' => '/wp-content/uploads/flags/ethiopia.png',
+    'ЮАР' => '/wp-content/uploads/flags/south-africa.png',
+    'Южный Судан' => '/wp-content/uploads/flags/south-sudan.png',
+    'Ямайка' => '/wp-content/uploads/flags/jamaica.png',
+    'Япония' => '/wp-content/uploads/flags/japan.png'
+];
+
+$country_flags_en_global = [
+    'Afghanistan' => '/wp-content/uploads/flags/afghanistan.png',
+    'Albania' => '/wp-content/uploads/flags/albania.png',
+    'Andorra' => '/wp-content/uploads/flags/andorra.png',
+    'Antigua and Barbuda' => '/wp-content/uploads/flags/antigua-and-barbuda.png',
+    'Armenia' => '/wp-content/uploads/flags/armenia.png',
+    'Australia' => '/wp-content/uploads/flags/australia.png',
+    'Austria' => '/wp-content/uploads/flags/austria.png',
+    'Azerbaijan' => '/wp-content/uploads/flags/azerbaijan.png',
+    'Bahamas' => '/wp-content/uploads/flags/bahamas.png',
+    'Bangladesh' => '/wp-content/uploads/flags/bangladesh.png',
+    'Barbados' => '/wp-content/uploads/flags/barbados.png',
+    'Bahrain' => '/wp-content/uploads/flags/bahrain.png',
+    'Belarus' => '/wp-content/uploads/flags/belarus.png',
+    'Belize' => '/wp-content/uploads/flags/belize.png',
+    'Bolivia' => '/wp-content/uploads/flags/bolivia.png',
+    'Bosnia and Herzegovina' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
+    'Botswana' => '/wp-content/uploads/flags/botswana.png',
+    'Belgium' => '/wp-content/uploads/flags/belgium.png',
+    'Benin' => '/wp-content/uploads/flags/benin.png',
+    'Brazil' => '/wp-content/uploads/flags/brazil.png',
+    'Brunei' => '/wp-content/uploads/flags/brunei.png',
+    'Bulgaria' => '/wp-content/uploads/flags/bulgaria.png',
+    'Burkina Faso' => '/wp-content/uploads/flags/burkina-faso.png',
+    'Burundi' => '/wp-content/uploads/flags/burundi.png',
+    'Bhutan' => '/wp-content/uploads/flags/bhutan.png',
+    'CAR' => '/wp-content/uploads/flags/car.png',
+    'Cape Verde' => '/wp-content/uploads/flags/cabo-verde.png',
+    'Cambodia' => '/wp-content/uploads/flags/cambodia.png',
+    'Cameroon' => '/wp-content/uploads/flags/cameroon.png',
+    'Canada' => '/wp-content/uploads/flags/canada.png',
+    'Chad' => '/wp-content/uploads/flags/chad.png',
+    'China' => '/wp-content/uploads/flags/china.png',
+    'Chile' => '/wp-content/uploads/flags/chile.png',
+    'Colombia' => '/wp-content/uploads/flags/columbia.png',
+    'Congo' => '/wp-content/uploads/flags/congo.png',
+    'Costa Rica' => '/wp-content/uploads/flags/costa-rica.png',
+    'Cuba' => '/wp-content/uploads/flags/cuba.png',
+    'Cyprus' => '/wp-content/uploads/flags/cyprus.png',
+    'Croatia' => '/wp-content/uploads/flags/croatia.png',
+    'Czech Republic' => '/wp-content/uploads/flags/czech-republic.png',
+    'Democratic Republic of Congo' => '/wp-content/uploads/flags/democratic-republic-of-congo.png',
+    'Denmark' => '/wp-content/uploads/flags/denmark.png',
+    'Dominican Republic' => '/wp-content/uploads/flags/dominicana.png',
+    'Egypt' => '/wp-content/uploads/flags/egypt.png',
+    'El Salvador' => '/wp-content/uploads/flags/salvador.png',
+    'Ecuador' => '/wp-content/uploads/flags/ecuador.png',
+    'Equatorial Guinea' => '/wp-content/uploads/flags/equatorial-guinea.png',
+    'Eswatini' => '/wp-content/uploads/flags/eswatini.png',
+    'Estonia' => '/wp-content/uploads/flags/estonia.png',
+    'Ethiopia' => '/wp-content/uploads/flags/ethiopia.png',
+    'Eritrea' => '/wp-content/uploads/flags/erithrea.png',
+    'Fiji' => '/wp-content/uploads/flags/fiji.png',
+    'Finland' => '/wp-content/uploads/flags/finland.png',
+    'France' => '/wp-content/uploads/flags/france.png',
+    'Gabon' => '/wp-content/uploads/flags/gabon.png',
+    'Gambia' => '/wp-content/uploads/flags/gambia.png',
+    'Georgia' => '/wp-content/uploads/flags/georgia.png',
+    'Germany' => '/wp-content/uploads/flags/germany.png',
+    'Grenada' => '/wp-content/uploads/flags/grenada.png',
+    'Greece' => '/wp-content/uploads/flags/greece.png',
+    'Ghana' => '/wp-content/uploads/flags/ghana.png',
+    'Guatemala' => '/wp-content/uploads/flags/guatemala.png',
+    'Guinea' => '/wp-content/uploads/flags/guinea.png',
+    'Guinea-Bissau' => '/wp-content/uploads/flags/guinea-bissau.png',
+    'Guyana' => '/wp-content/uploads/flags/guyana.png',
+    'Haiti' => '/wp-content/uploads/flags/haiti.png',
+    'Honduras' => '/wp-content/uploads/flags/honduras.png',
+    'Hungary' => '/wp-content/uploads/flags/hungary.png',
+    'Israel' => '/wp-content/uploads/flags/israel.png',
+    'India' => '/wp-content/uploads/flags/india.png',
+    'Indonesia' => '/wp-content/uploads/flags/indonesia.png',
+    'Jordan' => '/wp-content/uploads/flags/jordan.png',
+    'Italy' => '/wp-content/uploads/flags/italy.png',
+    'Iraq' => '/wp-content/uploads/flags/iraq.png',
+    'Iran' => '/wp-content/uploads/flags/iran.png',
+    'Ireland' => '/wp-content/uploads/flags/ireland.png',
+    'Iceland' => '/wp-content/uploads/flags/iceland.png',
+    'Ivory Coast' => '/wp-content/uploads/flags/cote-de-ivory.png',
+    'Jamaica' => '/wp-content/uploads/flags/jamaica.png',
+    'Japan' => '/wp-content/uploads/flags/japan.png',
+    'Kazakhstan' => '/wp-content/uploads/flags/kazakhstan.png',
+    'Kenya' => '/wp-content/uploads/flags/kenia.png',
+    'Kiribati' => '/wp-content/uploads/flags/kiribati.png',
+    'Kyrgyzstan' => '/wp-content/uploads/flags/kyrgyzstan.png',
+    'Kuwait' => '/wp-content/uploads/flags/kuwait.png',
+    'Laos' => '/wp-content/uploads/flags/laos.png',
+    'Latvia' => '/wp-content/uploads/flags/latvia.png',
+    'Lesotho' => '/wp-content/uploads/flags/lesotho.png',
+    'Liberia' => '/wp-content/uploads/flags/liberia.png',
+    'Lebanon' => '/wp-content/uploads/flags/lebanon.png',
+    'Lithuania' => '/wp-content/uploads/flags/lithuania.png',
+    'Liechtenstein' => '/wp-content/uploads/flags/liechtenstein.png',
+    'Luxembourg' => '/wp-content/uploads/flags/luxembourg.png',
+    'Mauritius' => '/wp-content/uploads/flags/mauricius.png',
+    'Mauritania' => '/wp-content/uploads/flags/mauritania.png',
+    'Madagascar' => '/wp-content/uploads/flags/madagascar.png',
+    'Malawi' => '/wp-content/uploads/flags/malawi.png',
+    'Malaysia' => '/wp-content/uploads/flags/malaysia.png',
+    'Mali' => '/wp-content/uploads/flags/mali.png',
+    'Maldives' => '/wp-content/uploads/flags/maldives.png',
+    'Malta' => '/wp-content/uploads/flags/malta.png',
+    'Morocco' => '/wp-content/uploads/flags/morocco.png',
+    'Marshall Islands' => '/wp-content/uploads/flags/marshall-islands.png',
+    'Mexico' => '/wp-content/uploads/flags/mexiko.png',
+    'Micronesia' => '/wp-content/uploads/flags/micronesia.png',
+    'Mozambique' => '/wp-content/uploads/flags/mozambique.png',
+    'Moldova' => '/wp-content/uploads/flags/moldova.png',
+    'Monaco' => '/wp-content/uploads/flags/monaco.png',
+    'Mongolia' => '/wp-content/uploads/flags/mongolia.png',
+    'Montenegro' => '/wp-content/uploads/flags/montenegro.png',
+    'Myanmar' => '/wp-content/uploads/flags/myanmar.png',
+    'Namibia' => '/wp-content/uploads/flags/namibia.png',
+    'Nauru' => '/wp-content/uploads/flags/nauru.png',
+    'Nepal' => '/wp-content/uploads/flags/nepal.png',
+    'Niger' => '/wp-content/uploads/flags/niger.png',
+    'Nigeria' => '/wp-content/uploads/flags/nigeria.png',
+    'Netherlands' => '/wp-content/uploads/flags/netherlands.png',
+    'New Zealand' => '/wp-content/uploads/flags/new-zealand.png',
+    'North Korea' => '/wp-content/uploads/flags/north-korea.png',
+    'Norway' => '/wp-content/uploads/flags/norway.png',
+    'North Macedonia' => '/wp-content/uploads/flags/republic-of-macedonia.png',
+    'Oman' => '/wp-content/uploads/flags/oman.png',
+    'Pakistan' => '/wp-content/uploads/flags/pakistan.png',
+    'Palau' => '/wp-content/uploads/flags/palau.png',
+    'Panama' => '/wp-content/uploads/flags/panama.png',
+    'Papua New Guinea' => '/wp-content/uploads/flags/new-guinea.png',
+    'Paraguay' => '/wp-content/uploads/flags/paraguay.png',
+    'Philippines' => '/wp-content/uploads/flags/phillipines.png',
+    'Poland' => '/wp-content/uploads/flags/poland.png',
+    'Portugal' => '/wp-content/uploads/flags/portugal.png',
+    'Qatar' => '/wp-content/uploads/flags/qatar.png',
+    'Russia' => '/wp-content/uploads/flags/russia.png',
+    'Rwanda' => '/wp-content/uploads/flags/rwanda.png',
+    'Romania' => '/wp-content/uploads/flags/romania.png',
+    'Samoa' => '/wp-content/uploads/flags/samoa.png',
+    'San Marino' => '/wp-content/uploads/flags/san-marino.png',
+    'Saudi Arabia' => '/wp-content/uploads/flags/saudi-arabia.png',
+    'Seychelles' => '/wp-content/uploads/flags/seychelles.png',
+    'Senegal' => '/wp-content/uploads/flags/senegal.png',
+    'Saint Vincent and the Grenadines' => '/wp-content/uploads/flags/st-vincent-grenadine.png',
+    'Saint Kitts and Nevis' => '/wp-content/uploads/flags/st-kits-nevis.png',
+    'Saint Lucia' => '/wp-content/uploads/flags/st-lucia.png',
+    'Serbia' => '/wp-content/uploads/flags/serbia.png',
+    'Singapore' => '/wp-content/uploads/flags/singapur.png',
+    'Sierra Leone' => '/wp-content/uploads/flags/sierra-leone.png',
+    'Syria' => '/wp-content/uploads/flags/syria.png',
+    'Slovakia' => '/wp-content/uploads/flags/slovakia.png',
+    'Slovenia' => '/wp-content/uploads/flags/slovenia.png',
+    'USA' => '/wp-content/uploads/flags/united-states.png',
+    'Solomon Islands' => '/wp-content/uploads/flags/solomon-islands.png',
+    'Somalia' => '/wp-content/uploads/flags/somali.png',
+    'South Korea' => '/wp-content/uploads/flags/south-korea.png',
+    'South Africa' => '/wp-content/uploads/flags/south-africa.png',
+    'South Sudan' => '/wp-content/uploads/flags/south-sudan.png',
+    'Spain' => '/wp-content/uploads/flags/spain.png',
+    'Sudan' => '/wp-content/uploads/flags/sudan.png',
+    'Suriname' => '/wp-content/uploads/flags/surinam.png',
+    'Switzerland' => '/wp-content/uploads/flags/switzerland.png',
+    'Sweden' => '/wp-content/uploads/flags/sweden.png',
+    'Sri Lanka' => '/wp-content/uploads/flags/sri-lanka.png',
+    'Tajikistan' => '/wp-content/uploads/flags/tajikistan.png',
+    'Thailand' => '/wp-content/uploads/flags/thailand.png',
+    'Tanzania' => '/wp-content/uploads/flags/tanzania.png',
+    'Togo' => '/wp-content/uploads/flags/togo.png',
+    'Tonga' => '/wp-content/uploads/flags/tonga.png',
+    'Trinidad and Tobago' => '/wp-content/uploads/flags/trinidad-and-tobago.png',
+    'Tuvalu' => '/wp-content/uploads/flags/tuwalu.png',
+    'Turkmenistan' => '/wp-content/uploads/flags/turkmenistan.png',
+    'Turkey' => '/wp-content/uploads/flags/turkey.png',
+    'UAE' => '/wp-content/uploads/flags/united-arab-emirates.png',
+    'Uganda' => '/wp-content/uploads/flags/uganda.png',
+    'United Kingdom' => '/wp-content/uploads/flags/united-kingdom.png',
+    'Uzbekistan' => '/wp-content/uploads/flags/uzbekistan.png',
+    'Ukraine' => '/wp-content/uploads/flags/ukraine.png',
+    'Uruguay' => '/wp-content/uploads/flags/uruguay.png',
+    'Vanuatu' => '/wp-content/uploads/flags/vanuatu.png',
+    'Vatican' => '/wp-content/uploads/flags/vatican.png',
+    'Venezuela' => '/wp-content/uploads/flags/venezuela.png',
+    'Vietnam' => '/wp-content/uploads/flags/vietnam.png',
+    'Yemen' => '/wp-content/uploads/flags/yemen.png',
+    'Zambia' => '/wp-content/uploads/flags/zambia.png',
+    'Zimbabwe' => '/wp-content/uploads/flags/zimbabwe.png',
+];
+
+$args_function_1 = array(
+    'country_flags_global'        =>  $country_flags_global,
+    'country_flags_en_global'     =>  $country_flags_en_global
+);
+add_action('carbon_fields_register_fields',  function () use ($args_function_1) {
+    carbon_fields_register_fields_function($args_function_1);
+});
+
 // carbon start
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
 // параметры для продуктов
-add_action('carbon_fields_register_fields', function () {
+add_action('carbon_fields_register_fields', function () use ($country_flags_global, $country_flags_en_global) {
+    // $country_flags = $args['country_flags_global'];
+    // $country_flags_en = $args['country_flags_en_global'];
     Container::make('theme_options', 'Общие настройки')
         ->add_fields(array(
             Field::make('complex', 'faq_items', 'Частые вопросы')
@@ -49,8 +430,6 @@ add_action('carbon_fields_register_fields', function () {
                 ]),
             Field::make('rich_text', 'about_seo_section_text', 'Слово генерального директора - короткий текст'),
             Field::make('rich_text', 'about_seo_section_text_en', 'EN Word of CEO - короткий текст'),
-            Field::make('rich_text', 'empty_legs_seo_section_text', 'О пустых перелетах - короткий текст'),
-            Field::make('rich_text', 'empty_legs_seo_section_text_en', 'EN About empty legs - короткий текст'),
             Field::make('complex', 'reviews_short', 'Короткий блок с отзывами')
                 ->add_fields([
                     Field::make('text', 'rating', 'Оценка (от 1.0 до 5.0)')->set_required(true),
@@ -190,6 +569,52 @@ add_action('carbon_fields_register_fields', function () {
                     Field::make('text', 'slide_text', 'Текст'),
                     Field::make('image', 'slide_image', 'Картинка')->set_value_type('url'),
                     Field::make('text', 'slide_link', 'Ссылка')->set_default_value('/services/'),
+                )),
+            Field::make('rich_text', 'empty_legs_seo_section_text', 'О пустых перелетах - короткий текст'),
+            Field::make('rich_text', 'empty_legs_seo_section_text_en', 'EN About empty legs - короткий текст'),
+            Field::make('complex', 'empty_legs_short', 'Пустые перелеты - короткий блок на страницах')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(4)
+                ->add_fields(array(
+                    Field::make('text', 'title', 'Название самолета')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('select', 'origin_country', 'Страна вылета')
+                        ->set_options(array_combine(array_keys($country_flags_global), array_keys($country_flags_global))),
+                    Field::make('select', 'origin_country_en', 'Страна вылета EN')
+                        ->set_options(array_combine(array_keys($country_flags_en_global), array_keys($country_flags_en_global))),
+                    Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
+                    Field::make('text', 'origin_city', 'Город вылета')->set_required(false),
+                    Field::make('select', 'destination_country', 'Страна прилета')
+                        ->set_options(array_combine(array_keys($country_flags_global), array_keys($country_flags_global))),
+                    Field::make('select', 'destination_country_en', 'Страна прилета EN')
+                        ->set_options(array_combine(array_keys($country_flags_en_global), array_keys($country_flags_en_global))),
+                    Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
+                    Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
+                    Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
+                    Field::make('text', 'seats', 'Количество мест')->set_required(false),
+                    Field::make('text', 'price', 'Цена в USD')->set_required(false),
+                )),
+            Field::make('complex', 'empty_legs_short_en', 'Пустые перелеты - короткий блок на страницах')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(4)
+                ->add_fields(array(
+                    Field::make('text', 'title', 'Название самолета')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('select', 'origin_country', 'Страна вылета')
+                        ->set_options(array_combine(array_keys($country_flags_global), array_keys($country_flags_global))),
+                    Field::make('select', 'origin_country_en', 'Страна вылета EN')
+                        ->set_options(array_combine(array_keys($country_flags_en_global), array_keys($country_flags_en_global))),
+                    Field::make('text', 'origin_code', 'Код аэропорта вылета')->set_required(true),
+                    Field::make('text', 'origin_city', 'Город вылета')->set_required(false),
+                    Field::make('select', 'destination_country', 'Страна прилета')
+                        ->set_options(array_combine(array_keys($country_flags_global), array_keys($country_flags_global))),
+                    Field::make('select', 'destination_country_en', 'Страна прилета EN')
+                        ->set_options(array_combine(array_keys($country_flags_en_global), array_keys($country_flags_en_global))),
+                    Field::make('text', 'destination_code', 'Код аэропорта прилета')->set_required(true),
+                    Field::make('text', 'destination_city', 'Город прилета')->set_required(true),
+                    Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
+                    Field::make('text', 'seats', 'Количество мест')->set_required(false),
+                    Field::make('text', 'price', 'Цена в USD')->set_required(false),
                 ))
         ));
 
@@ -227,14 +652,14 @@ add_action('carbon_fields_register_fields', function () {
                     'Вертолет' => 'Вертолет',
                     'VTOL' => 'VTOL',
                 ]),
-            
+
             Field::make('select', 'aircraft_type_en', 'EN Тип')
                 ->add_options([
                     'Airplane' => 'Airplane',
                     'Helicopter' => 'Helicopter',
                     'VTOL' => 'VTOL',
                 ]),
-            
+
             // Категория самолета
             Field::make('select', 'aircraft_cat', 'Категория самолета, вертолета или VTOL')
                 ->add_options([
@@ -252,7 +677,7 @@ add_action('carbon_fields_register_fields', function () {
                     'Классический ' => 'Классический',
                     'Электрический' => 'Электрический',
                 ]),
-            
+
             Field::make('select', 'aircraft_cat_en', 'EN Категория самолета, вертолета или VTOL')
                 ->add_options([
                     'Turboprop' => 'Turboprop',
@@ -329,62 +754,62 @@ add_action('carbon_fields_register_fields', function () {
 
             // Field::make('text', 'production_country', 'Страна производства'),
             // Field::make('text', 'production_country_en', 'EN Страна производства'),
-            
+
             Field::make('select', 'production_country', 'Страна производства')
-            ->add_options([
-                'США' => 'США',
-                'Франция' => 'Франция',
-                'Бразилия' => 'Бразилия',
-                'Канада' => 'Канада',
-                'Великобритания' => 'Великобритания',
-                'Россия' => 'Россия',
-                'Германия' => 'Германия',
-                'Италия' => 'Италия',
-                'Япония' => 'Япония',
-                'Китай' => 'Китай',
-                'Швеция' => 'Швеция',
-                'Испания' => 'Испания',
-                'Украина' => 'Украина',
-                'Чехия' => 'Чехия',
-                'Швейцария' => 'Швейцария',
-                'Австрия' => 'Австрия',
-                'Израиль' => 'Израиль',
-                'Нидерланды' => 'Нидерланды',
-                'Польша' => 'Польша',
-                'Турция' => 'Турция',
-                'Индия' => 'Индия',
-                'Южная Корея' => 'Южная Корея',
-                'Австралия' => 'Австралия',
-                'Бельгия' => 'Бельгия',
-            ]),
-        
-        Field::make('select', 'production_country_en', 'EN Страна производства')
-            ->add_options([
-                'USA' => 'USA',
-                'France' => 'France',
-                'Brazil' => 'Brazil',
-                'Canada' => 'Canada',
-                'United Kingdom' => 'United Kingdom',
-                'Russia' => 'Russia',
-                'Germany' => 'Germany',
-                'Italy' => 'Italy',
-                'Japan' => 'Japan',
-                'China' => 'China',
-                'Sweden' => 'Sweden',
-                'Spain' => 'Spain',
-                'Ukraine' => 'Ukraine',
-                'Czech Republic' => 'Czech Republic',
-                'Switzerland' => 'Switzerland',
-                'Austria' => 'Austria',
-                'Israel' => 'Israel',
-                'Netherlands' => 'Netherlands',
-                'Poland' => 'Poland',
-                'Turkey' => 'Turkey',
-                'India' => 'India',
-                'South Korea' => 'South Korea',
-                'Australia' => 'Australia',
-                'Belgium' => 'Belgium',
-            ]),
+                ->add_options([
+                    'США' => 'США',
+                    'Франция' => 'Франция',
+                    'Бразилия' => 'Бразилия',
+                    'Канада' => 'Канада',
+                    'Великобритания' => 'Великобритания',
+                    'Россия' => 'Россия',
+                    'Германия' => 'Германия',
+                    'Италия' => 'Италия',
+                    'Япония' => 'Япония',
+                    'Китай' => 'Китай',
+                    'Швеция' => 'Швеция',
+                    'Испания' => 'Испания',
+                    'Украина' => 'Украина',
+                    'Чехия' => 'Чехия',
+                    'Швейцария' => 'Швейцария',
+                    'Австрия' => 'Австрия',
+                    'Израиль' => 'Израиль',
+                    'Нидерланды' => 'Нидерланды',
+                    'Польша' => 'Польша',
+                    'Турция' => 'Турция',
+                    'Индия' => 'Индия',
+                    'Южная Корея' => 'Южная Корея',
+                    'Австралия' => 'Австралия',
+                    'Бельгия' => 'Бельгия',
+                ]),
+
+            Field::make('select', 'production_country_en', 'EN Страна производства')
+                ->add_options([
+                    'USA' => 'USA',
+                    'France' => 'France',
+                    'Brazil' => 'Brazil',
+                    'Canada' => 'Canada',
+                    'United Kingdom' => 'United Kingdom',
+                    'Russia' => 'Russia',
+                    'Germany' => 'Germany',
+                    'Italy' => 'Italy',
+                    'Japan' => 'Japan',
+                    'China' => 'China',
+                    'Sweden' => 'Sweden',
+                    'Spain' => 'Spain',
+                    'Ukraine' => 'Ukraine',
+                    'Czech Republic' => 'Czech Republic',
+                    'Switzerland' => 'Switzerland',
+                    'Austria' => 'Austria',
+                    'Israel' => 'Israel',
+                    'Netherlands' => 'Netherlands',
+                    'Poland' => 'Poland',
+                    'Turkey' => 'Turkey',
+                    'India' => 'India',
+                    'South Korea' => 'South Korea',
+                    'Australia' => 'Australia',
+                    'Belgium' => 'Belgium',
+                ]),
 
             Field::make('text', 'aircraft_new_cost', 'Стоимость нового самолета ($)'),
             Field::make('text', 'aircraft_used_cost', 'Стоимость самолета с налетом ($)'),
@@ -569,385 +994,8 @@ add_action('carbon_fields_register_fields', function () {
         ]);
 });
 
-$country_flags_global = [
-        'Австралия' => '/wp-content/uploads/flags/australia.png',
-        'Австрия' => '/wp-content/uploads/flags/austria.png',
-        'Азербайджан' => '/wp-content/uploads/flags/azerbaijan.png',
-        'Албания' => '/wp-content/uploads/flags/albania.png',
-        'Андорра' => '/wp-content/uploads/flags/andorra.png',
-        'Антигуа и Барбуда' => '/wp-content/uploads/flags/antigua-and-barbuda.png',
-        'Армения' => '/wp-content/uploads/flags/armenia.png',
-        'Афганистан' => '/wp-content/uploads/flags/afghanistan.png',
-        'Багамы' => '/wp-content/uploads/flags/bahamas.png',
-        'Бангладеш' => '/wp-content/uploads/flags/bangladesh.png',
-        'Барбадос' => '/wp-content/uploads/flags/barbados.png',
-        'Бахрейн' => '/wp-content/uploads/flags/bahrain.png',
-        'Беларусь' => '/wp-content/uploads/flags/belarus.png',
-        'Белиз' => '/wp-content/uploads/flags/belize.png',
-        'Боливия' => '/wp-content/uploads/flags/bolivia.png',
-        'Бельгия' => '/wp-content/uploads/flags/belgium.png',
-        'Болгария' => '/wp-content/uploads/flags/bulgaria.png',
-        'Бенин' => '/wp-content/uploads/flags/benin.png',
-        'Босния и Герцеговина' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
-        'Ботсвана' => '/wp-content/uploads/flags/botswana.png',
-        'Бразилия' => '/wp-content/uploads/flags/brazil.png',
-        'Бруней' => '/wp-content/uploads/flags/brunei.png',
-        'Буркина-Фасо' => '/wp-content/uploads/flags/burkina-faso.png',
-        'Бурунди' => '/wp-content/uploads/flags/burundi.png',
-        'Бутан' => '/wp-content/uploads/flags/bhutan.png',
-        'Вануату' => '/wp-content/uploads/flags/vanuatu.png',
-        'Ватикан' => '/wp-content/uploads/flags/vatican.png',
-        'Великобритания' => '/wp-content/uploads/flags/united-kingdom.png',
-        'Венгрия' => '/wp-content/uploads/flags/hungary.png',
-        'Венесуэла' => '/wp-content/uploads/flags/venezuela.png',
-        'Вьетнам' => '/wp-content/uploads/flags/vietnam.png',
-        'Габон' => '/wp-content/uploads/flags/gabon.png',
-        'Гаити' => '/wp-content/uploads/flags/haiti.png',
-        'Гайана' => '/wp-content/uploads/flags/guyana.png',
-        'Гамбия' => '/wp-content/uploads/flags/gambia.png',
-        'Гана' => '/wp-content/uploads/flags/ghana.png',
-        'Гватемала' => '/wp-content/uploads/flags/guatemala.png',
-        'Гвинея' => '/wp-content/uploads/flags/guinea.png',
-        'Гвинея-Бисау' => '/wp-content/uploads/flags/guinea-bissau.png',
-        'Германия' => '/wp-content/uploads/flags/germany.png',
-        'Гондурас' => '/wp-content/uploads/flags/honduras.png',
-        'Гренада' => '/wp-content/uploads/flags/grenada.png',
-        'Греция' => '/wp-content/uploads/flags/greece.png',
-        'Грузия' => '/wp-content/uploads/flags/georgia.png',
-        'Дания' => '/wp-content/uploads/flags/denmark.png',
-        'Доминикана' => '/wp-content/uploads/flags/dominicana.png',
-        'Египет' => '/wp-content/uploads/flags/egypt.png',
-        'Замбия' => '/wp-content/uploads/flags/zambia.png',
-        'Зимбабве' => '/wp-content/uploads/flags/zimbabwe.png',
-        'Израиль' => '/wp-content/uploads/flags/israel.png',
-        'Индия' => '/wp-content/uploads/flags/india.png',
-        'Индонезия' => '/wp-content/uploads/flags/indonesia.png',
-        'Иордания' => '/wp-content/uploads/flags/jordan.png',
-        'Ирак' => '/wp-content/uploads/flags/iraq.png',
-        'Иран' => '/wp-content/uploads/flags/iran.png',
-        'Ирландия' => '/wp-content/uploads/flags/ireland.png',
-        'Исландия' => '/wp-content/uploads/flags/iceland.png',
-        'Испания' => '/wp-content/uploads/flags/spain.png',
-        'Италия' => '/wp-content/uploads/flags/italy.png',
-        'Йемен' => '/wp-content/uploads/flags/yemen.png',
-        'Кабо-Верде' => '/wp-content/uploads/flags/cabo-verde.png',
-        'Казахстан' => '/wp-content/uploads/flags/kazakhstan.png',
-        'Камбоджа' => '/wp-content/uploads/flags/cambodia.png',
-        'Камерун' => '/wp-content/uploads/flags/cameroon.png',
-        'Канада' => '/wp-content/uploads/flags/canada.png',
-        'Катар' => '/wp-content/uploads/flags/qatar.png',
-        'Кения' => '/wp-content/uploads/flags/kenia.png',
-        'Кипр' => '/wp-content/uploads/flags/cyprus.png',
-        'Кирибати' => '/wp-content/uploads/flags/kiribati.png',
-        'Киргизия' => '/wp-content/uploads/flags/kyrgyzstan.png',
-        'Китай' => '/wp-content/uploads/flags/china.png',
-        'Колумбия' => '/wp-content/uploads/flags/columbia.png',
-        'Конго' => '/wp-content/uploads/flags/congo.png',
-        'Демократическая Республика Конго' => '/wp-content/uploads/flags/democratic-republic-of-congo.png',
-        'КНДР' => '/wp-content/uploads/flags/north-korea.png',
-        'Южная Корея' => '/wp-content/uploads/flags/south-korea.png',
-        'Коста-Рика' => '/wp-content/uploads/flags/costa-rica.png',
-        'Кот-д\'Ивуар' => '/wp-content/uploads/flags/cote-de-ivory.png',
-        'Куба' => '/wp-content/uploads/flags/cuba.png',
-        'Кувейт' => '/wp-content/uploads/flags/kuwait.png',
-        'Лаос' => '/wp-content/uploads/flags/laos.png',
-        'Латвия' => '/wp-content/uploads/flags/latvia.png',
-        'Лесото' => '/wp-content/uploads/flags/lesotho.png',
-        'Либерия' => '/wp-content/uploads/flags/liberia.png',
-        'Ливан' => '/wp-content/uploads/flags/lebanon.png',
-        'Литва' => '/wp-content/uploads/flags/lithuania.png',
-        'Лихтенштейн' => '/wp-content/uploads/flags/liechtenstein.png',
-        'Люксембург' => '/wp-content/uploads/flags/luxembourg.png',
-        'Маврикий' => '/wp-content/uploads/flags/mauricius.png',
-        'Мавритания' => '/wp-content/uploads/flags/mauritania.png',
-        'Мадагаскар' => '/wp-content/uploads/flags/madagascar.png',
-        'Малави' => '/wp-content/uploads/flags/malawi.png',
-        'Малайзия' => '/wp-content/uploads/flags/malaysia.png',
-        'Мали' => '/wp-content/uploads/flags/mali.png',
-        'Мальдивы' => '/wp-content/uploads/flags/maldives.png',
-        'Мальта' => '/wp-content/uploads/flags/malta.png',
-        'Марокко' => '/wp-content/uploads/flags/morocco.png',
-        'Маршалловы острова' => '/wp-content/uploads/flags/marshall-islands.png',
-        'Мексика' => '/wp-content/uploads/flags/mexiko.png',
-        'Микронезия' => '/wp-content/uploads/flags/micronesia.png',
-        'Мозамбик' => '/wp-content/uploads/flags/mozambique.png',
-        'Молдова' => '/wp-content/uploads/flags/moldova.png',
-        'Монако' => '/wp-content/uploads/flags/monaco.png',
-        'Монголия' => '/wp-content/uploads/flags/mongolia.png',
-        'Мьянма' => '/wp-content/uploads/flags/myanmar.png',
-        'Намибия' => '/wp-content/uploads/flags/namibia.png',
-        'Науру' => '/wp-content/uploads/flags/nauru.png',
-        'Непал' => '/wp-content/uploads/flags/nepal.png',
-        'Нигер' => '/wp-content/uploads/flags/niger.png',
-        'Нигерия' => '/wp-content/uploads/flags/nigeria.png',
-        'Нидерланды' => '/wp-content/uploads/flags/netherlands.png',
-        'Новая Зеландия' => '/wp-content/uploads/flags/new-zealand.png',
-        'Норвегия' => '/wp-content/uploads/flags/norway.png',
-        'ОАЭ' => '/wp-content/uploads/flags/united-arab-emirates.png',
-        'Оман' => '/wp-content/uploads/flags/oman.png',
-        'Пакистан' => '/wp-content/uploads/flags/pakistan.png',
-        'Палау' => '/wp-content/uploads/flags/palau.png',
-        'Панама' => '/wp-content/uploads/flags/panama.png',
-        'Папуа-Новая Гвинея' => '/wp-content/uploads/flags/new-guinea.png',
-        'Парагвай' => '/wp-content/uploads/flags/paraguay.png',
-        'Польша' => '/wp-content/uploads/flags/poland.png',
-        'Португалия' => '/wp-content/uploads/flags/portugal.png',
-        'Россия' => '/wp-content/uploads/flags/russia.png',
-        'Руанда' => '/wp-content/uploads/flags/rwanda.png',
-        'Румыния' => '/wp-content/uploads/flags/romania.png',
-        'Сальвадор' => '/wp-content/uploads/flags/salvador.png',
-        'Самоа' => '/wp-content/uploads/flags/samoa.png',
-        'Сан-Марино' => '/wp-content/uploads/flags/san-marino.png',
-        'Саудовская Аравия' => '/wp-content/uploads/flags/saudi-arabia.png',
-        'Северная Македония' => '/wp-content/uploads/flags/republic-of-macedonia.png',
-        'Сейшелы' => '/wp-content/uploads/flags/seychelles.png',
-        'Сенегал' => '/wp-content/uploads/flags/senegal.png',
-        'Сент-Винсет и Гренадины' => '/wp-content/uploads/flags/st-vincent-grenadine.png',
-        'Сент-Китс и Невис' => '/wp-content/uploads/flags/st-kits-nevis.png',
-        'Сент-Люсия' => '/wp-content/uploads/flags/st-lucia.png',
-        'Сербия' => '/wp-content/uploads/flags/serbia.png',
-        'Сингапур' => '/wp-content/uploads/flags/singapur.png',
-        'Сирия' => '/wp-content/uploads/flags/syria.png',
-        'Словакия' => '/wp-content/uploads/flags/slovakia.png',
-        'Словения' => '/wp-content/uploads/flags/slovenia.png',
-        'США' => '/wp-content/uploads/flags/united-states.png',
-        'Соломоновы острова' => '/wp-content/uploads/flags/solomon-islands.png',
-        'Сомали' => '/wp-content/uploads/flags/somali.png',
-        'Судан' => '/wp-content/uploads/flags/sudan.png',
-        'Суринам' => '/wp-content/uploads/flags/surinam.png',
-        'Сьерра-Леоне' => '/wp-content/uploads/flags/sierra-leone.png',
-        'Таджикистан' => '/wp-content/uploads/flags/tajikistan.png',
-        'Таиланд' => '/wp-content/uploads/flags/thailand.png',
-        'Танзания' => '/wp-content/uploads/flags/tanzania.png',
-        'Того' => '/wp-content/uploads/flags/togo.png',
-        'Тонга' => '/wp-content/uploads/flags/tonga.png',
-        'Тринидад и Тобаго' => '/wp-content/uploads/flags/trinidad-and-tobago.png',
-        'Тувалу' => '/wp-content/uploads/flags/tuwalu.png',
-        'Туркменистан' => '/wp-content/uploads/flags/turkmenistan.png',
-        'Турция' => '/wp-content/uploads/flags/turkey.png',
-        'Уганда' => '/wp-content/uploads/flags/uganda.png',
-        'Узбекистан' => '/wp-content/uploads/flags/uzbekistan.png',
-        'Украина' => '/wp-content/uploads/flags/ukraine.png',
-        'Уругвай' => '/wp-content/uploads/flags/uruguay.png',
-        'Фиджи' => '/wp-content/uploads/flags/fiji.png',
-        'Филиппины' => '/wp-content/uploads/flags/phillipines.png',
-        'Финляндия' => '/wp-content/uploads/flags/finland.png',
-        'Франция' => '/wp-content/uploads/flags/france.png',
-        'Хорватия' => '/wp-content/uploads/flags/croatia.png',
-        'ЦАР' => '/wp-content/uploads/flags/car.png',
-        'Чад' => '/wp-content/uploads/flags/chad.png',
-        'Черногория' => '/wp-content/uploads/flags/montenegro.png',
-        'Чехия' => '/wp-content/uploads/flags/czech-republic.png',
-        'Чили' => '/wp-content/uploads/flags/chile.png',
-        'Швейцария' => '/wp-content/uploads/flags/switzerland.png',
-        'Швеция' => '/wp-content/uploads/flags/sweden.png',
-        'Шри-Ланка' => '/wp-content/uploads/flags/sri-lanka.png',
-        'Эквадор' => '/wp-content/uploads/flags/ecuador.png',
-        'Экваториальная Гвинея' => '/wp-content/uploads/flags/equatorial-guinea.png',
-        'Эритрея' => '/wp-content/uploads/flags/erithrea.png',
-        'Эсватини' => '/wp-content/uploads/flags/eswatini.png',
-        'Эстония' => '/wp-content/uploads/flags/estonia.png',
-        'Эфиопия' => '/wp-content/uploads/flags/ethiopia.png',
-        'ЮАР' => '/wp-content/uploads/flags/south-africa.png',
-        'Южный Судан' => '/wp-content/uploads/flags/south-sudan.png',
-        'Ямайка' => '/wp-content/uploads/flags/jamaica.png',
-        'Япония' => '/wp-content/uploads/flags/japan.png'
-    ];
-
-    $country_flags_en_global = [
-        'Afghanistan' => '/wp-content/uploads/flags/afghanistan.png',
-        'Albania' => '/wp-content/uploads/flags/albania.png',
-        'Andorra' => '/wp-content/uploads/flags/andorra.png',
-        'Antigua and Barbuda' => '/wp-content/uploads/flags/antigua-and-barbuda.png',
-        'Armenia' => '/wp-content/uploads/flags/armenia.png',
-        'Australia' => '/wp-content/uploads/flags/australia.png',
-        'Austria' => '/wp-content/uploads/flags/austria.png',
-        'Azerbaijan' => '/wp-content/uploads/flags/azerbaijan.png',
-        'Bahamas' => '/wp-content/uploads/flags/bahamas.png',
-        'Bangladesh' => '/wp-content/uploads/flags/bangladesh.png',
-        'Barbados' => '/wp-content/uploads/flags/barbados.png',
-        'Bahrain' => '/wp-content/uploads/flags/bahrain.png',
-        'Belarus' => '/wp-content/uploads/flags/belarus.png',
-        'Belize' => '/wp-content/uploads/flags/belize.png',
-        'Bolivia' => '/wp-content/uploads/flags/bolivia.png',
-        'Bosnia and Herzegovina' => '/wp-content/uploads/flags/bosnia-and-herzegovina.png',
-        'Botswana' => '/wp-content/uploads/flags/botswana.png',
-        'Belgium' => '/wp-content/uploads/flags/belgium.png',
-        'Benin' => '/wp-content/uploads/flags/benin.png',
-        'Brazil' => '/wp-content/uploads/flags/brazil.png',
-        'Brunei' => '/wp-content/uploads/flags/brunei.png',
-        'Bulgaria' => '/wp-content/uploads/flags/bulgaria.png',
-        'Burkina Faso' => '/wp-content/uploads/flags/burkina-faso.png',
-        'Burundi' => '/wp-content/uploads/flags/burundi.png',
-        'Bhutan' => '/wp-content/uploads/flags/bhutan.png',
-        'CAR' => '/wp-content/uploads/flags/car.png',
-        'Cape Verde' => '/wp-content/uploads/flags/cabo-verde.png',
-        'Cambodia' => '/wp-content/uploads/flags/cambodia.png',
-        'Cameroon' => '/wp-content/uploads/flags/cameroon.png',
-        'Canada' => '/wp-content/uploads/flags/canada.png',
-        'Chad' => '/wp-content/uploads/flags/chad.png',
-        'China' => '/wp-content/uploads/flags/china.png',
-        'Chile' => '/wp-content/uploads/flags/chile.png',
-        'Colombia' => '/wp-content/uploads/flags/columbia.png',
-        'Congo' => '/wp-content/uploads/flags/congo.png',
-        'Costa Rica' => '/wp-content/uploads/flags/costa-rica.png',
-        'Cuba' => '/wp-content/uploads/flags/cuba.png',
-        'Cyprus' => '/wp-content/uploads/flags/cyprus.png',
-        'Croatia' => '/wp-content/uploads/flags/croatia.png',
-        'Czech Republic' => '/wp-content/uploads/flags/czech-republic.png',
-        'Democratic Republic of Congo' => '/wp-content/uploads/flags/democratic-republic-of-congo.png',
-        'Denmark' => '/wp-content/uploads/flags/denmark.png',
-        'Dominican Republic' => '/wp-content/uploads/flags/dominicana.png',
-        'Egypt' => '/wp-content/uploads/flags/egypt.png',
-        'El Salvador' => '/wp-content/uploads/flags/salvador.png',
-        'Ecuador' => '/wp-content/uploads/flags/ecuador.png',
-        'Equatorial Guinea' => '/wp-content/uploads/flags/equatorial-guinea.png',
-        'Eswatini' => '/wp-content/uploads/flags/eswatini.png',
-        'Estonia' => '/wp-content/uploads/flags/estonia.png',
-        'Ethiopia' => '/wp-content/uploads/flags/ethiopia.png',
-        'Eritrea' => '/wp-content/uploads/flags/erithrea.png',
-        'Fiji' => '/wp-content/uploads/flags/fiji.png',
-        'Finland' => '/wp-content/uploads/flags/finland.png',
-        'France' => '/wp-content/uploads/flags/france.png',
-        'Gabon' => '/wp-content/uploads/flags/gabon.png',
-        'Gambia' => '/wp-content/uploads/flags/gambia.png',
-        'Georgia' => '/wp-content/uploads/flags/georgia.png',
-        'Germany' => '/wp-content/uploads/flags/germany.png',
-        'Grenada' => '/wp-content/uploads/flags/grenada.png',
-        'Greece' => '/wp-content/uploads/flags/greece.png',
-        'Ghana' => '/wp-content/uploads/flags/ghana.png',
-        'Guatemala' => '/wp-content/uploads/flags/guatemala.png',
-        'Guinea' => '/wp-content/uploads/flags/guinea.png',
-        'Guinea-Bissau' => '/wp-content/uploads/flags/guinea-bissau.png',
-        'Guyana' => '/wp-content/uploads/flags/guyana.png',
-        'Haiti' => '/wp-content/uploads/flags/haiti.png',
-        'Honduras' => '/wp-content/uploads/flags/honduras.png',
-        'Hungary' => '/wp-content/uploads/flags/hungary.png',
-        'Israel' => '/wp-content/uploads/flags/israel.png',
-        'India' => '/wp-content/uploads/flags/india.png',
-        'Indonesia' => '/wp-content/uploads/flags/indonesia.png',
-        'Jordan' => '/wp-content/uploads/flags/jordan.png',
-        'Italy' => '/wp-content/uploads/flags/italy.png',
-        'Iraq' => '/wp-content/uploads/flags/iraq.png',
-        'Iran' => '/wp-content/uploads/flags/iran.png',
-        'Ireland' => '/wp-content/uploads/flags/ireland.png',
-        'Iceland' => '/wp-content/uploads/flags/iceland.png',
-        'Ivory Coast' => '/wp-content/uploads/flags/cote-de-ivory.png',
-        'Jamaica' => '/wp-content/uploads/flags/jamaica.png',
-        'Japan' => '/wp-content/uploads/flags/japan.png',
-        'Kazakhstan' => '/wp-content/uploads/flags/kazakhstan.png',
-        'Kenya' => '/wp-content/uploads/flags/kenia.png',
-        'Kiribati' => '/wp-content/uploads/flags/kiribati.png',
-        'Kyrgyzstan' => '/wp-content/uploads/flags/kyrgyzstan.png',
-        'Kuwait' => '/wp-content/uploads/flags/kuwait.png',
-        'Laos' => '/wp-content/uploads/flags/laos.png',
-        'Latvia' => '/wp-content/uploads/flags/latvia.png',
-        'Lesotho' => '/wp-content/uploads/flags/lesotho.png',
-        'Liberia' => '/wp-content/uploads/flags/liberia.png',
-        'Lebanon' => '/wp-content/uploads/flags/lebanon.png',
-        'Lithuania' => '/wp-content/uploads/flags/lithuania.png',
-        'Liechtenstein' => '/wp-content/uploads/flags/liechtenstein.png',
-        'Luxembourg' => '/wp-content/uploads/flags/luxembourg.png',
-        'Mauritius' => '/wp-content/uploads/flags/mauricius.png',
-        'Mauritania' => '/wp-content/uploads/flags/mauritania.png',
-        'Madagascar' => '/wp-content/uploads/flags/madagascar.png',
-        'Malawi' => '/wp-content/uploads/flags/malawi.png',
-        'Malaysia' => '/wp-content/uploads/flags/malaysia.png',
-        'Mali' => '/wp-content/uploads/flags/mali.png',
-        'Maldives' => '/wp-content/uploads/flags/maldives.png',
-        'Malta' => '/wp-content/uploads/flags/malta.png',
-        'Morocco' => '/wp-content/uploads/flags/morocco.png',
-        'Marshall Islands' => '/wp-content/uploads/flags/marshall-islands.png',
-        'Mexico' => '/wp-content/uploads/flags/mexiko.png',
-        'Micronesia' => '/wp-content/uploads/flags/micronesia.png',
-        'Mozambique' => '/wp-content/uploads/flags/mozambique.png',
-        'Moldova' => '/wp-content/uploads/flags/moldova.png',
-        'Monaco' => '/wp-content/uploads/flags/monaco.png',
-        'Mongolia' => '/wp-content/uploads/flags/mongolia.png',
-        'Montenegro' => '/wp-content/uploads/flags/montenegro.png',
-        'Myanmar' => '/wp-content/uploads/flags/myanmar.png',
-        'Namibia' => '/wp-content/uploads/flags/namibia.png',
-        'Nauru' => '/wp-content/uploads/flags/nauru.png',
-        'Nepal' => '/wp-content/uploads/flags/nepal.png',
-        'Niger' => '/wp-content/uploads/flags/niger.png',
-        'Nigeria' => '/wp-content/uploads/flags/nigeria.png',
-        'Netherlands' => '/wp-content/uploads/flags/netherlands.png',
-        'New Zealand' => '/wp-content/uploads/flags/new-zealand.png',
-        'North Korea' => '/wp-content/uploads/flags/north-korea.png',
-        'Norway' => '/wp-content/uploads/flags/norway.png',
-        'North Macedonia' => '/wp-content/uploads/flags/republic-of-macedonia.png',
-        'Oman' => '/wp-content/uploads/flags/oman.png',
-        'Pakistan' => '/wp-content/uploads/flags/pakistan.png',
-        'Palau' => '/wp-content/uploads/flags/palau.png',
-        'Panama' => '/wp-content/uploads/flags/panama.png',
-        'Papua New Guinea' => '/wp-content/uploads/flags/new-guinea.png',
-        'Paraguay' => '/wp-content/uploads/flags/paraguay.png',
-        'Philippines' => '/wp-content/uploads/flags/phillipines.png',
-        'Poland' => '/wp-content/uploads/flags/poland.png',
-        'Portugal' => '/wp-content/uploads/flags/portugal.png',
-        'Qatar' => '/wp-content/uploads/flags/qatar.png',
-        'Russia' => '/wp-content/uploads/flags/russia.png',
-        'Rwanda' => '/wp-content/uploads/flags/rwanda.png',
-        'Romania' => '/wp-content/uploads/flags/romania.png',
-        'Samoa' => '/wp-content/uploads/flags/samoa.png',
-        'San Marino' => '/wp-content/uploads/flags/san-marino.png',
-        'Saudi Arabia' => '/wp-content/uploads/flags/saudi-arabia.png',
-        'Seychelles' => '/wp-content/uploads/flags/seychelles.png',
-        'Senegal' => '/wp-content/uploads/flags/senegal.png',
-        'Saint Vincent and the Grenadines' => '/wp-content/uploads/flags/st-vincent-grenadine.png',
-        'Saint Kitts and Nevis' => '/wp-content/uploads/flags/st-kits-nevis.png',
-        'Saint Lucia' => '/wp-content/uploads/flags/st-lucia.png',
-        'Serbia' => '/wp-content/uploads/flags/serbia.png',
-        'Singapore' => '/wp-content/uploads/flags/singapur.png',
-        'Sierra Leone' => '/wp-content/uploads/flags/sierra-leone.png',
-        'Syria' => '/wp-content/uploads/flags/syria.png',
-        'Slovakia' => '/wp-content/uploads/flags/slovakia.png',
-        'Slovenia' => '/wp-content/uploads/flags/slovenia.png',
-        'USA' => '/wp-content/uploads/flags/united-states.png',
-        'Solomon Islands' => '/wp-content/uploads/flags/solomon-islands.png',
-        'Somalia' => '/wp-content/uploads/flags/somali.png',
-        'South Korea' => '/wp-content/uploads/flags/south-korea.png',
-        'South Africa' => '/wp-content/uploads/flags/south-africa.png',
-        'South Sudan' => '/wp-content/uploads/flags/south-sudan.png',
-        'Spain' => '/wp-content/uploads/flags/spain.png',
-        'Sudan' => '/wp-content/uploads/flags/sudan.png',
-        'Suriname' => '/wp-content/uploads/flags/surinam.png',
-        'Switzerland' => '/wp-content/uploads/flags/switzerland.png',
-        'Sweden' => '/wp-content/uploads/flags/sweden.png',
-        'Sri Lanka' => '/wp-content/uploads/flags/sri-lanka.png',
-        'Tajikistan' => '/wp-content/uploads/flags/tajikistan.png',
-        'Thailand' => '/wp-content/uploads/flags/thailand.png',
-        'Tanzania' => '/wp-content/uploads/flags/tanzania.png',
-        'Togo' => '/wp-content/uploads/flags/togo.png',
-        'Tonga' => '/wp-content/uploads/flags/tonga.png',
-        'Trinidad and Tobago' => '/wp-content/uploads/flags/trinidad-and-tobago.png',
-        'Tuvalu' => '/wp-content/uploads/flags/tuwalu.png',
-        'Turkmenistan' => '/wp-content/uploads/flags/turkmenistan.png',
-        'Turkey' => '/wp-content/uploads/flags/turkey.png',
-        'UAE' => '/wp-content/uploads/flags/united-arab-emirates.png',
-        'Uganda' => '/wp-content/uploads/flags/uganda.png',
-        'United Kingdom' => '/wp-content/uploads/flags/united-kingdom.png',
-        'Uzbekistan' => '/wp-content/uploads/flags/uzbekistan.png',
-        'Ukraine' => '/wp-content/uploads/flags/ukraine.png',
-        'Uruguay' => '/wp-content/uploads/flags/uruguay.png',
-        'Vanuatu' => '/wp-content/uploads/flags/vanuatu.png',
-        'Vatican' => '/wp-content/uploads/flags/vatican.png',
-        'Venezuela' => '/wp-content/uploads/flags/venezuela.png',
-        'Vietnam' => '/wp-content/uploads/flags/vietnam.png',
-        'Yemen' => '/wp-content/uploads/flags/yemen.png',
-        'Zambia' => '/wp-content/uploads/flags/zambia.png',
-        'Zimbabwe' => '/wp-content/uploads/flags/zimbabwe.png', 
-    ];
-
-$args_function_1 = array (
-    'country_flags_global'        =>  $country_flags_global,
-    'country_flags_en_global'     =>  $country_flags_en_global
-);
-add_action('carbon_fields_register_fields',  function() use ( $args_function_1 ) { 
-               carbon_fields_register_fields_function( $args_function_1 ); 
-          });
-
-function carbon_fields_register_fields_function($args){
+function carbon_fields_register_fields_function($args)
+{
     $country_flags = $args['country_flags_global'];
     $country_flags_en = $args['country_flags_en_global'];
 
@@ -1142,27 +1190,27 @@ function carbon_fields_register_fields_function($args){
         ]);
 
 
-        Container::make('post_meta', 'Партнёрам')
-            ->where('post_template', '=', 'page-affiliate.php')
-            ->add_fields([
-                Field::make('complex', 'affiliate', 'Основной блок с описанием')->add_fields([
-                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
-                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
-                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
-                    Field::make('text', 'h3', 'Последний заголовок')->set_required(false),
-                ]),
-            ]);
+    Container::make('post_meta', 'Партнёрам')
+        ->where('post_template', '=', 'page-affiliate.php')
+        ->add_fields([
+            Field::make('complex', 'affiliate', 'Основной блок с описанием')->add_fields([
+                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                Field::make('text', 'h3', 'Последний заголовок')->set_required(false),
+            ]),
+        ]);
 
-        Container::make('post_meta', 'Affiliate')
-            ->where('post_template', '=', 'page-affiliate-en.php')
-            ->add_fields([
-                Field::make('complex', 'affiliate_en', 'Основной блок с описанием')->add_fields([
-                    Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
-                    Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
-                    Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
-                    Field::make('text', 'h3', 'Последний заголовок')->set_required(false),
-                ]),
-            ]);
+    Container::make('post_meta', 'Affiliate')
+        ->where('post_template', '=', 'page-affiliate-en.php')
+        ->add_fields([
+            Field::make('complex', 'affiliate_en', 'Основной блок с описанием')->add_fields([
+                Field::make('text', 'h2', 'Первый заголовок')->set_required(false),
+                Field::make('image', 'img', 'Картинка в блоке')->set_required(false),
+                Field::make('rich_text', 'text_1', 'Текст на уровне с картинкой')->set_required(false),
+                Field::make('text', 'h3', 'Последний заголовок')->set_required(false),
+            ]),
+        ]);
 }
 
 add_action('after_setup_theme', function () {
@@ -1586,21 +1634,25 @@ function search_filter_products()
     $seatsSelectorArray = $_REQUEST['seatsSelector'];
     $selectedPrice = $_REQUEST['selectedPrice'];
 
-    $query_args = array('post_type' => 'product',
-                        'meta_query' => array());
+    $query_args = array(
+        'post_type' => 'product',
+        'meta_query' => array()
+    );
 
-    if(isset($selectedType) and $selectedType!=''){
-        $query_args['meta_query'][] = array('key' => 'aircraft_type',
-                                            'value' => $selectedType);
+    if (isset($selectedType) and $selectedType != '') {
+        $query_args['meta_query'][] = array(
+            'key' => 'aircraft_type',
+            'value' => $selectedType
+        );
     }
 
     $query = new WP_Query($query_args);
 
     $aircrafts = array();
-    if ($query->have_posts()){
+    if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
-            $product_id=get_the_ID();
+            $product_id = get_the_ID();
 
             $aircrafts_current = array();
 
@@ -1684,7 +1736,8 @@ add_action('post_edit_form_tag', function () {
 
 // сравнение самолетов
 // добавление к сравнению
-function add_to_comparison() {
+function add_to_comparison()
+{
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
@@ -1716,7 +1769,8 @@ add_action('wp_ajax_add_to_comparison', 'add_to_comparison');
 add_action('wp_ajax_nopriv_add_to_comparison', 'add_to_comparison');
 
 // удаление из сравнения
-function remove_from_comparison() {
+function remove_from_comparison()
+{
     if (!isset($_POST['plane_id'])) {
         wp_send_json_error(['message' => 'No plane ID provided']);
     }
@@ -1748,7 +1802,8 @@ add_action('wp_ajax_remove_from_comparison', 'remove_from_comparison');
 add_action('wp_ajax_nopriv_remove_from_comparison', 'remove_from_comparison');
 
 // получить сравниваемые самолеты
-function get_comparison_planes() {
+function get_comparison_planes()
+{
     // Получаем текущие сравниваемые самолёты из куков
     if (isset($_COOKIE['comparison_planes'])) {
         $comparison_planes = json_decode(stripslashes($_COOKIE['comparison_planes']), true);
@@ -2044,82 +2099,83 @@ add_action('admin_footer', function () {
 });
 
 add_action('admin_footer', 'add_aircraft_translation_script');
-function add_aircraft_translation_script() {
+function add_aircraft_translation_script()
+{
     $screen = get_current_screen();
     if (!$screen || $screen->base !== 'post' || $screen->post_type !== 'product') {
         return;
     }
-    
-    ?>
+
+?>
     <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        // Массивы переводов
-        const typeTranslations = {
-            'Самолет': 'Airplane',
-            'Вертолет': 'Helicopter',
-            'VTOL': 'VTOL'
-        };
-        
-        const categoryTranslations = {
-            'Турбовинтовые': 'Turboprop',
-            'Очень легкие': 'Very light',
-            'Легкие': 'Light',
-            'Средние': 'Midsize',
-            'Супер-средние': 'Super-midsize',
-            'Большие': 'Heavy',
-            'Ультра-большие': 'Ultra-heavy',
-            'Дальнемагистральные': 'Long-range',
-            'Бизнес-лайнеры': 'Business liners'
-        };
-        
-        const countryTranslations = {
-            'США': 'USA',
-            'Франция': 'France',
-            'Бразилия': 'Brazil',
-            'Канада': 'Canada',
-            'Великобритания': 'United Kingdom',
-            'Россия': 'Russia',
-            'Германия': 'Germany',
-            'Италия': 'Italy',
-            'Япония': 'Japan',
-            'Китай': 'China',
-            'Швеция': 'Sweden',
-            'Испания': 'Spain',
-            'Украина': 'Ukraine',
-            'Чехия': 'Czech Republic',
-            'Швейцария': 'Switzerland',
-            'Австрия': 'Austria',
-            'Израиль': 'Israel',
-            'Нидерланды': 'Netherlands',
-            'Польша': 'Poland',
-            'Турция': 'Turkey',
-            'Индия': 'India',
-            'Южная Корея': 'South Korea',
-            'Австралия': 'Australia',
-            'Бельгия': 'Belgium'
-        };
-        
-        // Автоматический перевод при изменении русского поля
-        $(document).on('change', '[data-field="aircraft_type"] select, [name$="[aircraft_type]"]', function() {
-            const ruValue = $(this).val();
-            const enValue = typeTranslations[ruValue] || '';
-            $('[data-field="aircraft_type_en"] select, [name$="[aircraft_type_en]"]').val(enValue).trigger('change');
+        jQuery(document).ready(function($) {
+            // Массивы переводов
+            const typeTranslations = {
+                'Самолет': 'Airplane',
+                'Вертолет': 'Helicopter',
+                'VTOL': 'VTOL'
+            };
+
+            const categoryTranslations = {
+                'Турбовинтовые': 'Turboprop',
+                'Очень легкие': 'Very light',
+                'Легкие': 'Light',
+                'Средние': 'Midsize',
+                'Супер-средние': 'Super-midsize',
+                'Большие': 'Heavy',
+                'Ультра-большие': 'Ultra-heavy',
+                'Дальнемагистральные': 'Long-range',
+                'Бизнес-лайнеры': 'Business liners'
+            };
+
+            const countryTranslations = {
+                'США': 'USA',
+                'Франция': 'France',
+                'Бразилия': 'Brazil',
+                'Канада': 'Canada',
+                'Великобритания': 'United Kingdom',
+                'Россия': 'Russia',
+                'Германия': 'Germany',
+                'Италия': 'Italy',
+                'Япония': 'Japan',
+                'Китай': 'China',
+                'Швеция': 'Sweden',
+                'Испания': 'Spain',
+                'Украина': 'Ukraine',
+                'Чехия': 'Czech Republic',
+                'Швейцария': 'Switzerland',
+                'Австрия': 'Austria',
+                'Израиль': 'Israel',
+                'Нидерланды': 'Netherlands',
+                'Польша': 'Poland',
+                'Турция': 'Turkey',
+                'Индия': 'India',
+                'Южная Корея': 'South Korea',
+                'Австралия': 'Australia',
+                'Бельгия': 'Belgium'
+            };
+
+            // Автоматический перевод при изменении русского поля
+            $(document).on('change', '[data-field="aircraft_type"] select, [name$="[aircraft_type]"]', function() {
+                const ruValue = $(this).val();
+                const enValue = typeTranslations[ruValue] || '';
+                $('[data-field="aircraft_type_en"] select, [name$="[aircraft_type_en]"]').val(enValue).trigger('change');
+            });
+
+            $(document).on('change', '[data-field="aircraft_cat"] select, [name$="[aircraft_cat]"]', function() {
+                const ruValue = $(this).val();
+                const enValue = categoryTranslations[ruValue] || '';
+                $('[data-field="aircraft_cat_en"] select, [name$="[aircraft_cat_en]"]').val(enValue).trigger('change');
+            });
+
+            $(document).on('change', '[data-field="production_country"] select, [name$="[production_country]"]', function() {
+                const ruValue = $(this).val();
+                const enValue = countryTranslations[ruValue] || '';
+                $('[data-field="production_country_en"] select, [name$="[production_country_en]"]').val(enValue).trigger('change');
+            });
         });
-        
-        $(document).on('change', '[data-field="aircraft_cat"] select, [name$="[aircraft_cat]"]', function() {
-            const ruValue = $(this).val();
-            const enValue = categoryTranslations[ruValue] || '';
-            $('[data-field="aircraft_cat_en"] select, [name$="[aircraft_cat_en]"]').val(enValue).trigger('change');
-        });
-        
-        $(document).on('change', '[data-field="production_country"] select, [name$="[production_country]"]', function() {
-            const ruValue = $(this).val();
-            const enValue = countryTranslations[ruValue] || '';
-            $('[data-field="production_country_en"] select, [name$="[production_country_en]"]').val(enValue).trigger('change');
-        });
-    });
     </script>
-    <?php
+<?php
 }
 
 
@@ -2128,7 +2184,7 @@ function add_aircraft_translation_script() {
 add_filter('woocommerce_rest_prepare_product', function ($response, $product, $request) {
     // Получаем все метаданные продукта
     $meta_data = $product->get_meta_data();
-    
+
     // Логируем метаданные для проверки
     error_log(print_r($meta_data, true));
 
@@ -2187,7 +2243,8 @@ add_filter('woocommerce_rest_prepare_product', function ($response, $product, $r
 }, 10, 3);
 
 add_action('save_post', 'save_product_field_formatting', 10, 2);
-function save_product_field_formatting($post_id, $post) {
+function save_product_field_formatting($post_id, $post)
+{
     if ('product' !== $post->post_type) {
         return;
     }
@@ -2198,7 +2255,7 @@ function save_product_field_formatting($post_id, $post) {
 
     // Форматируем числа для полей
     $fields = ['cruise_speed_kmh', 'cruise_speed_mph', 'range_km', 'range_miles'];
-    
+
     foreach ($fields as $field) {
         $value = get_post_meta($post_id, $field, true);
 
@@ -2211,85 +2268,86 @@ function save_product_field_formatting($post_id, $post) {
     }
 }
 
-function format_aircraft_numbers() {
+function format_aircraft_numbers()
+{
     // Only run on product edit screen
     $screen = get_current_screen();
     if (!$screen || $screen->base !== 'post' || $screen->post_type !== 'product') {
         return;
     }
-    
+
     // Add simple JavaScript to format numbers on display
-    ?>
+?>
     <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        // Format numbers when the page loads
-        formatNumberFields();
-        
-        // Format numbers when inputs change
-        $(document).on('change', '.carbon-field input[type="text"]', function() {
+        jQuery(document).ready(function($) {
+            // Format numbers when the page loads
             formatNumberFields();
-        });
-        
-        function formatNumberFields() {
-            // List of field names that should be formatted
-            var numberFields = [
-                'cruise_speed_kmh',
-                'cruise_speed_mph',
-                'range_km',
-                'range_miles',
-                'max_takeoff_height_m',
-                'max_takeoff_height_ft',
-                'max_takeoff_weight_kg',
-                'max_takeoff_weight_lbs',
-                'max_landing_weight_kg',
-                'max_landing_weight_lbs',
-                'takeoff_distance_m',
-                'takeoff_distance_ft',
-                'landing_distance_m',
-                'landing_distance_ft',
-                'cabin_width_m',
-                'cabin_width_ft',
-                'cabin_height_m',
-                'cabin_height_ft',
-                'cabin_length_m',
-                'cabin_length_ft',
-                'cabin_volume_m',
-                'cabin_volume_ft',
-                'luggage_volume_m',
-                'luggage_volume_ft',
-                'aircraft_length_m',
-                'aircraft_length_ft',
-                'aircraft_height_m',
-                'aircraft_height_ft',
-                'aircraft_wing_length_m',
-                'aircraft_wing_length_ft'
-            ];
-            
-            // Process each field
-            numberFields.forEach(function(fieldName) {
-                // Find inputs that match the field name
-                $('input[name*="' + fieldName + '"]').each(function() {
-                    var input = $(this);
-                    var value = input.val();
-                    
-                    // Skip if empty or not a number
-                    if (!value || isNaN(parseFloat(value.replace(/\s/g, '')))) {
-                        return;
-                    }
-                    
-                    // Format the number
-                    var number = parseFloat(value.replace(/\s/g, ''));
-                    var formatted = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-                    
-                    // Update the input value
-                    if (formatted !== value) {
-                        input.val(formatted);
-                    }
-                });
+
+            // Format numbers when inputs change
+            $(document).on('change', '.carbon-field input[type="text"]', function() {
+                formatNumberFields();
             });
-        }
-    });
+
+            function formatNumberFields() {
+                // List of field names that should be formatted
+                var numberFields = [
+                    'cruise_speed_kmh',
+                    'cruise_speed_mph',
+                    'range_km',
+                    'range_miles',
+                    'max_takeoff_height_m',
+                    'max_takeoff_height_ft',
+                    'max_takeoff_weight_kg',
+                    'max_takeoff_weight_lbs',
+                    'max_landing_weight_kg',
+                    'max_landing_weight_lbs',
+                    'takeoff_distance_m',
+                    'takeoff_distance_ft',
+                    'landing_distance_m',
+                    'landing_distance_ft',
+                    'cabin_width_m',
+                    'cabin_width_ft',
+                    'cabin_height_m',
+                    'cabin_height_ft',
+                    'cabin_length_m',
+                    'cabin_length_ft',
+                    'cabin_volume_m',
+                    'cabin_volume_ft',
+                    'luggage_volume_m',
+                    'luggage_volume_ft',
+                    'aircraft_length_m',
+                    'aircraft_length_ft',
+                    'aircraft_height_m',
+                    'aircraft_height_ft',
+                    'aircraft_wing_length_m',
+                    'aircraft_wing_length_ft'
+                ];
+
+                // Process each field
+                numberFields.forEach(function(fieldName) {
+                    // Find inputs that match the field name
+                    $('input[name*="' + fieldName + '"]').each(function() {
+                        var input = $(this);
+                        var value = input.val();
+
+                        // Skip if empty or not a number
+                        if (!value || isNaN(parseFloat(value.replace(/\s/g, '')))) {
+                            return;
+                        }
+
+                        // Format the number
+                        var number = parseFloat(value.replace(/\s/g, ''));
+                        var formatted = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+                        // Update the input value
+                        if (formatted !== value) {
+                            input.val(formatted);
+                        }
+                    });
+                });
+            }
+        });
     </script>
-    <?php
+<?php
 }
 add_action('admin_footer', 'format_aircraft_numbers');
