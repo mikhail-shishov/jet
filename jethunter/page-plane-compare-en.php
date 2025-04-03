@@ -15,7 +15,7 @@
             <p class="en-only">Loading comparison...</p>
         </div>
 
-        <script>
+        <!-- <script>
             document.addEventListener("DOMContentLoaded", fetchComparison);
 
             const fieldLabels = {
@@ -151,7 +151,7 @@
             }
 
             document.addEventListener("DOMContentLoaded", fetchComparison);
-        </script>
+        </script> -->
     </div>
 </section>
 

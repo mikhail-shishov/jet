@@ -1,7 +1,7 @@
 <?php
 
 function add_comparison_api_key() {
-    wp_enqueue_script('comparison-script', get_template_directory_uri() . '/js/plane-compare.js', array('jquery'), null, true);
+    wp_enqueue_script('comparison-script', get_stylesheet_directory_uri() . '/js/plane-compare.js', array('jquery'), null, true);
 
     wp_localize_script('comparison-script', 'comparisonData', array(
         'apiKey' => base64_encode('ck_e3b52bac31a8a8848d8e509f18073d2d3237a51e:cs_92a9460a5d930ec5b1423b431c3fe9be07283a38'),
@@ -236,7 +236,7 @@ add_action('carbon_fields_register_fields', function () {
                 ]),
             
             // Категория самолета
-            Field::make('select', 'aircraft_cat', 'Категория')
+            Field::make('select', 'aircraft_cat', 'Категория самолета, вертолета или VTOL')
                 ->add_options([
                     'Турбовинтовые' => 'Турбовинтовые',
                     'Очень легкие' => 'Очень легкие',
@@ -247,9 +247,13 @@ add_action('carbon_fields_register_fields', function () {
                     'Ультра-большие' => 'Ультра-большие',
                     'Дальнемагистральные' => 'Дальнемагистральные',
                     'Бизнес-лайнеры' => 'Бизнес-лайнеры',
+                    'Одновигательный' => 'Одновигательный',
+                    'Двухдвигательный' => 'Двухдвигательный',
+                    'Классический ' => 'Классический',
+                    'Электрический' => 'Электрический',
                 ]),
             
-            Field::make('select', 'aircraft_cat_en', 'EN Категория')
+            Field::make('select', 'aircraft_cat_en', 'EN Категория самолета, вертолета или VTOL')
                 ->add_options([
                     'Turboprop' => 'Turboprop',
                     'Very light' => 'Very light',
@@ -260,6 +264,10 @@ add_action('carbon_fields_register_fields', function () {
                     'Ultra-heavy' => 'Ultra-heavy',
                     'Long-range' => 'Long-range',
                     'Business liners' => 'Business liners',
+                    'Single-engine' => 'Single-engine',
+                    'Twin-engine' => 'Twin-engine',
+                    'Classic' => 'Classic',
+                    'Electric' => 'Electric',
                 ]),
 
             // Field::make('text', 'aircraft_make', 'Производитель'),

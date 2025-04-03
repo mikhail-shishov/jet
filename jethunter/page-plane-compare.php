@@ -16,7 +16,7 @@
             <p class="en-only">Loading comparison...</p>
         </div>
 
-        <script>
+        <!-- <script>
             const fieldLabels = {
                 '_cruise_speed_kmh': 'Крейсерская скорость, км/ч',
                 '_range_time': 'Время в полете',
@@ -150,7 +150,7 @@
             }
 
             document.addEventListener("DOMContentLoaded", fetchComparison);
-        </script>
+        </script> -->
     </div>
 </section>
 

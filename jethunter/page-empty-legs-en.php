@@ -66,7 +66,7 @@
         $planes = carbon_get_the_post_meta('planes');
 
         if (!empty($planes)) : ?>
-            <div class="empty-grid empty-all-grid">
+            <div class="empty-grid empty-all-grid" data-total-items="<?php echo count($planes); ?>">
                 <?php foreach ($planes as $plane) :
                     // Получаем URL флага по стране
                     $origin_flag = isset($country_flags[$plane['origin_country']]) ? $country_flags[$plane['origin_country']] : '';

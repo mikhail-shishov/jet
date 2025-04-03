@@ -30,7 +30,7 @@
         $planes_data = carbon_get_post_meta(get_the_ID(), 'planes_wanted');
 
         if ($planes_data) : ?>
-            <div class="looking-grid looking-grid-full show-more-grid">
+            <div class="looking-grid looking-grid-full show-more-grid" data-total-items="<?php echo count($planes); ?>">
                 <?php foreach ($planes_data as $plane) : 
                     $image_url = !empty($plane['image']) ? wp_get_attachment_url($plane['image']) : get_stylesheet_directory_uri() . '/img/planes/1.png';
                     $item_class = $index >= 10 ? 'looking-item is-hidden' : 'looking-item';

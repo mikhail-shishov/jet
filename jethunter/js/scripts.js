@@ -979,6 +979,50 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('.hot-offer').forEach(el => {
     document.querySelector('.looking-grid-hot-offer').appendChild(el);
   });
+
+  // Get the grid and the "Show more" button
+  const emptyGrid = document.querySelector('.show-more-grid');
+  const showMoreBtn = document.querySelector('.show-more .link');
+
+  if (!emptyGrid || !showMoreBtn) return;
+
+  // Get all hidden items
+  const hiddenItems = emptyGrid.querySelectorAll('.is-hidden');
+
+  // If there are no hidden items, hide the "Show more" button
+  if (hiddenItems.length === 0) {
+    document.querySelector('.show-more').style.display = 'none';
+    return;
+  }
+
+  // Set initial items to show per click
+  const itemsPerClick = 10;
+  let currentlyShown = 10;
+  const totalItems = parseInt(emptyGrid.dataset.totalItems);
+
+  // Add click event to the "Show more" button
+  showMoreBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // Calculate how many more items to show
+    const itemsToShow = Math.min(currentlyShown + itemsPerClick, totalItems);
+
+    // Show the next batch of items
+    for (let i = currentlyShown; i < itemsToShow; i++) {
+      const item = emptyGrid.children[i];
+      if (item) {
+        item.classList.remove('is-hidden');
+      }
+    }
+
+    // Update the count of currently shown items
+    currentlyShown = itemsToShow;
+
+    // Hide the "Show more" button if all items are shown
+    if (currentlyShown >= totalItems) {
+      document.querySelector('.show-more').style.display = 'none';
+    }
+  });
 })
 
 window.addEventListener("load", () => {
@@ -1142,84 +1186,84 @@ window.addEventListener("load", () => {
   renderComparison();
 })
 
-async function searchFilterFunction(){
-  var selectedType = jQuery('.aircraft-type-dropdown .dropdown__list-item_active').attr('data-value'); 
+async function searchFilterFunction() {
+  var selectedType = jQuery('.aircraft-type-dropdown .dropdown__list-item_active').attr('data-value');
 
-  var selectedCategory = jQuery('.aircraft-type-plane .dropdown__list-item_active').attr('data-value'); 
-  if(jQuery('.aircraft-type-helicopter').css('display')=='block'){
-      selectedCategory = jQuery('.aircraft-type-helicopter .dropdown__list-item_active').attr('data-value'); 
-  }else if(jQuery('.aircraft-type-vtol').css('display')=='block'){
-      selectedCategory = jQuery('.aircraft-type-vtol .dropdown__list-item_active').attr('data-value'); 
+  var selectedCategory = jQuery('.aircraft-type-plane .dropdown__list-item_active').attr('data-value');
+  if (jQuery('.aircraft-type-helicopter').css('display') == 'block') {
+    selectedCategory = jQuery('.aircraft-type-helicopter .dropdown__list-item_active').attr('data-value');
+  } else if (jQuery('.aircraft-type-vtol').css('display') == 'block') {
+    selectedCategory = jQuery('.aircraft-type-vtol .dropdown__list-item_active').attr('data-value');
   }
 
-  var manufacturerSelector = jQuery('.aircraft-manufacturer-plane .dropdown__list-item_active').attr('data-value'); 
-  if(jQuery('.aircraft-manufacturer-helicopter').css('display')=='block'){
-      manufacturerSelector = jQuery('.aircraft-manufacturer-helicopter .dropdown__list-item_active').attr('data-value'); 
-  }else if(jQuery('.aircraft-manufacturer-vtol').css('display')=='block'){
-      manufacturerSelector = jQuery('.aircraft-manufacturer-vtol .dropdown__list-item_active').attr('data-value'); 
+  var manufacturerSelector = jQuery('.aircraft-manufacturer-plane .dropdown__list-item_active').attr('data-value');
+  if (jQuery('.aircraft-manufacturer-helicopter').css('display') == 'block') {
+    manufacturerSelector = jQuery('.aircraft-manufacturer-helicopter .dropdown__list-item_active').attr('data-value');
+  } else if (jQuery('.aircraft-manufacturer-vtol').css('display') == 'block') {
+    manufacturerSelector = jQuery('.aircraft-manufacturer-vtol .dropdown__list-item_active').attr('data-value');
   }
 
-  var rangeSelector = '.aircraft-range-plane input:checked'; 
-  if(jQuery('.aircraft-range-helicopter').css('display')=='block'){
-      rangeSelector = '.aircraft-range-helicopter input:checked'; 
-  }else if(jQuery('.aircraft-range-vtol').css('display')=='block'){
-      rangeSelector = '.aircraft-range-vtol input:checked'; 
+  var rangeSelector = '.aircraft-range-plane input:checked';
+  if (jQuery('.aircraft-range-helicopter').css('display') == 'block') {
+    rangeSelector = '.aircraft-range-helicopter input:checked';
+  } else if (jQuery('.aircraft-range-vtol').css('display') == 'block') {
+    rangeSelector = '.aircraft-range-vtol input:checked';
   }
   var rangeSelectorUrl = '';
-  jQuery(rangeSelector).each(function(index, value) {
-     rangeSelectorUrl = rangeSelectorUrl + '&rangeSelector[]=' + jQuery(this).attr('id');
+  jQuery(rangeSelector).each(function (index, value) {
+    rangeSelectorUrl = rangeSelectorUrl + '&rangeSelector[]=' + jQuery(this).attr('id');
   });
-   
+
   var seatsSelector = '.aircraft-seats-plane input:checked';
-  if (jQuery('.aircraft-seats-helicopter').css('display')=='block') {
+  if (jQuery('.aircraft-seats-helicopter').css('display') == 'block') {
     seatsSelector = '.aircraft-seats-helicopter input:checked';
-  }else if (jQuery('.aircraft-seats-vtol').css('display')=='block') {
+  } else if (jQuery('.aircraft-seats-vtol').css('display') == 'block') {
     seatsSelector = '.aircraft-seats-vtol input:checked';
   }
   var seatsSelectorUrl = '';
-  jQuery(seatsSelector).each(function(index, value) {
-     seatsSelectorUrl = seatsSelectorUrl + '&seatsSelector[]=' + jQuery(this).attr('id');
+  jQuery(seatsSelector).each(function (index, value) {
+    seatsSelectorUrl = seatsSelectorUrl + '&seatsSelector[]=' + jQuery(this).attr('id');
   });
 
-  var selectedPrice = jQuery('.aircraft-price-plane .dropdown__list-item_active').attr('data-value'); 
-  if(jQuery('.aircraft-price-helicopter').css('display')=='block'){
-      selectedPrice = jQuery('.aircraft-price-helicopter .dropdown__list-item_active').attr('data-value'); 
-  }else if(jQuery('.aircraft-price-vtol').css('display')=='block'){
-      selectedPrice = jQuery('.aircraft-price-vtol .dropdown__list-item_active').attr('data-value'); 
+  var selectedPrice = jQuery('.aircraft-price-plane .dropdown__list-item_active').attr('data-value');
+  if (jQuery('.aircraft-price-helicopter').css('display') == 'block') {
+    selectedPrice = jQuery('.aircraft-price-helicopter .dropdown__list-item_active').attr('data-value');
+  } else if (jQuery('.aircraft-price-vtol').css('display') == 'block') {
+    selectedPrice = jQuery('.aircraft-price-vtol .dropdown__list-item_active').attr('data-value');
   }
 
   try {
-      let durl = '';
-      if (typeof selectedType !== 'undefined'){
-         durl = durl + '&selectedType='+selectedType;
-      }
-      if (typeof selectedCategory !== 'undefined'){
-         durl = durl + '&selectedCategory='+selectedCategory;
-      }
-      if (typeof manufacturerSelector !== 'undefined'){
-         durl = durl + '&manufacturerSelector='+manufacturerSelector;
-      }
-      if (typeof rangeSelectorUrl != ''){
-         durl = durl + rangeSelectorUrl;
-      }
-      if (typeof seatsSelectorUrl != ''){
-         durl = durl + seatsSelectorUrl;
-      }
-      if (typeof selectedPrice !== 'undefined'){
-         durl = durl + '&selectedPrice='+selectedPrice;
-      }
-
-      const response = await fetch("/wp-admin/admin-ajax.php?action=search_filter_products"+durl);
-      const data = await response.json();
-
-      searchFilterFunctionHTML(data.data);
-
-    } catch (error) {
-      console.error("Error Search Filter:", error);
+    let durl = '';
+    if (typeof selectedType !== 'undefined') {
+      durl = durl + '&selectedType=' + selectedType;
     }
+    if (typeof selectedCategory !== 'undefined') {
+      durl = durl + '&selectedCategory=' + selectedCategory;
+    }
+    if (typeof manufacturerSelector !== 'undefined') {
+      durl = durl + '&manufacturerSelector=' + manufacturerSelector;
+    }
+    if (typeof rangeSelectorUrl != '') {
+      durl = durl + rangeSelectorUrl;
+    }
+    if (typeof seatsSelectorUrl != '') {
+      durl = durl + seatsSelectorUrl;
+    }
+    if (typeof selectedPrice !== 'undefined') {
+      durl = durl + '&selectedPrice=' + selectedPrice;
+    }
+
+    const response = await fetch("/wp-admin/admin-ajax.php?action=search_filter_products" + durl);
+    const data = await response.json();
+
+    searchFilterFunctionHTML(data.data);
+
+  } catch (error) {
+    console.error("Error Search Filter:", error);
+  }
 }
 
-function searchFilterFunctionHTML(data){
+function searchFilterFunctionHTML(data) {
   var dl_1 = jQuery('.backSearchWrapper').attr('data-lang-1');
   var dl_2 = jQuery('.backSearchWrapper').attr('data-lang-2');
   var dl_3 = jQuery('.backSearchWrapper').attr('data-lang-3');
@@ -1230,22 +1274,22 @@ function searchFilterFunctionHTML(data){
   var dl_8 = jQuery('.backSearchWrapper').attr('data-lang-8');
 
   var html = '';
-  if(data.length>0){
-      for (let index = 0; index < data.length; ++index) {
-        html += '<div class="looking-item">';
-        html += '<img src="'+data[index]['image']+'" class="looking-img" loading="lazy" alt="'+data[index]['title']+'">';
-        html += '<h3 class="h3">'+data[index]['title']+'</h3>';
-        html += '<div class="looking-desc">';
-        html += '<div class="looking-row"><p class="looking-row-title">'+dl_1+'</p><p class="looking-row-desc">'+data[index]['cruise_speed_kmh']+' '+dl_2+'</p></div>';
-        html += '<div class="looking-row"><p class="looking-row-title">'+dl_3+'</p><p class="looking-row-desc">'+data[index]['range_km']+' '+dl_4+'</p></div>';
-        html += '<div class="looking-row"><p class="looking-row-title">'+dl_5+'</p><p class="looking-row-desc">'+data[index]['aircraft_seats']+'</p></div>';
-        html += '<div class="looking-row"><p class="looking-row-title">'+dl_6+'</p><p class="looking-row-desc">'+data[index]['aircraft_hour_cost']+'</p></div>';
-        html += '</div>';
-        html += '<a href="'+data[index]['permalink']+'" class="btn btn-green-fill">'+dl_7+'</a>';
-        html += '</div>';
-      }
-  }else{
-    html += '<p>'+dl_8+'</p>';
+  if (data.length > 0) {
+    for (let index = 0; index < data.length; ++index) {
+      html += '<div class="looking-item">';
+      html += '<img src="' + data[index]['image'] + '" class="looking-img" loading="lazy" alt="' + data[index]['title'] + '">';
+      html += '<h3 class="h3">' + data[index]['title'] + '</h3>';
+      html += '<div class="looking-desc">';
+      html += '<div class="looking-row"><p class="looking-row-title">' + dl_1 + '</p><p class="looking-row-desc">' + data[index]['cruise_speed_kmh'] + ' ' + dl_2 + '</p></div>';
+      html += '<div class="looking-row"><p class="looking-row-title">' + dl_3 + '</p><p class="looking-row-desc">' + data[index]['range_km'] + ' ' + dl_4 + '</p></div>';
+      html += '<div class="looking-row"><p class="looking-row-title">' + dl_5 + '</p><p class="looking-row-desc">' + data[index]['aircraft_seats'] + '</p></div>';
+      html += '<div class="looking-row"><p class="looking-row-title">' + dl_6 + '</p><p class="looking-row-desc">' + data[index]['aircraft_hour_cost'] + '</p></div>';
+      html += '</div>';
+      html += '<a href="' + data[index]['permalink'] + '" class="btn btn-green-fill">' + dl_7 + '</a>';
+      html += '</div>';
+    }
+  } else {
+    html += '<p>' + dl_8 + '</p>';
   }
 
   jQuery('.backSearchWrapper').html(html);

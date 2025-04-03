@@ -63,12 +63,11 @@
             <p>Арендуйте со скидкой самолет, который совершает перелет пустым по заданному маршруту. Если у авиакомпании заказали бизнес-джет для перелета только в одну сторону, то обратно он полетит пустым. Такие перелеты продаются с большими скидками.</p>
         </div>
 
-
         <?php
         $planes = carbon_get_the_post_meta('planes');
 
         if (!empty($planes)) : ?>
-            <div class="empty-grid empty-all-grid show-more-grid">
+            <div class="empty-grid empty-all-grid show-more-grid" data-total-items="<?php echo count($planes); ?>">
                 <?php foreach ($planes as $plane) :
                     // Получаем URL флага по стране
                     $origin_flag = isset($country_flags[$plane['origin_country']]) ? $country_flags[$plane['origin_country']] : '';
