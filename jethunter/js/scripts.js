@@ -733,159 +733,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // });
   btnFind?.addEventListener("click", () => {
     searchFilterFunction();
-    // Получаем выбранный тип воздушного судна
-    const selectedType = document
-      .querySelector('.aircraft-type-dropdown .dropdown__list-item_active')
-      ?.getAttribute("data-value") || "Любой";
-  
-    console.log("Выбранный тип:", selectedType);
-  
-    // Получаем выбранную категорию в зависимости от типа
-    let categorySelector = '.aircraft-type-plane .dropdown__list-item_active';
-    if (selectedType === 'Вертолет') {
-      categorySelector = '.aircraft-type-helicopter .dropdown__list-item_active';
-    } else if (selectedType === 'VTOL') {
-      categorySelector = '.aircraft-type-vtol .dropdown__list-item_active';
-    }
-    
-    const selectedCategory = document.querySelector(categorySelector)?.getAttribute("data-value") || "Любой";
-    console.log("Выбранная категория:", selectedCategory);
-  
-    // Получаем выбранного производителя в зависимости от типа
-    let manufacturerSelector = '.aircraft-manufacturer-plane .dropdown__list-item_active';
-    if (selectedType === 'Вертолет') {
-      manufacturerSelector = '.aircraft-manufacturer-helicopter .dropdown__list-item_active';
-    } else if (selectedType === 'VTOL') {
-      manufacturerSelector = '.aircraft-manufacturer-vtol .dropdown__list-item_active';
-    }
-    
-    const selectedManufacturer = document.querySelector(manufacturerSelector)?.getAttribute("data-value");
-    console.log("Выбранный производитель:", selectedManufacturer);
-  
-    // Получаем выбранные диапазоны дальности в зависимости от типа
-    let rangeSelector = '.aircraft-range-plane input:checked';
-    if (selectedType === 'Вертолет') {
-      rangeSelector = '.aircraft-range-helicopter input:checked';
-    } else if (selectedType === 'VTOL') {
-      rangeSelector = '.aircraft-range-vtol input:checked';
-    }
-    
-    const selectedRanges = Array.from(
-      document.querySelectorAll(rangeSelector)
-    ).map(checkbox => checkbox.id);
-    console.log("Выбранные диапазоны дальности:", selectedRanges);
-  
-    // Получаем выбранные диапазоны мест в зависимости от типа
-    let seatsSelector = '.aircraft-seats-plane input:checked';
-    if (selectedType === 'Вертолет') {
-      seatsSelector = '.aircraft-seats-helicopter input:checked';
-    } else if (selectedType === 'VTOL') {
-      seatsSelector = '.aircraft-seats-vtol input:checked';
-    }
-    
-    const selectedSeats = Array.from(
-      document.querySelectorAll(seatsSelector)
-    ).map(checkbox => checkbox.id);
-    console.log("Выбранные диапазоны мест:", selectedSeats);
-  
-    // Получаем выбранную цену в зависимости от типа
-    let priceSelector = '.aircraft-price-plane .dropdown__list-item_active';
-    if (selectedType === 'Вертолет') {
-      priceSelector = '.aircraft-price-helicopter .dropdown__list-item_active';
-    } else if (selectedType === 'VTOL') {
-      priceSelector = '.aircraft-price-vtol .dropdown__list-item_active';
-    }
-    
-    const selectedPrice = document.querySelector(priceSelector)?.getAttribute("data-value");
-    console.log("Выбранная цена:", selectedPrice);
-  
-    // Отладочный вывод для проверки
-    console.log("Фильтрация:", { 
-      selectedType, 
-      selectedCategory, 
-      selectedManufacturer, 
-      selectedRanges, 
-      selectedSeats, 
-      selectedPrice 
-    });
-  
-    // Фильтрация элементов
-    items.forEach(item => {
-      // Получаем данные элемента
-      const itemType = item.dataset.aircraft_type || "";
-      const itemCategory = item.dataset.aircraft_cat || "";
-      const manufacturer = item.dataset.manufacturer || "";
-      const range = parseInt(item.dataset.range_km) || 0;
-      const seats = parseInt(item.dataset.aircraft_seats) || 0;
-      const price = item.dataset.aircraft_hour_cost ? parseInt(item.dataset.aircraft_hour_cost.replace(/\D/g, "")) : 0;
-  
-      // Проверяем соответствие типа
-      let matchType = true;
-      if (selectedType !== "Любой") {
-        matchType = itemType === selectedType;
-      }
-  
-      // Проверяем соответствие категории
-      let matchCategory = true;
-      if (selectedCategory !== "Любой") {
-        matchCategory = itemCategory === selectedCategory;
-      }
-  
-      // Проверяем соответствие производителя
-      let matchManufacturer = true;
-      if (selectedManufacturer && selectedManufacturer !== "Любой") {
-        matchManufacturer = manufacturer === selectedManufacturer;
-      }
-  
-      // Проверяем соответствие дальности
-      let matchRange = true;
-      if (selectedRanges.length > 0) {
-        matchRange = selectedRanges.some(rangeId => {
-          if (rangeId.includes('-')) {
-            const [min, max] = rangeId.split('-').map(Number);
-            return range >= min && range <= max;
-          } else {
-            const threshold = parseInt(rangeId);
-            if (rangeId.startsWith('9000') || rangeId.startsWith('900') || rangeId.startsWith('500')) {
-              // Для значений "9000+", "900+" и т.д.
-              return range >= threshold;
-            } else {
-              // Для значений "до 1500", "до 600" и т.д.
-              return range <= threshold;
-            }
-          }
-        });
-      }
-  
-      // Проверяем соответствие количества мест
-      let matchSeats = true;
-      if (selectedSeats.length > 0) {
-        matchSeats = selectedSeats.some(seatId => {
-          if (seatId.includes('-')) {
-            const [min, max] = seatId.split('-').map(Number);
-            return seats >= min && seats <= max;
-          } else {
-            // Для значений "50+" и т.д.
-            return seats >= parseInt(seatId);
-          }
-        });
-      }
-  
-      // Проверяем соответствие цены
-      let matchPrice = true;
-      if (selectedPrice) {
-        matchPrice = checkPriceRange(price, selectedPrice);
-      }
-  
-      // Отладочный вывод для проверки фильтрации
-      if (!matchType) {
-        console.log(`Элемент не соответствует типу. Выбрано: ${selectedType}, В элементе: ${itemType}`);
-      }
-  
-      // Применяем фильтрацию
-      const isVisible = matchType && matchCategory && matchManufacturer && matchRange && matchSeats && matchPrice;
-      item.style.display = isVisible ? "block" : "none";
-    });
   });
 
   function checkPriceRange(price, range) {
@@ -1247,40 +1094,42 @@ window.addEventListener("load", () => {
   const compareContainer = document.querySelector(".compare-main");
   let selectedPlanes = JSON.parse(localStorage.getItem("selectedPlanes")) || [];
 
-  if (selectedPlanes.length === 0) {
-    if (compareContainer) {
-      compareContainer.innerHTML = "<p>Выберите самолеты для сравнения.</p>";
-    }
-    return;
-  }
-
   function renderComparison() {
-    compareContainer.innerHTML = "";
+    if (compareContainer) {
+      compareContainer.innerHTML = "";
+    }
+
+    if (selectedPlanes.length === 0) {
+      if (compareContainer) {
+        compareContainer.innerHTML = "<p class='ru-only'>Сначала выберите самолеты для сравнения.</p><p class='en-only'>Choose aircrafts for comparison first.</p>";
+      }
+      return;
+    }
 
     selectedPlanes.forEach((plane, index) => {
       const planeHTML = `
-                <div class="compare-col" data-index="${index}">
-                    <div class="compare-edit">
-                        <button class="compare-edit-delete">Удалить</button>
-                    </div>
-                    <img src="${plane.image}" alt="">
-                    <h2 class="h2">${plane.name}</h2>
-                    <div class="compare-col-wrap">
-                        ${plane.attributes.map(attr => `
-                            <div class="compare-col-block">
-                                <p class="compare-col-title">${attr.title}</p>
-                                <p class="compare-col-desc">${attr.value}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
-                </div>
-            `;
+      <div class="compare-col" data-index="${index}">
+        <div class="compare-edit">
+          <button class="compare-edit-delete">Удалить</button>
+        </div>
+        <img src="${plane.image}" alt="">
+        <h2 class="h2">${plane.name}</h2>
+        <div class="compare-col-wrap">
+          ${plane.attributes.map(attr => `
+            <div class="compare-col-block">
+              <p class="compare-col-title">${attr.title}</p>
+              <p class="compare-col-desc">${attr.value}</p>
+            </div>
+          `).join('')}
+        </div>
+        <button type="button" class="btn btn-green-fill js-modal" data-modal="#call">Арендовать</button>
+      </div>
+    `;
       compareContainer.insertAdjacentHTML("beforeend", planeHTML);
     });
   }
 
-  compareContainer.addEventListener("click", (event) => {
+  compareContainer?.addEventListener("click", (event) => {
     if (event.target.classList.contains("compare-edit-delete")) {
       const planeCol = event.target.closest(".compare-col");
       const index = planeCol.dataset.index;
@@ -1316,10 +1165,10 @@ async function searchFilterFunction(){
   }else if(jQuery('.aircraft-range-vtol').css('display')=='block'){
       rangeSelector = '.aircraft-range-vtol input:checked'; 
   }
-
-  const selectedRanges = Array.from(
-      document.querySelectorAll(rangeSelector)
-  ).map(checkbox => checkbox.id);
+  var rangeSelectorUrl = '';
+  jQuery(rangeSelector).each(function(index, value) {
+     rangeSelectorUrl = rangeSelectorUrl + '&rangeSelector[]=' + jQuery(this).attr('id');
+  });
    
   var seatsSelector = '.aircraft-seats-plane input:checked';
   if (jQuery('.aircraft-seats-helicopter').css('display')=='block') {
@@ -1327,10 +1176,10 @@ async function searchFilterFunction(){
   }else if (jQuery('.aircraft-seats-vtol').css('display')=='block') {
     seatsSelector = '.aircraft-seats-vtol input:checked';
   }
-    
-  const selectedSeats = Array.from(
-      document.querySelectorAll(seatsSelector)
-  ).map(checkbox => checkbox.id);
+  var seatsSelectorUrl = '';
+  jQuery(seatsSelector).each(function(index, value) {
+     seatsSelectorUrl = seatsSelectorUrl + '&seatsSelector[]=' + jQuery(this).attr('id');
+  });
 
   var selectedPrice = jQuery('.aircraft-price-plane .dropdown__list-item_active').attr('data-value'); 
   if(jQuery('.aircraft-price-helicopter').css('display')=='block'){
@@ -1340,23 +1189,64 @@ async function searchFilterFunction(){
   }
 
   try {
-      const config = {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-                    title: "My post title",
-                    body: "My post content."
-              })
+      let durl = '';
+      if (typeof selectedType !== 'undefined'){
+         durl = durl + '&selectedType='+selectedType;
       }
-      const response = await fetch("/wp-admin/admin-ajax.php?action=search_filter_products", config);
+      if (typeof selectedCategory !== 'undefined'){
+         durl = durl + '&selectedCategory='+selectedCategory;
+      }
+      if (typeof manufacturerSelector !== 'undefined'){
+         durl = durl + '&manufacturerSelector='+manufacturerSelector;
+      }
+      if (typeof rangeSelectorUrl != ''){
+         durl = durl + rangeSelectorUrl;
+      }
+      if (typeof seatsSelectorUrl != ''){
+         durl = durl + seatsSelectorUrl;
+      }
+      if (typeof selectedPrice !== 'undefined'){
+         durl = durl + '&selectedPrice='+selectedPrice;
+      }
+
+      const response = await fetch("/wp-admin/admin-ajax.php?action=search_filter_products"+durl);
       const data = await response.json();
-console.log(data);
-      //if (!data.success) return;
+
+      searchFilterFunctionHTML(data.data);
 
     } catch (error) {
       console.error("Error Search Filter:", error);
     }
+}
+
+function searchFilterFunctionHTML(data){
+  var dl_1 = jQuery('.backSearchWrapper').attr('data-lang-1');
+  var dl_2 = jQuery('.backSearchWrapper').attr('data-lang-2');
+  var dl_3 = jQuery('.backSearchWrapper').attr('data-lang-3');
+  var dl_4 = jQuery('.backSearchWrapper').attr('data-lang-4');
+  var dl_5 = jQuery('.backSearchWrapper').attr('data-lang-5');
+  var dl_6 = jQuery('.backSearchWrapper').attr('data-lang-6');
+  var dl_7 = jQuery('.backSearchWrapper').attr('data-lang-7');
+  var dl_8 = jQuery('.backSearchWrapper').attr('data-lang-8');
+
+  var html = '';
+  if(data.length>0){
+      for (let index = 0; index < data.length; ++index) {
+        html += '<div class="looking-item">';
+        html += '<img src="'+data[index]['image']+'" class="looking-img" loading="lazy" alt="'+data[index]['title']+'">';
+        html += '<h3 class="h3">'+data[index]['title']+'</h3>';
+        html += '<div class="looking-desc">';
+        html += '<div class="looking-row"><p class="looking-row-title">'+dl_1+'</p><p class="looking-row-desc">'+data[index]['cruise_speed_kmh']+' '+dl_2+'</p></div>';
+        html += '<div class="looking-row"><p class="looking-row-title">'+dl_3+'</p><p class="looking-row-desc">'+data[index]['range_km']+' '+dl_4+'</p></div>';
+        html += '<div class="looking-row"><p class="looking-row-title">'+dl_5+'</p><p class="looking-row-desc">'+data[index]['aircraft_seats']+'</p></div>';
+        html += '<div class="looking-row"><p class="looking-row-title">'+dl_6+'</p><p class="looking-row-desc">'+data[index]['aircraft_hour_cost']+'</p></div>';
+        html += '</div>';
+        html += '<a href="'+data[index]['permalink']+'" class="btn btn-green-fill">'+dl_7+'</a>';
+        html += '</div>';
+      }
+  }else{
+    html += '<p>'+dl_8+'</p>';
+  }
+
+  jQuery('.backSearchWrapper').html(html);
 }

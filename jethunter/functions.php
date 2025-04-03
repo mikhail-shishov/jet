@@ -1548,20 +1548,52 @@ add_action('wp_ajax_nopriv_get_phone_number', 'get_phone_number');
 function search_filter_products()
 {
 
-    wp_send_json_success([
-        'country' => serialize($_REQUEST)
-    ]);
-    die;
+    $selectedType = $_REQUEST['selectedType'];
+    $selectedCategory = $_REQUEST['selectedCategory'];
+    $manufacturerSelector = $_REQUEST['manufacturerSelector'];
+    $rangeSelectorArray = $_REQUEST['rangeSelector'];
+    $seatsSelectorArray = $_REQUEST['seatsSelector'];
+    $selectedPrice = $_REQUEST['selectedPrice'];
 
-    if (!$data || empty($data['country'])) {
-        wp_send_json_error(['message' => 'Invalid response from IPInfo']);
+    $query_args = array('post_type' => 'product',
+                        'meta_query' => array());
+
+    if(isset($selectedType) and $selectedType!=''){
+        $query_args['meta_query'][] = array('key' => 'aircraft_type',
+                                            'value' => $selectedType);
     }
 
-    wp_send_json_success([
-        'country' => $data['country'],
-        'formatted' => $formattedPhone,
-        'clean' => $cleanPhone
-    ]);
+    $query = new WP_Query($query_args);
+
+    $aircrafts = array();
+    if ($query->have_posts()){
+        while ($query->have_posts()) {
+            $query->the_post();
+            $product_id=get_the_ID();
+
+            $aircrafts_current = array();
+
+            $aircrafts_current['product_id'] = get_the_ID();
+            $aircrafts_current['title'] = get_the_title();
+            $aircrafts_current['permalink'] = get_the_permalink();
+            $aircrafts_current['aircraft_make'] = esc_html(carbon_get_post_meta($product_id, 'aircraft_make'));
+            $aircrafts_current['range_km'] = esc_html(carbon_get_post_meta($product_id, 'range_km'));
+            $aircrafts_current['aircraft_seats'] = esc_html(carbon_get_post_meta($product_id, 'aircraft_seats'));
+            $aircrafts_current['aircraft_hour_cost'] = esc_html(carbon_get_post_meta($product_id, 'aircraft_hour_cost'));
+            $aircrafts_current['luggage_volume_m'] = esc_html(carbon_get_post_meta($product_id, 'luggage_volume_m'));
+            $aircrafts_current['cabin_height_m'] = esc_html(carbon_get_post_meta($product_id, 'cabin_height_m'));
+            $aircrafts_current['cruise_speed_kmh'] = esc_html(carbon_get_post_meta($product_id, 'cruise_speed_kmh'));
+            $aircrafts_current['aircraft_cat'] = esc_html(carbon_get_post_meta($product_id, 'aircraft_cat'));
+
+            $image = get_the_post_thumbnail_url($product_id, 'full') ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
+            $aircrafts_current['image'] = esc_url($image);
+
+            $aircrafts[] = $aircrafts_current;
+        }
+    }
+
+    wp_send_json_success($aircrafts);
+    die;
 }
 
 add_action('wp_ajax_search_filter_products', 'search_filter_products');

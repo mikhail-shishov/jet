@@ -3,7 +3,27 @@
 ?>
 
 <?php get_header(); ?>
+<?php
+    $query = new WP_Query(array(
+       'post_type' => 'product',
+       'meta_query' => array(
+            array(
+               'key' => 'aircraft_type',
+               'value' => 'Самолет',
+            ),
+        ),
+    ));
 
+    $line = '';
+    if ($query->have_posts()){
+        while ($query->have_posts()) {
+            $query->the_post();
+            $line = $line.'-'.get_the_title();
+        }
+    }
+
+    //echo $line.'!';die;
+?>
 <section class="breadcrumbs-sect">
     <div class="container">
         <?php include_once "breadcrumbs/breadcrumbs.php" ?>
@@ -27,7 +47,7 @@
                     <div class="dropdown aircraft-type-dropdown">
                         <button class="dropdown__button" type="button">Тип</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
+                            <li class="dropdown__list-item dropdown__list-item_active">Любой</li>
                             <li class="dropdown__list-item" data-value="Самолет">Самолет</li>
                             <li class="dropdown__list-item" data-value="Вертолет">Вертолет</li>
                             <li class="dropdown__list-item" data-value="VTOL">VTOL</li>
@@ -38,7 +58,7 @@
                     <div class="dropdown aircraft-type-dropdown aircraft-type-plane">
                         <button class="dropdown__button" type="button">Категория</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
+                            <li class="dropdown__list-item dropdown__list-item_active">Любой</li>
                             <li class="dropdown__list-item" data-value="Турбовинтовые">Турбовинтовые</li>
                             <li class="dropdown__list-item" data-value="Очень легкие">Очень легкие</li>
                             <li class="dropdown__list-item" data-value="Легкие">Легкие</li>
@@ -55,7 +75,7 @@
                     <div class="dropdown aircraft-type-dropdown aircraft-type-helicopter" style="display: none;">
                         <button class="dropdown__button" type="button">Категория</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
+                            <li class="dropdown__list-item dropdown__list-item_active">Любой</li>
                             <li class="dropdown__list-item" data-value="Однодвигательный">Однодвигательный</li>
                             <li class="dropdown__list-item" data-value="Двухдвигательный">Двухдвигательный</li>
                         </ul>
@@ -65,7 +85,7 @@
                     <div class="dropdown aircraft-type-dropdown aircraft-type-vtol" style="display: none;">
                         <button class="dropdown__button" type="button">Категория</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
+                            <li class="dropdown__list-item dropdown__list-item_active">Любой</li>
                             <li class="dropdown__list-item" data-value="Классический">Классический</li>
                             <li class="dropdown__list-item" data-value="Электрический">Электрический</li>
                         </ul>
@@ -342,7 +362,16 @@
             </div>
         </div>
 
-        <div class="looking-grid looking-grid-full">
+        <div class="looking-grid looking-grid-full backSearchWrapper"
+            data-lang-1="Скорость"
+            data-lang-2="км/ч"
+            data-lang-3="Дальность"
+            data-lang-4="км"
+            data-lang-5="Количество мест"
+            data-lang-6="Цена в час"
+            data-lang-7="Подробнее"
+            data-lang-8="Ничего не найдено."
+        >
             <?php
             $args = [
                 'post_type'      => 'product',
@@ -366,15 +395,7 @@
 
                     $image = get_the_post_thumbnail_url($product_id, 'full') ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
             ?>
-                    <div class="looking-item"
-                        data-manufacturer="<?php echo esc_attr($manufacturer); ?>"
-                        data-range_km="<?php echo esc_attr($range_km); ?>"
-                        data-aircraft_hour_cost="<?php echo esc_attr($aircraft_hour_cost); ?>"
-                        data-aircraft_seats="<?php echo esc_attr($aircraft_seats); ?>"
-                        data-luggage_volume_m="<?php echo esc_attr($luggage_volume_m); ?>"
-                        data-cabin_height_m="<?php echo esc_attr($cabin_height_m); ?>"
-                        data-cruise_speed_kmh="<?php echo esc_attr($cruise_speed_kmh); ?>"
-                        data-aircraft_cat="<?php echo esc_attr($aircraft_cat); ?>">
+                    <div class="looking-item">
                         <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="<?php the_title(); ?>">
                         <h3 class="h3"><?php the_title(); ?></h3>
                         <div class="looking-desc">
@@ -409,7 +430,7 @@
         <div class="show-more is-hidden">
             <button class="btn btn-more">Смотреть ещё</button>
         </div>
-        <div class="pagination">
+        <div class="pagination" style="display:none!important">
             <nav class="pagination-left">
                 <a href="" class="btn btn-pagination pagination-back">‹ Назад</a>
                 <ul class="pagination-list">
