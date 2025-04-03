@@ -19,448 +19,412 @@
     </div>
 </section>
 
-<div class="fleet-sect">
+<section class="fleet-sect">
     <div class="container">
         <div class="search-wrap">
             <form class="search-form">
                 <div class="search-form-options">
                     <div class="dropdown">
-                        <button class="dropdown__button" type="button">Тип</button>
+                        <button class="dropdown__button" type="button">Type</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
-                            <li class="dropdown__list-item" data-value="1">1</li>
-                            <li class="dropdown__list-item" data-value="2">2</li>
-                            <li class="dropdown__list-item" data-value="3">3</li>
+                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Any">Any</li>
+                            <li class="dropdown__list-item" data-value="Airplane">Airplane</li>
+                            <li class="dropdown__list-item" data-value="Helicopter">Helicopter</li>
+                            <li class="dropdown__list-item" data-value="VTOL">VTOL</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
                     <div class="dropdown">
-                        <button class="dropdown__button" type="button">Категория</button>
+                        <button class="dropdown__button" type="button">Category</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
-                            <li class="dropdown__list-item" data-value="1">1</li>
-                            <li class="dropdown__list-item" data-value="2">2</li>
-                            <li class="dropdown__list-item" data-value="3">3</li>
+                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Any">Any</li>
+                            <li class="dropdown__list-item" data-value="Turboprop">Turboprop</li>
+                            <li class="dropdown__list-item" data-value="Very Light">Very light</li>
+                            <li class="dropdown__list-item" data-value="Light">Light</li>
+                            <li class="dropdown__list-item" data-value="Midsize">Midsize</li>
+                            <li class="dropdown__list-item" data-value="Super-Midsize">Super-Midsize</li>
+                            <li class="dropdown__list-item" data-value="Heavy">Heavy</li>
+                            <li class="dropdown__list-item" data-value="Ultra-heavy">Ultra-heavy</li>
+                            <li class="dropdown__list-item" data-value="Long-range">Long-range</li>
+                            <li class="dropdown__list-item" data-value="Business liners">Business liners</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Производитель</button>
+                    <div class="dropdown aircraft-manufacturer-dropdown aircraft-manufacturer-plane">
+                        <button class="dropdown__button" type="button">Manufacturer</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="Challenger">Challenger</li>
+                        <li class="dropdown__list-item" data-value="Airbus">Airbus</li>
                             <li class="dropdown__list-item" data-value="Boeing">Boeing</li>
+                            <li class="dropdown__list-item" data-value="Embraer">Embraer</li>
+                            <li class="dropdown__list-item" data-value="Dassault">Dassault</li>
+                            <li class="dropdown__list-item" data-value="Bombardier">Bombardier</li>
+                            <li class="dropdown__list-item" data-value="Gulfstream">Gulfstream</li>
+                            <li class="dropdown__list-item" data-value="Avro">Avro</li>
+                            <li class="dropdown__list-item" data-value="Beechcraft">Beechcraft</li>
+                            <li class="dropdown__list-item" data-value="Cessna">Cessna</li>
+                            <li class="dropdown__list-item" data-value="Dornier">Dornier</li>
+                            <li class="dropdown__list-item" data-value="Aero Commander">Aero Commander</li>
+                            <li class="dropdown__list-item" data-value="Nextant Aerospace">Nextant Aerospace</li>
+                            <li class="dropdown__list-item" data-value="Grob Aerospace">Grob Aerospace</li>
+                            <li class="dropdown__list-item" data-value="Eclipse Aviation">Eclipse Aviation</li>
+                            <li class="dropdown__list-item" data-value="Honda">Honda</li>
+                            <li class="dropdown__list-item" data-value="Piper Aircraft">Piper Aircraft</li>
+                            <li class="dropdown__list-item" data-value="Adam Aircraft Industries">Adam Aircraft Industries</li>
+                            <li class="dropdown__list-item" data-value="Epic Aircraft">Epic Aircraft</li>
+                            <li class="dropdown__list-item" data-value="Cirrus Aircraft">Cirrus Aircraft</li>
+                            <li class="dropdown__list-item" data-value="Quest Aircraft">Quest Aircraft</li>
+                            <li class="dropdown__list-item" data-value="Piaggio">Piaggio</li>
+                            <li class="dropdown__list-item" data-value="Pilatus">Pilatus</li>
+                            <li class="dropdown__list-item" data-value="Socata (Daher)">Socata (Daher)</li>
+                            <li class="dropdown__list-item" data-value="Mooney">Mooney</li>
+                            <li class="dropdown__list-item" data-value="Fokker">Fokker</li>
+                            <li class="dropdown__list-item" data-value="Tupolev">Tupolev</li>
+                            <li class="dropdown__list-item" data-value="Sukhoi">Sukhoi</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Дальность (км)</button>
+                    <div class="dropdown aircraft-manufacturer-dropdown aircraft-manufacturer-helicopter" style="display: none;">
+                        <button class="dropdown__button" type="button">Manufacturer</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="1000">1000</li>
-                            <li class="dropdown__list-item" data-value="2000">2000</li>
-                            <li class="dropdown__list-item" data-value="3000">3000</li>
+                            <li class="dropdown__list-item" data-value="Airbus Helicopters">Airbus helicopters</li>
+                            <li class="dropdown__list-item" data-value="Bell Helicopters">Bell Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Enstrom Helicopters">Enstrom Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Leonardo Helicopters">Leonardo Helicopters</li>
+                            <li class="dropdown__list-item" data-value="MD Helicopters">MD Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Robinson helicopters">Robinson helicopters</li>
+                            <li class="dropdown__list-item" data-value="Russian Helicopters">Russian Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Sikorsky">Sikorsky</li>
+                            <li class="dropdown__list-item" data-value="Schweizer">Schweizer</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Цена</button>
+                    <div class="dropdown aircraft-manufacturer-dropdown aircraft-manufacturer-vtol" style="display: none;">
+                        <button class="dropdown__button" type="button">Manufacturer</button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="500-1000">500-1000</li>
-                            <li class="dropdown__list-item" data-value="1001-2000">1001-2000</li>
-                            <li class="dropdown__list-item" data-value="2001-3000">2001-3000</li>
+                            <li class="dropdown__list-item" data-value="Joby Aviation">Joby Aviation</li>
+                            <li class="dropdown__list-item" data-value="Archer Aviation Inc.">Archer Aviation Inc.</li>
+                            <li class="dropdown__list-item" data-value="Ehang">Ehang</li>
+                            <li class="dropdown__list-item" data-value="Lilium">Lilium</li>
+                            <li class="dropdown__list-item" data-value="MD Helicopters">MD Helicopters</li>
+                            <li class="dropdown__list-item" data-value="Vertical Aerospace">Vertical Aerospace</li>
+                            <li class="dropdown__list-item" data-value="Volocopter">Volocopter</li>
+                            <li class="dropdown__list-item" data-value="Airbus">Airbus</li>
+                            <li class="dropdown__list-item" data-value="Wisk Aero">Wisk Aero</li>
+                            <li class="dropdown__list-item" data-value="Beta Technologies">Beta Technologies</li>
+                            <li class="dropdown__list-item" data-value="Eve Air Mobility">Eve Air Mobility</li>
+                            <li class="dropdown__list-item" data-value="Wisk Aero">Overair</li>
                         </ul>
                         <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
-                    <div class="dropdown_with-chk">
-                        <button class="dropdown_with-chk__button" type="button">Количество мест</button>
+                    <div class="dropdown_with-chk aircraft-seats-dropdown aircraft-seats-plane">
+                        <button class="dropdown_with-chk__button" type="button">Seats</button>
                         <ul class="dropdown_with-chk__list">
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-5" id="2-5" />
-                                <label class="dropdown_with-chk__list-item_label" for="2-5">2-5</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1-8" id="1-8" />
+                                <label class="dropdown_with-chk__list-item_label" for="1-8">1-8</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="6-15" id="6-15" />
-                                <label class="dropdown_with-chk__list-item_label" for="6-15">6-15</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="8-14" id="8-14" />
+                                <label class="dropdown_with-chk__list-item_label" for="8-14">8-14</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="16-30" id="16-30" />
-                                <label class="dropdown_with-chk__list-item_label" for="16-30">16-30</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="14-19" id="14-19" />
+                                <label class="dropdown_with-chk__list-item_label" for="14-19">14-19</label>
                             </li>
                             <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="31" id="31" />
-                                <label class="dropdown_with-chk__list-item_label" for="31">31+</label>
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="19-50" id="19-50" />
+                                <label class="dropdown_with-chk__list-item_label" for="19-50">19-50</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="50" id="50" />
+                                <label class="dropdown_with-chk__list-item_label" for="50">50+</label>
                             </li>
                         </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-seats-dropdown aircraft-seats-helicopter" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Seats</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1-2" id="1-2" />
+                                <label class="dropdown_with-chk__list-item_label" for="1-2">1-2</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-4" id="2-4" />
+                                <label class="dropdown_with-chk__list-item_label" for="2-4">2-4</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="4-8" id="4-8" />
+                                <label class="dropdown_with-chk__list-item_label" for="4-8">4-8</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="8-12" id="8-12" />
+                                <label class="dropdown_with-chk__list-item_label" for="8-12">8-12</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="12-18" id="12-18" />
+                                <label class="dropdown_with-chk__list-item_label" for="12-18">12-18</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-seats-dropdown aircraft-seats-vtol" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Seats</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1-2" id="1-2" />
+                                <label class="dropdown_with-chk__list-item_label" for="1-2">1-2</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-4" id="2-4" />
+                                <label class="dropdown_with-chk__list-item_label" for="2-4">2-4</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="4-8" id="4-8" />
+                                <label class="dropdown_with-chk__list-item_label" for="4-8">4-8</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="8-12" id="8-12" />
+                                <label class="dropdown_with-chk__list-item_label" for="8-12">8-12</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-range-dropdown aircraft-range-plane">
+                        <button class="dropdown_with-chk__button" type="button">Range, km</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1500" id="1500" />
+                                <label class="dropdown_with-chk__list-item_label" for="1500">less than 1500</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="1500-4000" id="1500-4000" />
+                                <label class="dropdown_with-chk__list-item_label" for="1500-4000">1500-4000</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="4000-9000" id="4000-9000" />
+                                <label class="dropdown_with-chk__list-item_label" for="4000-9000">4000-9000</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="9000" id="9000" />
+                                <label class="dropdown_with-chk__list-item_label" for="9000">9000+</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-range-dropdown aircraft-range-helicopter" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Range, km</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="600" id="600" />
+                                <label class="dropdown_with-chk__list-item_label" for="600">less than 600</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="600-900" id="600-900" />
+                                <label class="dropdown_with-chk__list-item_label" for="600-900">600-900</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="900" id="900" />
+                                <label class="dropdown_with-chk__list-item_label" for="900">900+</label>
+                            </li>
+                    </div>
+
+                    <div class="dropdown_with-chk aircraft-range-dropdown aircraft-range-vtol" style="display:none;">
+                        <button class="dropdown_with-chk__button" type="button">Range, km</button>
+                        <ul class="dropdown_with-chk__list">
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="150" id="150" />
+                                <label class="dropdown_with-chk__list-item_label" for="150">less than 150</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="150-400" id="150-300" />
+                                <label class="dropdown_with-chk__list-item_label" for="150-300">150-300</label>
+                            </li>
+                            <li class="dropdown_with-chk__list-item">
+                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="300-500" id="300-500" />
+                                <label class="dropdown_with-chk__list-item_label" for="300-500">300-500</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown aircraft-price-dropdown aircraft-price-plane">
+                        <button class="dropdown__button" type="button">Price</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item" data-value="3000000">less than $3 000 000 </li>
+                            <li class="dropdown__list-item" data-value="3000000-8000000">$3 000 000 - 8 000 000</li>
+                            <li class="dropdown__list-item" data-value="8000000-15000000">$8 000 000 – 15 000 000</li>
+                            <li class="dropdown__list-item" data-value="15000000-40000000">$15 000 000 – 40 000 000</li>
+                            <li class="dropdown__list-item" data-value="40000000">$40 000 000+</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
+                    </div>
+
+                    <div class="dropdown aircraft-price-dropdown aircraft-price-helicopter" style="display:none;">
+                        <button class="dropdown__button" type="button">Price</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item" data-value="1500000">less than $1 500 000</li>
+                            <li class="dropdown__list-item" data-value="1500000-4000000">$1 500 000 - 4 000 000</li>
+                            <li class="dropdown__list-item" data-value="4000000-8000000">$4 000 000 – 8 000 000</li>
+                            <li class="dropdown__list-item" data-value="8000000-12000000">$8 000 000 – 12 000 000</li>
+                            <li class="dropdown__list-item" data-value="12000000">$12 000 000+</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
+                    </div>
+
+                    <div class="dropdown aircraft-price-dropdown aircraft-price-vtol" style="display:none;">
+                        <button class="dropdown__button" type="button">Price</button>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__list-item" data-value="1500000">less than $1 500 000</li>
+                            <li class="dropdown__list-item" data-value="1500000-4000000">$1 500 000 - 3 000 000</li>
+                            <li class="dropdown__list-item" data-value="4000000-8000000">$3 000 000 – 6 000 000</li>
+                            <li class="dropdown__list-item" data-value="8000000-12000000">$6 000 000 – 11 000 000</li>
+                            <li class="dropdown__list-item" data-value="12000000">$11 000 000+</li>
+                        </ul>
+                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
                     </div>
 
                 </div>
                 <div class="btn-container">
-                    <button type="button" class="btn btn-green-fill btn-find">Найти</button>
-                    <button type="button" class="btn btn-reset">Сбросить</button>
+                    <button type="button" class="btn btn-green-fill btn-find">Find</button>
+                    <button type="button" class="btn btn-reset">Reset</button>
                 </div>
             </form>
         </div>
-        <div class="looking-grid looking-grid-full">
+        <div class="tabs tabs-line">
+            <div class="tabs-options tabs-options-cat">
+                <a href="#" class="btn btn-grey-fill">Turboprop</a>
+                <a href="#" class="btn btn-grey-fill">Very Light</a>
+                <a href="#" class="btn btn-grey-fill">Light</a>
+                <a href="#" class="btn btn-grey-fill">Medium</a>
+                <a href="#" class="btn btn-grey-fill">Super-Medium</a>
+                <a href="#" class="btn btn-grey-fill">Large</a>
+                <a href="#" class="btn btn-grey-fill">Ultra-Large</a>
+                <a href="#" class="btn btn-grey-fill">Long-Range</a>
+                <a href="#" class="btn btn-grey-fill">Business Airliners</a>
+            </div>
+        </div>
+        <div class="tabs tabs-line">
+            <div class="tabs-heading">Sort by:</div>
+            <div class="tabs-options">
+                <a href="#" data-sort="name" class="btn btn-tab">Name</a>
+                <a href="#" data-sort="aircraft_seats" class="btn btn-tab">Seats</a>
+                <a href="#" data-sort="luggage_volume_m" class="btn btn-tab">Luggage compartment</a>
+                <a href="#" data-sort="range_km" class="btn btn-tab">Range</a>
+                <a href="#" data-sort="cruise_speed_kmh" class="btn btn-tab">Cruising speed</a>
+                <a href="#" data-sort="cabin_height_m" class="btn btn-tab">Cabin height</a>
+            </div>
+        </div>
+
+        <div class="looking-grid looking-grid-full backSearchWrapper"
+            data-lang-1="Скорость"
+            data-lang-2="км/ч"
+            data-lang-3="Дальность"
+            data-lang-4="км"
+            data-lang-5="Количество мест"
+            data-lang-6="Цена в час"
+            data-lang-7="Подробнее"
+            data-lang-8="Ничего не найдено."
+        >
             <?php
-            $args = array(
-                'post_type' => 'product',
+            $args = [
+                'post_type'      => 'product',
                 'posts_per_page' => -1,
-                'meta_query' => array(
-                    'relation' => 'AND',
-                ),
-            );
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'slug',
+                        'terms'    => 'rent',
+                    ],
+                ],
+                'meta_query'     => ['relation' => 'AND'],
+            ];
 
-            // Фильтр по производителю
-            // if (isset($_GET['manufacturer']) && $_GET['manufacturer'] !== 'Любой') {
-            //     $manufacturer = sanitize_text_field($_GET['manufacturer']);
-            //     $args['s'] = $manufacturer; // Ищем в заголовке
-            //     $args['search_columns'] = array('post_title'); // Указываем, что искать только в названии
-            // }
-
-            // // Фильтр по дальности
-            // if (isset($_GET['range']) && $_GET['range'] !== '') {
-            //     $args['meta_query'][] = array(
-            //         'key' => '_aircraft_range',
-            //         'value' => (int) sanitize_text_field($_GET['range']),
-            //         'type' => 'NUMERIC',
-            //         'compare' => '>='
-            //     );
-            // }
-
-            // // Фильтр по цене
-            // if (isset($_GET['price']) && $_GET['price'] !== '') {
-            //     $price_range = explode('-', sanitize_text_field($_GET['price']));
-            //     if (count($price_range) === 2) {
-            //         $args['meta_query'][] = array(
-            //             'key' => '_aircraft_price',
-            //             'value' => array((int)$price_range[0], (int)$price_range[1]),
-            //             'type' => 'NUMERIC',
-            //             'compare' => 'BETWEEN'
-            //         );
-            //     }
-            // }
-
-            // // Фильтр по количеству мест
-            // if (isset($_GET['seats']) && is_array($_GET['seats'])) {
-            //     $seat_queries = array('relation' => 'OR');
-            //     foreach ($_GET['seats'] as $seat_range) {
-            //         if ($seat_range === '31') {
-            //             $seat_queries[] = array(
-            //                 'key' => '_aircraft_seats',
-            //                 'value' => 31,
-            //                 'type' => 'NUMERIC',
-            //                 'compare' => '>='
-            //             );
-            //         } else {
-            //             $seat_bounds = explode('-', $seat_range);
-            //             if (count($seat_bounds) === 2) {
-            //                 $seat_queries[] = array(
-            //                     'key' => '_aircraft_seats',
-            //                     'value' => array((int)$seat_bounds[0], (int)$seat_bounds[1]),
-            //                     'type' => 'NUMERIC',
-            //                     'compare' => 'BETWEEN'
-            //                 );
-            //             }
-            //         }
-            //     }
-            //     $args['meta_query'][] = $seat_queries;
-            // }
-
-            // Получение продуктов
             $aircrafts = new WP_Query($args);
 
             if ($aircrafts->have_posts()) :
                 while ($aircrafts->have_posts()) : $aircrafts->the_post();
-                    $manufacturer = get_post_meta(get_the_ID(), '_custom_field_manufacturer', true);
-                    $range = get_post_meta(get_the_ID(), '_custom_field_range', true);
-                    $seats = get_post_meta(get_the_ID(), '_custom_field_seats', true);
-                    $price = get_post_meta(get_the_ID(), '_custom_field_rent_price', true);
-                    $speed = get_post_meta(get_the_ID(), '_custom_field_speed', true);
+                    $product_id   = get_the_ID();
+                    $manufacturer = carbon_get_post_meta($product_id, 'aircraft_make');
+                    $range_km        = carbon_get_post_meta($product_id, 'range_km');
+                    $aircraft_seats        = carbon_get_post_meta($product_id, 'aircraft_seats');
+                    $aircraft_hour_cost        = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
+                    $luggage_volume_m        = carbon_get_post_meta($product_id, 'luggage_volume_m');
+                    $cabin_height_m        = carbon_get_post_meta($product_id, 'cabin_height_m');
+                    $cruise_speed_kmh        = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+                    $aircraft_cat        = carbon_get_post_meta($product_id, 'aircraft_cat');
+
+                    $image = get_the_post_thumbnail_url($product_id, 'full') ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
             ?>
-                    <div class="looking-item"
-                        data-manufacturer="<?php echo esc_attr($manufacturer); ?>"
-                        data-range="<?php echo esc_attr($range); ?>"
-                        data-price="<?php echo esc_attr($price); ?>"
-                        data-seats="<?php echo esc_attr($seats); ?>">
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="looking-img" loading="lazy" alt="<?php the_title(); ?>">
+                    <div class="looking-item">
+                        <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="<?php the_title(); ?>">
                         <h3 class="h3"><?php the_title(); ?></h3>
                         <div class="looking-desc">
                             <div class="looking-row">
                                 <p class="looking-row-title">Скорость</p>
-                                <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
+                                <p class="looking-row-desc"><?php echo esc_html($cruise_speed_kmh); ?> км/ч</p>
                             </div>
                             <div class="looking-row">
                                 <p class="looking-row-title">Дальность</p>
-                                <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
+                                <p class="looking-row-desc"><?php echo esc_html($range_km); ?> км</p>
                             </div>
                             <div class="looking-row">
                                 <p class="looking-row-title">Количество мест</p>
-                                <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
+                                <p class="looking-row-desc"><?php echo esc_html($aircraft_seats); ?></p>
                             </div>
                             <div class="looking-row">
                                 <p class="looking-row-title">Цена в час</p>
-                                <p class="looking-row-desc">$<?php echo esc_html($price); ?></p>
+                                <p class="looking-row-desc">$<?php echo esc_html($aircraft_hour_cost); ?></p>
                             </div>
                         </div>
                         <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">Подробнее</a>
                     </div>
             <?php
                 endwhile;
+                wp_reset_postdata();
             else :
                 echo '<p>Ничего не найдено.</p>';
             endif;
             ?>
-
-            <!-- <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div> -->
         </div>
-        <!-- <div class="show-more">
-                <button class="btn btn-more">Смотреть ещё</button>
-            </div> -->
+
+        <div class="pagination" style="display:none!important">
+            <nav class="pagination-left">
+                <a href="" class="btn btn-pagination pagination-back">‹ Previous</a>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">1</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">2</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">3</a>
+                    </li>
+                </ul>
+                <a href="" class="btn btn-pagination pagination-forward">Next ›</a>
+            </nav>
+            <div class="pagination-right">
+                <span class="pagination-text">Show:</span>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">10</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">20</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">30</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 <?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
 

@@ -347,6 +347,13 @@
             $args = [
                 'post_type'      => 'product',
                 'posts_per_page' => -1,
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'slug',
+                        'terms'    => 'buy',
+                    ],
+                ],
                 'meta_query'     => ['relation' => 'AND'],
             ];
 

@@ -376,6 +376,13 @@
             $args = [
                 'post_type'      => 'product',
                 'posts_per_page' => -1,
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'slug',
+                        'terms'    => 'rent',
+                    ],
+                ],
                 'meta_query'     => ['relation' => 'AND'],
             ];
 
@@ -427,12 +434,9 @@
             ?>
         </div>
 
-        <div class="show-more is-hidden">
-            <button class="btn btn-more">Смотреть ещё</button>
-        </div>
         <div class="pagination" style="display:none!important">
             <nav class="pagination-left">
-                <a href="" class="btn btn-pagination pagination-back">‹ Назад</a>
+                <a href="" class="btn btn-pagination pagination-back">‹ Previous</a>
                 <ul class="pagination-list">
                     <li class="pagination-list-item is-active">
                         <a href="">1</a>
@@ -444,10 +448,10 @@
                         <a href="">3</a>
                     </li>
                 </ul>
-                <a href="" class="btn btn-pagination pagination-forward">Вперед ›</a>
+                <a href="" class="btn btn-pagination pagination-forward">Next ›</a>
             </nav>
             <div class="pagination-right">
-                <span class="pagination-text">Показывать:</span>
+                <span class="pagination-text">Show:</span>
                 <ul class="pagination-list">
                     <li class="pagination-list-item is-active">
                         <a href="">10</a>

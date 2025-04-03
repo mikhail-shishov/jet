@@ -75,7 +75,8 @@
                     fetch(`https://jethunter.aero/wp-json/wc/v3/products/${id}`, {
                         method: 'GET',
                         headers: {
-                            'Authorization': 'Basic ' + btoa('ck_e3b52bac31a8a8848d8e509f18073d2d3237a51e:cs_92a9460a5d930ec5b1423b431c3fe9be07283a38') // Добавляем заголовок авторизации
+                            // 'Authorization': 'Basic ' + btoa('ck_e3b52bac31a8a8848d8e509f18073d2d3237a51e:cs_92a9460a5d930ec5b1423b431c3fe9be07283a38')
+                            'Authorization': 'Basic ' + comparisonData.apiKey
                         }
                     })
                     .then(response => response.json())

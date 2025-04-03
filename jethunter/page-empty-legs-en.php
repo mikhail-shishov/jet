@@ -82,7 +82,7 @@
 
                     $item_class = $index >= 10 ? 'empty-item is-hidden' : 'empty-item';
                 ?>
-                    <div class="empty-item">
+                    <div class="<?php echo $item_class; ?>">
                         <img src="<?php echo esc_url($image_url ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png'); ?>" class="empty-img" loading="lazy" alt="<?php echo esc_attr($plane['title'] ?? 'FLat'); ?>">
                         <h3 class="h3"><?php echo esc_html($plane['title'] ?? 'No name'); ?></h3>
 

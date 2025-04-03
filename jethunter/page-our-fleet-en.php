@@ -305,8 +305,6 @@
             <div class="tabs-heading">Sort by:</div>
             <div class="tabs-options">
                 <a href="#" data-sort="name" class="btn btn-tab">Name</a>
-                <!-- <a href="#" data-sort="rent_price" class="btn btn-tab">Цена аренды</a>
-                <a href="#" data-sort="buy_price" class="btn btn-tab">Цена покупки</a> -->
                 <a href="#" data-sort="aircraft_seats" class="btn btn-tab">Seats</a>
                 <a href="#" data-sort="luggage_volume_m" class="btn btn-tab">Luggage compartment</a>
                 <a href="#" data-sort="range_km" class="btn btn-tab">Range</a>
@@ -320,6 +318,13 @@
             $args = [
                 'post_type'      => 'product',
                 'posts_per_page' => -1,
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'slug',
+                        'terms'    => 'encyclopedia',
+                    ],
+                ],
                 'meta_query'     => ['relation' => 'AND'],
             ];
 
@@ -491,6 +496,37 @@
                 echo '<p> </p>';
             endif;
             ?>
+        </div>
+        <div class="pagination">
+            <nav class="pagination-left">
+                <a href="" class="btn btn-pagination pagination-back">‹ Previous</a>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">1</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">2</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">3</a>
+                    </li>
+                </ul>
+                <a href="" class="btn btn-pagination pagination-forward">Next ›</a>
+            </nav>
+            <div class="pagination-right">
+                <span class="pagination-text">Show:</span>
+                <ul class="pagination-list">
+                    <li class="pagination-list-item is-active">
+                        <a href="">10</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">20</a>
+                    </li>
+                    <li class="pagination-list-item">
+                        <a href="">30</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>

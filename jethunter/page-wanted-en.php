@@ -25,110 +25,17 @@
 
 <section class="fleet-sect regular-sect">
     <div class="container">
-        <!-- <div class="search-wrap">
-            <form action="" class="search-form">
-                <div class="search-form-options">
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Тип</button>
-                        <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
-                            <li class="dropdown__list-item" data-value="Самолет">Самолет</li>
-                            <li class="dropdown__list-item" data-value="Вертолет">Вертолет</li>
-                        </ul>
-                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Категория</button>
-                        <ul class="dropdown__list">
-                            <li class="dropdown__list-item dropdown__list-item_active" data-value="Любой">Любой</li>
-                            <li class="dropdown__list-item" data-value="Турбовинтовые">Турбовинтовые</li>
-                            <li class="dropdown__list-item" data-value="Очень легкие">Очень легкие</li>
-                            <li class="dropdown__list-item" data-value="Легкие">Легкие</li>
-                            <li class="dropdown__list-item" data-value="Средние">Средние</li>
-                            <li class="dropdown__list-item" data-value="Супер-средние">Супер-средние</li>
-                            <li class="dropdown__list-item" data-value="Большие">Большие</li>
-                            <li class="dropdown__list-item" data-value="Ультра-большие">Ультра-большие</li>
-                            <li class="dropdown__list-item" data-value="Дальне магистральные">Дальне магистральные</li>
-                        </ul>
-                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Производитель</button>
-                        <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="Boeing">Boeing</li>
-                            <li class="dropdown__list-item" data-value="Challenger">Challenger</li>
-                            <li class="dropdown__list-item" data-value="Pilatus">Pilatus</li>
-                        </ul>
-                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Дальность (км)</button>
-                        <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="1000">1000</li>
-                            <li class="dropdown__list-item" data-value="2000">2000</li>
-                            <li class="dropdown__list-item" data-value="3000">3000</li>
-                            <li class="dropdown__list-item" data-value="4000">4000</li>
-                            <li class="dropdown__list-item" data-value="5000">5000</li>
-                            <li class="dropdown__list-item" data-value="6000">6000</li>
-                            <li class="dropdown__list-item" data-value="7000">7000</li>
-                            <li class="dropdown__list-item" data-value="8000">8000</li>
-                            <li class="dropdown__list-item" data-value="9000">9000</li>
-                            <li class="dropdown__list-item" data-value="10000">10000</li>
-                        </ul>
-                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="dropdown__button" type="button">Цена</button>
-                        <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="500-1000">500-1000</li>
-                            <li class="dropdown__list-item" data-value="1001-2000">1001-2000</li>
-                            <li class="dropdown__list-item" data-value="2001-3000">2001-3000</li>
-                        </ul>
-                        <input class="dropdown__input_hidden" type="text" name="select-category" value="" />
-                    </div>
-
-                    <div class="dropdown_with-chk">
-                        <button class="dropdown_with-chk__button" type="button">Количество мест</button>
-                        <ul class="dropdown_with-chk__list">
-                            <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="2-5" id="2-5" />
-                                <label class="dropdown_with-chk__list-item_label" for="2-5">2-5</label>
-                            </li>
-                            <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="6-15" id="6-15" />
-                                <label class="dropdown_with-chk__list-item_label" for="6-15">6-15</label>
-                            </li>
-                            <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="16-30" id="16-30" />
-                                <label class="dropdown_with-chk__list-item_label" for="16-30">16-30</label>
-                            </li>
-                            <li class="dropdown_with-chk__list-item">
-                                <input class="dropdown_with-chk__list-item_label" type="checkbox" name="31" id="31" />
-                                <label class="dropdown_with-chk__list-item_label" for="31">31+</label>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="btn-container">
-                    <button type="button" class="btn btn-green-fill">Найти</button>
-                    <button type="button" class="btn">Сбросить</button>
-                </div>
-            </form>
-        </div> -->
+        
         <?php
         $planes_data = carbon_get_post_meta(get_the_ID(), 'planes_wanted');
 
         if ($planes_data) : ?>
-            <div class="looking-grid looking-grid-full">
+            <div class="looking-grid looking-grid-full show-more-grid">
                 <?php foreach ($planes_data as $plane) : 
                     $image_url = !empty($plane['image']) ? wp_get_attachment_url($plane['image']) : get_stylesheet_directory_uri() . '/img/planes/1.png';
+                    $item_class = $index >= 10 ? 'looking-item is-hidden' : 'looking-item';
                 ?>
-                    <div class="looking-item">
+                    <div class="<?php echo $item_class; ?>">
                         <img src="<?php echo esc_url($image_url); ?>" class="looking-img" loading="lazy" alt="<?php echo esc_attr($plane['title']); ?>">
                         <h3 class="h3"><?php echo esc_html($plane['title']); ?></h3>
                         <div class="looking-desc">
@@ -149,6 +56,11 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php if (count($planes_data) > 10) : ?>
+            <div class="show-more">
+                <a href="#" class="link">Смотреть ещё</a>
+            </div>
+            <?php endif; ?>
         <?php else : ?>
             <p>Нет данных о самолетах.</p>
         <?php endif; ?>

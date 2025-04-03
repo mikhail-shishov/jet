@@ -1,5 +1,14 @@
 <?php
 
+function add_comparison_api_key() {
+    wp_enqueue_script('comparison-script', get_template_directory_uri() . '/js/plane-compare.js', array('jquery'), null, true);
+
+    wp_localize_script('comparison-script', 'comparisonData', array(
+        'apiKey' => base64_encode('ck_e3b52bac31a8a8848d8e509f18073d2d3237a51e:cs_92a9460a5d930ec5b1423b431c3fe9be07283a38'),
+    ));
+}
+add_action('wp_enqueue_scripts', 'add_comparison_api_key');
+
 // получаем разделители чисел
 $thousands_separator = get_option('woocommerce_price_thousand_sep');
 $decimal_separator = get_option('woocommerce_price_decimal_sep');
@@ -168,6 +177,20 @@ add_action('carbon_fields_register_fields', function () {
                             'invisible' => 'Нет (скрытый)'
                         ])->set_default_value('yes')
                 ]),
+            Field::make('complex', 'services_slider', 'Слайды о услугах')
+                ->set_layout('tabbed-horizontal')
+                ->add_fields(array(
+                    Field::make('text', 'slide_text', 'Текст'),
+                    Field::make('image', 'slide_image', 'Картинка')->set_value_type('url'),
+                    Field::make('text', 'slide_link', 'Ссылка')->set_default_value('/services/'),
+                )),
+            Field::make('complex', 'services_slider_en', 'EN Слайды о услугах')
+                ->set_layout('tabbed-horizontal')
+                ->add_fields(array(
+                    Field::make('text', 'slide_text', 'Текст'),
+                    Field::make('image', 'slide_image', 'Картинка')->set_value_type('url'),
+                    Field::make('text', 'slide_link', 'Ссылка')->set_default_value('/services/'),
+                ))
         ));
 
     Container::make('post_meta', 'Параметры самолёта')
@@ -178,14 +201,14 @@ add_action('carbon_fields_register_fields', function () {
                 ->set_value_type('url')
                 ->set_help_text('Загрузите JSON с характеристиками самолёта.'),
 
-            Field::make('select', 'aircraft_category', 'Категория самолёта')
-                ->set_options([
-                    'encyclopedia' => 'Энциклопедия',
-                    'buy' => 'Покупка',
-                    'rent' => 'Аренда',
-                    'sell' => 'Продажа',
-                ])
-                ->set_required(true),
+            // Field::make('select', 'aircraft_category', 'Категория самолёта')
+            //     ->set_options([
+            //         'encyclopedia' => 'Энциклопедия',
+            //         'buy' => 'Покупка',
+            //         'rent' => 'Аренда',
+            //         'sell' => 'Продажа',
+            //     ])
+            //     ->set_required(true),
 
             Field::make('checkbox', 'aircraft_hot_offer', 'Горячее предложение')
                 ->set_option_value('yes'),
@@ -2179,3 +2202,86 @@ function save_product_field_formatting($post_id, $post) {
         update_post_meta($post_id, $field, $value);
     }
 }
+
+function format_aircraft_numbers() {
+    // Only run on product edit screen
+    $screen = get_current_screen();
+    if (!$screen || $screen->base !== 'post' || $screen->post_type !== 'product') {
+        return;
+    }
+    
+    // Add simple JavaScript to format numbers on display
+    ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        // Format numbers when the page loads
+        formatNumberFields();
+        
+        // Format numbers when inputs change
+        $(document).on('change', '.carbon-field input[type="text"]', function() {
+            formatNumberFields();
+        });
+        
+        function formatNumberFields() {
+            // List of field names that should be formatted
+            var numberFields = [
+                'cruise_speed_kmh',
+                'cruise_speed_mph',
+                'range_km',
+                'range_miles',
+                'max_takeoff_height_m',
+                'max_takeoff_height_ft',
+                'max_takeoff_weight_kg',
+                'max_takeoff_weight_lbs',
+                'max_landing_weight_kg',
+                'max_landing_weight_lbs',
+                'takeoff_distance_m',
+                'takeoff_distance_ft',
+                'landing_distance_m',
+                'landing_distance_ft',
+                'cabin_width_m',
+                'cabin_width_ft',
+                'cabin_height_m',
+                'cabin_height_ft',
+                'cabin_length_m',
+                'cabin_length_ft',
+                'cabin_volume_m',
+                'cabin_volume_ft',
+                'luggage_volume_m',
+                'luggage_volume_ft',
+                'aircraft_length_m',
+                'aircraft_length_ft',
+                'aircraft_height_m',
+                'aircraft_height_ft',
+                'aircraft_wing_length_m',
+                'aircraft_wing_length_ft'
+            ];
+            
+            // Process each field
+            numberFields.forEach(function(fieldName) {
+                // Find inputs that match the field name
+                $('input[name*="' + fieldName + '"]').each(function() {
+                    var input = $(this);
+                    var value = input.val();
+                    
+                    // Skip if empty or not a number
+                    if (!value || isNaN(parseFloat(value.replace(/\s/g, '')))) {
+                        return;
+                    }
+                    
+                    // Format the number
+                    var number = parseFloat(value.replace(/\s/g, ''));
+                    var formatted = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                    
+                    // Update the input value
+                    if (formatted !== value) {
+                        input.val(formatted);
+                    }
+                });
+            });
+        }
+    });
+    </script>
+    <?php
+}
+add_action('admin_footer', 'format_aircraft_numbers');

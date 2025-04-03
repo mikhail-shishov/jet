@@ -340,6 +340,13 @@
             $args = [
                 'post_type'      => 'product',
                 'posts_per_page' => -1,
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'slug',
+                        'terms'    => 'encyclopedia',
+                    ],
+                ],
                 'meta_query'     => ['relation' => 'AND'],
             ];
 
@@ -401,9 +408,7 @@
             ?>
         </div>
 
-        <div class="show-more is-hidden">
-            <button class="btn btn-more">Смотреть ещё</button>
-        </div>
+
         <div class="pagination">
             <nav class="pagination-left">
                 <a href="" class="btn btn-pagination pagination-back">‹ Назад</a>

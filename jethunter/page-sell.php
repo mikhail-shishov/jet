@@ -332,8 +332,6 @@
             <div class="tabs-heading">Сортировать:</div>
             <div class="tabs-options">
                 <a href="#" data-sort="name" class="btn btn-tab">Название</a>
-                <!-- <a href="#" data-sort="rent_price" class="btn btn-tab">Цена аренды</a>
-                <a href="#" data-sort="buy_price" class="btn btn-tab">Цена покупки</a> -->
                 <a href="#" data-sort="aircraft_seats" class="btn btn-tab">Количество мест</a>
                 <a href="#" data-sort="luggage_volume_m" class="btn btn-tab">Объем багажника</a>
                 <a href="#" data-sort="range_km" class="btn btn-tab">Дальность</a>
@@ -346,7 +344,14 @@
             <?php
             $args = [
                 'post_type'      => 'product',
-                'posts_per_page' => -1,
+                'posts_per_page' => -1,,
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'slug',
+                        'terms'    => 'sell',
+                    ],
+                ],
                 'meta_query'     => ['relation' => 'AND'],
             ];
 

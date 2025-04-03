@@ -127,18 +127,25 @@ $thousands_separator = get_option('woocommerce_price_thousand_sep');
 $decimal_separator = get_option('woocommerce_price_decimal_sep');
 
 // Функция для форматирования чисел
-function format_number($number, $decimal_separator, $thousands_separator) {
-    if (empty($number)) return '';
+function format_number($number, $decimal_separator = '.', $thousands_separator = ' ')
+{
+    // Skip if empty
+    if (empty($number)) {
+        return '';
+    }
 
-    // Преобразуем число в строку и форматируем
-    $formatted_number = number_format(
-        $number, 
-        2, // количество знаков после запятой
-        $decimal_separator, 
-        $thousands_separator
-    );
+    // Remove existing spaces or other thousand separators
+    $clean_number = str_replace(' ', '', $number);
+    $clean_number = str_replace(',', '.', $clean_number);
 
-    return $formatted_number;
+    // Convert to float
+    $float_number = floatval($clean_number);
+
+    // Determine if we need decimals
+    $decimals = (floor($float_number) == $float_number) ? 0 : 2;
+
+    // Format the number
+    return number_format($float_number, $decimals, $decimal_separator, $thousands_separator);
 }
 ?>
 
@@ -673,7 +680,12 @@ function format_number($number, $decimal_separator, $thousands_separator) {
 
                 foreach ($fields as $meta_key => $labels) :
                     $value = carbon_get_post_meta(get_the_ID(), $meta_key);
-                    if (!empty($value)) : ?>
+                    if (!empty($value)) :
+                        // Only format if the value contains only numbers, spaces, commas, and periods
+                        if (preg_match('/^[\d\s\.,]+$/', $value)) {
+                            $value = format_number($value, $decimal_separator, $thousands_separator);
+                        }
+                ?>
                         <div class="plane-specs-item">
                             <div class="plane-specs-number"><?php echo esc_html($value); ?></div>
                             <div class="plane-specs-desc"><?php echo t($labels[0], $labels[1]); ?></div>
