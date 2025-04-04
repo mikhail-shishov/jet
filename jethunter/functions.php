@@ -2355,24 +2355,110 @@ add_action('admin_footer', 'format_aircraft_numbers');
 
 function sortingParams($args, $sort){
     if($sort==1){
-
+       $args['orderby'] = 'title';
+       $args['order'] = 'ASC';
     }elseif ($sort==2) {
        $args['orderby'] = array('sortparam' => 'DESC');
-       array_push($args['meta_query'], array('sortparam' => array('key' => 'aircraft_seats', 'compare' => 'EXISTS')));
+       array_push($args['meta_query'], array('sortparam' => array('key' => 'aircraft_seats', 'compare' => 'EXISTS', 'type' => 'numeric')));
     }elseif ($sort==3) {
        $args['orderby'] = array('sortparam' => 'DESC');
-       $args['meta_query'] = array('sortparam' => array('key' => 'luggage_volume_m', 'compare' => 'EXISTS'));
+       array_push($args['meta_query'], array('sortparam' => array('key' => 'luggage_volume_m', 'compare' => 'EXISTS', 'type' => 'numeric')));
     }elseif ($sort==4) {
        $args['orderby'] = array('sortparam' => 'DESC');
-       $args['meta_query'] = array('sortparam' => array('key' => 'range_km', 'compare' => 'EXISTS'));
+       array_push($args['meta_query'], array('sortparam' => array('key' => 'range_km', 'compare' => 'EXISTS', 'type' => 'numeric')));
     }elseif ($sort==5) {
-       $args['orderby'] = array('sortparam' => 'DESC');
-       $args['meta_query'] = array('sortparam' => array('key' => 'cruise_speed_kmh', 'compare' => 'EXISTS'));
+       $args['orderby'] = array('sortparam' => 'ASC');
+       array_push($args['meta_query'], array('sortparam' => array('key' => 'cruise_speed_kmh', 'compare' => 'EXISTS', 'type' => 'numeric')));
     }elseif ($sort==6) {
-       $args['orderby'] = array('sortparam' => 'DESC');
-       $args['meta_query'] = array('sortparam' => array('key' => 'cabin_height_m', 'compare' => 'EXISTS'));
+       $args['orderby'] = array('sortparam' => 'ASC');
+       array_push($args['meta_query'], array('sortparam' => array('key' => 'cabin_height_m', 'compare' => 'EXISTS', 'type' => 'numeric')));
     }elseif ($sort==7) {
        // code...
     }
-print_r($args);
-    retur
+
+    return $args;
+} 
+
+function filterParams($args, $params, $lang){
+    //lang = 1 - ru
+    //lang = 2 - en
+    if (isset($params['selectedType']) and $params['selectedType'] != '') {
+        if($lang==1){$key = 'aircraft_type';}else{$key = 'aircraft_type_en';}
+        array_push($args['meta_query'], array('key' => $key, 'value' => $params['selectedType']));
+    }
+    if (isset($params['selectedCategory']) and $params['selectedCategory'] != '') {
+        if($lang==1){$key = 'aircraft_cat';}else{$key = 'aircraft_cat_en';}
+        array_push($args['meta_query'], array('key' => $key, 'value' => $params['selectedCategory']));
+    }
+    if (isset($params['manufacturerSelector']) and $params['manufacturerSelector'] != '') {
+        if($lang==1){$key = 'product_brand';}else{$key = 'product_brand';}
+
+        array_push($args['tax_query'], array('taxonomy' => $key, 'field' => 'name', 'operator' => 'IN', 'terms' => $params['manufacturerSelector']));
+        array_push($args['tax_query'], array('relation' => 'AND'));
+    }
+    if (isset($params['rangeSelector']) and $params['rangeSelector'] != '') {
+        if($lang==1){$key = 'range_km';}else{$key = 'range_km';}
+
+        $args_in_array_top = array('relation' => 'OR');
+        foreach ($params['rangeSelector'] as $keyp => $value) {
+            list($d1,$d2) = explode('-', $value);
+            $args_in_array_top[] = array('key' => $key,
+                                   'value' => array((int)$d1,(int)$d2),
+                                   'type'    => 'numeric',
+                                   'compare' => 'BETWEEN',);
+        }
+        array_push($args['meta_query'], $args_in_array_top);
+    }
+    if (isset($params['seatsSelector']) and $params['seatsSelector'] != '') {
+        if($lang==1){$key = 'aircraft_seats';}else{$key = 'aircraft_seats';}
+
+        $args_in_array_top = array('relation' => 'OR');
+        foreach ($params['seatsSelector'] as $keyp => $value) {
+            list($d1,$d2) = explode('-', $value);
+            $args_in_array_top[] = array('key' => $key,
+                                   'value' => array((int)$d1,(int)$d2),
+                                   'type'    => 'numeric',
+                                   'compare' => 'BETWEEN',);
+        }
+        array_push($args['meta_query'], $args_in_array_top);
+    }
+    if (isset($params['selectedPrice']) and $params['selectedPrice'] != '') {
+        if($lang==1){$key = 'aircraft_hour_cost';}else{$key = 'aircraft_hour_cost';}
+
+        list($d1,$d2) = explode('-', $params['selectedPrice']);
+        $args_in_array_top = array('key' => $key,
+                                     'value' => array((int)$d1,(int)$d2),
+                                     'type'    => 'numeric',
+                                     'compare' => 'BETWEEN',);
+        array_push($args['meta_query'], $args_in_array_top);
+    }
+    return $args;
+}
+
+function filterParamsUrls($params){
+    $url = '';
+    if (isset($params['selectedType']) and $params['selectedType'] != '') {
+        $url = $url.'&selectedType='.$params['selectedType'];
+    }
+    if (isset($params['selectedCategory']) and $params['selectedCategory'] != '') {
+        $url = $url.'&selectedCategory='.$params['selectedCategory'];
+    }
+    if (isset($params['manufacturerSelector']) and $params['manufacturerSelector'] != '') {
+        $url = $url.'&manufacturerSelector='.$params['manufacturerSelector'];
+    }
+    if (isset($params['rangeSelector']) and $params['rangeSelector'] != '') {
+        foreach ($params['rangeSelector'] as $key => $value) {
+            $url = $url.'&rangeSelector[]='.$value;
+        }
+    }
+    if (isset($params['seatsSelector']) and $params['seatsSelector'] != '') {
+        foreach ($params['seatsSelector'] as $key => $value) {
+            $url = $url.'&seatsSelector[]='.$value;
+        }
+    }
+    if (isset($params['selectedPrice']) and $params['selectedPrice'] != '') {
+        $url = $url.'&selectedPrice='.$params['selectedPrice'];
+    }
+
+    return $url;
+}

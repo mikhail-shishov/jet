@@ -691,10 +691,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let itemsPerPage = 10;
   let currentPage = 1;
 
-  if (!itemsContainer || !items.length) {
-    console.warn("Сортировка: контейнер или элементы отсутствуют.");
-    return;
-  }
+  //if (!itemsContainer || !items.length) {
+  //  console.warn("Сортировка: контейнер или элементы отсутствуют.");
+  //  return;
+  //}
 
   // фильтрация самолетов
   // btnFind?.addEventListener("click", () => {
@@ -732,7 +732,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   });
   // });
   btnFind?.addEventListener("click", () => {
-    searchFilterFunction();
+    searchFilterFunctionSubmit();
   });
 
   function checkPriceRange(price, range) {
@@ -749,10 +749,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Сброс фильтров
   btnReset?.addEventListener("click", () => {
-    document.querySelectorAll(".dropdown__list-item_active").forEach(item => item.classList.remove("dropdown__list-item_active"));
-    document.querySelectorAll(".dropdown__list-item:first-child").forEach(item => item.classList.add("dropdown__list-item_active"));
-    document.querySelectorAll(".dropdown_with-chk__list-item input").forEach(checkbox => (checkbox.checked = false));
-    items.forEach(item => (item.style.display = "block"));
+    searchFilterFunctionClear();
+    //document.querySelectorAll(".dropdown__list-item_active").forEach(item => item.classList.remove("dropdown__list-item_active"));
+    //document.querySelectorAll(".dropdown__list-item:first-child").forEach(item => item.classList.add("dropdown__list-item_active"));
+    //document.querySelectorAll(".dropdown_with-chk__list-item input").forEach(checkbox => (checkbox.checked = false));
+    //items.forEach(item => (item.style.display = "block"));
   });
 
   // Сортировка самолетов
@@ -786,19 +787,19 @@ document.addEventListener("DOMContentLoaded", function () {
   //sortItems(); // Сортируем сразу при загрузке
 
   // Фильтрация по категории (кнопки tabs-options-cat)
-  document.querySelectorAll(".tabs-options-cat .btn").forEach(button => {
-    button.addEventListener("click", event => {
-      event.preventDefault();
-      const category = button.textContent.trim();
-
-      console.log("Фильтрация по категории:", category);
-
-      items.forEach(item => {
-        const itemCategory = item.dataset.category;
-        item.style.display = (!category || category === itemCategory) ? "block" : "none";
-      });
-    });
-  });
+  //document.querySelectorAll(".tabs-options-cat .btn").forEach(button => {
+  //  button.addEventListener("click", event => {
+  //    event.preventDefault();
+  //    const category = button.textContent.trim();
+  //
+  //    console.log("Фильтрация по категории:", category);
+  //
+  //    items.forEach(item => {
+  //      const itemCategory = item.dataset.category;
+  //      item.style.display = (!category || category === itemCategory) ? "block" : "none";
+  //    });
+  //  });
+  //});
 
   function updatePagination() {
     const totalItems = items.filter(item => item.style.display !== "none").length;
@@ -1186,6 +1187,84 @@ window.addEventListener("load", () => {
   renderComparison();
 })
 
+function searchFilterFunctionClear(){
+  let action = jQuery('.search-form').attr('action');
+
+  location.href = action;
+  return false;
+}
+
+function searchFilterFunctionSubmit(){
+  var selectedType = jQuery('.aircraft-type-dropdown .dropdown__list-item_active').attr('data-value');
+
+  var selectedCategory = jQuery('.aircraft-type-plane .dropdown__list-item_active').attr('data-value');
+  if (jQuery('.aircraft-type-helicopter').css('display') == 'block') {
+    selectedCategory = jQuery('.aircraft-type-helicopter .dropdown__list-item_active').attr('data-value');
+  } else if (jQuery('.aircraft-type-vtol').css('display') == 'block') {
+    selectedCategory = jQuery('.aircraft-type-vtol .dropdown__list-item_active').attr('data-value');
+  }
+
+  var manufacturerSelector = jQuery('.aircraft-manufacturer-plane .dropdown__list-item_active').attr('data-value');
+  if (jQuery('.aircraft-manufacturer-helicopter').css('display') == 'block') {
+    manufacturerSelector = jQuery('.aircraft-manufacturer-helicopter .dropdown__list-item_active').attr('data-value');
+  } else if (jQuery('.aircraft-manufacturer-vtol').css('display') == 'block') {
+    manufacturerSelector = jQuery('.aircraft-manufacturer-vtol .dropdown__list-item_active').attr('data-value');
+  }
+
+  var rangeSelector = '.aircraft-range-plane input:checked';
+  if (jQuery('.aircraft-range-helicopter').css('display') == 'block') {
+    rangeSelector = '.aircraft-range-helicopter input:checked';
+  } else if (jQuery('.aircraft-range-vtol').css('display') == 'block') {
+    rangeSelector = '.aircraft-range-vtol input:checked';
+  }
+  var rangeSelectorUrl = '';
+  jQuery(rangeSelector).each(function (index, value) {
+    rangeSelectorUrl = rangeSelectorUrl + '&rangeSelector[]=' + jQuery(this).attr('id');
+  });
+
+  var seatsSelector = '.aircraft-seats-plane input:checked';
+  if (jQuery('.aircraft-seats-helicopter').css('display') == 'block') {
+    seatsSelector = '.aircraft-seats-helicopter input:checked';
+  } else if (jQuery('.aircraft-seats-vtol').css('display') == 'block') {
+    seatsSelector = '.aircraft-seats-vtol input:checked';
+  }
+  var seatsSelectorUrl = '';
+  jQuery(seatsSelector).each(function (index, value) {
+    seatsSelectorUrl = seatsSelectorUrl + '&seatsSelector[]=' + jQuery(this).attr('id');
+  });
+
+  var selectedPrice = jQuery('.aircraft-price-plane .dropdown__list-item_active').attr('data-value');
+  if (jQuery('.aircraft-price-helicopter').css('display') == 'block') {
+    selectedPrice = jQuery('.aircraft-price-helicopter .dropdown__list-item_active').attr('data-value');
+  } else if (jQuery('.aircraft-price-vtol').css('display') == 'block') {
+    selectedPrice = jQuery('.aircraft-price-vtol .dropdown__list-item_active').attr('data-value');
+  }
+
+  let action = jQuery('.search-form').attr('action');
+
+  let durl = action+'?filter=search';
+  if (typeof selectedType !== 'undefined') {
+      durl = durl + '&selectedType=' + selectedType;
+  }
+  if (typeof selectedCategory !== 'undefined') {
+      durl = durl + '&selectedCategory=' + selectedCategory;
+  }
+  if (typeof manufacturerSelector !== 'undefined') {
+      durl = durl + '&manufacturerSelector=' + manufacturerSelector;
+  }
+  if (typeof rangeSelectorUrl != '') {
+      durl = durl + rangeSelectorUrl;
+  }
+  if (typeof seatsSelectorUrl != '') {
+      durl = durl + seatsSelectorUrl;
+  }
+  if (typeof selectedPrice !== 'undefined') {
+      durl = durl + '&selectedPrice=' + selectedPrice;
+  }
+
+  location.href = durl;
+  return false;
+}
 async function searchFilterFunction() {
   var selectedType = jQuery('.aircraft-type-dropdown .dropdown__list-item_active').attr('data-value');
 
