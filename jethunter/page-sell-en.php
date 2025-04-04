@@ -417,251 +417,33 @@
         </div>
     </div>
 </section>
-<!-- <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div>
-                <div class="looking-item">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/planes/1.png" class="looking-img" loading="lazy" alt="">
-                    <h3 class="h3">Challenger 350</h3>
-                    <div class="looking-desc">
-                        <div class="looking-row">
-                            <p class="looking-row-title">Скорость</p>
-                            <p class="looking-row-desc">ACJ 320 neo</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Дальность</p>
-                            <p class="looking-row-desc">11000 км/
-                                5939 nm</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Количество мест</p>
-                            <p class="looking-row-desc">19</p>
-                        </div>
-                        <div class="looking-row">
-                            <p class="looking-row-title">Цена в час</p>
-                            <p class="looking-row-desc">22 300₽</p>
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-green-fill">Подробнее</a>
-                </div> -->
-</section>
-<!-- <div class="show-more">
-                <button class="btn btn-more">Смотреть ещё</button>
-            </div> -->
-</div>
-</div>
+
+<?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/wanted.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/about-rent.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/step-3.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/instruction-8.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/cta-1.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/seo-ceo.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/features.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/services-compare.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/services-slider.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/cta-2.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/reviews.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/partners.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
 
 <?php get_footer(); ?>

@@ -128,7 +128,7 @@
                                         }
                                         ?>
                                     </p>
-                                    <p class="empty-path-label">Date</p>
+                                    <p class="empty-path-label">Flight date</p>
                                 </div>
                                 <div class="empty-path-seat">
                                     <p class="empty-path-info"><?php echo esc_html($plane['seats'] ?? '—'); ?></p>

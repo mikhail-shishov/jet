@@ -577,7 +577,7 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
                 ->set_max(4)
                 ->add_fields(array(
                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(false),
                     Field::make('select', 'origin_country', 'Страна вылета')
                         ->set_options(array_combine(array_keys($country_flags_global), array_keys($country_flags_global))),
                     Field::make('select', 'origin_country_en', 'Страна вылета EN')
@@ -594,12 +594,12 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
                     Field::make('text', 'seats', 'Количество мест')->set_required(false),
                     Field::make('text', 'price', 'Цена в USD')->set_required(false),
                 )),
-            Field::make('complex', 'empty_legs_short_en', 'Пустые перелеты - короткий блок на страницах')
+            Field::make('complex', 'empty_legs_short_en', 'EN Пустые перелеты - короткий блок на страницах')
                 ->set_layout('tabbed-horizontal')
                 ->set_max(4)
                 ->add_fields(array(
                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(false),
                     Field::make('select', 'origin_country', 'Страна вылета')
                         ->set_options(array_combine(array_keys($country_flags_global), array_keys($country_flags_global))),
                     Field::make('select', 'origin_country_en', 'Страна вылета EN')
@@ -615,7 +615,41 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
                     Field::make('date_time', 'flight_date', 'Дата и время вылета')->set_required(true),
                     Field::make('text', 'seats', 'Количество мест')->set_required(false),
                     Field::make('text', 'price', 'Цена в USD')->set_required(false),
-                ))
+                )),
+            Field::make('complex', 'wanted_short', 'Список самолетов')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(4)
+                ->add_fields([
+                    Field::make('text', 'title', 'Название самолета')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(false),
+                    Field::make('text', 'type', 'Тип')->set_required(false),
+                    Field::make('text', 'category', 'Категория')->set_required(false),
+                    Field::make('text', 'type_en', 'Тип (на английском языке)')->set_required(false),
+                    Field::make('text', 'category_en', 'Категория (на английском языке)')->set_required(false),
+                    Field::make('text', 'manufacturer', 'Производитель')->set_required(false),
+                    Field::make('text', 'range_km', 'Дальность полёта (км)')->set_required(false),
+                    Field::make('text', 'produced_year', 'Год выпуска')->set_required(false),
+                    Field::make('text', 'hours_flown', 'Налет часов')->set_required(false),
+                    Field::make('text', 'seats', 'Количество мест')->set_required(false),
+                    Field::make('text', 'price', 'Цена в USD')->set_required(false)
+                ]),
+            Field::make('complex', 'wanted_short_en', 'EN Список самолетов')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(4)
+                ->add_fields([
+                    Field::make('text', 'title', 'Название самолета')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(false),
+                    Field::make('text', 'type', 'Тип')->set_required(false),
+                    Field::make('text', 'category', 'Категория')->set_required(false),
+                    Field::make('text', 'type_en', 'Тип (на английском языке)')->set_required(false),
+                    Field::make('text', 'category_en', 'Категория (на английском языке)')->set_required(false),
+                    Field::make('text', 'manufacturer', 'Производитель')->set_required(false),
+                    Field::make('text', 'range_km', 'Дальность полёта (км)')->set_required(false),
+                    Field::make('text', 'produced_year', 'Год выпуска')->set_required(false),
+                    Field::make('text', 'hours_flown', 'Налет часов')->set_required(false),
+                    Field::make('text', 'seats', 'Количество мест')->set_required(false),
+                    Field::make('text', 'price', 'Цена в USD')->set_required(false)
+                ]),
         ));
 
     Container::make('post_meta', 'Параметры самолёта')
@@ -639,6 +673,51 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
                 ->set_option_value('yes'),
 
             Field::make('text', 'aircraft_model', 'Модель'),
+
+            Field::make('text', 'aircraft_serial_number', 'Серийный номер')
+                ->set_classes('buy-category-field'),
+            Field::make('text', 'aircraft_hull_number', 'Бортовой номер')
+                ->set_classes('buy-category-field'),
+            Field::make('text', 'aircraft_produced_year', 'Год выпуска')
+                ->set_classes('buy-category-field'),
+
+            Field::make('complex', 'aircraft_engines', 'Двигатели')
+                ->set_classes('buy-category-field')
+                ->add_fields([
+                    Field::make('text', 'engine_hours', 'Налет (часов)'),
+                    Field::make('text', 'engine_cycles', 'Циклы'),
+                ]),
+
+            Field::make('complex', 'aircraft_programmes', 'Программы')
+            ->set_classes('buy-category-field')
+            ->add_fields([
+                Field::make('text', 'programme_key', 'Где применяется'),
+                Field::make('text', 'programme_value', 'Название'),
+            ]),
+
+            Field::make('separator', 'separator_apu', 'Вспомогательная силовая установка (ВСУ)')
+                ->set_classes('buy-category-field'),
+            Field::make('text', 'aircraft_flown_hours', 'Налет (часов)')
+                ->set_classes('buy-category-field'),
+            Field::make('text', 'aircraft_cycles', 'Циклы')
+                ->set_classes('buy-category-field'),
+
+            Field::make('separator', 'separator_equipment', 'Дополнительное оборудование')
+                ->set_classes('buy-category-field'),
+            Field::make('textarea', 'additional_equipment', 'Описание')
+                ->set_classes('buy-category-field'),
+            Field::make('textarea', 'additional_equipment_en', 'EN Описание')
+                ->set_classes('buy-category-field'),
+
+            Field::make('separator', 'separator_info', 'Дополнительная информация')
+                ->set_classes('buy-category-field'),
+            Field::make('textarea', 'additional_info', 'Описание')
+                ->set_classes('buy-category-field'),
+            Field::make('textarea', 'additional_info_en', 'EN Описание')
+                ->set_classes('buy-category-field'),
+
+            Field::make('text', 'aircraft_buy_price', 'Цена ВС для покупки или продажи')
+                ->set_classes('buy-category-field'),
 
             // Field::make('text', 'aircraft_type', 'Тип'),
             // Field::make('text', 'aircraft_type_en', 'EN Тип'),
@@ -698,30 +777,30 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
             // Field::make('text', 'aircraft_make', 'Производитель'),
             // Field::make('image', 'aircraft_logo', 'Логотип'),
 
-            Field::make('text', 'id_number_buy', 'Идентификационный номер, покупка')
-                ->set_conditional_logic([
-                    ['field' => 'aircraft_category', 'value' => 'buy', 'compare' => '='],
-                ]),
+            // Field::make('text', 'id_number_buy', 'Идентификационный номер, покупка')
+            //     ->set_conditional_logic([
+            //         ['field' => 'aircraft_category', 'value' => 'buy', 'compare' => '='],
+            //     ]),
 
-            Field::make('text', 'id_number_rent', 'Идентификационный номер, аренда')
-                ->set_conditional_logic([
-                    ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
-                ]),
+            // Field::make('text', 'id_number_rent', 'Идентификационный номер, аренда')
+            //     ->set_conditional_logic([
+            //         ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
+            //     ]),
 
-            Field::make('text', 'purchase_price', 'Цена покупки')
-                ->set_conditional_logic([
-                    ['field' => 'aircraft_category', 'value' => 'buy', 'compare' => '='],
-                ]),
+            // Field::make('text', 'purchase_price', 'Цена покупки')
+            //     ->set_conditional_logic([
+            //         ['field' => 'aircraft_category', 'value' => 'buy', 'compare' => '='],
+            //     ]),
 
-            Field::make('text', 'rental_price', 'Цена аренды')
-                ->set_conditional_logic([
-                    ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
-                ]),
+            // Field::make('text', 'rental_price', 'Цена аренды')
+            //     ->set_conditional_logic([
+            //         ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
+            //     ]),
 
-            Field::make('text', 'rental_period', 'Срок аренды')
-                ->set_conditional_logic([
-                    ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
-                ]),
+            // Field::make('text', 'rental_period', 'Срок аренды')
+            //     ->set_conditional_logic([
+            //         ['field' => 'aircraft_category', 'value' => 'rent', 'compare' => '='],
+            //     ]),
 
             Field::make('text', 'cruise_speed_kmh', 'Крейсерская скорость (км/ч)')
                 ->set_attribute('type', 'text')
@@ -849,6 +928,7 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
 
             Field::make('text', 'propeller', 'Пропеллер'),
 
+            Field::make('separator', 'separator_cabin', 'Салон'),
             Field::make('text', 'aircraft_seats', 'Количество мест'),
 
             Field::make('text', 'cabin_width_m', 'Ширина салона (м)'),
@@ -907,28 +987,28 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
             Field::make('text', 'aircraft_features_heading_6_en', 'EN Особенности самолета, 6 заголовок'),
             Field::make('text', 'aircraft_features_desc_6_en', 'EN Особенности самолета, 6 описание'),
 
-            Field::make('text', 'variable_cost_hour', 'Переменные расходы (USD)/час'),
-            Field::make('text', 'programs_engine', 'Программы двигатель'),
-            Field::make('text', 'programs_planer', 'Программы планер'),
-            Field::make('text', 'programs_vsu_propeller', 'Программы ВСУ/Пропеллер'),
-            Field::make('text', 'fuel_cost', 'Топливо (при цене $800/тонна)'),
-            Field::make('text', 'aircraft_navigation', 'Навигация'),
-            Field::make('text', 'crew_payment', 'Командировочные экипажа'),
-            Field::make('text', 'other_costs', 'Другие затраты'),
-            Field::make('text', 'variable_cost_sum', 'Сумма переменные расходы'),
-            Field::make('text', 'crew_salary', 'Зарплата экипажа'),
-            Field::make('text', 'engineer_salary', 'Зарплата инженера'),
-            Field::make('text', 'crew_education', 'Обучение экипажа'),
-            Field::make('text', 'sw_navigation', 'ПО и навигация'),
-            Field::make('text', 'aircraft_insurance', 'Страховка'),
-            Field::make('text', 'aircraft_parking', 'Стоянка'),
-            Field::make('text', 'company_income', 'Доход управляющей компании'),
-            Field::make('text', 'samp', 'CAMP'),
-            Field::make('text', 'technical_management', 'Технический менеджмент'),
-            Field::make('text', 'other_different_costs', 'Разные'),
-            Field::make('text', 'constant_cost_sum', 'Сумма постоянные расходы'),
-            Field::make('text', 'total_cost', 'ИТОГО расходы'),
-            Field::make('text', 'total_cost_hour', 'Итого цена летного часа'),
+            // Field::make('text', 'variable_cost_hour', 'Переменные расходы (USD)/час'),
+            // Field::make('text', 'programs_engine', 'Программы двигатель'),
+            // Field::make('text', 'programs_planer', 'Программы планер'),
+            // Field::make('text', 'programs_vsu_propeller', 'Программы ВСУ/Пропеллер'),
+            // Field::make('text', 'fuel_cost', 'Топливо (при цене $800/тонна)'),
+            // Field::make('text', 'aircraft_navigation', 'Навигация'),
+            // Field::make('text', 'crew_payment', 'Командировочные экипажа'),
+            // Field::make('text', 'other_costs', 'Другие затраты'),
+            // Field::make('text', 'variable_cost_sum', 'Сумма переменные расходы'),
+            // Field::make('text', 'crew_salary', 'Зарплата экипажа'),
+            // Field::make('text', 'engineer_salary', 'Зарплата инженера'),
+            // Field::make('text', 'crew_education', 'Обучение экипажа'),
+            // Field::make('text', 'sw_navigation', 'ПО и навигация'),
+            // Field::make('text', 'aircraft_insurance', 'Страховка'),
+            // Field::make('text', 'aircraft_parking', 'Стоянка'),
+            // Field::make('text', 'company_income', 'Доход управляющей компании'),
+            // Field::make('text', 'samp', 'CAMP'),
+            // Field::make('text', 'technical_management', 'Технический менеджмент'),
+            // Field::make('text', 'other_different_costs', 'Разные'),
+            // Field::make('text', 'constant_cost_sum', 'Сумма постоянные расходы'),
+            // Field::make('text', 'total_cost', 'ИТОГО расходы'),
+            // Field::make('text', 'total_cost_hour', 'Итого цена летного часа'),
 
             Field::make('complex', 'popular_destinations', 'Популярные направления')
                 ->add_fields([
@@ -973,14 +1053,71 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
                         ->set_default_value('-'),
                 ]),
 
-            Field::make('text', 'variable_cost_total', 'Сумма переменных затрат')
-                ->set_default_value('-'),
-            Field::make('text', 'constant_cost_total', 'Сумма постоянных затрат')
-                ->set_default_value('-'),
-            Field::make('text', 'total_expenses', 'ИТОГО расходы')
-                ->set_default_value('-'),
-            Field::make('text', 'total_flight_hour_cost', 'ИТОГО цена летного часа')
-                ->set_default_value('-'),
+
+            Field::make('complex', 'variable_cost_total', 'Сумма переменных затрат')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(1)
+                ->add_fields([
+                    Field::make('text', 'cost_200', '200 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_400', '400 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_600', '600 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_800', '800 часов')
+                        ->set_default_value('-'),
+                ]),
+
+            Field::make('complex', 'constant_cost_total', 'Сумма постоянных затрат')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(1)
+                ->add_fields([
+                    Field::make('text', 'cost_200', '200 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_400', '400 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_600', '600 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_800', '800 часов')
+                        ->set_default_value('-'),
+                ]),
+
+            Field::make('complex', 'total_expenses', 'ИТОГО расходы')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(1)
+                ->add_fields([
+                    Field::make('text', 'cost_200', '200 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_400', '400 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_600', '600 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_800', '800 часов')
+                        ->set_default_value('-'),
+                ]),
+
+            Field::make('complex', 'total_flight_hour_cost', 'ИТОГО цена летного часа')
+                ->set_layout('tabbed-horizontal')
+                ->set_max(1)
+                ->add_fields([
+                    Field::make('text', 'cost_200', '200 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_400', '400 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_600', '600 часов')
+                        ->set_default_value('-'),
+                    Field::make('text', 'cost_800', '800 часов')
+                        ->set_default_value('-'),
+                ]),
+
+            // Field::make('text', 'variable_cost_total', 'Сумма переменных затрат')
+            //     ->set_default_value('-'),
+            // Field::make('text', 'constant_cost_total', 'Сумма постоянных затрат')
+            //     ->set_default_value('-'),
+            // Field::make('text', 'total_expenses', 'ИТОГО расходы')
+            //     ->set_default_value('-'),
+            // Field::make('text', 'total_flight_hour_cost', 'ИТОГО цена летного часа')
+            //     ->set_default_value('-'),
         ]);
 });
 
@@ -1001,7 +1138,7 @@ function carbon_fields_register_fields_function($args)
 
     $planes_fields = [
         Field::make('text', 'title', 'Название самолета')->set_required(true),
-        Field::make('image', 'image', 'Изображение')->set_required(true),
+        Field::make('image', 'image', 'Изображение')->set_required(false),
         Field::make('select', 'origin_country', 'Страна вылета')
             ->set_options(array_combine(array_keys($country_flags), array_keys($country_flags))),
         Field::make('select', 'origin_country_en', 'Страна вылета EN')
@@ -1037,7 +1174,7 @@ function carbon_fields_register_fields_function($args)
             Field::make('complex', 'planes_wanted', 'Список самолетов')
                 ->add_fields([
                     Field::make('text', 'title', 'Название самолета')->set_required(true),
-                    Field::make('image', 'image', 'Изображение')->set_required(true),
+                    Field::make('image', 'image', 'Изображение')->set_required(false),
                     Field::make('text', 'type', 'Тип')->set_required(false),
                     Field::make('text', 'category', 'Категория')->set_required(false),
                     Field::make('text', 'type_en', 'Тип (на английском языке)')->set_required(false),
@@ -1056,7 +1193,7 @@ function carbon_fields_register_fields_function($args)
         ->add_fields([
             Field::make('complex', 'planes_wanted', 'Список самолетов')->add_fields([
                 Field::make('text', 'title', 'Название самолета')->set_required(true),
-                Field::make('image', 'image', 'Изображение')->set_required(true),
+                Field::make('image', 'image', 'Изображение')->set_required(false),
                 Field::make('text', 'type', 'Тип')->set_required(false),
                 Field::make('text', 'category', 'Категория')->set_required(false),
                 Field::make('text', 'type_en', 'Тип (на английском языке)')->set_required(false),
@@ -2348,117 +2485,185 @@ function format_aircraft_numbers()
             }
         });
     </script>
-<?php
+    <?php
 }
 add_action('admin_footer', 'format_aircraft_numbers');
 
 
-function sortingParams($args, $sort){
-    if($sort==1){
-       $args['orderby'] = 'title';
-       $args['order'] = 'ASC';
-    }elseif ($sort==2) {
-       $args['orderby'] = array('sortparam' => 'DESC');
-       array_push($args['meta_query'], array('sortparam' => array('key' => 'aircraft_seats', 'compare' => 'EXISTS', 'type' => 'numeric')));
-    }elseif ($sort==3) {
-       $args['orderby'] = array('sortparam' => 'DESC');
-       array_push($args['meta_query'], array('sortparam' => array('key' => 'luggage_volume_m', 'compare' => 'EXISTS', 'type' => 'numeric')));
-    }elseif ($sort==4) {
-       $args['orderby'] = array('sortparam' => 'DESC');
-       array_push($args['meta_query'], array('sortparam' => array('key' => 'range_km', 'compare' => 'EXISTS', 'type' => 'numeric')));
-    }elseif ($sort==5) {
-       $args['orderby'] = array('sortparam' => 'ASC');
-       array_push($args['meta_query'], array('sortparam' => array('key' => 'cruise_speed_kmh', 'compare' => 'EXISTS', 'type' => 'numeric')));
-    }elseif ($sort==6) {
-       $args['orderby'] = array('sortparam' => 'ASC');
-       array_push($args['meta_query'], array('sortparam' => array('key' => 'cabin_height_m', 'compare' => 'EXISTS', 'type' => 'numeric')));
-    }elseif ($sort==7) {
-       // code...
+function sortingParams($args, $sort)
+{
+    if ($sort == 1) {
+        $args['orderby'] = 'title';
+        $args['order'] = 'ASC';
+    } elseif ($sort == 2) {
+        $args['orderby'] = array('sortparam' => 'DESC');
+        array_push($args['meta_query'], array('sortparam' => array('key' => 'aircraft_seats', 'compare' => 'EXISTS', 'type' => 'numeric')));
+    } elseif ($sort == 3) {
+        $args['orderby'] = array('sortparam' => 'DESC');
+        array_push($args['meta_query'], array('sortparam' => array('key' => 'luggage_volume_m', 'compare' => 'EXISTS', 'type' => 'numeric')));
+    } elseif ($sort == 4) {
+        $args['orderby'] = array('sortparam' => 'DESC');
+        array_push($args['meta_query'], array('sortparam' => array('key' => 'range_km', 'compare' => 'EXISTS', 'type' => 'numeric')));
+    } elseif ($sort == 5) {
+        $args['orderby'] = array('sortparam' => 'ASC');
+        array_push($args['meta_query'], array('sortparam' => array('key' => 'cruise_speed_kmh', 'compare' => 'EXISTS', 'type' => 'numeric')));
+    } elseif ($sort == 6) {
+        $args['orderby'] = array('sortparam' => 'ASC');
+        array_push($args['meta_query'], array('sortparam' => array('key' => 'cabin_height_m', 'compare' => 'EXISTS', 'type' => 'numeric')));
+    } elseif ($sort == 7) {
+        // code...
     }
 
     return $args;
-} 
+}
 
-function filterParams($args, $params, $lang){
+function filterParams($args, $params, $lang)
+{
     //lang = 1 - ru
     //lang = 2 - en
     if (isset($params['selectedType']) and $params['selectedType'] != '') {
-        if($lang==1){$key = 'aircraft_type';}else{$key = 'aircraft_type_en';}
+        if ($lang == 1) {
+            $key = 'aircraft_type';
+        } else {
+            $key = 'aircraft_type_en';
+        }
         array_push($args['meta_query'], array('key' => $key, 'value' => $params['selectedType']));
     }
     if (isset($params['selectedCategory']) and $params['selectedCategory'] != '') {
-        if($lang==1){$key = 'aircraft_cat';}else{$key = 'aircraft_cat_en';}
+        if ($lang == 1) {
+            $key = 'aircraft_cat';
+        } else {
+            $key = 'aircraft_cat_en';
+        }
         array_push($args['meta_query'], array('key' => $key, 'value' => $params['selectedCategory']));
     }
     if (isset($params['manufacturerSelector']) and $params['manufacturerSelector'] != '') {
-        if($lang==1){$key = 'product_brand';}else{$key = 'product_brand';}
+        if ($lang == 1) {
+            $key = 'product_brand';
+        } else {
+            $key = 'product_brand';
+        }
 
         array_push($args['tax_query'], array('taxonomy' => $key, 'field' => 'name', 'operator' => 'IN', 'terms' => $params['manufacturerSelector']));
         array_push($args['tax_query'], array('relation' => 'AND'));
     }
     if (isset($params['rangeSelector']) and $params['rangeSelector'] != '') {
-        if($lang==1){$key = 'range_km';}else{$key = 'range_km';}
+        if ($lang == 1) {
+            $key = 'range_km';
+        } else {
+            $key = 'range_km';
+        }
 
         $args_in_array_top = array('relation' => 'OR');
         foreach ($params['rangeSelector'] as $keyp => $value) {
-            list($d1,$d2) = explode('-', $value);
-            $args_in_array_top[] = array('key' => $key,
-                                   'value' => array((int)$d1,(int)$d2),
-                                   'type'    => 'numeric',
-                                   'compare' => 'BETWEEN',);
+            list($d1, $d2) = explode('-', $value);
+            $args_in_array_top[] = array(
+                'key' => $key,
+                'value' => array((int)$d1, (int)$d2),
+                'type'    => 'numeric',
+                'compare' => 'BETWEEN',
+            );
         }
         array_push($args['meta_query'], $args_in_array_top);
     }
     if (isset($params['seatsSelector']) and $params['seatsSelector'] != '') {
-        if($lang==1){$key = 'aircraft_seats';}else{$key = 'aircraft_seats';}
+        if ($lang == 1) {
+            $key = 'aircraft_seats';
+        } else {
+            $key = 'aircraft_seats';
+        }
 
         $args_in_array_top = array('relation' => 'OR');
         foreach ($params['seatsSelector'] as $keyp => $value) {
-            list($d1,$d2) = explode('-', $value);
-            $args_in_array_top[] = array('key' => $key,
-                                   'value' => array((int)$d1,(int)$d2),
-                                   'type'    => 'numeric',
-                                   'compare' => 'BETWEEN',);
+            list($d1, $d2) = explode('-', $value);
+            $args_in_array_top[] = array(
+                'key' => $key,
+                'value' => array((int)$d1, (int)$d2),
+                'type'    => 'numeric',
+                'compare' => 'BETWEEN',
+            );
         }
         array_push($args['meta_query'], $args_in_array_top);
     }
     if (isset($params['selectedPrice']) and $params['selectedPrice'] != '') {
-        if($lang==1){$key = 'aircraft_hour_cost';}else{$key = 'aircraft_hour_cost';}
+        if ($lang == 1) {
+            $key = 'aircraft_hour_cost';
+        } else {
+            $key = 'aircraft_hour_cost';
+        }
 
-        list($d1,$d2) = explode('-', $params['selectedPrice']);
-        $args_in_array_top = array('key' => $key,
-                                     'value' => array((int)$d1,(int)$d2),
-                                     'type'    => 'numeric',
-                                     'compare' => 'BETWEEN',);
+        list($d1, $d2) = explode('-', $params['selectedPrice']);
+        $args_in_array_top = array(
+            'key' => $key,
+            'value' => array((int)$d1, (int)$d2),
+            'type'    => 'numeric',
+            'compare' => 'BETWEEN',
+        );
         array_push($args['meta_query'], $args_in_array_top);
     }
     return $args;
 }
 
-function filterParamsUrls($params){
+function filterParamsUrls($params)
+{
     $url = '';
     if (isset($params['selectedType']) and $params['selectedType'] != '') {
-        $url = $url.'&selectedType='.$params['selectedType'];
+        $url = $url . '&selectedType=' . $params['selectedType'];
     }
     if (isset($params['selectedCategory']) and $params['selectedCategory'] != '') {
-        $url = $url.'&selectedCategory='.$params['selectedCategory'];
+        $url = $url . '&selectedCategory=' . $params['selectedCategory'];
     }
     if (isset($params['manufacturerSelector']) and $params['manufacturerSelector'] != '') {
-        $url = $url.'&manufacturerSelector='.$params['manufacturerSelector'];
+        $url = $url . '&manufacturerSelector=' . $params['manufacturerSelector'];
     }
     if (isset($params['rangeSelector']) and $params['rangeSelector'] != '') {
         foreach ($params['rangeSelector'] as $key => $value) {
-            $url = $url.'&rangeSelector[]='.$value;
+            $url = $url . '&rangeSelector[]=' . $value;
         }
     }
     if (isset($params['seatsSelector']) and $params['seatsSelector'] != '') {
         foreach ($params['seatsSelector'] as $key => $value) {
-            $url = $url.'&seatsSelector[]='.$value;
+            $url = $url . '&seatsSelector[]=' . $value;
         }
     }
     if (isset($params['selectedPrice']) and $params['selectedPrice'] != '') {
-        $url = $url.'&selectedPrice='.$params['selectedPrice'];
+        $url = $url . '&selectedPrice=' . $params['selectedPrice'];
     }
 
     return $url;
 }
+
+
+function add_buy_fields_css()
+{
+    // Only run on product edit screens
+    global $post;
+    if (!$post || get_post_type($post->ID) !== 'product') {
+        return;
+    }
+
+    // Check if product is in buy category
+    $is_buy = false;
+    $terms = get_the_terms($post->ID, 'product_cat');
+    if (!empty($terms) && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            if ($term->slug === 'buy') {
+                $is_buy = true;
+                break;
+            }
+        }
+    }
+
+    // If not in buy category, hide the fields
+    if (!$is_buy) {
+    ?>
+        <style type="text/css">
+            /* Target the fields by their label text */
+            .buy-category-field {
+                display: none !important;
+            }
+        </style>
+<?php
+    }
+}
+add_action('admin_head', 'add_buy_fields_css');

@@ -428,7 +428,7 @@
 
 <?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
 
-<?php include_once 'components/looking-sect.php'; ?>
+<?php include_once get_stylesheet_directory() . '/components/en/wanted.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/en/about-rent.php'; ?>
 

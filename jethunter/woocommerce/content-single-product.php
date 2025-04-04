@@ -389,65 +389,172 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
             </div>
 
             <div class="plane-specs">
-                <?php if (!empty($aircraft_seats)) : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number">
-                            <?php echo esc_html($aircraft_seats); ?>
+                <?php
+                $product_terms = get_the_terms(get_the_ID(), 'product_cat');
+                $is_buy = false;
+
+                if (!empty($product_terms) && !is_wp_error($product_terms)) {
+                    foreach ($product_terms as $term) {
+                        if ($term->slug === 'buy') {
+                            $is_buy = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Get additional fields for buy category
+                $aircraft_produced_year = carbon_get_post_meta($product_id, 'aircraft_produced_year');
+                $aircraft_serial_number = carbon_get_post_meta($product_id, 'aircraft_serial_number');
+                $aircraft_flown_hours = carbon_get_post_meta($product_id, 'aircraft_flown_hours');
+                $aircraft_cycles = carbon_get_post_meta($product_id, 'aircraft_cycles');
+                $aircraft_buy_price = carbon_get_post_meta($product_id, 'aircraft_buy_price');
+
+                // Display buy category specific fields
+                if ($is_buy) :
+                ?>
+                    <?php if (!empty($aircraft_produced_year)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_produced_year); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Год выпуска', 'Produced, year'); ?>
+                            </div>
                         </div>
-                        <div class="plane-specs-desc">
-                            <?php echo t('Мест', 'Seats'); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_serial_number)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_serial_number); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Серийный номер', 'Serial number'); ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($cruise_speed_kmh)) : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number">
-                            <?php echo esc_html(format_number($cruise_speed_kmh, $decimal_separator, $thousands_separator)); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_flown_hours)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($aircraft_flown_hours, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Налет (часов)', 'Flight hours'); ?>
+                            </div>
                         </div>
-                        <div class="plane-specs-desc">
-                            <?php echo t('Скорость, км/ч', 'Cruise speed, km/h'); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_cycles)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($aircraft_cycles, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Циклы', 'Cycles'); ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($range_km)) : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number">
-                            <?php echo esc_html(format_number($range_km, $decimal_separator, $thousands_separator)); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_buy_price)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($aircraft_buy_price, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Цена', 'Cost'); ?>
+                            </div>
                         </div>
-                        <div class="plane-specs-desc">
-                            <?php echo t('Дальность, км', 'Range, km'); ?>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <?php if (!empty($aircraft_seats)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_seats); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Мест', 'Seats'); ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($luggage_volume_m)) : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number">
-                            <?php echo esc_html($luggage_volume_m); ?>
+                    <?php endif; ?>
+
+                    <?php if ($is_buy && !empty($aircraft_cost)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($aircraft_cost, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Стоимость (USD)', 'Cost (USD)'); ?>
+                            </div>
                         </div>
-                        <div class="plane-specs-desc">
-                            <?php echo t('Объем багажника в м<sup>3</sup>', 'Trunk volume in m<sup>3</sup>'); ?>
+                    <?php endif; ?>
+
+                    <?php if (!empty($cruise_speed_kmh)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($cruise_speed_kmh, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Скорость, км/ч', 'Cruise speed, km/h'); ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($rental_price)) : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number">
-                            <?php echo esc_html($rental_price); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_seats)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_seats); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Мест', 'Seats'); ?>
+                            </div>
                         </div>
-                        <div class="plane-specs-desc">
-                            <?php echo t('Цена аренды в $', 'Rental price in $'); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($cruise_speed_kmh)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($cruise_speed_kmh, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Скорость, км/ч', 'Cruise speed, km/h'); ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                <?php if (!empty($luggage_number)) : ?>
-                    <div class="plane-specs-item">
-                        <div class="plane-specs-number">
-                            <?php echo esc_html($luggage_number); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($range_km)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html(format_number($range_km, $decimal_separator, $thousands_separator)); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Дальность, км', 'Range, km'); ?>
+                            </div>
                         </div>
-                        <div class="plane-specs-desc">
-                            <?php echo t('Чемоданов', 'Bags'); ?>
+                    <?php endif; ?>
+                    <?php if (!empty($luggage_volume_m)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($luggage_volume_m); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Объем багажника в м<sup>3</sup>', 'Trunk volume in m<sup>3</sup>'); ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+                    <?php if (!empty($rental_price)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($rental_price); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Цена аренды в $', 'Rental price in $'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($luggage_number)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($luggage_number); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Чемоданов', 'Bags'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -460,6 +567,60 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
             </h2>
             <div class="tech-table">
                 <div class="tech-table-col">
+                    <?php
+                    // Check if this is an encyclopedia product
+                    $is_encyclopedia = false;
+
+                    if (!empty($product_terms) && !is_wp_error($product_terms)) {
+                        foreach ($product_terms as $term) {
+                            if ($term->slug === 'encyclopedia') {
+                                $is_encyclopedia = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Get manufacturer from product brand
+                    $manufacturer = '';
+                    $terms = get_the_terms(get_the_ID(), 'product_brand');
+                    if (!empty($terms) && !is_wp_error($terms)) {
+                        $manufacturer = $terms[0]->name;
+                    }
+
+                    // Display technical specifications for encyclopedia products
+                    if ($is_encyclopedia) :
+                    ?>
+                        <?php if (!empty($aircraft_type)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title">
+                                    <?php echo t('Тип ВС', 'Aircraft type'); ?>
+                                </div>
+                                <div class="tech-table-desc">
+                                    <?php echo esc_html($aircraft_type); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($aircraft_cat)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title">
+                                    <?php echo t('Категория ВС', 'Aircraft category'); ?>
+                                </div>
+                                <div class="tech-table-desc">
+                                    <?php echo esc_html($aircraft_cat); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($manufacturer)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title">
+                                    <?php echo t('Производитель', 'Manufacturer'); ?>
+                                </div>
+                                <div class="tech-table-desc">
+                                    <?php echo esc_html($manufacturer); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
                     <?php if (!empty($cruise_speed_kmh)) : ?>
                         <div class="tech-table-row">
                             <div class="tech-table-title"><?php echo t('Крейсерская скорость', 'Cruising speed'); ?></div>
@@ -621,6 +782,128 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
         </div>
     </section>
 
+    <?php if ($is_buy) :
+    ?>
+        <section class="regular-sect">
+            <div class="container">
+                <h2 class="h2 center"><?php echo t('Характеристики ВС', 'Aircraft specifications'); ?></h2>
+                <div class="tech-table">
+                    <div class="tech-table-col">
+                        <h3 class="h3"><?php echo t('Общие данные', 'General information'); ?></h3>
+                        <?php if (!empty($aircraft_serial_number)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title"><?php echo t('Серийный номер', 'Serial number'); ?></div>
+                                <div class="tech-table-desc"><?php echo esc_html($aircraft_serial_number); ?></div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($aircraft_hull_number)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title"><?php echo t('Бортовой номер', 'Hull number'); ?></div>
+                                <div class="tech-table-desc"><?php echo esc_html($aircraft_hull_number); ?></div>
+                            </div>
+                        <?php endif; ?>
+
+                        <h3 class="h3"><?php echo t('Вспомогательная силовая установка (ВСУ)', 'Auxiliary power unit (APU)'); ?></h3>
+                        <?php if (!empty($aircraft_flown_hours)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title"><?php echo t('Налет (часов)', 'Flown hours'); ?></div>
+                                <div class="tech-table-desc"><?php echo esc_html($aircraft_flown_hours); ?></div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($aircraft_cycles)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title"><?php echo t('Циклы', 'Cycles'); ?></div>
+                                <div class="tech-table-desc"><?php echo esc_html($aircraft_cycles); ?></div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php
+                        $additional_equipment = carbon_get_the_post_meta('additional_equipment');
+                        $additional_equipment_en = carbon_get_the_post_meta('additional_equipment_en'); ?>
+                        <?php if (pll_current_language() == 'ru') : ?>
+                            <?php if (!empty($additional_equipment)) : ?>
+                                <h3 class="h3"><?php echo t('Дополнительное оборудование', 'Additional equipment'); ?></h3>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title"><?php echo esc_html($additional_equipment); ?></div>
+                                </div>
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <?php if (!empty($additional_equipment_en)) : ?>
+                                <h3 class="h3"><?php echo t('Дополнительное оборудование', 'Additional equipment'); ?></h3>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title"><?php echo esc_html($additional_equipment_en); ?></div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="tech-table-col">
+                        <h3 class="h3"><?php echo t('Двигатели', 'Engines'); ?></h3>
+                        <?php
+                        $engines = carbon_get_the_post_meta('aircraft_engines');
+                        if (!empty($engines)) :
+                            foreach ($engines as $index => $engine) : ?>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title"><?php echo t('Налет (часов), двигатель ', 'Hours, engine') . ' ' . ($index + 1); ?></div>
+                                    <div class="tech-table-desc">
+                                        <?php if (!empty($engine['engine_hours'])) : ?>
+                                            <?php echo esc_html($engine['engine_hours']); ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title"><?php echo t('Циклы, двигатель ', 'Cycles, engine') . ' ' . ($index + 1); ?></div>
+                                    <div class="tech-table-desc">
+                                        <?php if (!empty($engine['engine_cycles'])) : ?>
+                                            <?php echo esc_html($engine['engine_cycles']); ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                        <?php endforeach;
+                        endif; ?>
+                        <h3 class="h3"><?php echo t('Программы', 'Programmes'); ?></h3>
+                        <?php
+                        $programmes = carbon_get_the_post_meta('aircraft_programmes');
+                        $additional_info = carbon_get_the_post_meta('additional_info');
+                        $additional_info_en = carbon_get_the_post_meta('additional_info_en');
+                        if (!empty($programmes)) :
+                            foreach ($programmes as $index => $program) : ?>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title">
+                                        <?php if (!empty($program['programme_key'])) : ?>
+                                            <?php echo esc_html($program['programme_key']); ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="tech-table-desc">
+                                        <?php if (!empty($program['programme_value'])) : ?>
+                                            <?php echo esc_html($program['programme_value']); ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                        <?php endforeach;
+                        endif; ?>
+
+                        <?php if (pll_current_language() == 'ru') : ?>
+                            <?php if (!empty($additional_info)) : ?>
+                                <h3 class="h3"><?php echo t('Дополнительная информация', 'Additional information'); ?></h3>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title"><?php echo esc_html($additional_info); ?></div>
+                                </div>
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <?php if (!empty($additional_info_en)) : ?>
+                                <h3 class="h3"><?php echo t('Дополнительная информация', 'Additional information'); ?></h3>
+                                <div class="tech-table-row">
+                                    <div class="tech-table-title"><?php echo esc_html($additional_info_en); ?></div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <?php if (pll_current_language() == 'ru') : ?>
         <?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
     <?php else : ?>
@@ -671,6 +954,7 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                     'aircraft_new_cost' => ['Стоимость нового самолета ($)', 'New aircraft cost ($)'],
                     'aircraft_used_cost' => ['Стоимость самолета с налетом ($)', 'Used aircraft cost ($)'],
                     'aircraft_hour_cost' => ['Себестоимость летного часа ($)', 'Flight hour cost ($)'],
+                    'hsi' => ['Инспекция горячей части (HSI) (часов)', 'HSI inspection interval (hours)'],
                     'interval_total_repair' => ['Интервал капитального ремонта (часов)', 'Overhaul interval (hours)'],
                     'interval_a_check' => ['Интервал A-Check', 'A-Check interval'],
                     'interval_b_check' => ['Интервал B-Check', 'B-Check interval'],
@@ -706,8 +990,8 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
             $variable_costs = carbon_get_post_meta(get_the_ID(), 'variable_costs_hour');
             $constant_costs = carbon_get_post_meta(get_the_ID(), 'constant_costs_hour');
 
-            $variable_total       = carbon_get_post_meta(get_the_ID(), 'variable_cost_total') ?: '-';
-            $constant_total       = carbon_get_post_meta(get_the_ID(), 'constant_cost_total') ?: '-';
+            $variable_cost_total       = carbon_get_post_meta(get_the_ID(), 'variable_cost_total') ?: '-';
+            $constant_cost_total       = carbon_get_post_meta(get_the_ID(), 'constant_cost_total') ?: '-';
             $total_expenses       = carbon_get_post_meta(get_the_ID(), 'total_expenses') ?: '-';
             $total_flight_hour_cost = carbon_get_post_meta(get_the_ID(), 'total_flight_hour_cost') ?: '-';
             ?>
@@ -733,10 +1017,17 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        <tr>
-                            <td class="table-item"><b><?php echo t('Сумма переменных затрат', 'Total variable costs'); ?></b></td>
-                            <td class="table-item" colspan="4"><?php echo esc_html($variable_total); ?></td>
-                        </tr>
+                        <!-- Variable Cost Total -->
+                        <?php if (is_array($variable_cost_total) && !empty($variable_cost_total)) : ?>
+                            <tr>
+                                <td class="table-item"><b><?php echo t('Сумма переменных затрат', 'Total variable costs'); ?></b></td>
+                                <td class="table-item center"><?php echo esc_html($variable_cost_total[0]['cost_200'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($variable_cost_total[0]['cost_400'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($variable_cost_total[0]['cost_600'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($variable_cost_total[0]['cost_800'] ?: '-'); ?></td>
+                            </tr>
+                        <?php endif; ?>
+
                         <!-- Constant Costs Header -->
                         <tr>
                             <th class="table-heading"><?php echo t('Постоянные затраты', 'Fixed costs'); ?></th>
@@ -756,18 +1047,38 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        <tr>
-                            <td class="table-item"><b><?php echo t('Сумма постоянных затрат', 'Total fixed costs'); ?></b></td>
-                            <td class="table-item" colspan="4"><?php echo esc_html($constant_total); ?></td>
-                        </tr>
-                        <tr>
-                            <td class="table-item"><b><?php echo t('ИТОГО расходы', 'TOTAL expenses'); ?></b></td>
-                            <td class="table-item" colspan="4"><?php echo esc_html($total_expenses); ?></td>
-                        </tr>
-                        <tr>
-                            <td class="table-item"><b><?php echo t('ИТОГО цена летного часа', 'TOTAL flight hour cost'); ?></b></td>
-                            <td class="table-item" colspan="4"><?php echo esc_html($total_flight_hour_cost); ?></td>
-                        </tr>
+                        <!-- Constant Cost Total -->
+                        <?php if (is_array($constant_cost_total) && !empty($constant_cost_total)) : ?>
+                            <tr>
+                                <td class="table-item"><b><?php echo t('Сумма постоянных затрат', 'Total fixed costs'); ?></b></td>
+                                <td class="table-item center"><?php echo esc_html($constant_cost_total[0]['cost_200'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($constant_cost_total[0]['cost_400'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($constant_cost_total[0]['cost_600'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($constant_cost_total[0]['cost_800'] ?: '-'); ?></td>
+                            </tr>
+                        <?php endif; ?>
+
+                        <!-- Total Expenses -->
+                        <?php if (is_array($total_expenses) && !empty($total_expenses)) : ?>
+                            <tr>
+                                <td class="table-item"><b><?php echo t('ИТОГО расходы', 'TOTAL expenses'); ?></b></td>
+                                <td class="table-item center"><?php echo esc_html($total_expenses[0]['cost_200'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($total_expenses[0]['cost_400'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($total_expenses[0]['cost_600'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($total_expenses[0]['cost_800'] ?: '-'); ?></td>
+                            </tr>
+                        <?php endif; ?>
+
+                        <!-- Total Flight Hour Cost -->
+                        <?php if (is_array($total_flight_hour_cost) && !empty($total_flight_hour_cost)) : ?>
+                            <tr>
+                                <td class="table-item"><b><?php echo t('ИТОГО цена летного часа', 'TOTAL flight hour cost'); ?></b></td>
+                                <td class="table-item center"><?php echo esc_html($total_flight_hour_cost[0]['cost_200'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($total_flight_hour_cost[0]['cost_400'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($total_flight_hour_cost[0]['cost_600'] ?: '-'); ?></td>
+                                <td class="table-item center"><?php echo esc_html($total_flight_hour_cost[0]['cost_800'] ?: '-'); ?></td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

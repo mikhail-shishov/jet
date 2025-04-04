@@ -501,23 +501,25 @@
 
 <?php include_once get_stylesheet_directory() . '/components/en/services-compare.php'; ?>
 
-<?php include_once get_stylesheet_directory() . '/components/en/about-rent.php'; ?>
-
-<?php include_once get_stylesheet_directory() . '/components/en/partners.php'; ?>
-
-<?php include_once 'components/looking-sect.php'; ?>
-
-<?php include_once get_stylesheet_directory() . '/components/en/testimonials.php'; ?>
-
 <?php include_once get_stylesheet_directory() . '/components/en/services-slider.php'; ?>
-
-<?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
-
-<?php include_once get_stylesheet_directory() . '/components/en/cta-1.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/en/cta-2.php'; ?>
 
+<?php include_once get_stylesheet_directory() . '/components/en/reviews.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/wanted.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/partners.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/faq.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/seo-empty-legs.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/empty-legs.php'; ?>
+
 <?php include_once get_stylesheet_directory() . '/components/en/cta-3.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/en/blog.php'; ?>
 
 <?php include_once 'components/app-sect.php';?>
 

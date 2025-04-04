@@ -545,13 +545,15 @@
 
 <?php include_once get_stylesheet_directory() . '/components/ru/reviews.php'; ?>
 
-<?php include_once 'components/looking-sect.php'; ?>
+<?php include_once get_stylesheet_directory() . '/components/ru/wanted.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/ru/partners.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/ru/seo-empty-legs.php'; ?>
+
+<?php include_once get_stylesheet_directory() . '/components/ru/empty-legs.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/ru/cta-3.php'; ?>
 

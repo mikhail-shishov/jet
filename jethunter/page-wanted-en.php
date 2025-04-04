@@ -1,4 +1,4 @@
-<?php
+<button?php
 /* Template Name: Wanted EN */
 ?>
 
@@ -30,7 +30,7 @@
         $planes_data = carbon_get_post_meta(get_the_ID(), 'planes_wanted');
 
         if ($planes_data) : ?>
-            <div class="looking-grid looking-grid-full show-more-grid" data-total-items="<?php echo count($planes); ?>">
+            <div class="looking-grid looking-grid-full show-more-grid" data-total-items="<?php echo count($planes_data); ?>">
                 <?php foreach ($planes_data as $plane) : 
                     $image_url = !empty($plane['image']) ? wp_get_attachment_url($plane['image']) : get_stylesheet_directory_uri() . '/img/planes/1.png';
                     $item_class = $index >= 10 ? 'looking-item is-hidden' : 'looking-item';
@@ -40,29 +40,29 @@
                         <h3 class="h3"><?php echo esc_html($plane['title']); ?></h3>
                         <div class="looking-desc">
                             <div class="looking-row">
-                                <p class="looking-row-title">Год выпуска</p>
+                                <p class="looking-row-title">Produced in</p>
                                 <p class="looking-row-desc"><?php echo esc_html($plane['produced_year'] ?: 'Не указан'); ?></p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Налет часов</p>
+                                <p class="looking-row-title">Hours flown</p>
                                 <p class="looking-row-desc"><?php echo esc_html($plane['hours_flown'] ?: 'Не указан'); ?></p>
                             </div>
                             <div class="looking-row">
-                                <p class="looking-row-title">Цена</p>
+                                <p class="looking-row-title">Price</p>
                                 <p class="looking-row-desc"><?php echo esc_html($plane['price'] ? ' ' . number_format($plane['price'], 0, ',', ' ') . '$' : 'По запросу'); ?></p>
                             </div>
                         </div>
-                        <a href="" class="btn btn-green-fill">Предложить</a>
+                        <button type="button" class="btn js-modal" data-modal="#call">Propose</button>
                     </div>
                 <?php endforeach; ?>
             </div>
             <?php if (count($planes_data) > 10) : ?>
             <div class="show-more">
-                <a href="#" class="link">Смотреть ещё</a>
+                <a href="#" class="link">Show more</a>
             </div>
             <?php endif; ?>
         <?php else : ?>
-            <p>Нет данных о самолетах.</p>
+            <p>No data.</p>
         <?php endif; ?>
         <!-- <div class="looking-grid looking-grid-full">
             <div class="looking-item">
@@ -264,7 +264,7 @@
 
 <?php include_once get_stylesheet_directory() . '/components/en/quiz.php'; ?>
 
-<?php include_once 'components/looking-sect.php'; ?>
+<?php include_once get_stylesheet_directory() . '/components/en/empty-legs.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/en/about-rent.php'; ?>
 

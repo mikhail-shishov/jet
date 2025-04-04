@@ -453,7 +453,7 @@
 
 <?php include_once get_stylesheet_directory() . '/components/ru/quiz.php'; ?>
 
-<?php include_once 'components/looking-sect.php'; ?>
+<?php include_once get_stylesheet_directory() . '/components/ru/wanted.php'; ?>
 
 <?php include_once get_stylesheet_directory() . '/components/ru/about-rent.php'; ?>
 
