@@ -335,6 +335,11 @@
                 </div>
             </form>
         </div>
+        <?php            
+            if(isset($_REQUEST['pages'])){$paged=$_REQUEST['pages'];}else{$paged = 1;}
+            if(isset($_REQUEST['limit'])){$limit=$_REQUEST['limit'];}else{$limit = 5;}
+            if(isset($_REQUEST['sort'])){$sort=$_REQUEST['sort'];}else{$sort = 6;}
+        ?>
         <div class="tabs tabs-line">
             <div class="tabs-options tabs-options-cat">
                 <a href="#" class="btn btn-grey-fill">Турбовинтовой</a>
@@ -351,14 +356,14 @@
         <div class="tabs tabs-line">
             <div class="tabs-heading">Сортировать:</div>
             <div class="tabs-options">
-                <a href="#" data-sort="name" class="btn btn-tab">Название</a>
+                <a href="?sort=1" class="btn btn-tab <?php if($sort==1){ echo 'is-active';}?>">Название</a>
                 <!-- <a href="#" data-sort="rent_price" class="btn btn-tab">Цена аренды</a>
                 <a href="#" data-sort="buy_price" class="btn btn-tab">Цена покупки</a> -->
-                <a href="#" data-sort="aircraft_seats" class="btn btn-tab">Количество мест</a>
-                <a href="#" data-sort="luggage_volume_m" class="btn btn-tab">Объем багажника</a>
-                <a href="#" data-sort="range_km" class="btn btn-tab">Дальность</a>
-                <a href="#" data-sort="cruise_speed_kmh" class="btn btn-tab">Скорость</a>
-                <a href="#" data-sort="cabin_height_m" class="btn btn-tab">Высота салона</a>
+                <a href="?sort=2" class="btn btn-tab <?php if($sort==2){ echo 'is-active';}?>">Количество мест</a>
+                <a href="?sort=3" class="btn btn-tab <?php if($sort==3){ echo 'is-active';}?>">Объем багажника</a>
+                <a href="?sort=4" class="btn btn-tab <?php if($sort==4){ echo 'is-active';}?>">Дальность</a>
+                <a href="?sort=5" class="btn btn-tab <?php if($sort==5){ echo 'is-active';}?>">Скорость</a>
+                <a href="?sort=6" class="btn btn-tab <?php if($sort==6){ echo 'is-active';}?>">Высота салона</a>
             </div>
         </div>
 
@@ -373,9 +378,11 @@
             data-lang-8="Ничего не найдено."
         >
             <?php
+  
             $args = [
                 'post_type'      => 'product',
-                'posts_per_page' => -1,
+                'posts_per_page' => $limit,
+                'paged'          => $paged,
                 'tax_query'      => [
                     [
                         'taxonomy' => 'product_cat',
@@ -383,10 +390,13 @@
                         'terms'    => 'rent',
                     ],
                 ],
-                'meta_query'     => ['relation' => 'AND'],
+                'meta_query'     => array(array('relation' => 'AND')),
             ];
-
+            $args = sortingParams($args, $sort);
+print_r($args);die;
             $aircrafts = new WP_Query($args);
+            $total = $aircrafts->found_posts;
+            $total_pages = ceil($total/$limit);
 
             if ($aircrafts->have_posts()) :
                 while ($aircrafts->have_posts()) : $aircrafts->the_post();
@@ -434,33 +444,44 @@
             ?>
         </div>
 
-        <div class="pagination" style="display:none!important">
+        <div class="pagination">
             <nav class="pagination-left">
-                <a href="" class="btn btn-pagination pagination-back">‹ Previous</a>
+                <?php if($paged > 1){ ?>
+                   <a href="" class="btn btn-pagination">‹ Предыдущий</a>
+                <?php } ?>
                 <ul class="pagination-list">
+                    <?php if($paged > 1){ ?>
+                    <li class="pagination-list-item ">
+                        <a href="?pages=<?php echo ($paged-1);?>"><?php echo ($paged-1);?></a>
+                    </li>
+                    <?php } ?>
                     <li class="pagination-list-item is-active">
-                        <a href="">1</a>
+                        <a href="javascript:void(0)"><?php echo $paged;?></a>
                     </li>
+                    <?php if(($paged+1) <= $total_pages){ ?>
                     <li class="pagination-list-item">
-                        <a href="">2</a>
+                        <a href="?pages=<?php echo ($paged+1);?>"><?php echo ($paged+1);?></a>
                     </li>
-                    <li class="pagination-list-item">
-                        <a href="">3</a>
-                    </li>
+                    <?php } ?>
                 </ul>
-                <a href="" class="btn btn-pagination pagination-forward">Next ›</a>
+                <?php if(($paged+1) <= $total_pages){ ?>
+                   <a href="?pages=<?php echo ($paged+1);?>" class="btn btn-pagination">Следующий ›</a>
+                <?php } ?>
             </nav>
             <div class="pagination-right">
-                <span class="pagination-text">Show:</span>
+                <span class="pagination-text">Показывать:</span>
                 <ul class="pagination-list">
-                    <li class="pagination-list-item is-active">
-                        <a href="">10</a>
+                    <li class="pagination-list-item <?php if($limit==5){ echo 'is-active';}?>">
+                        <a href="?limit=5">5</a>
                     </li>
-                    <li class="pagination-list-item">
-                        <a href="">20</a>
+                    <li class="pagination-list-item <?php if($limit==10){ echo 'is-active';}?>">
+                        <a href="?limit=10">10</a>
                     </li>
-                    <li class="pagination-list-item">
-                        <a href="">30</a>
+                    <li class="pagination-list-item <?php if($limit==20){ echo 'is-active';}?>">
+                        <a href="?limit=20">20</a>
+                    </li>
+                    <li class="pagination-list-item <?php if($limit==30){ echo 'is-active';}?>">
+                        <a href="?limit=30">30</a>
                     </li>
                 </ul>
             </div>
@@ -757,4 +778,4 @@
 
 <?php include_once get_stylesheet_directory() . '/components/ru/cta-3.php'; ?>
 
-<?php get_footer(); ?>
+<?php get_

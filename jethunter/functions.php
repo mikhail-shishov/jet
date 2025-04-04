@@ -2351,3 +2351,28 @@ function format_aircraft_numbers()
 <?php
 }
 add_action('admin_footer', 'format_aircraft_numbers');
+
+
+function sortingParams($args, $sort){
+    if($sort==1){
+
+    }elseif ($sort==2) {
+       $args['orderby'] = array('sortparam' => 'DESC');
+       array_push($args['meta_query'], array('sortparam' => array('key' => 'aircraft_seats', 'compare' => 'EXISTS')));
+    }elseif ($sort==3) {
+       $args['orderby'] = array('sortparam' => 'DESC');
+       $args['meta_query'] = array('sortparam' => array('key' => 'luggage_volume_m', 'compare' => 'EXISTS'));
+    }elseif ($sort==4) {
+       $args['orderby'] = array('sortparam' => 'DESC');
+       $args['meta_query'] = array('sortparam' => array('key' => 'range_km', 'compare' => 'EXISTS'));
+    }elseif ($sort==5) {
+       $args['orderby'] = array('sortparam' => 'DESC');
+       $args['meta_query'] = array('sortparam' => array('key' => 'cruise_speed_kmh', 'compare' => 'EXISTS'));
+    }elseif ($sort==6) {
+       $args['orderby'] = array('sortparam' => 'DESC');
+       $args['meta_query'] = array('sortparam' => array('key' => 'cabin_height_m', 'compare' => 'EXISTS'));
+    }elseif ($sort==7) {
+       // code...
+    }
+print_r($args);
+    retur

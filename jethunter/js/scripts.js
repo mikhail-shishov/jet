@@ -773,17 +773,17 @@ document.addEventListener("DOMContentLoaded", function () {
     sortedItems.forEach(item => itemsContainer.appendChild(item));
   }
 
-  document.querySelectorAll(".tabs-options .btn-tab").forEach(button => {
-    button.addEventListener("click", event => {
-      event.preventDefault();
-      const sortType = button.getAttribute("data-sort");
+  //document.querySelectorAll(".tabs-options .btn-tab").forEach(button => {
+  //  button.addEventListener("click", event => {
+  //    event.preventDefault();
+  //    const sortType = button.getAttribute("data-sort");
+//
+  //    console.log("Сортировка по:", sortType);
+  //    sortItems(sortType);
+  //  });
+  //});
 
-      console.log("Сортировка по:", sortType);
-      sortItems(sortType);
-    });
-  });
-
-  sortItems(); // Сортируем сразу при загрузке
+  //sortItems(); // Сортируем сразу при загрузке
 
   // Фильтрация по категории (кнопки tabs-options-cat)
   document.querySelectorAll(".tabs-options-cat .btn").forEach(button => {
@@ -853,34 +853,34 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  paginationBack?.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (currentPage > 1) {
-      currentPage--;
-      renderPagination();
-    }
-  });
+  //paginationBack?.addEventListener("click", function (e) {
+  //  e.preventDefault();
+  //  if (currentPage > 1) {
+  //    currentPage--;
+  //    renderPagination();
+  //  }
+  //});
 
-  paginationForward?.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (currentPage < Math.ceil(items.length / itemsPerPage)) {
-      currentPage++;
-      renderPagination();
-    }
-  });
+  //paginationForward?.addEventListener("click", function (e) {
+  //  e.preventDefault();
+  //  if (currentPage < Math.ceil(items.length / itemsPerPage)) {
+  //    currentPage++;
+  //    renderPagination();
+  //  }
+  //});
 
-  perPageOptions.forEach(option => {
-    option.addEventListener("click", function (e) {
-      e.preventDefault();
-      itemsPerPage = parseInt(this.textContent, 10);
-      currentPage = 1;
-      updatePagination();
-      renderPagination();
-    });
-  });
+  //perPageOptions.forEach(option => {
+  //  option.addEventListener("click", function (e) {
+  //    e.preventDefault();
+  //    itemsPerPage = parseInt(this.textContent, 10);
+  //    currentPage = 1;
+  //    updatePagination();
+  //    renderPagination();
+  //  });
+  //});
 
-  updatePagination();
-  renderPagination();
+  //updatePagination();
+  //renderPagination();
 
 
 
