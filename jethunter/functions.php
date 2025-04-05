@@ -675,49 +675,76 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
             Field::make('text', 'aircraft_model', 'Модель'),
 
             Field::make('text', 'aircraft_serial_number', 'Серийный номер')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('text', 'aircraft_hull_number', 'Бортовой номер')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy,rent')
+                ->set_classes('category-conditional-field'),
             Field::make('text', 'aircraft_produced_year', 'Год выпуска')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy,rent')
+                ->set_classes('category-conditional-field'),
 
             Field::make('complex', 'aircraft_engines', 'Двигатели')
-                ->set_classes('buy-category-field')
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field')
                 ->add_fields([
                     Field::make('text', 'engine_hours', 'Налет (часов)'),
                     Field::make('text', 'engine_cycles', 'Циклы'),
                 ]),
 
             Field::make('complex', 'aircraft_programmes', 'Программы')
-            ->set_classes('buy-category-field')
-            ->add_fields([
-                Field::make('text', 'programme_key', 'Где применяется'),
-                Field::make('text', 'programme_value', 'Название'),
-            ]),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field')
+                ->add_fields([
+                    Field::make('text', 'programme_key', 'Где применяется'),
+                    Field::make('text', 'programme_value', 'Название'),
+                ]),
 
             Field::make('separator', 'separator_apu', 'Вспомогательная силовая установка (ВСУ)')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('text', 'aircraft_flown_hours', 'Налет (часов)')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('text', 'aircraft_cycles', 'Циклы')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
 
             Field::make('separator', 'separator_equipment', 'Дополнительное оборудование')
-                ->set_classes('buy-category-field'),
+
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('textarea', 'additional_equipment', 'Описание')
-                ->set_classes('buy-category-field'),
+
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('textarea', 'additional_equipment_en', 'EN Описание')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
 
             Field::make('separator', 'separator_info', 'Дополнительная информация')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('textarea', 'additional_info', 'Описание')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
             Field::make('textarea', 'additional_info_en', 'EN Описание')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
 
             Field::make('text', 'aircraft_buy_price', 'Цена ВС для покупки или продажи')
-                ->set_classes('buy-category-field'),
+                ->set_attribute('data-show-for', 'buy')
+                ->set_classes('category-conditional-field'),
+
+            Field::make('text', 'rental_price', 'Цена аренды')
+                ->set_classes('rent-category-field'),
+            Field::make('text', 'rental_period', 'Срок аренды')
+                ->set_classes('rent-category-field'),
+
+            Field::make('text', 'aircraft_rent_produced', 'Производство (для категории аренды)')
+                ->set_classes('rent-category-field'),
+            Field::make('text', 'aircraft_rent_updated', 'Обновление (для категории аренды)')
+                ->set_classes('rent-category-field'),
 
             // Field::make('text', 'aircraft_type', 'Тип'),
             // Field::make('text', 'aircraft_type_en', 'EN Тип'),
@@ -2485,7 +2512,7 @@ function format_aircraft_numbers()
             }
         });
     </script>
-    <?php
+<?php
 }
 add_action('admin_footer', 'format_aircraft_numbers');
 
@@ -2634,36 +2661,39 @@ function filterParamsUrls($params)
 }
 
 
-function add_buy_fields_css()
-{
-    // Only run on product edit screens
+add_action('admin_head', function () {
     global $post;
+
     if (!$post || get_post_type($post->ID) !== 'product') {
         return;
     }
 
-    // Check if product is in buy category
-    $is_buy = false;
     $terms = get_the_terms($post->ID, 'product_cat');
+    $selected_cats = [];
+
     if (!empty($terms) && !is_wp_error($terms)) {
         foreach ($terms as $term) {
-            if ($term->slug === 'buy') {
-                $is_buy = true;
-                break;
-            }
+            $selected_cats[] = $term->slug;
         }
     }
 
-    // If not in buy category, hide the fields
-    if (!$is_buy) {
-    ?>
-        <style type="text/css">
-            /* Target the fields by their label text */
-            .buy-category-field {
-                display: none !important;
-            }
-        </style>
+?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const selectedCats = <?php echo json_encode($selected_cats); ?>;
+
+                const fields = document.querySelectorAll('.category-conditional-field');
+
+                fields.forEach(field => {
+                    const allowed = field.querySelector('input')?.dataset.showFor?.split(',').map(s => s.trim()) || [];
+
+                    const visible = allowed.some(cat => selectedCats.includes(cat));
+
+                    field.style.display = visible ? '' : 'none';
+                });
+            }, 5000); 
+        });
+    </script>
 <?php
-    }
-}
-add_action('admin_head', 'add_buy_fields_css');
+});

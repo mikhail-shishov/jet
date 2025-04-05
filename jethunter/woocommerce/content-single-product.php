@@ -392,11 +392,19 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                 <?php
                 $product_terms = get_the_terms(get_the_ID(), 'product_cat');
                 $is_buy = false;
+                $is_rent = false;
+                $is_sell = false;
 
                 if (!empty($product_terms) && !is_wp_error($product_terms)) {
                     foreach ($product_terms as $term) {
                         if ($term->slug === 'buy') {
                             $is_buy = true;
+                            break;
+                        } elseif ($term->slug === 'rent') {
+                            $is_rent = true;
+                            break;
+                        } elseif ($term->slug === 'sell') {
+                            $is_sell = true;
                             break;
                         }
                     }
@@ -459,6 +467,55 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                             </div>
                             <div class="plane-specs-desc">
                                 <?php echo t('Цена', 'Cost'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php elseif ($is_rent): ?>
+                    <?php if (!empty($aircraft_hull_number)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_hull_number); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Бортовой номер', 'Hull number'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_rent_produced) || !empty($aircraft_rent_updated)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_rent_produced); ?><?php echo !empty($aircraft_rent_updated) ? ' / ' . esc_html($aircraft_rent_updated) : ''; ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Производство/Обновление', 'Produced/Updated'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_seats)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_seats); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Мест', 'Seats'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($aircraft_cat)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number">
+                                <?php echo esc_html($aircraft_cat); ?>
+                            </div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Категория', 'Category'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($rental_price)) : ?>
+                        <div class="plane-specs-item">
+                            <div class="plane-specs-number"><?php echo esc_html($rental_price); ?></div>
+                            <div class="plane-specs-desc">
+                                <?php echo t('Цена аренды (USD)', 'Rental price (USD)'); ?>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -617,6 +674,17 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                                 </div>
                                 <div class="tech-table-desc">
                                     <?php echo esc_html($manufacturer); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php elseif ($is_rent) : ?>
+                        <?php if (!empty($aircraft_hull_number)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title">
+                                    <?php echo t('Бортовой номер', 'Hull number'); ?>
+                                </div>
+                                <div class="tech-table-desc">
+                                    <?php echo esc_html($aircraft_hull_number); ?>
                                 </div>
                             </div>
                         <?php endif; ?>
