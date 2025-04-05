@@ -532,6 +532,10 @@
                     $cabin_height_m        = carbon_get_post_meta($product_id, 'cabin_height_m');
                     $cruise_speed_kmh        = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
                     $aircraft_cat        = carbon_get_post_meta($product_id, 'aircraft_cat');
+                    $aircraft_hull_number        = carbon_get_post_meta($product_id, 'aircraft_hull_number');
+                    $aircraft_rent_produced        = carbon_get_post_meta($product_id, 'aircraft_rent_produced');
+                    $aircraft_rent_updated        = carbon_get_post_meta($product_id, 'aircraft_rent_updated');
+                    $rental_price        = carbon_get_post_meta($product_id, 'rental_price');
 
                     $image = get_the_post_thumbnail_url($product_id, 'full') ?: 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
             ?>
@@ -539,22 +543,67 @@
                         <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="<?php the_title(); ?>">
                         <h3 class="h3"><?php the_title(); ?></h3>
                         <div class="looking-desc">
+                            <?php if (!empty($aircraft_hull_number)) : ?>
                             <div class="looking-row">
-                                <p class="looking-row-title">Скорость</p>
-                                <p class="looking-row-desc"><?php echo esc_html($cruise_speed_kmh); ?> км/ч</p>
+                                <p class="looking-row-title">Бортовой номер</p>
+                                <p class="looking-row-desc"><?php echo esc_html($aircraft_hull_number); ?></p>
                             </div>
+                            <?php endif; ?>
+                            <?php
+                            // Get the airport information
+                            $selected_airport_code = get_post_meta(get_the_ID(), '_airport_base', true);
+                            if (!empty($selected_airport_code)) {
+                                $json_file = WP_CONTENT_DIR . '/uploads/airports.json';
+                                $airport_display = '';
+                                
+                                if (file_exists($json_file)) {
+                                    $airports = json_decode(file_get_contents($json_file), true);
+                                    
+                                    if ($airports) {
+                                        foreach ($airports as $airport) {
+                                            if ($airport['icao_code'] === $selected_airport_code) {
+                                                // Just display the IATA code for brevity in the card
+                                                $airport_display = $airport['iata_code'];
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                if (!empty($airport_display)) {
+                            ?>
+                                <div class="looking-row">
+                                    <p class="looking-row-title">Базировка</p>
+                                    <p class="looking-row-desc"><?php echo esc_html($airport_display); ?></p>
+                                </div>
+                            <?php
+                                }
+                            }
+                            ?>
+                            <?php if (!empty($aircraft_rent_produced) || !empty($aircraft_rent_updated)) : ?>
                             <div class="looking-row">
-                                <p class="looking-row-title">Дальность</p>
-                                <p class="looking-row-desc"><?php echo esc_html($range_km); ?> км</p>
+                                <p class="looking-row-title">Производство/Обновление</p>
+                                <p class="looking-row-desc"><?php echo esc_html($aircraft_rent_produced); ?>/<?php echo esc_html($aircraft_rent_updated); ?></p>
                             </div>
+                            <?php endif; ?>
+                            <?php if (!empty($aircraft_seats)) : ?>
                             <div class="looking-row">
                                 <p class="looking-row-title">Количество мест</p>
                                 <p class="looking-row-desc"><?php echo esc_html($aircraft_seats); ?></p>
                             </div>
+                            <?php endif; ?>
+                            <?php if (!empty($aircraft_cat)) : ?>
                             <div class="looking-row">
-                                <p class="looking-row-title">Цена в час</p>
-                                <p class="looking-row-desc">$<?php echo esc_html($aircraft_hour_cost); ?></p>
+                                <p class="looking-row-title">Категория</p>
+                                <p class="looking-row-desc"><?php echo esc_html($aircraft_cat); ?></p>
                             </div>
+                            <?php endif; ?>
+                            <?php if (!empty($rental_price)) : ?>
+                            <div class="looking-row">
+                                <p class="looking-row-title">Цена аренды (USD)</p>
+                                <p class="looking-row-desc"><?php echo esc_html($rental_price); ?></p>
+                            </div>
+                            <?php endif; ?>
                         </div>
                         <a href="<?php the_permalink(); ?>" class="btn btn-green-fill">Подробнее</a>
                     </div>

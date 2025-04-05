@@ -93,6 +93,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
     const modalBtnOpen = evt.target.closest('.js-modal');
     if (modalBtnOpen) { // open btn click
       const modalSelector = modalBtnOpen.dataset.modal;
+      const aircraftTitle = modalBtnOpen.getAttribute('data-title');
+  
+      const hiddenInput = document.getElementById('cf7-plane-title-wanted');
+      if (hiddenInput) {
+        hiddenInput.value = aircraftTitle;
+      }
       showModal(document.querySelector(modalSelector));
     }
 

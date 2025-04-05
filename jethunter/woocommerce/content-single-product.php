@@ -121,6 +121,7 @@ $constant_cost_sum = carbon_get_post_meta($product_id, 'constant_cost_sum');
 $total_cost = carbon_get_post_meta($product_id, 'total_cost');
 $total_cost_hour = carbon_get_post_meta($product_id, 'total_cost_hour');
 $aircraft_category = carbon_get_post_meta($product_id, 'aircraft_category');
+$aircraft_hull_number = carbon_get_post_meta($product_id, 'aircraft_hull_number');
 
 // Получаем разделители из настроек WooCommerce
 $thousands_separator = get_option('woocommerce_price_thousand_sep');
@@ -481,6 +482,47 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                             </div>
                         </div>
                     <?php endif; ?>
+                    <?php
+                    // Get the saved ICAO code
+                    $selected_airport_code = get_post_meta($product_id, '_airport_base', true);
+
+                    // Display airport information if a code is selected
+                    if (!empty($selected_airport_code)) :
+                        // Path to the JSON file
+                        $json_file = WP_CONTENT_DIR . '/uploads/airports.json';
+                        $airport_display = '';
+
+                        // Check if file exists and load data
+                        if (file_exists($json_file)) {
+                            $airports = json_decode(file_get_contents($json_file), true);
+
+                            if ($airports) {
+                                // Find the selected airport in the array
+                                foreach ($airports as $airport) {
+                                    if ($airport['icao_code'] === $selected_airport_code) {
+                                        // For plane-specs, just display the IATA code for brevity
+                                        $airport_display = $airport['iata_code'];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!empty($airport_display)) :
+                    ?>
+                            <div class="plane-specs-item">
+                                <div class="plane-specs-number">
+                                    <?php echo esc_html($airport_display); ?>
+                                </div>
+                                <div class="plane-specs-desc">
+                                    <?php echo t('Базирование', 'Base'); ?>
+                                </div>
+                            </div>
+                    <?php
+                        endif;
+                    endif;
+                    ?>
+
                     <?php if (!empty($aircraft_rent_produced) || !empty($aircraft_rent_updated)) : ?>
                         <div class="plane-specs-item">
                             <div class="plane-specs-number">
@@ -686,6 +728,12 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
                                 <div class="tech-table-desc">
                                     <?php echo esc_html($aircraft_hull_number); ?>
                                 </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($airport_display)) : ?>
+                            <div class="tech-table-row">
+                                <div class="tech-table-title"><?php echo t('Базовый аэропорт', 'Base airport'); ?></div>
+                                <div class="tech-table-desc"><?php echo esc_html($airport_display); ?></div>
                             </div>
                         <?php endif; ?>
                     <?php endif; ?>
@@ -1253,164 +1301,317 @@ function format_number($number, $decimal_separator = '.', $thousands_separator =
     <?php endif; ?>
 
     <?php
+    // Получаем текущий ID и модель самолета
     $current_id = get_the_ID();
     $current_model = carbon_get_post_meta($current_id, 'aircraft_model');
+    $product_brand = wp_get_post_terms($current_id, 'product_brand', ['fields' => 'ids']);
 
-    $args = [
-        'post_type'      => 'product',
-        'posts_per_page' => 4,
-        'post__not_in'   => [$current_id], // Exclude the current product
-        'meta_query'     => [
-            [
-                'key'     => 'aircraft_model',
-                'value'   => $current_model,
-                'compare' => '='
-            ],
-            [
-                'key'     => 'aircraft_category',
-                'value'   => 'buy',
-                'compare' => '='
-            ]
-        ]
-    ];
+    // Получаем текущие категории продукта
+    $current_product_terms = get_the_terms($current_id, 'product_cat');
+    $current_product_cats = array();
+    $is_buy_product = false;
+    $is_rent_product = false;
 
-    $queryBuy = new WP_Query($args);
-    if ($queryBuy->have_posts()) : ?>
-        <section class="looking-sect">
-            <div class="container">
-                <h2 class="h2 center"><?php echo t('Список самолётов для приобретения', 'List of aircraft for purchase'); ?></h2>
-                <div class="looking-grid">
-                    <?php while ($queryBuy->have_posts()) : $queryBuy->the_post();
-                        $product_id = get_the_ID();
-                        $model       = carbon_get_post_meta($product_id, 'aircraft_model');
-                        $speed       = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
-                        $range       = carbon_get_post_meta($product_id, 'range_km');
-                        $seats       = carbon_get_post_meta($product_id, 'aircraft_seats');
-                        $hour_cost   = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
-                        $id_number_buy = carbon_get_post_meta($product_id, 'id_number_buy');
-
-                        $image = get_the_post_thumbnail_url($product_id, 'full');
-                        if (!$image) {
-                            $image = 'https://jethunter.aero/wp-content/themes/jethunter/img/planes/1.png';
-                        }
-                    ?>
-                        <div class="looking-item">
-                            <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
-                            <h3 class="h3"><?php echo esc_html($model); ?></h3>
-                            <?php if ($id_number_buy) : ?>
-                                <p class="looking-serial"><?php echo esc_html($id_number_buy); ?></p>
-                            <?php endif; ?>
-                            <div class="looking-desc">
-                                <div class="looking-row">
-                                    <p class="looking-row-title"><?php echo t('Скорость', 'Speed'); ?></p>
-                                    <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
-                                </div>
-                                <div class="looking-row">
-                                    <p class="looking-row-title"><?php echo t('Дальность', 'Range'); ?></p>
-                                    <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
-                                </div>
-                                <div class="looking-row">
-                                    <p class="looking-row-title"><?php echo t('Количество мест', 'Number of seats'); ?></p>
-                                    <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
-                                </div>
-                                <?php if (!empty($hour_cost)) : ?>
-                                    <div class="looking-row">
-                                        <p class="looking-row-title"><?php echo t('Цена в час', 'Price per hour'); ?></p>
-                                        <p class="looking-row-desc"><?php echo esc_html($hour_cost); ?>₽</p>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <a href="<?php the_permalink(); ?>" class="btn btn-green-fill"><?php echo t('Подробнее', 'Details'); ?></a>
-                        </div>
-                    <?php endwhile;
-                    wp_reset_postdata(); ?>
-                </div>
-            </div>
-        </section>
-    <?php endif; ?>
-
-    <?php
-    $current_cat = carbon_get_post_meta(get_the_ID(), 'aircraft_cat');
-    if (empty($current_cat)) {
-        return;
+    // Проверяем категории текущего продукта
+    if (!empty($current_product_terms) && !is_wp_error($current_product_terms)) {
+        foreach ($current_product_terms as $term) {
+            $current_product_cats[] = $term->term_id;
+            if ($term->slug === 'buy') {
+                $is_buy_product = true;
+            } elseif ($term->slug === 'rent') {
+                $is_rent_product = true;
+            }
+        }
     }
 
-    $args = [
-        'post_type'      => 'product',
-        'posts_per_page' => 4,
-        'post__not_in'   => [get_the_ID()],
-        'meta_query'     => [
-            [
-                'key'     => 'aircraft_cat',
-                'value'   => $current_cat,
-                'compare' => '='
-            ],
-            [
-                'key'     => 'aircraft_category',
-                'value'   => 'encyclopedia',
-                'compare' => '='
-            ]
-        ]
-    ];
+    // Если текущий продукт в категории "buy", показываем другие продукты для покупки той же модели
+    if ($is_buy_product) {
+        // Получаем ID категории "buy"
+        $buy_category = get_term_by('slug', 'buy', 'product_cat');
 
-    $queryAll = new WP_Query($args);
+        if ($buy_category) {
+            $tax_query = [
+                [
+                    'taxonomy' => 'product_cat',
+                    'field' => 'term_id',
+                    'terms' => $buy_category->term_id,
+                ]
+            ];
 
-    if ($queryAll->have_posts()) : ?>
-        <section class="looking-sect">
-            <div class="container">
-                <h2 class="h2 center"><?php echo t('Самолеты такой же категории', 'Aircraft of the same category'); ?></h2>
-                <div class="looking-grid">
-                    <?php
-                    while ($queryAll->have_posts()) :
-                        $queryAll->the_post();
-                        $product_id = get_the_ID();
+            if (empty($current_model) && !empty($product_brand)) {
+                $tax_query[] = [
+                    'taxonomy' => 'product_brand',
+                    'field' => 'term_id',
+                    'terms' => $product_brand,
+                ];
+            }
 
-                        $model     = carbon_get_post_meta($product_id, 'aircraft_model');
-                        $speed     = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
-                        $range     = carbon_get_post_meta($product_id, 'range_km');
-                        $seats     = carbon_get_post_meta($product_id, 'aircraft_seats');
-                        $hour_cost = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
+            $args = [
+                'post_type' => 'product',
+                'posts_per_page' => 5,
+                'post__not_in' => [$current_id],
+                'tax_query' => $tax_query,
+                'meta_query' => !empty($current_model) ? [
+                    [
+                        'key' => 'aircraft_model',
+                        'value' => $current_model,
+                        'compare' => '='
+                    ]
+                ] : []
+            ];
 
-                        $image = get_the_post_thumbnail_url($product_id, 'full');
-                        if (! $image) {
-                            $image = get_stylesheet_directory_uri() . '/img/planes/1.png';
-                        }
-                        $sku = get_post_meta($product_id, '_sku', true);
-                    ?>
-                        <div class="looking-item">
-                            <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
-                            <h3 class="h3"><?php echo esc_html($model); ?></h3>
-                            <?php if ($sku) : ?>
-                                <p class="looking-serial"><?php echo esc_html($sku); ?></p>
-                            <?php endif; ?>
-                            <div class="looking-desc">
-                                <div class="looking-row">
-                                    <p class="looking-row-title"><?php echo t('Скорость', 'Speed'); ?></p>
-                                    <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
-                                </div>
-                                <div class="looking-row">
-                                    <p class="looking-row-title"><?php echo t('Дальность', 'Range'); ?></p>
-                                    <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
-                                </div>
-                                <div class="looking-row">
-                                    <p class="looking-row-title"><?php echo t('Количество мест', 'Number of seats'); ?></p>
-                                    <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
-                                </div>
-                                <?php if (! empty($hour_cost)) : ?>
-                                    <div class="looking-row">
-                                        <p class="looking-row-title"><?php echo t('Цена в час', 'Price per hour'); ?></p>
-                                        <p class="looking-row-desc"><?php echo esc_html($hour_cost); ?>₽</p>
+            $queryBuy = new WP_Query($args);
+
+            if ($queryBuy->have_posts()) : ?>
+                <section class="looking-sect">
+                    <div class="container">
+                        <h2 class="h2 center"><?php echo t('Список самолётов', 'List of'); ?> <?php echo esc_html($current_model); ?></h2>
+                        <div class="looking-grid">
+                            <?php while ($queryBuy->have_posts()) : $queryBuy->the_post();
+                                $product_id = get_the_ID();
+                                $aircraft_model = carbon_get_post_meta($product_id, 'aircraft_model');
+                                $aircraft_serial_number = carbon_get_post_meta($product_id, 'aircraft_serial_number');
+                                $aircraft_hull_number = carbon_get_post_meta($product_id, 'aircraft_hull_number');
+                                $aircraft_produced_year = carbon_get_post_meta($product_id, 'aircraft_produced_year');
+                                $aircraft_flown_hours = carbon_get_post_meta($product_id, 'aircraft_flown_hours');
+                                $aircraft_cycles = carbon_get_post_meta($product_id, 'aircraft_cycles');
+                                $aircraft_seats = carbon_get_post_meta($product_id, 'aircraft_seats');
+                                $image = get_the_post_thumbnail_url($product_id, 'full');
+                                if (!$image) {
+                                    $image = get_stylesheet_directory_uri() . '/img/planes/1.png';
+                                }
+                            ?>
+                                <div class="looking-item">
+                                    <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
+                                    <h3 class="h3"><?php echo esc_html($aircraft_model); ?></h3>
+                                    <?php if ($aircraft_hull_number) : ?> 
+                                        <p class="looking-serial"><?php echo esc_html($aircraft_hull_number); ?></p>
+                                    <?php endif; ?>
+                                    <div class="looking-desc">
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Год выпуска', 'Year'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_produced_year ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Серийный номер', 'Serial number'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_serial_number ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Бортовой номер', 'Hull number'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_hull_number ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Налет часов', 'Flight hours'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_flown_hours ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Циклов', 'Cycles'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_cycles ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Количество мест', 'Seats'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_seats ?: 'TBA'); ?></p>
+                                        </div>
                                     </div>
-                                <?php endif; ?>
-                            </div>
-                            <a href="<?php the_permalink(); ?>" class="btn btn-green-fill"><?php echo t('Подробнее', 'Details'); ?></a>
+                                    <a href="<?php the_permalink(); ?>" class="btn btn-green-fill"><?php echo t('Узнать больше', 'Learn more'); ?></a>
+                                </div>
+                            <?php endwhile;
+                            wp_reset_postdata(); ?>
                         </div>
-                    <?php endwhile;
-                    wp_reset_postdata(); ?>
-                </div>
-            </div>
-        </section>
-    <?php endif; ?>
+                    </div>
+                </section>
+            <?php endif;
+        }
+    }
+    if ($is_rent_product) {
+        // Получаем ID категории "rent"
+        $rent_category = get_term_by('slug', 'rent', 'product_cat');
+
+        if ($rent_category) {
+            $tax_query = [
+                [
+                    'taxonomy' => 'product_cat',
+                    'field' => 'term_id',
+                    'terms' => $rent_category->term_id,
+                ]
+            ];
+
+            if (empty($current_model) && !empty($product_brand)) {
+                $tax_query[] = [
+                    'taxonomy' => 'product_brand',
+                    'field' => 'term_id',
+                    'terms' => $product_brand,
+                ];
+            }
+
+            $args = [
+                'post_type' => 'product',
+                'posts_per_page' => 5,
+                'post__not_in' => [$current_id],
+                'tax_query' => $tax_query,
+                'meta_query' => !empty($current_model) ? [
+                    [
+                        'key' => 'aircraft_model',
+                        'value' => $current_model,
+                        'compare' => '='
+                    ]
+                ] : []
+            ];
+
+            $queryRent = new WP_Query($args);
+
+            if ($queryRent->have_posts()) : ?>
+                <section class="looking-sect">
+                    <div class="container">
+                        <h2 class="h2 center"><?php echo t('Список самолётов', 'List of'); ?> <?php echo esc_html($current_model); ?></h2>
+                        <div class="looking-grid">
+                            <?php while ($queryRent->have_posts()) : $queryRent->the_post();
+                                $product_id = get_the_ID();
+                                $aircraft_model = carbon_get_post_meta($product_id, 'aircraft_model');
+                                $aircraft_serial_number = carbon_get_post_meta($product_id, 'aircraft_serial_number');
+                                $aircraft_hull_number = carbon_get_post_meta($product_id, 'aircraft_hull_number');
+                                $aircraft_produced_year = carbon_get_post_meta($product_id, 'aircraft_produced_year');
+                                $aircraft_flown_hours = carbon_get_post_meta($product_id, 'aircraft_flown_hours');
+                                $aircraft_cycles = carbon_get_post_meta($product_id, 'aircraft_cycles');
+                                $aircraft_seats = carbon_get_post_meta($product_id, 'aircraft_seats');
+                                $image = get_the_post_thumbnail_url($product_id, 'full');
+                                if (!$image) {
+                                    $image = get_stylesheet_directory_uri() . '/img/planes/1.png';
+                                }
+                            ?>
+                                <div class="looking-item">
+                                    <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
+                                    <h3 class="h3"><?php echo esc_html($aircraft_model); ?></h3>
+                                    <?php if ($aircraft_hull_number) : ?> 
+                                        <p class="looking-serial"><?php echo esc_html($aircraft_hull_number); ?></p>
+                                    <?php endif; ?>
+                                    <div class="looking-desc">
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Год выпуска', 'Year'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_produced_year ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Серийный номер', 'Serial number'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_serial_number ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Бортовой номер', 'Hull number'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_hull_number ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Налет часов', 'Flight hours'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_flown_hours ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Циклов', 'Cycles'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_cycles ?: 'TBA'); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Количество мест', 'Seats'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($aircraft_seats ?: 'TBA'); ?></p>
+                                        </div>
+                                    </div>
+                                    <a href="<?php the_permalink(); ?>" class="btn btn-green-fill"><?php echo t('Узнать больше', 'Learn more'); ?></a>
+                                </div>
+                            <?php endwhile;
+                            wp_reset_postdata(); ?>
+                        </div>
+                    </div>
+                </section>
+            <?php endif;
+        }
+    }
+
+
+    // Получаем категорию самолета для поиска похожих
+    $current_cat = carbon_get_post_meta($current_id, 'aircraft_cat');
+    if (!empty($current_cat)) {
+        // Получаем ID категории "encyclopedia"
+        $encyclopedia_category = get_term_by('slug', 'encyclopedia', 'product_cat');
+
+        if ($encyclopedia_category) {
+            $args = [
+                'post_type'      => 'product',
+                'posts_per_page' => 5,
+                'post__not_in'   => [$current_id], // Исключаем текущий продукт
+                'tax_query'      => [
+                    [
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'term_id',
+                        'terms'    => $encyclopedia_category->term_id,
+                    ]
+                ],
+                'meta_query'     => [
+                    [
+                        'key'     => 'aircraft_cat',
+                        'value'   => $current_cat,
+                        'compare' => '='
+                    ]
+                ]
+            ];
+
+            $queryAll = new WP_Query($args);
+
+            if ($queryAll->have_posts()) : ?>
+                <section class="looking-sect">
+                    <div class="container">
+                        <h2 class="h2 center"><?php echo t('Самолеты такой же категории', 'Aircraft of the same category'); ?></h2>
+                        <div class="looking-grid">
+                            <?php
+                            while ($queryAll->have_posts()) :
+                                $queryAll->the_post();
+                                $product_id = get_the_ID();
+
+                                $model     = carbon_get_post_meta($product_id, 'aircraft_model');
+                                $speed     = carbon_get_post_meta($product_id, 'cruise_speed_kmh');
+                                $range     = carbon_get_post_meta($product_id, 'range_km');
+                                $seats     = carbon_get_post_meta($product_id, 'aircraft_seats');
+                                $hour_cost = carbon_get_post_meta($product_id, 'aircraft_hour_cost');
+
+                                $image = get_the_post_thumbnail_url($product_id, 'full');
+                                if (! $image) {
+                                    $image = get_stylesheet_directory_uri() . '/img/planes/1.png';
+                                }
+                                $sku = get_post_meta($product_id, '_sku', true);
+                            ?>
+                                <div class="looking-item">
+                                    <img src="<?php echo esc_url($image); ?>" class="looking-img" loading="lazy" alt="">
+                                    <h3 class="h3"><?php echo esc_html($model); ?></h3>
+                                    <?php if ($aircraft_hull_number) : ?>
+                                        <p class="looking-serial"><?php echo esc_html($aircraft_hull_number); ?></p>
+                                    <?php endif; ?>
+                                    <div class="looking-desc">
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Скорость', 'Speed'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($speed); ?></p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Дальность', 'Range'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($range); ?> км</p>
+                                        </div>
+                                        <div class="looking-row">
+                                            <p class="looking-row-title"><?php echo t('Количество мест', 'Number of seats'); ?></p>
+                                            <p class="looking-row-desc"><?php echo esc_html($seats); ?></p>
+                                        </div>
+                                        <?php if (! empty($hour_cost)) : ?>
+                                            <div class="looking-row">
+                                                <p class="looking-row-title"><?php echo t('Цена в час (USD)', 'Price per hour (USD)'); ?></p>
+                                                <p class="looking-row-desc"><?php echo esc_html($hour_cost); ?></p>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <a href="<?php the_permalink(); ?>" class="btn btn-green-fill"><?php echo t('Узнать больше', 'Learn more'); ?></a>
+                                </div>
+                            <?php endwhile;
+                            wp_reset_postdata(); ?>
+                        </div>
+                    </div>
+                </section>
+    <?php endif;
+        }
+    }
+    ?>
+
     <?php if (pll_current_language() == 'ru') : ?>
         <?php include_once get_stylesheet_directory() . '/components/ru/faq.php'; ?>
         <?php include_once get_stylesheet_directory() . '/components/ru/seo-empty-legs.php'; ?>

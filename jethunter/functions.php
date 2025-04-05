@@ -675,7 +675,7 @@ add_action('carbon_fields_register_fields', function () use ($country_flags_glob
             Field::make('text', 'aircraft_model', 'Модель'),
 
             Field::make('text', 'aircraft_serial_number', 'Серийный номер')
-                ->set_attribute('data-show-for', 'buy')
+                ->set_attribute('data-show-for', 'buy,rent')
                 ->set_classes('category-conditional-field'),
             Field::make('text', 'aircraft_hull_number', 'Бортовой номер')
                 ->set_attribute('data-show-for', 'buy,rent')

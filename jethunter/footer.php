@@ -61,25 +61,6 @@
     <div class="modal-inner is-active">
         <a href="#" class="modal-close btn-close">Закрыть</a>
         <h2 class="h2">Как с вами связаться?</h2>
-        <!-- <form action="contact.php" id="contact-form" method="POST" class="form-vertical">
-            <div class="input-wrap">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/form-person.svg" class="input-wrap-icon" loading="lazy" alt="">
-                <input type="text" name="username" id="username" class="input" required placeholder="ФИО">
-            </div>
-            <div class="input-wrap">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/form-phone.svg" class="input-wrap-icon" loading="lazy" alt="">
-                <input type="text" name="phone" id="phone" class="input" required placeholder="Телефон">
-            </div>
-            <div class="input-wrap">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/form-email.svg" class="input-wrap-icon" loading="lazy" alt="">
-                <input type="text" name="email" id="email" class="input" required placeholder="Почта">
-            </div>
-            <div class="input-wrap">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/icons/form-comment.svg" class="input-wrap-icon" loading="lazy" alt="">
-                <textarea name="message" id="message" class="input" placeholder="Оставьте комментарий"></textarea>
-            </div>
-            <button type="submit" class="btn btn-green-fill btn-call-send">Отправить</button>
-        </form> -->
         <?php echo do_shortcode('[contact-form-7 id="5c9874b" title="Узнать стоимость"]'); ?>
     </div>
     <div class="modal-thanks">

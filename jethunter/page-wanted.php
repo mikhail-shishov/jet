@@ -52,7 +52,7 @@
                                 <p class="looking-row-desc"><?php echo esc_html($plane['price'] ? ' ' . number_format($plane['price'], 0, ',', ' ') . '$' : 'По запросу'); ?></p>
                             </div>
                         </div>
-                        <button type="button" class="btn js-modal" data-modal="#call">Предложить</button>
+                        <button type="button" class="btn js-modal" data-modal="#call" data-title="<?php echo esc_attr($plane['title']); ?>">Предложить</button>
                     </div>
                 <?php endforeach; ?>
             </div>
